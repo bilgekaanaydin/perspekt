@@ -235,9 +235,9 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       </div>
       <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
         <sc-for list="{{terms}}" as="tm" hint-placeholder-count="2">
-          <div style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 16px; background: var(--k151518)">
-            <span class="gt" style="font-size: 17px; font-weight: 700">{{tm.term}}</span>
-            <span style="font-size: 13.5px; line-height: 1.35; color: var(--kA9AEBB)">{{tm.def}}</span>
+          <div class="dk" style="display: flex; flex-direction: column; gap: 8px; padding: 18px 16px; min-height: 120px; border-radius: 20px; background: linear-gradient(150deg, #3B7BFF 0%, #205DF4 45%, #0E2A7A 100%); color: #FFFFFF">
+            <span style="font-size: 21px; font-weight: 700; color: #FFFFFF">{{tm.term}}</span>
+            <span style="font-size: 15px; line-height: 1.4; color: rgba(255,255,255,0.85)">{{tm.def}}</span>
           </div>
         </sc-for>
       </div>
