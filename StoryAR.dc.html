@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<style>x-dc{display:none}html,body{margin:0;background:#000}#dc-root{display:flex;justify-content:center}</style>
+
+<title>Perspekt! القصة</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc><template>
+<helmet>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+@font-face{font-family:"Satoshi";src:url("_blob/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("_blob/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("_blob/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
+body{margin:0}
+@media (prefers-reduced-motion: no-preference){
+@keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-in{from{opacity:0}to{opacity:1}}
+@keyframes pk-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pk-zoom{from{transform:scale(1.04)}to{transform:none}}
+@keyframes pk-logo{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes pk-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pk-sa{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-sb{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-toast{from{opacity:0;transform:translate3d(-50%,10px,0)}to{opacity:1;transform:translate3d(-50%,0,0)}}
+@keyframes pk-sheet{from{opacity:0;transform:translate3d(0,-4px,0)}to{opacity:1;transform:none}}
+@keyframes pk-over{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+.nos > *{animation:pk-up .42s cubic-bezier(.2,.8,.2,1) both}
+.nos > *:nth-child(2){animation-delay:.03s}.nos > *:nth-child(3){animation-delay:.06s}.nos > *:nth-child(4){animation-delay:.09s}.nos > *:nth-child(5){animation-delay:.12s}.nos > *:nth-child(n+6){animation-delay:.15s}
+.st > *{animation:pk-up .42s cubic-bezier(.2,.8,.2,1) both}
+.st > *:nth-child(1){animation-delay:.06s}.st > *:nth-child(2){animation-delay:.09s}.st > *:nth-child(3){animation-delay:.12s}.st > *:nth-child(n+4){animation-delay:.15s}
+.draw{stroke-dasharray:1;animation:pk-draw .9s .1s cubic-bezier(.33,1,.68,1) both}
+.cdl{animation:pk-in .4s .12s both}
+.hz{animation:pk-zoom .9s cubic-bezier(.2,.8,.2,1) both}
+.lg{animation:pk-logo .6s cubic-bezier(.2,.8,.2,1) both}
+.bf-on{animation:pk-fill 5s linear both}
+.sa{animation:pk-sa .38s cubic-bezier(.2,.8,.2,1) both}
+.sb{animation:pk-sb .38s cubic-bezier(.2,.8,.2,1) both}
+.pk-toast{animation:pk-toast .28s cubic-bezier(.2,.8,.2,1) both}
+.pk-sheet{animation:pk-sheet .26s cubic-bezier(.2,.8,.2,1) both}
+.pk-over{animation:pk-over .3s cubic-bezier(.2,.8,.2,1) both}
+}
+.bf-done,.bf-on{width:100%}.bf-on{transform-origin:0 50%}.bf-off{width:0}
+.nos{overscroll-behavior:contain}
+button,a{transition:transform .18s cubic-bezier(.2,.8,.2,1),opacity .18s ease,background-color .2s ease,color .2s ease;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.97)}
+*{line-height:1.2 !important;font-kerning:normal;font-optical-sizing:auto}
+[style*="letter-spacing: -"],[style*="letter-spacing: 0.00"],[style*="letter-spacing: 0.01"],[style*="letter-spacing: 0.02"],[style*="letter-spacing: 0.03"]{letter-spacing:normal !important}
+a{color:#FFFFFF}a:hover{color:#FFFFFF}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2px;border-radius:10px}
+.gt{background:linear-gradient(180deg,#FFFFFF 30%,#B8CBF2 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+[dir=rtl] *{letter-spacing:0 !important}
+[dir=rtl] svg:has(path[d="M13.5 6.5L19 12l-5.5 5.5"]),[dir=rtl] svg:has(path[d="M10.5 6.5L5 12l5.5 5.5"]),[dir=rtl] svg:has(path[d="M9 6l6 6-6 6"]){transform:scaleX(-1)}
+.ltr{direction:ltr}
+[dir=rtl] span,[dir=rtl] a,[dir=rtl] button,[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] p{unicode-bidi:plaintext}
+[dir=rtl] .mk,[dir=rtl] .gb{unicode-bidi:normal}
+</style>
+</helmet>
+<div dir="rtl" style="position: relative; width: 390px; height: 844px; overflow: hidden; background: {{st.bg}}; color: #FFFFFF; font-family: Satoshi, 'IBM Plex Sans Arabic', system-ui, sans-serif">
+
+  <sc-if value="{{st.photo}}" hint-placeholder-val="{{ false }}">
+    <img src="_blob/3f0c9e8bed18dd755662c29d76abda60.jpg" alt="متجر آبل مضاء ليلًا" style="position: absolute; left: 0; top: 0; width: 390px; height: 600px; object-fit: cover">
+    <div style="position: absolute; left: 0; top: 0; width: 390px; height: 600px; background: linear-gradient(180deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 18%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 50%, #000000 100%)"></div>
+  </sc-if>
+  <sc-if value="{{st.feather}}" hint-placeholder-val="{{ true }}">
+    <img src="{{st.img}}" alt="" style="position: absolute; left: 0; bottom: 0; width: 390px; height: {{st.ih}}px; object-fit: cover; object-position: {{st.pos}}; opacity: 0.42; mix-blend-mode: luminosity; -webkit-mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 72%); mask-image: linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 72%)">
+  </sc-if>
+
+  <button onClick="{{prev}}" aria-label="القصة السابقة" style="position: absolute; left: 0; top: 120px; width: 130px; height: 590px"></button>
+  <button onClick="{{next}}" aria-label="القصة التالية" style="position: absolute; right: 0; top: 120px; width: 260px; height: 590px"></button>
+
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 47px; box-sizing: border-box; padding: 0 28px 0 40px; display: flex; align-items: center; justify-content: space-between; font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 600; color: #FFFFFF">
+    <span>9:41</span>
+    <span style="display: flex; align-items: center; gap: 6px">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="#FFFFFF"><rect x="0" y="8" width="3" height="4" rx="0.7"></rect><rect x="5" y="5.5" width="3" height="6.5" rx="0.7"></rect><rect x="10" y="3" width="3" height="9" rx="0.7"></rect><rect x="15" y="0" width="3" height="12" rx="0.7"></rect></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="#FFFFFF"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.2-1.2A10.2 10.2 0 0 0 8 .5 10.2 10.2 0 0 0 .8 3.4L2 4.6a8.5 8.5 0 0 1 6-2.4zm0 3.3c1.4 0 2.6.5 3.6 1.4l1.2-1.2A6.8 6.8 0 0 0 8 3.8a6.8 6.8 0 0 0-4.8 1.9l1.2 1.2c1-.9 2.2-1.4 3.6-1.4zM8 8.8c-.6 0-1.2.2-1.6.6L8 11l1.6-1.6c-.4-.4-1-.6-1.6-.6z"></path></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13"><rect x="0.5" y="0.5" width="23" height="12" rx="3.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.4"></rect><rect x="2" y="2" width="20" height="9" rx="2" fill="#FFFFFF"></rect><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2z" fill="#FFFFFF" fill-opacity="0.4"></path></svg>
+    </span>
+  </div>
+
+  <div style="position: absolute; left: 12px; right: 12px; top: 52px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px">
+    <sc-for list="{{bars}}" as="b" hint-placeholder-count="7">
+      <span style="position: relative; height: 2px; overflow: hidden; background: rgba(255,255,255,0.3)"><span class="{{b.cls}}" style="position: absolute; left: 0; top: 0; bottom: 0; background: #FFFFFF"></span></span>
+    </sc-for>
+  </div>
+
+  <div style="position: absolute; left: 16px; right: 8px; top: 62px; display: flex; align-items: center; justify-content: space-between">
+    <div style="display: flex; align-items: center; gap: 10px">
+      <img src="_blob/288a361143f8a27076a177fbfa9a8a0f.png" alt="" style="width: 20px; height: auto">
+      <span style="font-size: 14px; font-weight: 500; letter-spacing: 0.02em">{{st.kind}}</span>
+      <span style="font-size: 13px; color: #9AB6ED">{{st.time}}</span>
+    </div>
+    <a href="MainAR.dc.html" aria-label="إغلاق" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5.5 5.5l13 13"></path><path d="M18.5 5.5l-13 13"></path></svg>
+    </a>
+  </div>
+
+  <div class="{{st.anim}}" style="position: absolute; left: 24px; right: 24px; top: {{st.top}}px; display: flex; flex-direction: column; gap: 16px; pointer-events: none">
+    <sc-if value="{{st.tag}}" hint-placeholder-val="{{ false }}">
+      <span style="align-self: flex-start; padding: 5px 9px; background: #205DF4; font-size: 11px; font-weight: 500; letter-spacing: 0.08em">{{st.tagText}}</span>
+    </sc-if>
+    <span class="gt" style="font-size: 40px; font-weight: 500; white-space: pre-line">{{st.title}}</span>
+    <span style="max-width: 342px; font-size: 20px; font-weight: 400; color: {{st.subColor}}; white-space: pre-line">{{st.sub}}</span>
+    <sc-if value="{{st.hasRows}}" hint-placeholder-val="{{ false }}">
+      <div style="display: flex; flex-direction: column; margin-top: 8px; border-top: 0.75px solid rgba(255,255,255,0.14)">
+        <sc-for list="{{st.rows}}" as="r" hint-placeholder-count="3">
+          <div style="display: flex; justify-content: space-between; padding: 14px 0; border-bottom: 0.75px solid rgba(255,255,255,0.14); font-size: 18px; font-weight: 400">
+            <span>{{r.n}}</span><span style="font-weight: 500; color: {{r.c}}">{{r.v}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-if>
+  </div>
+
+  <div style="position: absolute; left: 20px; right: 20px; bottom: 30px; display: flex; gap: 10px">
+    <a href="HaberAR.dc.html" style="flex-grow: 1; height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; gap: 8px; background: #FFFFFF; color: #000000; text-decoration: none; font-size: 15px; font-weight: 500">اقرأ التفاصيل
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12h14"></path><path d="M13.5 6.5L19 12l-5.5 5.5"></path></svg>
+    </a>
+    <button onClick="{{act.share}}" aria-label="مشاركة" style="width: 52px; height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.35)">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M12 3v12"></path><path d="M7.5 7.5L12 3l4.5 4.5"></path><path d="M5 12v8h14v-8"></path></svg>
+    </button>
+  </div>
+  <sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+    <div class="{{tk}}" role="status" style="position: absolute; left: 50%; bottom: 104px; z-index: 9; transform: translate3d(-50%,0,0); max-width: 320px; padding: 11px 16px; border-radius: 14px; background: rgba(28,29,34,0.96); color: #FFFFFF; font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.25)">{{toast}}</div>
+  </sc-if>
+</div>
+</template></x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  pkLT() {
+    var s = this.state || {};
+    if (s.lt !== undefined) return !!s.lt;
+    var h = ((typeof location !== 'undefined' && location.hash) || '').slice(1).split('.');
+    return !!(this.props.light || h.indexOf('lt') >= 0);
+  }
+  pkSay(m) { var self = this; clearTimeout(this._pt); this.setState({ toast: m, tk: ((this.state && this.state.tk) || 0) + 1 }); this._pt = setTimeout(function () { self.setState({ toast: '' }); }, 1900); }
+  renderVals() {
+    var lt = this.pkLT(), self = this, s = this.state || {};
+    try {
+      window.__pkLT = lt;
+      
+      if (!window.__pkNav) {
+        window.__pkNav = 1;
+        document.addEventListener('click', function (e) {
+          var a = e.target && e.target.closest && e.target.closest('a[href]');
+          if (!a) return;
+          var h = a.getAttribute('href') || '';
+          if (!/\.dc\.html/.test(h)) return;
+          var p = h.split('#'), t = (p[1] || '').split('.').filter(function (x) { return x && x !== 'lt'; });
+          if (window.__pkLT) t.push('lt');
+          a.setAttribute('href', p[0] + (t.length ? '#' + t.join('.') : ''));
+        }, true);
+      }
+    } catch (e) {}
+    var o = this._rv();
+    var LGO = {"AAPL": "_blob/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "_blob/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "_blob/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "_blob/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "_blob/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "_blob/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "_blob/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "_blob/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "_blob/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "_blob/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "_blob/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "_blob/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "_blob/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "_blob/cbf6cd52679c939526a5a2252cc76878.svg", "META": "_blob/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "_blob/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "_blob/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "_blob/11b45c171b1bde3c475c2aff2769ff39.svg"};
+    (function pkDec(x, dep) {
+      if (!x || dep > 5 || typeof x !== 'object') return;
+      if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }
+      if (typeof x.sym === 'string' && x.ab !== undefined) { var lk = LGO[x.sym]; x.logo = lk || ''; x.nologo = !lk; }
+      Object.keys(x).forEach(function (k) { if (k !== 'act' && x[k] && typeof x[k] === 'object') pkDec(x[k], dep + 1); });
+    })(o, 0);
+    var M = { share: 'تم نسخ الرابط', notif: 'لا إشعارات جديدة · آخر تحقق 9:41', saved: 'أُضيف إلى المحفوظات', unsaved: 'أُزيل من المحفوظات', alarmOn: 'تم ضبط تنبيه السعر', alarmOff: 'تم حذف تنبيه السعر', profile: 'ملفك الشخصي محدَّث' };
+    o.toast = s.toast || ''; o.hasToast = !!s.toast; o.tk = 'pk-toast t' + (s.tk || 0);
+    o.searchOpen = !!s.search; o.q = s.q || '';
+    o.act = {
+      share: function () { self.pkSay(M.share); },
+      notif: function () { self.pkSay(M.notif); },
+      save: function () { var v = !s.saved; self.setState({ saved: v }); self.pkSay(v ? M.saved : M.unsaved); },
+      alarm: function () { var v = !s.alarm; self.setState({ alarm: v }); self.pkSay(v ? M.alarmOn : M.alarmOff); },
+      search: function () { self.setState({ search: true }); },
+      closeSearch: function () { self.setState({ search: false, q: '' }); },
+      typed: function (e) { self.setState({ q: (e && e.target && e.target.value) || '' }); },
+      profile: function () { self.pkSay(M.profile); },
+      saveFill: s.saved ? 'currentColor' : 'none',
+      alarmBg: s.alarm ? '#205DF4' : 'var(--k151518)'
+    };
+    return o;
+  }
+  componentDidMount() { this.arm(); }
+  componentDidUpdate(pp, ps) { if (!ps || ps.i !== (this.state && this.state.i)) this.arm(); }
+  componentWillUnmount() { clearTimeout(this.tm); }
+  arm() {
+    var self = this;
+    clearTimeout(this.tm);
+    this.tm = setTimeout(function () { var i = self.cur(); if (i < 6) self.setState({ i: i + 1 }); }, 5000);
+  }
+  cur() { var s = this.state && this.state.i; if (s != null) return s; var m = /(^|[#.])s(\d)/.exec((typeof location !== 'undefined' && location.hash) || ''); if (m) return Math.min(6, +m[2]); try { var h = JSON.parse(sessionStorage.getItem('pk-s') || 'null'); if (h && Date.now() - h.t < 8000) { this._s0 = h.i; sessionStorage.removeItem('pk-s'); } } catch (e) {} return this._s0 || 0; }
+  _rv() {
+    var self = this, i = this.cur();
+    var UP = '#5BE59A', DN = '#FF8A7A';
+    var CHIP = '_blob/72e6e03764959a7819b968fec9fee3be.jpg', FED = '_blob/5ebfdfcf219e8801edcb5216152fd714.jpg', TICK = '_blob/a139ae390119cd978d0c6e7dd6e2a557.jpg', BTCN = '_blob/5075448c754ac2226ee3353d34b0ffce.jpg', WS = '_blob/3d862a2fe82f508e91ed2958b3f48364.jpg', GOLD = '_blob/8283936c568ca923cbc58db01ce872e6.jpg', DOLLAR = '_blob/3516465269c3e9ff8466485e28932a70.jpg', DOLLAR2 = '_blob/0cef152b12203bcdd6b3f254914b2d7c.jpg', BTC = '_blob/9aacd7ac55547ce0c5d2091e4cfd89b1.jpg';
+    var S = [
+      { kind: 'عاجل', time: '12 د', bg: '#205DF4', top: 170, img: FED, title: 'الفيدرالي\nخفّض الفائدة\n25 نقطة.', sub: 'ارتفعت التقنية والذهب\nوتراجع الدولار.', subColor: 'rgba(255,255,255,0.8)' },
+      { kind: 'ملخص السوق', time: '08:00', bg: '#000000', top: 170, img: TICK, title: 'الأرقام\nالمهمة.', sub: 'الأسواق عند الافتتاح', subColor: '#9AB6ED', rows: [['NASDAQ', '+1.42%', UP], ['الذهب', '+0.92%', UP], ['DXY', '−0.48%', DN], ['BTC', '−4.85%', DN]] },
+      { kind: 'الأكثر ارتفاعًا', time: '9:40', bg: '#205DF4', top: 170, img: CHIP, title: 'الأكثر ارتفاعًا\nاليوم.', sub: 'آخر 24 ساعة في الأسواق التي تتابعها', subColor: 'rgba(255,255,255,0.8)', rows: [['NVDA', '+4.12%', UP], ['BRENT', '+3.05%', UP], ['THYAO', '+2.88%', UP], ['ORCL', '+2.10%', UP]] },
+      { kind: 'التقنية', time: '1 س', bg: '#000000', top: 480, photo: true, tag: 'رائج', title: 'اهتمام كبير\nبإطلاق آبل', sub: 'تضاعف حجم التداول 2.4 مرة\nفي الساعة الأولى.', subColor: 'rgba(255,255,255,0.8)' },
+      { kind: 'العملات المشفرة', time: '39 د', bg: '#000000', top: 170, img: BTCN, title: 'سوق العملات المشفرة\nيخسر 120\nمليار دولار.', sub: 'موجة تصفية\nسرّعت الهبوط.', subColor: 'rgba(255,255,255,0.8)' },
+      { kind: 'رؤية الذكاء الاصطناعي', time: '5 د', bg: '#000000', top: 170, img: WS, title: 'الفيدرالي\nقاد اليوم.', sub: 'دعم الخفض أسهم التقنية\nبينما تباينت العملات المشفرة.\nليست نصيحة استثمارية.', subColor: '#9AB6ED' },
+      { kind: 'تدفقات الصناديق', time: '24 د', bg: '#205DF4', top: 170, img: GOLD, title: 'الصناديق الكبرى\nتعود إلى الكريبتو.', sub: 'بلغت التدفقات الأسبوعية\n2.1 مليار دولار.', subColor: 'rgba(255,255,255,0.8)' }
+    ];
+    var s = S[i];
+    var st = {
+      kind: s.kind, time: s.time, bg: s.bg, top: s.top, title: s.title, sub: s.sub, subColor: s.subColor,
+      photo: !!s.photo, feather: !s.photo, img: s.img || '', ih: s.ih || 470, pos: s.pos || 'center', tag: !!s.tag, tagText: s.tag || '',
+      hasRows: !!s.rows, rows: (s.rows || []).map(function (r) { return { n: r[0], v: r[1], c: r[2] }; })
+    };
+    var bars = S.map(function (x, k) { return { cls: k < i ? 'bf-done' : (k === i ? 'bf-on' : 'bf-off') }; });
+    st.anim = i % 2 ? 'sa' : 'sb';
+    return {
+      st: st, bars: bars,
+      next: function () { self.setState({ i: Math.min(S.length - 1, i + 1) }); },
+      prev: function () { self.setState({ i: Math.max(0, i - 1) }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

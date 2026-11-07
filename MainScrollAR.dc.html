@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<style>x-dc{display:none}html,body{margin:0;background:#000}#dc-root{display:flex;justify-content:center}</style>
+
+<title>Perspekt! الرئيسية، بعد التمرير</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc><template>
+<helmet>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap');
+@font-face{font-family:"Satoshi";src:url("_blob/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("_blob/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("_blob/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
+body{margin:0}
+@media (prefers-reduced-motion: no-preference){
+@keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-in{from{opacity:0}to{opacity:1}}
+@keyframes pk-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pk-zoom{from{transform:scale(1.04)}to{transform:none}}
+@keyframes pk-logo{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes pk-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pk-sa{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-sb{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-toast{from{opacity:0;transform:translate3d(-50%,10px,0)}to{opacity:1;transform:translate3d(-50%,0,0)}}
+@keyframes pk-sheet{from{opacity:0;transform:translate3d(0,-4px,0)}to{opacity:1;transform:none}}
+@keyframes pk-over{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+.nos > *{animation:pk-up .42s cubic-bezier(.2,.8,.2,1) both}
+.nos > *:nth-child(2){animation-delay:.03s}.nos > *:nth-child(3){animation-delay:.06s}.nos > *:nth-child(4){animation-delay:.09s}.nos > *:nth-child(5){animation-delay:.12s}.nos > *:nth-child(n+6){animation-delay:.15s}
+.st > *{animation:pk-up .42s cubic-bezier(.2,.8,.2,1) both}
+.st > *:nth-child(1){animation-delay:.06s}.st > *:nth-child(2){animation-delay:.09s}.st > *:nth-child(3){animation-delay:.12s}.st > *:nth-child(n+4){animation-delay:.15s}
+.draw{stroke-dasharray:1;animation:pk-draw .9s .1s cubic-bezier(.33,1,.68,1) both}
+.cdl{animation:pk-in .4s .12s both}
+.hz{animation:pk-zoom .9s cubic-bezier(.2,.8,.2,1) both}
+.lg{animation:pk-logo .6s cubic-bezier(.2,.8,.2,1) both}
+.bf-on{animation:pk-fill 5s linear both}
+.sa{animation:pk-sa .38s cubic-bezier(.2,.8,.2,1) both}
+.sb{animation:pk-sb .38s cubic-bezier(.2,.8,.2,1) both}
+.pk-toast{animation:pk-toast .28s cubic-bezier(.2,.8,.2,1) both}
+.pk-sheet{animation:pk-sheet .26s cubic-bezier(.2,.8,.2,1) both}
+.pk-over{animation:pk-over .3s cubic-bezier(.2,.8,.2,1) both}
+}
+.bf-done,.bf-on{width:100%}.bf-on{transform-origin:0 50%}.bf-off{width:0}
+.nos{overscroll-behavior:contain}
+button,a{transition:transform .18s cubic-bezier(.2,.8,.2,1),opacity .18s ease,background-color .2s ease,color .2s ease;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.97)}
+*{line-height:1.2 !important;font-kerning:normal;font-optical-sizing:auto}
+[style*="letter-spacing: -"],[style*="letter-spacing: 0.00"],[style*="letter-spacing: 0.01"],[style*="letter-spacing: 0.02"],[style*="letter-spacing: 0.03"]{letter-spacing:normal !important}
+a{color:var(--k9AB6ED)}a:hover{color:var(--k9AB6ED);opacity:.85}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2px;border-radius:10px}
+.gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gs{background:linear-gradient(180deg,#FFFFFF 35%,#D3E0FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nos::-webkit-scrollbar{display:none}
+.nos > *{flex-shrink:0}
+:root{--k000000:#000000;--k151518:#151518;--k17171B:#17171B;--k0B0B0E:#0B0B0E;--kFFFFFF:#FFFFFF;--kF5F7FA:#F5F7FA;--k9AB6ED:#9AB6ED;--k7D8290:#7D8290;--k6B7080:#6B7080;--k8B91A0:#8B91A0;--k9AA3C0:#9AA3C0;--kA9AEBB:#A9AEBB;--kD5D9E2:#D5D9E2;--kB4BAC6:#B4BAC6;--kC4C8D2:#C4C8D2;--kE3E7F5:#E3E7F5;--k4F5361:#4F5361;--k2A2B31:#2A2B31;--kt18:rgba(255,255,255,0.06);--kt19:rgba(255,255,255,0.07);--kt20:rgba(255,255,255,0.14);--kt21:rgba(255,255,255,0.16);--kt22:rgba(255,255,255,0.22);--kt23:rgba(0,0,0,0.82);--kt24:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 45%, #000000 78%);--kt25:linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 40%);--kt26:radial-gradient(120% 100% at 85% 0%, rgba(120,140,255,0.38) 0%, rgba(40,46,90,0.5) 40%, #08090F 80%);--kt27:radial-gradient(120% 100% at 75% 10%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 40%, #08090F 80%);--kt28:rgba(170,185,255,0.35);--kt29:rgba(170,185,255,0.38)}
+html.lt{--k000000:#F2F3F6;--k151518:#FFFFFF;--k17171B:#E9EBF0;--k0B0B0E:#FFFFFF;--kFFFFFF:#0B0D12;--kF5F7FA:#0B0D12;--k9AB6ED:#2F5BD8;--k7D8290:#5F6472;--k6B7080:#6B7080;--k8B91A0:#5F6472;--k9AA3C0:#5F6472;--kA9AEBB:#6B7080;--kD5D9E2:#2A2E38;--kB4BAC6:#3A3F4B;--kC4C8D2:#3A3F4B;--kE3E7F5:#2A2E38;--k4F5361:#9AA0AE;--k2A2B31:#D5D8E0;--kt18:rgba(10,20,40,0.08);--kt19:rgba(10,20,40,0.08);--kt20:rgba(10,20,40,0.12);--kt21:rgba(10,20,40,0.16);--kt22:rgba(10,20,40,0.2);--kt23:rgba(242,243,246,0.92);--kt24:linear-gradient(180deg, rgba(242,243,246,0) 0%, rgba(242,243,246,0.8) 45%, #F2F3F6 78%);--kt25:linear-gradient(180deg, rgba(242,243,246,0) 0%, #F2F3F6 40%);--kt26:radial-gradient(120% 100% at 85% 0%, rgba(32,93,244,0.2) 0%, rgba(32,93,244,0.07) 40%, #FFFFFF 80%);--kt27:radial-gradient(120% 100% at 75% 10%, rgba(32,93,244,0.22) 0%, rgba(32,93,244,0.08) 40%, #FFFFFF 80%);--kt28:rgba(32,93,244,0.25);--kt29:rgba(32,93,244,0.28)}
+html.lt .dk{--k000000:#000000;--k151518:#151518;--k17171B:#17171B;--k0B0B0E:#0B0B0E;--kFFFFFF:#FFFFFF;--kF5F7FA:#F5F7FA;--k9AB6ED:#9AB6ED;--k7D8290:#7D8290;--k6B7080:#6B7080;--k8B91A0:#8B91A0;--k9AA3C0:#9AA3C0;--kA9AEBB:#A9AEBB;--kD5D9E2:#D5D9E2;--kB4BAC6:#B4BAC6;--kC4C8D2:#C4C8D2;--kE3E7F5:#E3E7F5;--k4F5361:#4F5361;--k2A2B31:#2A2B31;--kt18:rgba(255,255,255,0.06);--kt19:rgba(255,255,255,0.07);--kt20:rgba(255,255,255,0.14);--kt21:rgba(255,255,255,0.16);--kt22:rgba(255,255,255,0.22);--kt23:rgba(0,0,0,0.82);--kt24:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 45%, #000000 78%);--kt25:linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 40%);--kt26:radial-gradient(120% 100% at 85% 0%, rgba(120,140,255,0.38) 0%, rgba(40,46,90,0.5) 40%, #08090F 80%);--kt27:radial-gradient(120% 100% at 75% 10%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 40%, #08090F 80%);--kt28:rgba(170,185,255,0.35);--kt29:rgba(170,185,255,0.38)}
+html.lt body{background:#F2F3F6}
+html.lt .gt{background:linear-gradient(180deg,#0B0D12 35%,#2F5BD8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .gs{background:linear-gradient(180deg,#0B0D12 35%,#3B5FBF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .mk{background:linear-gradient(90deg,#0B0D12 0%,#2F5BD8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .gb{background:linear-gradient(90deg,#2F5BD8 0%,#205DF4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .dk .gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .dk .gs{background:linear-gradient(180deg,#FFFFFF 35%,#D3E0FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+[dir=rtl] *{letter-spacing:0 !important}
+[dir=rtl] svg:has(path[d="M13.5 6.5L19 12l-5.5 5.5"]),[dir=rtl] svg:has(path[d="M10.5 6.5L5 12l5.5 5.5"]),[dir=rtl] svg:has(path[d="M9 6l6 6-6 6"]){transform:scaleX(-1)}
+.ltr{direction:ltr}
+[dir=rtl] span,[dir=rtl] a,[dir=rtl] button,[dir=rtl] h1,[dir=rtl] h2,[dir=rtl] p{unicode-bidi:plaintext}
+[dir=rtl] .mk,[dir=rtl] .gb{unicode-bidi:normal}
+</style>
+</helmet>
+<div dir="rtl" style="position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--k000000); color: var(--kF5F7FA); font-family: Satoshi, 'IBM Plex Sans Arabic', system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 47px; z-index: 5; background: var(--k000000); box-sizing: border-box; padding: 0 28px 0 40px; display: flex; align-items: center; justify-content: space-between; background: var(--k000000); font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 600; color: var(--kFFFFFF)">
+    <span>9:41</span>
+    <span style="display: flex; align-items: center; gap: 6px">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor" style="color: var(--kFFFFFF)"><rect x="0" y="8" width="3" height="4" rx="0.7"></rect><rect x="5" y="5.5" width="3" height="6.5" rx="0.7"></rect><rect x="10" y="3" width="3" height="9" rx="0.7"></rect><rect x="15" y="0" width="3" height="12" rx="0.7"></rect></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" style="color: var(--kFFFFFF)"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.2-1.2A10.2 10.2 0 0 0 8 .5 10.2 10.2 0 0 0 .8 3.4L2 4.6a8.5 8.5 0 0 1 6-2.4zm0 3.3c1.4 0 2.6.5 3.6 1.4l1.2-1.2A6.8 6.8 0 0 0 8 3.8a6.8 6.8 0 0 0-4.8 1.9l1.2 1.2c1-.9 2.2-1.4 3.6-1.4zM8 8.8c-.6 0-1.2.2-1.6.6L8 11l1.6-1.6c-.4-.4-1-.6-1.6-.6z"></path></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13"><rect x="0.5" y="0.5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity="0.4" style="color: var(--kFFFFFF)"></rect><rect x="2" y="2" width="20" height="9" rx="2" fill="currentColor" style="color: var(--kFFFFFF)"></rect><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2z" fill="currentColor" fill-opacity="0.4" style="color: var(--kFFFFFF)"></path></svg>
+    </span>
+  </div>
+  <div class="nos" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; padding: 57px 20px 120px; display: flex; flex-direction: column; gap: 22px">
+
+    <div style="display: flex; align-items: center; justify-content: space-between; margin-top: {{shift}}px">
+      <div style="display: flex; align-items: center; gap: 10px">
+        <img src="_blob/c8b05613555759c376eca5450fcf62ca.jpg" alt="صورة الملف الشخصي" style="width: 36px; height: 36px; border-radius: 18px; object-fit: cover">
+        <span style="font-size: 16px; font-weight: 500">مرحبًا بيلغه</span>
+      </div>
+      <div style="display: flex">
+        <button onClick="{{act.search}}" aria-label="بحث" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L20 20"></path></svg>
+        </button>
+        <button onClick="{{act.notif}}" aria-label="الإشعارات" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M6 17V10a6 6 0 0 1 12 0v7"></path><path d="M4 17h16"></path><path d="M10 20.5h4"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; padding: 0 4px">
+      <sc-for list="{{stories}}" as="s" hint-placeholder-count="5">
+        <a class="{{s.cls}}" href="{{s.href}}" onClick="{{s.pick}}" style="width: 58px; height: 58px; border-radius: 29px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; text-align: center; text-decoration: none; background: {{s.bg}}; border: {{s.bd}}; box-shadow: {{s.ring}}">
+          <span class="gs" style="font-size: 10.5px; font-weight: 500; line-height: 1.3; letter-spacing: 0.03em; white-space: pre-line">{{s.label}}</span>
+        </a>
+      </sc-for>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div onPointerDown="{{sl.down}}" onPointerUp="{{sl.up}}" style="overflow: hidden; border-radius: 22px; touch-action: pan-y">
+      <div style="display: flex; gap: 10px; transform: translate3d({{sl.x}}px,0,0); transition: transform .6s cubic-bezier(.2,.8,.2,1); will-change: transform">
+
+        <a href="StoryAR.dc.html" onClick="{{sl.click}}" class="dk" style="flex: 0 0 350px; position: relative; display: block; height: 150px; border-radius: 22px; overflow: hidden; text-decoration: none; color: var(--kFFFFFF); background: #205DF4">
+          <img src="_blob/3516465269c3e9ff8466485e28932a70.jpg" alt="" style="position: absolute; right: 0; top: 0; width: 230px; height: 150px; object-fit: cover; object-position: center 40%; opacity: 0.35; mix-blend-mode: luminosity; -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, var(--k000000) 70%); mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, var(--k000000) 70%)">
+          <div style="position: absolute; right: 18px; top: 18px; display: flex; align-items: center">
+            <span style="display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; color: var(--kFFFFFF)">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2.5"></path><path d="M9.5 2.5h5"></path></svg>
+              2 د
+            </span>
+          </div>
+          <div style="position: absolute; left: 20px; top: 20px; bottom: 18px; width: 220px; display: flex; flex-direction: column">
+            <span style="font-size: 20px; font-weight: 700; line-height: 1.12; letter-spacing: -0.02em">الفيدرالي خفّض الفائدة.<br>والتقنية تتصدّر.</span>
+            <span style="margin-top: auto; align-self: flex-start; display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; background: #FFFFFF; border-radius: 17px; color: #1642C2; font-size: 13px; font-weight: 700">
+              ابدأ يومك
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1642C2" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12h14"></path><path d="M13.5 6.5L19 12l-5.5 5.5"></path></svg>
+            </span>
+          </div>
+        </a>
+
+        <sc-for list="{{featured}}" as="f" hint-placeholder-count="3">
+          <a href="HaberAR.dc.html" onClick="{{sl.click}}" class="dk" style="flex: 0 0 350px; position: relative; display: block; height: 150px; border-radius: 22px; overflow: hidden; text-decoration: none; color: var(--kFFFFFF); background: #205DF4">
+            <img src="{{f.img}}" alt="" style="position: absolute; right: 0; top: 0; width: 230px; height: 150px; object-fit: cover; object-position: {{f.pos}}; opacity: 0.35; mix-blend-mode: luminosity; -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, #000000 70%); mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, #000000 70%)">
+            <div style="position: absolute; right: 18px; top: 18px; display: flex; align-items: center">
+              <span style="display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; color: var(--kFFFFFF)">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><circle cx="12" cy="13" r="8"></circle><path d="M12 9v4l2.5 2.5"></path><path d="M9.5 2.5h5"></path></svg>
+                {{f.time}}
+              </span>
+            </div>
+            <div style="position: absolute; left: 20px; top: 20px; bottom: 18px; width: 230px; display: flex; flex-direction: column">
+              <span style="font-size: 20px; font-weight: 700; line-height: 1.12; letter-spacing: -0.02em; white-space: pre-line">{{f.short}}</span>
+              <span style="margin-top: auto; align-self: flex-start; display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; background: #FFFFFF; border-radius: 17px; color: #1642C2; font-size: 13px; font-weight: 700">
+                اقرأ الخبر
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1642C2" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12h14"></path><path d="M13.5 6.5L19 12l-5.5 5.5"></path></svg>
+              </span>
+            </div>
+          </a>
+        </sc-for>
+      </div>
+      </div>
+      <div style="display: flex; justify-content: center; gap: 6px">
+        <sc-for list="{{dots}}" as="d" hint-placeholder-count="4">
+          <button onClick="{{d.go}}" aria-label="{{d.label}}" style="width: {{d.w}}px; height: 4px; padding: 0; background: {{d.c}}; transition: width .3s cubic-bezier(.2,.8,.2,1), background-color .3s ease"></button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+    <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">قائمة متابعتك</span>
+    <div onPointerDown="{{wl.down}}" onPointerMove="{{wl.move}}" onPointerUp="{{wl.up}}" onPointerCancel="{{wl.up}}" style="display: flex; gap: 8px; margin: 0 -20px; padding: 0 20px; -webkit-mask-image: linear-gradient(90deg, #000000 0, #000000 calc(100% - 64px), rgba(0,0,0,0.15) 100%); mask-image: linear-gradient(90deg, #000000 0, #000000 calc(100% - 64px), rgba(0,0,0,0.15) 100%); overflow-x: auto; scrollbar-width: none; cursor: grab; user-select: none; -webkit-user-drag: none">
+      <sc-for list="{{tickers}}" as="t" hint-placeholder-count="7">
+        <a href="VarlikAR.dc.html" onClick="{{wl.click}}" draggable="false" style="flex: 0 0 104px; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; padding: 12px; border-radius: 16px; background: var(--k151518); text-decoration: none; color: var(--kF5F7FA)">
+          <span style="display: flex; align-items: center; gap: 6px">
+            <span style="width: 24px; height: 24px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: {{t.bg}}"><sc-if value="{{t.logo}}" hint-placeholder-val="{{ false }}"><img src="{{t.logo}}" alt="" style="width: 58%; height: 58%; object-fit: contain"></sc-if><sc-if value="{{t.nologo}}" hint-placeholder-val="{{ true }}">{{t.ab}}</sc-if></span>
+            <span style="font-size: 13px; font-weight: 700">{{t.sym}}</span>
+          </span>
+          <span style="font-size: 13px; font-weight: 500; color: {{t.color}}">{{t.chg}}</span>
+        </a>
+      </sc-for>
+    </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between">
+        <h2 class="gt" style="margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.01em">أبرز الأخبار</h2>
+        <a href="HaberAR.dc.html" style="font-size: 13px; font-weight: 500; text-decoration: none">عرض الكل</a>
+      </div>
+      <div style="display: flex; gap: 6px">
+        <sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
+          <button onClick="{{c.pick}}" style="height: 30px; padding: 0 12px; border-radius: 15px; font-size: 12px; font-weight: 500; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.bd}}">{{c.label}}</button>
+        </sc-for>
+      </div>
+      <div class="st" style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518); position: relative">
+        <sc-for list="{{news}}" as="n" hint-placeholder-count="4">
+          <a href="HaberAR.dc.html" style="display: flex; gap: 12px; align-items: center; padding: 14px 0; border-bottom: {{n.bd}}; text-decoration: none; color: var(--kF5F7FA)">
+            <sc-if value="{{n.hasImg}}" hint-placeholder-val="{{ true }}">
+              <img src="{{n.img}}" alt="" style="flex-shrink: 0; width: 64px; height: 64px; border-radius: 12px; object-fit: cover">
+            </sc-if>
+            <sc-if value="{{n.noImg}}" hint-placeholder-val="{{ false }}">
+              <span style="flex-shrink: 0; width: 64px; height: 64px; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: #222228; font-size: 10px; color: var(--k6B7080)">صورة</span>
+            </sc-if>
+            <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px">
+              <span style="font-size: 10.5px; font-weight: 500; letter-spacing: 0.06em; color: var(--k9AB6ED)">{{n.meta}}</span>
+              <span style="font-size: 15px; font-weight: 500; line-height: 1.3; letter-spacing: -0.01em">{{n.title}}</span>
+              <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.01em; color: var(--k7D8290)">{{n.t1}} <span style="color: {{n.c1}}">{{n.v1}}</span> · {{n.t2}} <span style="color: {{n.c2}}">{{n.v2}}</span></span>
+            </span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between">
+        <h2 class="gt" style="margin: 0; font-size: 20px; font-weight: 700">ماذا فعل كبار المستثمرين اليوم</h2>
+        <span style="font-size: 12px; color: var(--k7D8290)">تدفقات الصناديق</span>
+      </div>
+      <div class="st" style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518)">
+        <sc-for list="{{whales}}" as="wh" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: {{wh.bd}}">
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; background: {{wh.ibg}}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{wh.color}}" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="{{wh.icon}}"></path></svg>
+            </span>
+            <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+              <span style="font-size: 14px; font-weight: 500">{{wh.who}}</span>
+              <span style="font-size: 12px; color: var(--k7D8290)">{{wh.what}}</span>
+            </span>
+            <span style="flex-shrink: 0; font-size: 13px; font-weight: 500; color: {{wh.color}}">{{wh.amt}}</span>
+          </div>
+        </sc-for>
+      </div>
+      <span style="font-size: 11px; color: var(--k6B7080)">المصدر: تقارير التدفقات وبيانات البورصة. ليست نصيحة استثمارية.</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: baseline; justify-content: space-between">
+        <h2 class="gt" style="margin: 0; font-size: 17px; font-weight: 700">مصطلحات اليوم</h2>
+        <span style="font-size: 11px; color: var(--k7D8290)">مصطلحان يوميًا</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+        <sc-for list="{{terms}}" as="tm" hint-placeholder-count="2">
+          <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 14px; background: var(--k151518)">
+            <span class="gt" style="font-size: 14px; font-weight: 700">{{tm.term}}</span>
+            <span style="font-size: 11.5px; color: var(--kA9AEBB)">{{tm.def}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 170px; pointer-events: none; background: var(--kt24)"></div>
+  <nav aria-label="القائمة الرئيسية" style="position: absolute; left: 16px; right: 16px; bottom: 20px; height: 68px; box-sizing: border-box; display: flex; gap: 6px; padding: 6px; border-radius: 34px; background: var(--k0B0B0E); border: 1px solid var(--kt19)">
+    <a href="MainAR.dc.html" aria-current="page" class="navon" style="flex-grow: 1; display: flex; align-items: center; gap: 10px; padding: 4px 16px 4px 4px; border-radius: 28px; background: var(--k17171B); text-decoration: none; color: var(--kFFFFFF); font-size: 14px; font-weight: 500">
+      <span class="dk" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; background: #205DF4">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M4 10.5L12 4l8 6.5V20H4z"></path><path d="M12 20v-4.5"></path></svg>
+      </span><span style="flex: 1 1 auto; text-align: center">الرئيسية</span></a>
+    <a href="PiyasalarAR.dc.html" aria-label="الأسواق" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; background: var(--k17171B)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><path d="M5 19v-7h3v7"></path><path d="M10.5 19V6h3v13"></path><path d="M16 19v-4h3v4"></path><path d="M3 20h18"></path></svg>
+    </a>
+    <a href="KaydedilenlerAR.dc.html" aria-label="المحفوظات" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; background: var(--k17171B)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><path d="M6 3.5h12V20.5l-6-4.5-6 4.5z"></path></svg>
+    </a>
+    <a href="AyarlarAR.dc.html" aria-label="الإعدادات" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; background: var(--k17171B)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><path d="M3 7h10"></path><path d="M19 7h2"></path><path d="M13 4.5h6v5h-6z"></path><path d="M3 17h2"></path><path d="M11 17h10"></path><path d="M5 14.5h6v5H5z"></path></svg>
+    </a>
+  </nav>
+  <sc-if value="{{searchOpen}}" hint-placeholder-val="{{ false }}">
+    <div class="pk-over" style="position: absolute; inset: 0; z-index: 8; box-sizing: border-box; padding: 57px 20px 0; display: flex; flex-direction: column; gap: 20px; background: var(--k000000)">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div style="flex-grow: 1; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 14px; display: flex; align-items: center; gap: 10px; background: var(--k151518)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L20 20"></path></svg>
+          <input type="search" autofocus placeholder="ابحث عن أسهم أو عملات أو أخبار" aria-label="ابحث عن أسهم أو عملات أو أخبار" style="flex-grow: 1; min-width: 0; height: 40px; padding: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 15px; color: var(--kF5F7FA)">
+        </div>
+        <button onClick="{{act.closeSearch}}" style="flex-shrink: 0; height: 44px; font-size: 14px; font-weight: 500; color: var(--k9AB6ED)">إلغاء</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">الأكثر رواجًا</span>
+        <div style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518)">
+          <a href="VarlikAR.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A">Q</span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">QQQ</span><span style="font-size: 12px; color: var(--k7D8290)">Invesco QQQ</span></span>
+            <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+1.42%</span>
+          </a>
+          <a href="VarlikAR.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #E8891C"><img src="_blob/f74b93dd661ed37f19989b4797a87446.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">BTC</span><span style="font-size: 12px; color: var(--k7D8290)">Bitcoin</span></span>
+            <span style="font-size: 13px; font-weight: 500; color: #FF8A7A">−4.85%</span>
+          </a>
+          <a href="VarlikAR.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A"><img src="_blob/161ff1d447dd128b7dbee48db2806b2b.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">AAPL</span><span style="font-size: 12px; color: var(--k7D8290)">Apple</span></span>
+            <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+1.08%</span>
+          </a>
+          <a href="VarlikAR.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 0; text-decoration: none; color: var(--kF5F7FA)">
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #9A7B2F">Au</span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">XAU</span><span style="font-size: 12px; color: var(--k7D8290)">الذهب (أونصة)</span></span>
+            <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+0.92%</span>
+          </a>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">عمليات البحث الأخيرة</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px"><a href="HaberAR.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">فائدة الفيدرالي</a><a href="HaberAR.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">NVDA</a><a href="HaberAR.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">الذهب</a><a href="HaberAR.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">BIST 100</a></div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+    <div class="{{tk}}" role="status" style="position: absolute; left: 50%; bottom: 104px; z-index: 9; transform: translate3d(-50%,0,0); max-width: 320px; padding: 11px 16px; border-radius: 14px; background: rgba(28,29,34,0.96); color: #FFFFFF; font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.25)">{{toast}}</div>
+  </sc-if>
+</div>
+</template></x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"light":{"editor":"boolean","default":false},"scrolled":{"editor":"boolean","default":true},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  componentDidMount() { var self = this; this._ai = setInterval(function () { if (Date.now() - (self._touch || 0) < 7000) return; var k = (self.state && self.state.slide) || 0; self.setState({ slide: (k + 1) % 4 }); }, 4800); }
+  componentWillUnmount() { clearInterval(this._ai); }
+  pkLT() {
+    var s = this.state || {};
+    if (s.lt !== undefined) return !!s.lt;
+    if (this._lt0 === undefined) { var v = false; try { var n = JSON.parse(sessionStorage.getItem('pk-nav') || 'null'); v = !!(n && Date.now() - n.t < 8000 && n.lt); } catch (e) {} this._lt0 = v; }
+    if (this._lt0) return true;
+    var h = ((typeof location !== 'undefined' && location.hash) || '').slice(1).split('.');
+    return !!(this.props.light || h.indexOf('lt') >= 0);
+  }
+  pkSay(m) { var self = this; clearTimeout(this._pt); this.setState({ toast: m, tk: ((this.state && this.state.tk) || 0) + 1 }); this._pt = setTimeout(function () { self.setState({ toast: '' }); }, 1900); }
+  renderVals() {
+    var lt = this.pkLT(), self = this, s = this.state || {};
+    try {
+      window.__pkLT = lt;
+      document.documentElement.classList.toggle('lt', lt);
+      if (!window.__pkNav) {
+        window.__pkNav = 1;
+        document.addEventListener('click', function (e) {
+          var a = e.target && e.target.closest && e.target.closest('a[href]');
+          if (!a) return;
+          var h = a.getAttribute('href') || '';
+          if (!/\.dc\.html/.test(h)) return;
+          var p = h.split('#'), t = (p[1] || '').split('.').filter(function (x) { return x && x !== 'lt'; });
+          if (window.__pkLT) t.push('lt');
+          try { sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT })); } catch (err) {}
+          a.setAttribute('href', p[0] + (t.length ? '#' + t.join('.') : ''));
+        }, true);
+      }
+    } catch (e) {}
+    var o = this._rv();
+    var LGO = {"AAPL": "_blob/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "_blob/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "_blob/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "_blob/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "_blob/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "_blob/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "_blob/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "_blob/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "_blob/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "_blob/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "_blob/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "_blob/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "_blob/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "_blob/cbf6cd52679c939526a5a2252cc76878.svg", "META": "_blob/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "_blob/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "_blob/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "_blob/11b45c171b1bde3c475c2aff2769ff39.svg"};
+    (function pkDec(x, dep) {
+      if (!x || dep > 5 || typeof x !== 'object') return;
+      if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }
+      if (typeof x.sym === 'string' && x.ab !== undefined) { var lk = LGO[x.sym]; x.logo = lk || ''; x.nologo = !lk; }
+      Object.keys(x).forEach(function (k) { if (k !== 'act' && x[k] && typeof x[k] === 'object') pkDec(x[k], dep + 1); });
+    })(o, 0);
+    var M = { share: 'تم نسخ الرابط', notif: 'لا إشعارات جديدة · آخر تحقق 9:41', saved: 'أُضيف إلى المحفوظات', unsaved: 'أُزيل من المحفوظات', alarmOn: 'تم ضبط تنبيه السعر', alarmOff: 'تم حذف تنبيه السعر', profile: 'ملفك الشخصي محدَّث' };
+    o.toast = s.toast || ''; o.hasToast = !!s.toast; o.tk = 'pk-toast t' + (s.tk || 0);
+    o.searchOpen = !!s.search; o.q = s.q || '';
+    o.act = {
+      share: function () { self.pkSay(M.share); },
+      notif: function () { self.pkSay(M.notif); },
+      save: function () { var v = !s.saved; self.setState({ saved: v }); self.pkSay(v ? M.saved : M.unsaved); },
+      alarm: function () { var v = !s.alarm; self.setState({ alarm: v }); self.pkSay(v ? M.alarmOn : M.alarmOff); },
+      search: function () { self.setState({ search: true }); },
+      closeSearch: function () { self.setState({ search: false, q: '' }); },
+      typed: function (e) { self.setState({ q: (e && e.target && e.target.value) || '' }); },
+      profile: function () { self.pkSay(M.profile); },
+      saveFill: s.saved ? 'currentColor' : 'none',
+      alarmBg: s.alarm ? '#205DF4' : 'var(--k151518)'
+    };
+    return o;
+  }
+  _rv() {
+    var self = this;
+    var cat = (this.state && this.state.cat) || 'الكل';
+    var UP = '#5BE59A', DN = '#FF8A7A';
+    if (this.pkLT && this.pkLT()) { UP = '#0E9F6E'; DN = '#E5484D'; }
+    var BLUE = '#205DF4';
+    var stories = [['عاجل', 0], ['ملخص\nالسوق', 1], ['الأكثر\nارتفاعًا', 0], ['رؤية\nالذكاء', 1], ['العملات المشفرة', 0]].map(function (s, si) {
+      var sidx = [0, 1, 2, 5, 4][si], href = 'StoryAR.dc.html#s' + sidx, pick = function () { try { sessionStorage.setItem('pk-s', JSON.stringify({ i: sidx, t: Date.now() })); } catch (e) {} };
+      return s[1]
+        ? { label: s[0], bg: 'linear-gradient(160deg, #5A88FF 0%, ' + BLUE + ' 55%, #1440B8 100%)', bd: '0.75px solid rgba(255,255,255,0.55)', ring: 'none', href: href, pick: pick, cls: 'dk' }
+        : { label: s[0], bg: 'var(--kt27)', bd: '0.75px solid var(--kt29)', ring: 'none', href: href, pick: pick, cls: '' };
+    });
+    var pixels = [];
+    var seed = 11;
+    function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+    for (var gx = 0; gx < 8; gx++) {
+      for (var gy = 0; gy < 7; gy++) {
+        var keep = 1 - (gx + gy) / 10;
+        if (rnd() > keep * 0.75) continue;
+        var t = rnd();
+        pixels.push({ r: 16 + gx * 13, b: 16 + gy * 13, s: t > 0.82 ? 11 : 7, c: t > 0.6 ? 'rgba(255,255,255,0.92)' : (t > 0.3 ? 'rgba(180,205,255,0.6)' : 'rgba(255,255,255,0.28)') });
+      }
+    }
+    var tickers = [
+      ['QQQ', 'Q', '#3B3F4A', '+1.42%', UP], ['BTC', '₿', '#E8891C', '−4.85%', DN], ['ETH', 'E', '#5865D8', '−3.10%', DN], ['SOL', 'S', '#7A3FD0', '−5.02%', DN], ['NVDA', 'N', '#3E7A2C', '+4.12%', UP], ['XAU', 'Au', '#9A7B2F', '+0.92%', UP], ['XRP', 'X', '#30343E', '−2.37%', DN]
+    ].map(function (t) { return { sym: t[0], ab: t[1], bg: t[2], chg: t[3], color: t[4] }; });
+    var ALL = [
+      { id: 'ws', cat: 'المال', meta: 'المال · 1 س', title: 'وول ستريت تغلق عند مستوى قياسي بدعم التقنية', t1: 'SPX', v1: '+0.62%', c1: UP, t2: 'NDX', v2: '+1.10%', c2: UP, img: '_blob/b2ba4d6f6974f308d7de1b72ca98107a.jpg' },
+      { id: 'fed', cat: 'المال', meta: 'المال · 12 د', title: 'الفيدرالي يخفّض سعر الفائدة 25 نقطة أساس', t1: 'QQQ', v1: '+1.42%', c1: UP, t2: 'DXY', v2: '−0.48%', c2: DN, img: '_blob/5ebfdfcf219e8801edcb5216152fd714.jpg' },
+      { id: 'chip', cat: 'التقنية', meta: 'التقنية · 2 س', title: 'إنفيديا تسجّل قمة جديدة بفضل الطلب على رقائق الذكاء', t1: 'NVDA', v1: '+4.12%', c1: UP, t2: 'SOXX', v2: '+2.30%', c2: UP, img: '_blob/72e6e03764959a7819b968fec9fee3be.jpg' },
+      { id: 'btc', cat: 'العملات المشفرة', meta: 'العملات المشفرة · 39 د', title: 'سوق العملات المشفرة يخسر 120 مليار دولار', t1: 'BTC', v1: '−4.85%', c1: DN, t2: 'ETH', v2: '−3.10%', c2: DN, img: '_blob/5075448c754ac2226ee3353d34b0ffce.jpg' },
+      { id: 'gold', cat: 'السلع', meta: 'السلع · 3 س', title: 'الذهب يقترب من 2,700 دولار للأونصة', t1: 'XAU', v1: '+0.92%', c1: UP, t2: 'GLD', v2: '+0.88%', c2: UP, img: '_blob/8283936c568ca923cbc58db01ce872e6.jpg' },
+      { id: 'oil', cat: 'السلع', meta: 'السلع · 45 د', title: 'برنت يقفز 3% بعد قرار أوبك+', t1: 'BRENT', v1: '+3.05%', c1: UP, t2: 'XLE', v2: '+1.20%', c2: UP, img: '_blob/2502594da937e79d7d59a04fe251756c.jpg' },
+      { id: 'apple', cat: 'التقنية', meta: 'التقنية · 1 س', title: 'إطلاق آبل: حجم التداول تضاعف 2.4 مرة', t1: 'AAPL', v1: '+1.08%', c1: UP, t2: 'QQQ', v2: '+0.40%', c2: UP, img: '_blob/3f0c9e8bed18dd755662c29d76abda60.jpg' },
+      { id: 'ist', cat: 'المال', meta: 'المال · 3 س', title: 'BIST 100 يغلق منخفضًا بضغط بيع أجنبي', t1: 'XU100', v1: '−1.26%', c1: DN, t2: 'XBANK', v2: '−2.04%', c2: DN, img: '_blob/9ac3c5e8363ccbcba2986ac1bb3b5012.jpg' }
+    ];
+    var list = ALL.filter(function (n) { return cat === 'الكل' || n.cat === cat; });
+    var news = list.map(function (n, i) {
+      var o = Object.assign({}, n);
+      o.bd = i < list.length - 1 ? '1px solid var(--kt18)' : '0';
+      o.hasImg = !!n.img; o.noImg = !n.img;
+      return o;
+    });
+    var cats = ['الكل', 'المال', 'العملات المشفرة', 'التقنية', 'السلع'].map(function (c) {
+      var on = c === cat;
+      return { label: c, bg: on ? 'var(--kF5F7FA)' : 'transparent', fg: on ? 'var(--k000000)' : 'var(--kC4C8D2)', bd: on ? 'var(--kF5F7FA)' : 'var(--kt20)', pick: function () { self.setState({ cat: c }); } };
+    });
+    var slide = (this.state && this.state.slide) || 0;
+    var featured = [
+      { short: 'إنفيديا تسجّل\nقمة جديدة.', img: '_blob/72e6e03764959a7819b968fec9fee3be.jpg', pos: 'center 45%', tag: 'التقنية', time: '2 س', title: 'إنفيديا تسجّل قمة جديدة بفضل الطلب على رقائق الذكاء', t1: 'NVDA', v1: '+4.12%', c1: UP, t2: 'SOXX', v2: '+2.30%', c2: UP },
+      { short: 'الذهب يقترب\nمن 2,700 دولار.', img: '_blob/8283936c568ca923cbc58db01ce872e6.jpg', pos: 'center 50%', tag: 'السلع', time: '3 س', title: 'الذهب يقترب من 2,700 دولار للأونصة', t1: 'XAU', v1: '+0.92%', c1: UP, t2: 'GLD', v2: '+0.88%', c2: UP },
+      { short: 'وول ستريت\nتغلق عند قمة قياسية.', img: '_blob/b2ba4d6f6974f308d7de1b72ca98107a.jpg', pos: 'center 30%', tag: 'المال', time: '1 س', title: 'وول ستريت تغلق عند مستوى قياسي بدعم التقنية', t1: 'SPX', v1: '+0.62%', c1: UP, t2: 'NDX', v2: '+1.10%', c2: UP }
+    ];
+    var go = function (k) { self._touch = Date.now(); self.setState({ slide: (k + 4) % 4 }); };
+    var dots = [0, 1, 2, 3].map(function (k) { return { w: k === slide ? 18 : 4, c: k === slide ? 'var(--kFFFFFF)' : 'rgba(255,255,255,0.3)', label: 'شريحة ' + (k + 1), go: function () { go(k); } }; });
+    var sl = {
+      x: -slide * 360,
+      down: function (e) { self._px = e.clientX; self._sw = false; },
+      up: function (e) { if (self._px == null) return; var dx = e.clientX - self._px; self._px = null; if (Math.abs(dx) > 36) { self._sw = true; go(slide + (dx < 0 ? 1 : -1)); } },
+      click: function (e) { if (self._sw) { e.preventDefault(); self._sw = false; } }
+    };
+    var onSlide = null;
+    var wl = {
+      down: function (e) { self._wx = e.clientX; self._wsl = e.currentTarget.scrollLeft; self._wd = false; try { e.currentTarget.setPointerCapture(e.pointerId); } catch (err) {} },
+      move: function (e) { if (self._wx == null) return; var dx = e.clientX - self._wx; if (Math.abs(dx) > 4) self._wd = true; e.currentTarget.scrollLeft = self._wsl - dx; },
+      up: function () { self._wx = null; },
+      click: function (e) { if (self._wd) { e.preventDefault(); self._wd = false; } }
+    };
+    var terms = [
+      { kicker: 'مصطلح 1', term: 'نقطة أساس', def: 'تغيّر بمقدار 0.01 نقطة مئوية في سعر الفائدة.', ex: '25 نقطة أساس = 0.25%' },
+      { kicker: 'مصطلح 2', term: 'التصفية', def: 'إغلاق قسري لمركز بالرافعة عند نقص الضمان.', ex: 'سرّعت هبوط العملات المشفرة اليوم' }
+    ];
+    var IN = 'M12 4v14M6 12l6 6 6-6', OUT = 'M12 20V6M6 12l6-6 6 6';
+    var W8 = [
+      ['صناديق بيتكوين الفورية', 'صافي التدفقات، الأسبوع 3', '+$420M', true],
+      ['المستثمرون الأجانب · BIST', 'صافي بيع في الأسهم', '−₺1.2B', false],
+      ['البنوك المركزية', 'زيادة احتياطي الذهب', '+18 طنًا', true],
+      ['صناديق التقنية', 'عودة الشراء بعد الفيدرالي', '+$1.6B', true]
+    ];
+    var whales = W8.map(function (w, i) {
+      return { who: w[0], what: w[1], amt: w[2], color: w[3] ? UP : DN, ibg: w[3] ? 'rgba(91,229,154,0.1)' : 'rgba(255,138,122,0.1)', icon: w[3] ? IN : OUT, bd: i < W8.length - 1 ? '1px solid var(--kt18)' : '0' };
+    });
+    return { shift: (this.props.scrolled ?? true) ? -420 : 0, stories: stories, pixels: pixels, tickers: tickers, news: news, cats: cats, featured: featured, dots: dots, sl: sl, wl: wl, terms: terms, whales: whales };
+  }
+}
+</script>
+</body>
+</html>

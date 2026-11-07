@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<style>x-dc{display:none}html,body{margin:0;background:#000}#dc-root{display:flex;justify-content:center}</style>
+
+<title>Perspekt! piyasalar</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc><template>
+<helmet>
+<style>
+@font-face{font-family:"Satoshi";src:url("_blob/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("_blob/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("_blob/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
+body{margin:0}
+@media (prefers-reduced-motion: no-preference){
+@keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-in{from{opacity:0}to{opacity:1}}
+@keyframes pk-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pk-zoom{from{transform:scale(1.04)}to{transform:none}}
+@keyframes pk-logo{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes pk-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pk-sa{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-sb{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-toast{from{opacity:0;transform:translate3d(-50%,10px,0)}to{opacity:1;transform:translate3d(-50%,0,0)}}
+@keyframes pk-sheet{from{opacity:0;transform:translate3d(0,-4px,0)}to{opacity:1;transform:none}}
+@keyframes pk-over{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+.nos > *{animation:pk-up .42s cubic-bezier(.2,.8,.2,1) both}
+.nos > *:nth-child(2){animation-delay:.03s}.nos > *:nth-child(3){animation-delay:.06s}.nos > *:nth-child(4){animation-delay:.09s}.nos > *:nth-child(5){animation-delay:.12s}.nos > *:nth-child(n+6){animation-delay:.15s}
+.st > *{animation:pk-up .42s cubic-bezier(.2,.8,.2,1) both}
+.st > *:nth-child(1){animation-delay:.06s}.st > *:nth-child(2){animation-delay:.09s}.st > *:nth-child(3){animation-delay:.12s}.st > *:nth-child(n+4){animation-delay:.15s}
+.draw{stroke-dasharray:1;animation:pk-draw .9s .1s cubic-bezier(.33,1,.68,1) both}
+.cdl{animation:pk-in .4s .12s both}
+.hz{animation:pk-zoom .9s cubic-bezier(.2,.8,.2,1) both}
+.lg{animation:pk-logo .6s cubic-bezier(.2,.8,.2,1) both}
+.bf-on{animation:pk-fill 5s linear both}
+.sa{animation:pk-sa .38s cubic-bezier(.2,.8,.2,1) both}
+.sb{animation:pk-sb .38s cubic-bezier(.2,.8,.2,1) both}
+.pk-toast{animation:pk-toast .28s cubic-bezier(.2,.8,.2,1) both}
+.pk-sheet{animation:pk-sheet .26s cubic-bezier(.2,.8,.2,1) both}
+.pk-over{animation:pk-over .3s cubic-bezier(.2,.8,.2,1) both}
+}
+.bf-done,.bf-on{width:100%}.bf-on{transform-origin:0 50%}.bf-off{width:0}
+.nos{overscroll-behavior:contain}
+button,a{transition:transform .18s cubic-bezier(.2,.8,.2,1),opacity .18s ease,background-color .2s ease,color .2s ease;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.97)}
+*{line-height:1.2 !important;font-kerning:normal;font-optical-sizing:auto}
+[style*="letter-spacing: -"],[style*="letter-spacing: 0.00"],[style*="letter-spacing: 0.01"],[style*="letter-spacing: 0.02"],[style*="letter-spacing: 0.03"]{letter-spacing:normal !important}
+a{color:var(--k9AB6ED)}a:hover{color:var(--k9AB6ED);opacity:.85}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2px;border-radius:10px}
+.gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nos::-webkit-scrollbar{display:none}
+.nos > *{flex-shrink:0}
+:root{--k000000:#000000;--k151518:#151518;--k17171B:#17171B;--k0B0B0E:#0B0B0E;--kFFFFFF:#FFFFFF;--kF5F7FA:#F5F7FA;--k9AB6ED:#9AB6ED;--k7D8290:#7D8290;--k6B7080:#6B7080;--k8B91A0:#8B91A0;--k9AA3C0:#9AA3C0;--kA9AEBB:#A9AEBB;--kD5D9E2:#D5D9E2;--kB4BAC6:#B4BAC6;--kC4C8D2:#C4C8D2;--kE3E7F5:#E3E7F5;--k4F5361:#4F5361;--k2A2B31:#2A2B31;--kt18:rgba(255,255,255,0.06);--kt19:rgba(255,255,255,0.07);--kt20:rgba(255,255,255,0.14);--kt21:rgba(255,255,255,0.16);--kt22:rgba(255,255,255,0.22);--kt23:rgba(0,0,0,0.82);--kt24:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 45%, #000000 78%);--kt25:linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 40%);--kt26:radial-gradient(120% 100% at 85% 0%, rgba(120,140,255,0.38) 0%, rgba(40,46,90,0.5) 40%, #08090F 80%);--kt27:radial-gradient(120% 100% at 75% 10%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 40%, #08090F 80%);--kt28:rgba(170,185,255,0.35);--kt29:rgba(170,185,255,0.38)}
+html.lt{--k000000:#F2F3F6;--k151518:#FFFFFF;--k17171B:#E9EBF0;--k0B0B0E:#FFFFFF;--kFFFFFF:#0B0D12;--kF5F7FA:#0B0D12;--k9AB6ED:#2F5BD8;--k7D8290:#5F6472;--k6B7080:#6B7080;--k8B91A0:#5F6472;--k9AA3C0:#5F6472;--kA9AEBB:#6B7080;--kD5D9E2:#2A2E38;--kB4BAC6:#3A3F4B;--kC4C8D2:#3A3F4B;--kE3E7F5:#2A2E38;--k4F5361:#9AA0AE;--k2A2B31:#D5D8E0;--kt18:rgba(10,20,40,0.08);--kt19:rgba(10,20,40,0.08);--kt20:rgba(10,20,40,0.12);--kt21:rgba(10,20,40,0.16);--kt22:rgba(10,20,40,0.2);--kt23:rgba(242,243,246,0.92);--kt24:linear-gradient(180deg, rgba(242,243,246,0) 0%, rgba(242,243,246,0.8) 45%, #F2F3F6 78%);--kt25:linear-gradient(180deg, rgba(242,243,246,0) 0%, #F2F3F6 40%);--kt26:radial-gradient(120% 100% at 85% 0%, rgba(32,93,244,0.2) 0%, rgba(32,93,244,0.07) 40%, #FFFFFF 80%);--kt27:radial-gradient(120% 100% at 75% 10%, rgba(32,93,244,0.22) 0%, rgba(32,93,244,0.08) 40%, #FFFFFF 80%);--kt28:rgba(32,93,244,0.25);--kt29:rgba(32,93,244,0.28)}
+html.lt .dk{--k000000:#000000;--k151518:#151518;--k17171B:#17171B;--k0B0B0E:#0B0B0E;--kFFFFFF:#FFFFFF;--kF5F7FA:#F5F7FA;--k9AB6ED:#9AB6ED;--k7D8290:#7D8290;--k6B7080:#6B7080;--k8B91A0:#8B91A0;--k9AA3C0:#9AA3C0;--kA9AEBB:#A9AEBB;--kD5D9E2:#D5D9E2;--kB4BAC6:#B4BAC6;--kC4C8D2:#C4C8D2;--kE3E7F5:#E3E7F5;--k4F5361:#4F5361;--k2A2B31:#2A2B31;--kt18:rgba(255,255,255,0.06);--kt19:rgba(255,255,255,0.07);--kt20:rgba(255,255,255,0.14);--kt21:rgba(255,255,255,0.16);--kt22:rgba(255,255,255,0.22);--kt23:rgba(0,0,0,0.82);--kt24:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 45%, #000000 78%);--kt25:linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 40%);--kt26:radial-gradient(120% 100% at 85% 0%, rgba(120,140,255,0.38) 0%, rgba(40,46,90,0.5) 40%, #08090F 80%);--kt27:radial-gradient(120% 100% at 75% 10%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 40%, #08090F 80%);--kt28:rgba(170,185,255,0.35);--kt29:rgba(170,185,255,0.38)}
+html.lt body{background:#F2F3F6}
+html.lt .gt{background:linear-gradient(180deg,#0B0D12 35%,#2F5BD8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .gs{background:linear-gradient(180deg,#0B0D12 35%,#3B5FBF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .mk{background:linear-gradient(90deg,#0B0D12 0%,#2F5BD8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .gb{background:linear-gradient(90deg,#2F5BD8 0%,#205DF4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .dk .gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--k000000); color: var(--kF5F7FA); font-family: Satoshi, Inter, system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 47px; z-index: 5; box-sizing: border-box; padding: 0 28px 0 40px; display: flex; align-items: center; justify-content: space-between; background: var(--k000000); font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 600; color: var(--kFFFFFF)">
+    <span>9:41</span>
+    <span style="display: flex; align-items: center; gap: 6px">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor" style="color: var(--kFFFFFF)"><rect x="0" y="8" width="3" height="4" rx="0.7"></rect><rect x="5" y="5.5" width="3" height="6.5" rx="0.7"></rect><rect x="10" y="3" width="3" height="9" rx="0.7"></rect><rect x="15" y="0" width="3" height="12" rx="0.7"></rect></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" style="color: var(--kFFFFFF)"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.2-1.2A10.2 10.2 0 0 0 8 .5 10.2 10.2 0 0 0 .8 3.4L2 4.6a8.5 8.5 0 0 1 6-2.4zm0 3.3c1.4 0 2.6.5 3.6 1.4l1.2-1.2A6.8 6.8 0 0 0 8 3.8a6.8 6.8 0 0 0-4.8 1.9l1.2 1.2c1-.9 2.2-1.4 3.6-1.4zM8 8.8c-.6 0-1.2.2-1.6.6L8 11l1.6-1.6c-.4-.4-1-.6-1.6-.6z"></path></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13"><rect x="0.5" y="0.5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity="0.4" style="color: var(--kFFFFFF)"></rect><rect x="2" y="2" width="20" height="9" rx="2" fill="currentColor" style="color: var(--kFFFFFF)"></rect><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2z" fill="currentColor" fill-opacity="0.4" style="color: var(--kFFFFFF)"></path></svg>
+    </span>
+  </div>
+  <div class="nos" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; padding: 57px 20px 120px; display: flex; flex-direction: column; gap: 18px">
+
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <h1 class="gt" style="margin: 0; font-size: 26px; font-weight: 700; letter-spacing: -0.02em">Piyasalar</h1>
+      <button onClick="{{act.search}}" aria-label="Ara" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L20 20"></path></svg>
+      </button>
+    </div>
+
+    <div style="display: flex; gap: 18px; border-bottom: 1px solid rgba(255,255,255,0.08)">
+      <sc-for list="{{segs}}" as="sg" hint-placeholder-count="5">
+        <button onClick="{{sg.pick}}" style="height: 40px; font-size: 14px; font-weight: 700; color: {{sg.fg}}; border-bottom: 2px solid {{sg.bd}}">{{sg.label}}</button>
+      </sc-for>
+    </div>
+
+    <div class="dk" style="display: flex; flex-direction: column; gap: 14px; padding: 18px 16px 14px; border-radius: 24px; color: var(--kFFFFFF); background: radial-gradient(120% 90% at 78% 8%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 38%, #08090F 78%); border: 1px solid var(--kt29)">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start">
+        <a href="Varlik.dc.html" style="display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--kFFFFFF)">
+          <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: #A9B8FF">{{r.name}}</span>
+          <span style="font-size: 34px; font-weight: 500; line-height: 1.05; letter-spacing: -0.02em">{{r.price}}</span>
+          <span style="font-size: 13px; font-weight: 500; color: var(--kE3E7F5)">{{r.chg}} <span style="color: var(--k9AA3C0)">{{rlabel}}</span></span>
+        </a>
+        <div style="display: flex; gap: 2px; padding: 2px; border-radius: 9px; background: var(--kt18); border: 0.75px solid rgba(170,185,255,0.25)">
+          <button onClick="{{setLine}}" aria-label="Çizgi grafik" style="width: 28px; height: 24px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: {{tg.l}}">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M3 17l5-6 4 3 8-9"></path></svg>
+          </button>
+          <button onClick="{{setBar}}" aria-label="Sütun grafik" style="width: 28px; height: 24px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: {{tg.b}}">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M5 20v-8h3v8z"></path><path d="M10.5 20V5h3v15z"></path><path d="M16 20v-5h3v5z"></path></svg>
+          </button>
+          <button onClick="{{setCandle}}" aria-label="Mum grafik" style="width: 28px; height: 24px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: {{tg.c}}">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M7 3v4M7 17v4M17 4v4M17 16v4"></path><path d="M5 7h4v10H5z"></path><path d="M15 8h4v8h-4z"></path></svg>
+          </button>
+        </div>
+      </div>
+      <sc-if value="{{isLine}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div style="position: relative; width: 318px; height: {{g.CH}}px">
+            <svg width="318" height="{{g.CH}}" viewBox="0 0 318 {{g.CH}}" aria-hidden="true" style="position: absolute; inset: 0; overflow: visible">
+              <defs><linearGradient id="pkArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#205DF4" stop-opacity="0.5"></stop><stop offset="1" stop-color="#205DF4" stop-opacity="0"></stop></linearGradient></defs>
+              <path d="{{g.grid}}" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"></path>
+              <path class="cdl" d="{{g.area}}" fill="url(#pkArea)"></path>
+              <path class="draw" pathLength="1" d="{{r.line}}" fill="none" stroke="#A9C1FF" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"></path>
+            </svg>
+            <span style="position: absolute; left: {{g.sx}}px; top: {{g.sy}}px; width: 7px; height: 7px; border-radius: 4px; background: #A9C1FF"></span>
+            <span style="position: absolute; left: {{r.ex}}px; top: {{r.ey}}px; width: 9px; height: 9px; border-radius: 5px; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(169,193,255,0.22), 0 0 12px rgba(169,193,255,0.6)"></span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 9px; font-weight: 500; letter-spacing: 0.04em; color: var(--k9AA3C0)"><sc-for list="{{labels}}" as="l" hint-placeholder-count="7"><span>{{l}}</span></sc-for></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{isBar}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div class="cdl" style="position: relative; width: 318px; height: {{g.CH}}px">
+            <svg width="318" height="{{g.CH}}" viewBox="0 0 318 {{g.CH}}" aria-hidden="true" style="position: absolute; inset: 0"><path d="{{g.grid}}" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"></path></svg>
+            <sc-for list="{{bars}}" as="b" hint-placeholder-count="12">
+              <span style="position: absolute; left: {{b.x}}px; bottom: 0; width: {{b.w}}px; height: {{b.h}}px; border-radius: 6px 6px 2px 2px; background: {{b.bg}}"></span>
+            </sc-for>
+            <span style="position: absolute; left: {{tip.x}}px; top: {{tip.y}}px; transform: translateX(-50%); height: 22px; padding: 0 8px; display: flex; align-items: center; border-radius: 7px; background: #FFFFFF; color: var(--k000000); font-size: 11px; font-weight: 700; white-space: nowrap">{{tip.v}}</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 9px; font-weight: 500; letter-spacing: 0.04em; color: var(--k9AA3C0)"><sc-for list="{{labels}}" as="l" hint-placeholder-count="7"><span>{{l}}</span></sc-for></div>
+        </div>
+      </sc-if>
+      <sc-if value="{{isCandle}}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 8px">
+          <div class="cdl" style="position: relative; width: 318px; height: {{g.CH}}px">
+            <svg width="318" height="{{g.CH}}" viewBox="0 0 318 {{g.CH}}" aria-hidden="true" style="position: absolute; inset: 0"><path d="{{g.grid}}" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="1" stroke-dasharray="1 3"></path></svg>
+            <sc-for list="{{candles}}" as="k" hint-placeholder-count="20">
+              <span style="position: absolute; left: {{k.wx}}px; top: {{k.wt}}px; width: 1px; height: {{k.wh}}px; background: {{k.c}}"></span>
+              <span style="position: absolute; left: {{k.bx}}px; top: {{k.bt}}px; width: {{k.bw}}px; height: {{k.bh}}px; background: {{k.c}}"></span>
+            </sc-for>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 9px; font-weight: 500; letter-spacing: 0.04em; color: var(--k9AA3C0)"><sc-for list="{{labels}}" as="l" hint-placeholder-count="7"><span>{{l}}</span></sc-for></div>
+        </div>
+      </sc-if>
+      <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px">
+        <sc-for list="{{ranges}}" as="g" hint-placeholder-count="6">
+          <button onClick="{{g.pick}}" style="height: 32px; border-radius: 16px; text-align: center; font-size: 12px; font-weight: 700; background: {{g.bg}}; color: {{g.fg}}">{{g.label}}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <sc-if value="{{isHis}}" hint-placeholder-val="{{ false }}">
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 16px; background: var(--k151518)">
+        <sc-for list="{{mks}}" as="mk" hint-placeholder-count="2">
+          <button onClick="{{mk.pick}}" style="height: 36px; border-radius: 12px; text-align: center; font-size: 13px; font-weight: 600; background: {{mk.bg}}; color: {{mk.fg}}">{{mk.label}}</button>
+        </sc-for>
+      </div>
+    </sc-if>
+
+    <div class="st" style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518)">
+      <sc-for list="{{rows}}" as="m" hint-placeholder-count="4">
+        <a href="Varlik.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: {{m.bd}}; text-decoration: none; color: var(--kF5F7FA)">
+          <span style="flex-shrink: 0; width: 36px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: {{m.bg}}"><sc-if value="{{m.logo}}" hint-placeholder-val="{{ false }}"><img src="{{m.logo}}" alt="" style="width: 58%; height: 58%; object-fit: contain"></sc-if><sc-if value="{{m.nologo}}" hint-placeholder-val="{{ true }}">{{m.ab}}</sc-if></span>
+          <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <span style="font-size: 14px; font-weight: 700">{{m.sym}}</span>
+            <span style="font-size: 12px; color: var(--k8B91A0)">{{m.name}}</span>
+          </span>
+          <span style="display: flex; flex-direction: column; align-items: flex-end; gap: 2px">
+            <span style="font-size: 14px; font-weight: 500">{{m.price}}</span>
+            <span style="font-size: 12px; font-weight: 500; color: {{m.color}}">{{m.chg}}</span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+    <p style="margin: 0; font-size: 12px; color: var(--k6B7080)">Hisse, endeks ve döviz fiyatları 15 dk gecikmelidir.</p>
+  </div>
+
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 170px; pointer-events: none; background: var(--kt24)"></div>
+  <nav aria-label="Ana menü" style="position: absolute; left: 16px; right: 16px; bottom: 20px; height: 68px; box-sizing: border-box; display: flex; gap: 6px; padding: 6px; border-radius: 34px; background: var(--k0B0B0E); border: 1px solid var(--kt19)">
+    <a href="Main.dc.html" aria-label="Ana sayfa" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; background: var(--k17171B)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><path d="M4 10.5L12 4l8 6.5V20H4z"></path><path d="M12 20v-4.5"></path></svg>
+    </a>
+    <a href="Piyasalar.dc.html" aria-current="page" class="navon" style="flex-grow: 1; display: flex; align-items: center; gap: 10px; padding: 4px 16px 4px 4px; border-radius: 28px; background: var(--k17171B); text-decoration: none; color: var(--kFFFFFF); font-size: 14px; font-weight: 500">
+      <span class="dk" style="width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; background: #205DF4">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M5 19v-7h3v7"></path><path d="M10.5 19V6h3v13"></path><path d="M16 19v-4h3v4"></path><path d="M3 20h18"></path></svg>
+      </span><span style="flex: 1 1 auto; text-align: center">Piyasalar</span></a>
+    <a href="Kaydedilenler.dc.html" aria-label="Kaydedilenler" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; background: var(--k17171B)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><path d="M6 3.5h12V20.5l-6-4.5-6 4.5z"></path></svg>
+    </a>
+    <a href="Ayarlar.dc.html" aria-label="Ayarlar" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; background: var(--k17171B)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><path d="M3 7h10"></path><path d="M19 7h2"></path><path d="M13 4.5h6v5h-6z"></path><path d="M3 17h2"></path><path d="M11 17h10"></path><path d="M5 14.5h6v5H5z"></path></svg>
+    </a>
+  </nav>
+  <sc-if value="{{searchOpen}}" hint-placeholder-val="{{ false }}">
+    <div class="pk-over" style="position: absolute; inset: 0; z-index: 8; box-sizing: border-box; padding: 57px 20px 0; display: flex; flex-direction: column; gap: 20px; background: var(--k000000)">
+      <div style="display: flex; align-items: center; gap: 12px">
+        <div style="flex-grow: 1; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 14px; display: flex; align-items: center; gap: 10px; background: var(--k151518)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L20 20"></path></svg>
+          <input type="search" autofocus placeholder="Hisse, kripto veya haber ara" aria-label="Hisse, kripto veya haber ara" style="flex-grow: 1; min-width: 0; height: 40px; padding: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 15px; color: var(--kF5F7FA)">
+        </div>
+        <button onClick="{{act.closeSearch}}" style="flex-shrink: 0; height: 44px; font-size: 14px; font-weight: 500; color: var(--k9AB6ED)">Vazgeç</button>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">POPÜLER</span>
+        <div style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518)">
+          <a href="Varlik.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A">Q</span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">QQQ</span><span style="font-size: 12px; color: var(--k7D8290)">Invesco QQQ</span></span>
+            <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+%1,42</span>
+          </a>
+          <a href="Varlik.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #E8891C"><img src="_blob/f74b93dd661ed37f19989b4797a87446.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">BTC</span><span style="font-size: 12px; color: var(--k7D8290)">Bitcoin</span></span>
+            <span style="font-size: 13px; font-weight: 500; color: #FF8A7A">−%4,85</span>
+          </a>
+          <a href="Varlik.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A"><img src="_blob/161ff1d447dd128b7dbee48db2806b2b.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">AAPL</span><span style="font-size: 12px; color: var(--k7D8290)">Apple</span></span>
+            <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+%1,08</span>
+          </a>
+          <a href="Varlik.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 0; text-decoration: none; color: var(--kF5F7FA)">
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #9A7B2F">Au</span>
+            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">XAU</span><span style="font-size: 12px; color: var(--k7D8290)">Altın (ons)</span></span>
+            <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+%0,92</span>
+          </a>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 10px">
+        <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">SON ARAMALAR</span>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px"><a href="Haber.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">Fed faizi</a><a href="Haber.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">NVDA</a><a href="Haber.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">Altın</a><a href="Haber.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">BIST 100</a></div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+    <div class="{{tk}}" role="status" style="position: absolute; left: 50%; bottom: 104px; z-index: 9; transform: translate3d(-50%,0,0); max-width: 320px; padding: 11px 16px; border-radius: 14px; background: rgba(28,29,34,0.96); color: #FFFFFF; font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.25)">{{toast}}</div>
+  </sc-if>
+</div>
+</template></x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"light":{"editor":"boolean","default":false},"candle":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  pkLT() {
+    var s = this.state || {};
+    if (s.lt !== undefined) return !!s.lt;
+    if (this._lt0 === undefined) { var v = false; try { var n = JSON.parse(sessionStorage.getItem('pk-nav') || 'null'); v = !!(n && Date.now() - n.t < 8000 && n.lt); } catch (e) {} this._lt0 = v; }
+    if (this._lt0) return true;
+    var h = ((typeof location !== 'undefined' && location.hash) || '').slice(1).split('.');
+    return !!(this.props.light || h.indexOf('lt') >= 0);
+  }
+  pkSay(m) { var self = this; clearTimeout(this._pt); this.setState({ toast: m, tk: ((this.state && this.state.tk) || 0) + 1 }); this._pt = setTimeout(function () { self.setState({ toast: '' }); }, 1900); }
+  renderVals() {
+    var lt = this.pkLT(), self = this, s = this.state || {};
+    try {
+      window.__pkLT = lt;
+      document.documentElement.classList.toggle('lt', lt);
+      if (!window.__pkNav) {
+        window.__pkNav = 1;
+        document.addEventListener('click', function (e) {
+          var a = e.target && e.target.closest && e.target.closest('a[href]');
+          if (!a) return;
+          var h = a.getAttribute('href') || '';
+          if (!/\.dc\.html/.test(h)) return;
+          var p = h.split('#'), t = (p[1] || '').split('.').filter(function (x) { return x && x !== 'lt'; });
+          if (window.__pkLT) t.push('lt');
+          try { sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT })); } catch (err) {}
+          a.setAttribute('href', p[0] + (t.length ? '#' + t.join('.') : ''));
+        }, true);
+      }
+    } catch (e) {}
+    var o = this._rv();
+    var LGO = {"AAPL": "_blob/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "_blob/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "_blob/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "_blob/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "_blob/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "_blob/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "_blob/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "_blob/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "_blob/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "_blob/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "_blob/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "_blob/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "_blob/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "_blob/cbf6cd52679c939526a5a2252cc76878.svg", "META": "_blob/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "_blob/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "_blob/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "_blob/11b45c171b1bde3c475c2aff2769ff39.svg"};
+    (function pkDec(x, dep) {
+      if (!x || dep > 5 || typeof x !== 'object') return;
+      if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }
+      if (typeof x.sym === 'string' && x.ab !== undefined) { var lk = LGO[x.sym]; x.logo = lk || ''; x.nologo = !lk; }
+      Object.keys(x).forEach(function (k) { if (k !== 'act' && x[k] && typeof x[k] === 'object') pkDec(x[k], dep + 1); });
+    })(o, 0);
+    var M = { share: 'Bağlantı kopyalandı', notif: 'Yeni bildirim yok · Son kontrol 09:41', saved: 'Kaydedilenlere eklendi', unsaved: 'Kaydedilenlerden çıkarıldı', alarmOn: 'Fiyat alarmı kuruldu', alarmOff: 'Fiyat alarmı kaldırıldı', profile: 'Profilin güncel' };
+    o.toast = s.toast || ''; o.hasToast = !!s.toast; o.tk = 'pk-toast t' + (s.tk || 0);
+    o.searchOpen = !!s.search; o.q = s.q || '';
+    o.act = {
+      share: function () { self.pkSay(M.share); },
+      notif: function () { self.pkSay(M.notif); },
+      save: function () { var v = !s.saved; self.setState({ saved: v }); self.pkSay(v ? M.saved : M.unsaved); },
+      alarm: function () { var v = !s.alarm; self.setState({ alarm: v }); self.pkSay(v ? M.alarmOn : M.alarmOff); },
+      search: function () { self.setState({ search: true }); },
+      closeSearch: function () { self.setState({ search: false, q: '' }); },
+      typed: function (e) { self.setState({ q: (e && e.target && e.target.value) || '' }); },
+      profile: function () { self.pkSay(M.profile); },
+      saveFill: s.saved ? 'currentColor' : 'none',
+      alarmBg: s.alarm ? '#205DF4' : 'var(--k151518)'
+    };
+    return o;
+  }
+  _rv() {
+    var self = this, seg = (this.state && this.state.seg) || 'end';
+    var UP = '#5BE59A', DN = '#FF8A7A';
+    if (this.pkLT && this.pkLT()) { UP = '#0E9F6E'; DN = '#E5484D'; }
+    var T = ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'];
+    var D = {
+      end: { label: 'Endeksler', name: 'BIST 100', price: '11.333,27', chg: '−144,86 (−%1,26)', v: [11478, 11455, 11420, 11440, 11395, 11410, 11360, 11333], k: 3, fmt: '11.440', rows: [['XU050', '50', '#2C6E8A', 'BIST 50', '10.596,83', '−%1,45'], ['SPX', '500', '#8A2C3A', 'S&P 500', '7.427,76', '−%3,40'], ['NDX', '100', '#3B3F4A', 'Nasdaq 100', '24.635,03', '−%4,28'], ['DJI', '30', '#2B4E8A', 'Dow Jones', '51.811,54', '−%2,89']] },
+      kri: { label: 'Kripto', name: 'BITCOIN', price: '$97.420', chg: '−$4.960 (−%4,85)', v: [102380, 101900, 100800, 101200, 99600, 98900, 98100, 97420], k: 3, fmt: '$101.200', rows: [['ETH', 'E', '#5865D8', 'Ethereum', '$3.612', '−%3,10'], ['SOL', 'S', '#7A3FD0', 'Solana', '$214,30', '−%5,02'], ['XRP', 'X', '#30343E', 'XRP', '$1,24', '−%2,37'], ['AVAX', 'A', '#C23A3A', 'Avalanche', '$38,90', '+%0,52'], ['BNB', 'B', '#C99A06', 'BNB', '$612,40', '−%1,84'], ['ADA', 'A', '#0133AD', 'Cardano', '$0,72', '−%3,95'], ['DOGE', 'D', '#C2A633', 'Dogecoin', '$0,182', '+%2,16']] },
+      his: { label: 'Hisse', name: 'APPLE · AAPL', price: '$241,80', chg: '+$2,58 (+%1,08)', v: [239.2, 239.6, 240.4, 240.1, 240.9, 241.2, 241.0, 241.8], k: 2, fmt: '$240,40', rows: [['NVDA', 'N', '#3E7A2C', 'Nvidia', '$148,20', '+%2,65'], ['THYAO', 'TK', '#C8102E', 'Türk Hava Yolları', '₺312,50', '+%0,74'], ['ASELS', 'AS', '#2B4E8A', 'Aselsan', '₺86,15', '+%1,08'], ['TSLA', 'T', '#8A2C3A', 'Tesla', '$352,40', '−%2,11']] },
+      dov: { label: 'Döviz', name: 'USD / TRY', price: '₺34,72', chg: '+₺0,06 (+%0,18)', v: [34.66, 34.67, 34.69, 34.68, 34.70, 34.69, 34.71, 34.72], k: 4, fmt: '₺34,70', rows: [['EUR/TRY', '€', '#2B4E8A', 'Euro / Lira', '₺37,55', '−%0,22'], ['EUR/USD', '€$', '#3B3F4A', 'Euro / Dolar', '1,0815', '−%0,35'], ['DXY', '$', '#2B6E4F', 'Dolar endeksi', '104,12', '−%0,48']] },
+      emt: { label: 'Emtia', name: 'ALTIN (ONS)', price: '$2.684', chg: '+$24,5 (+%0,92)', v: [2660, 2662, 2668, 2667, 2672, 2676, 2671, 2684], k: 4, fmt: '$2.672', rows: [['XAG', 'Ag', '#6B7280', 'Gümüş (ons)', '$31,40', '+%1,31'], ['BRENT', 'BR', '#30343E', 'Brent petrol', '$73,10', '−%0,64'], ['NG', 'NG', '#2C6E8A', 'Doğalgaz', '$3,12', '+%2,20']] },
+      fon: { label: 'Fon', name: 'YENİ TEKNOLOJİLER FONU', price: '₺1,2845', chg: '+₺0,0164 (+%1,29)', v: [1.2681, 1.2694, 1.2702, 1.2716, 1.2731, 1.2760, 1.2792, 1.2845], k: 4, fmt: '₺1,2731', rows: [['TEK', 'TK', '#2B4E8A', 'Teknoloji Hisse Fonu', '₺2,1847', '+%1,12'], ['YTF', 'YT', '#2C6E8A', 'Yabancı Teknoloji Fonu', '₺1,8932', '+%1,46'], ['BHF', 'BH', '#1F7A55', 'BIST Hisse Fonu', '₺0,4521', '+%0,84'], ['ALT', 'AU', '#9A7B2F', 'Altın Fonu', '₺0,9876', '+%0,61'], ['DEG', 'DG', '#8A2C3A', 'Değişken Fon', '₺3,7104', '−%0,22'], ['PPF', 'PP', '#3B3F4A', 'Para Piyasası Fonu', '₺1,0453', '+%0,13']] }
+    };
+    var mk = (this.state && this.state.mk) || 'us';
+    if (seg === 'his') D.his = Object.assign({}, D.his, mk === 'bist' ? { name: 'THY · THYAO', price: '₺312,50', chg: '+₺2,30 (+%0,74)', v: [309.8, 310.4, 311.2, 310.6, 311.9, 312.4, 311.8, 312.5], k: 3, fmt: '₺311,20', rows: [['ASELS', 'AS', '#2B4E8A', 'Aselsan', '₺86,15', '+%1,08'], ['GARAN', 'GA', '#1F7A55', 'Garanti BBVA', '₺128,40', '+%1,62'], ['BIMAS', 'BI', '#C8102E', 'BİM Mağazalar', '₺512,00', '−%0,45'], ['KCHOL', 'KC', '#2B4E8A', 'Koç Holding', '₺178,90', '+%0,38'], ['TUPRS', 'TP', '#8A2C3A', 'Tüpraş', '₺146,20', '−%1,12'], ['EREGL', 'ER', '#3B3F4A', 'Ereğli Demir Çelik', '₺48,36', '+%2,04'], ['SISE', 'ŞC', '#2C6E8A', 'Şişecam', '₺41,80', '−%0,71']] } : { rows: [['NVDA', 'N', '#3E7A2C', 'Nvidia', '$148,20', '+%4,12'], ['MSFT', 'MS', '#2B4E8A', 'Microsoft', '$432,60', '+%0,84'], ['AMZN', 'AZ', '#9A6A1F', 'Amazon', '$214,10', '+%1,35'], ['GOOGL', 'G', '#2B4E8A', 'Alphabet', '$176,40', '+%0,92'], ['META', 'M', '#2B4E8A', 'Meta', '$582,30', '−%0,66'], ['TSLA', 'T', '#8A2C3A', 'Tesla', '$352,40', '−%3,40'], ['AMD', 'AM', '#8A2C3A', 'AMD', '$142,80', '+%2,48'], ['NFLX', 'NF', '#8A2C3A', 'Netflix', '$768,20', '+%0,57']] });
+    T = seg === 'end' || seg === 'fon' || (seg === 'his' && mk === 'bist') ? ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'] : seg === 'his' ? ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'] : ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'];
+    var mks = [['bist', 'BIST'], ['us', 'ABD']].map(function (x) { var on = x[0] === mk; return { label: x[1], bg: on ? 'var(--kF5F7FA)' : 'transparent', fg: on ? 'var(--k000000)' : 'var(--kA9AEBB)', pick: function () { self.setState({ mk: x[0] }); } }; });
+    var d = D[seg], W = 318, H = 140, n = 7, w = W / n;
+    var RK = ['1G', '1H', '1A', '3A', '1Y', '5Y'], RL = ['bugün', 'son 1 hafta', 'son 1 ay', 'son 3 ay', 'son 1 yıl', 'son 5 yıl'], RT = [['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'], ['PZT', 'SAL', 'ÇAR', 'PER', 'CUM', 'PZT', 'SAL'], ['8 EKİ', '13 EKİ', '18 EKİ', '23 EKİ', '28 EKİ', '2 KAS', '7 KAS'], ['AĞU', '', 'EYL', '', 'EKİ', '', 'KAS'], ['KAS', 'OCA', 'MAR', 'MAY', 'TEM', 'EYL', 'KAS'], ['2021', '', '2022', '2023', '2024', '2025', '2026']], SHP = [null, [0, 0.15, -0.1, 0.3, 0.55, 0.45, 0.85, 1], [0, 0.25, 0.1, 0.45, 0.35, 0.7, 0.9, 1], [0, 0.1, 0.35, 0.2, 0.55, 0.8, 0.7, 1], [0, 0.12, 0.3, 0.22, 0.5, 0.62, 0.85, 1], [0, 0.08, 0.14, 0.22, 0.34, 0.52, 0.76, 1]], PCT = [null, {"end": -2.1, "kri": -6.4, "his": 1.9, "dov": 0.8, "emt": 2.4, "fon": 1.8}, {"end": 3.5, "kri": -9.8, "his": 4.2, "dov": 2.1, "emt": 5.6, "fon": 4.6}, {"end": 8.9, "kri": 12.4, "his": 9.6, "dov": 5.3, "emt": 11.2, "fon": 12.3}, {"end": 32.5, "kri": 78.3, "his": 21.4, "dov": 18.6, "emt": 34.1, "fon": 48.2}, {"end": 496.5, "kri": 62.4, "his": 61.2, "dov": 254.3, "emt": 44.3, "fon": 410.0}];
+    var rg = (this.state && this.state.rg) || RK[0], ri = RK.indexOf(rg);
+    if (ri > 0) {
+      var cur0 = d.v[7], pc = PCT[ri][seg], st0 = cur0 / (1 + pc / 100), diff0 = cur0 - st0;
+      var sym = '$₺'.indexOf(d.price.charAt(0)) >= 0 ? d.price.charAt(0) : '';
+      var dp0 = seg === 'fon' ? 4 : seg === 'end' || cur0 < 1000 ? 2 : 0;
+      var nf = function (x, dp) { var sp = Math.abs(x).toFixed(dp).split('.'); sp[0] = sp[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.'); return sp.join(','); };
+      var sg0 = pc >= 0 ? '+' : '−';
+      d = Object.assign({}, d, { v: SHP[ri].map(function (f, i) { return i === 7 ? cur0 : st0 + (cur0 - st0) * f; }), chg: sg0 + sym + nf(diff0, dp0) + ' (' + sg0 + '%' + nf(pc, 2) + ')' });
+      T = RT[ri];
+    }
+    var rlabel = RL[ri];
+    var ranges = RK.map(function (k) {
+      var on = k === rg;
+      return { label: k, bg: on ? 'rgba(195,206,255,0.16)' : 'transparent', fg: on ? 'var(--kFFFFFF)' : 'var(--k9AA3C0)', pick: function () { self.setState({ rg: k }); } };
+    });
+    var at = function (t) { var x = Math.min(6.9999, t * 7), i = Math.floor(x), f = x - i; return d.v[i] + (d.v[i + 1] - d.v[i]) * f; };
+    var baseSpan = (Math.max.apply(null, d.v) - Math.min.apply(null, d.v)) || 1;
+    var NP = 98, dense = [];
+    var seed = 7, key = String(seg) + rg + (seg === 'his' ? mk : '') + 'mkt';
+    for (var si = 0; si < key.length; si++) seed = (seed * 31 + key.charCodeAt(si)) >>> 0;
+    var rnd = function () { seed = (seed + 0x6D2B79F5) >>> 0; var t = seed; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; };
+    var gauss = function () { var u = rnd() || 1e-9, v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+    var per = NP / n, vol = baseSpan * (ri > 0 ? 0.08 : 0.16), volState = 1, prevStep = 0;
+    dense.push(d.v[0]);
+    for (var sgi = 0; sgi < n; sgi++) {
+      var walk = [0];
+      for (var st = 1; st <= per; st++) {
+        volState = Math.max(0.35, Math.min(2.4, volState * (1 + 0.3 * gauss())));
+        var stp = gauss() * vol * volState / Math.sqrt(per / 7) - 0.25 * prevStep; prevStep = stp; walk.push(walk[st - 1] + stp);
+      }
+      var endW = walk[per];
+      for (var st2 = 1; st2 <= per; st2++) { var fr = st2 / per; dense.push(d.v[sgi] + (d.v[sgi + 1] - d.v[sgi]) * fr + walk[st2] - endW * fr); }
+    }
+    var lo = Math.min.apply(null, dense), hi = Math.max.apply(null, dense);
+    var Y = function (v) { return 32 + (1 - (v - lo) / (hi - lo || 1)) * 76; };
+    var pts = dense.map(function (v, i) { return [i * W / NP, Y(v)]; });
+    var line = 'M' + pts.map(function (p) { return p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join(' L');
+    var e = pts[NP], p = pts[NP - 3], ang = Math.atan2(e[1] - p[1], e[0] - p[0]);
+    var a1 = [e[0] - 9 * Math.cos(ang - 0.5), e[1] - 9 * Math.sin(ang - 0.5)], a2 = [e[0] - 9 * Math.cos(ang + 0.5), e[1] - 9 * Math.sin(ang + 0.5)];
+    var arrow = 'M' + a1[0].toFixed(1) + ' ' + a1[1].toFixed(1) + ' L' + e[0].toFixed(1) + ' ' + e[1].toFixed(1) + ' L' + a2[0].toFixed(1) + ' ' + a2[1].toFixed(1);
+    var cols = T.map(function (t, i) { return { t: t, h: Math.round(H - pts[Math.round(i * NP / n)][1]) }; });
+    var kp = pts[Math.round(d.k * NP / n)];
+    var segs = Object.keys(D).map(function (k) {
+      var on = k === seg;
+      return { label: D[k].label, fg: on ? 'var(--kF5F7FA)' : 'var(--k7D8290)', bd: on ? '#205DF4' : 'transparent', pick: function () { self.setState({ seg: k }); } };
+    });
+    var rows = d.rows.map(function (r, i) {
+      var up = r[5].charAt(0) === '+';
+      return { sym: r[0], ab: r[1], bg: r[2], name: r[3], price: r[4], chg: r[5], color: up ? UP : DN, bd: i < d.rows.length - 1 ? '1px solid var(--kt18)' : '0' };
+    });
+    var mode = (this.state && this.state.mode) || ((this.props.candle ?? false) ? 'candle' : 'line');
+    var span = (hi - lo) || 1, NC = 48, raw = [], bw = Math.max(3, Math.floor(W / NC * 0.55) | 1);
+    for (var ci = 0; ci < NC; ci++) {
+      var j0 = Math.floor(ci * NP / NC), j1 = Math.max(j0 + 1, Math.floor((ci + 1) * NP / NC));
+      var sg = dense.slice(j0, j1 + 1), o = sg[0], c = sg[sg.length - 1];
+      raw.push([o, c, Math.max.apply(null, sg) + span * 0.015 * (1 + Math.abs(Math.sin(ci * 2.1))), Math.min.apply(null, sg) - span * 0.015 * (1 + Math.abs(Math.cos(ci * 1.7)))]);
+    }
+    var mn = Math.min.apply(null, raw.map(function (r) { return r[3]; })), mx = Math.max.apply(null, raw.map(function (r) { return r[2]; }));
+    var CY = function (v) { return 4 + (1 - (v - mn) / ((mx - mn) || 1)) * 114; };
+    var candles = raw.map(function (r, ci) {
+      var cx = (ci + 0.5) * W / NC, top = CY(Math.max(r[0], r[1])), bot = CY(Math.min(r[0], r[1]));
+      var bx0 = Math.round(cx - bw / 2); return { wx: bx0 + (bw - 1) / 2, wt: Math.round(CY(r[2])), wh: Math.max(1, Math.round(CY(r[3]) - CY(r[2]))), bx: bx0, bw: bw, bt: Math.round(top), bh: Math.max(1, Math.round(bot - top)), c: r[1] >= r[0] ? UP : DN };
+    });
+    var CH = H - 18, grid = '';
+    for (var gi = 1; gi <= 4; gi++) { var gyy = Math.round(CH * gi / 5) + 0.5; grid += 'M0 ' + gyy + 'H318'; }
+    for (var gj = 1; gj < 6; gj++) { var gxx = Math.round(318 * gj / 6) + 0.5; grid += 'M' + gxx + ' 0V' + CH; }
+    var area = line + ' L' + W + ' ' + CH + ' L0 ' + CH + ' Z';
+    var NB = 12, bvals = [];
+    for (var bi = 0; bi < NB; bi++) bvals.push(dense[Math.round((bi + 1) * NP / NB)]);
+    var bmn = Math.min.apply(null, bvals), bmx = Math.max.apply(null, bvals), bslot = W / NB, bwid = Math.floor(bslot * 0.62), imax = NB - 1;
+    var bars = bvals.map(function (v, i) {
+      var bh = Math.round((CH - 30) * (0.3 + 0.7 * (v - bmn) / ((bmx - bmn) || 1)));
+      return { x: Math.round(i * bslot + (bslot - bwid) / 2), w: bwid, h: bh, bg: i === imax ? '#A9C1FF' : 'linear-gradient(180deg, rgba(32,93,244,0.9) 0%, rgba(32,93,244,0.14) 100%)' };
+    });
+    var DEC = ',', THO = '.';
+    var fmtv = function (v) { var dp = v >= 1000 ? 0 : 2, sp = v.toFixed(dp).split('.'); sp[0] = sp[0].replace(/\B(?=(\d{3})+(?!\d))/g, THO); return sp.join(DEC); };
+    var tip = { x: Math.min(bars[imax].x + bwid / 2, 318 - 42), y: CH - bars[imax].h - 28, v: d.price };
+    var HN = 26, hraw = [];
+    for (var hk = 0; hk < HN; hk++) {
+      var a0 = Math.floor(hk * NP / HN), a1 = Math.max(a0 + 1, Math.floor((hk + 1) * NP / HN)), sgm = dense.slice(a0, a1 + 1);
+      hraw.push([sgm[0], sgm[sgm.length - 1], Math.max.apply(null, sgm), Math.min.apply(null, sgm)]);
+    }
+    var ha = [], pO = 0, pC = 0;
+    hraw.forEach(function (q, i) {
+      var c2 = (q[0] + q[1] + q[2] + q[3]) / 4, o2 = i ? (pO + pC) / 2 : (q[0] + q[1]) / 2;
+      ha.push([o2, c2, Math.max(q[2], o2, c2), Math.min(q[3], o2, c2)]); pO = o2; pC = c2;
+    });
+    var hmn = Math.min.apply(null, ha.map(function (q) { return q[3]; })), hmx = Math.max.apply(null, ha.map(function (q) { return q[2]; }));
+    var HY = function (v) { return 4 + (1 - (v - hmn) / ((hmx - hmn) || 1)) * (CH - 8); };
+    var hbw = Math.max(3, Math.floor(W / HN * 0.62) | 1);
+    candles = ha.map(function (q, i) {
+      var hcx = (i + 0.5) * W / HN, hb0 = Math.round(hcx - hbw / 2), top = HY(Math.max(q[0], q[1])), bot = HY(Math.min(q[0], q[1]));
+      return { wx: hb0 + (hbw - 1) / 2, wt: Math.round(HY(q[2])), wh: Math.max(1, Math.round(HY(q[3]) - HY(q[2]))), bx: hb0, bw: hbw, bt: Math.round(top), bh: Math.max(1, Math.round(bot - top)), c: q[1] >= q[0] ? '#16A884' : '#F0394D' };
+    });
+    var ON = 'rgba(195,206,255,0.18)';
+    return {
+      isLine: mode === 'line', isBar: mode === 'bar', isCandle: mode === 'candle', bars: bars, tip: tip, g: { CH: CH, grid: grid, area: area, sx: pts[0][0] - 3.5, sy: pts[0][1] - 3.5 }, candles: candles, labels: T,
+      tg: { l: mode === 'line' ? ON : 'transparent', b: mode === 'bar' ? ON : 'transparent', c: mode === 'candle' ? ON : 'transparent' },
+      setLine: function () { self.setState({ mode: 'line' }); },
+      setBar: function () { self.setState({ mode: 'bar' }); },
+      setCandle: function () { self.setState({ mode: 'candle' }); },
+      segs: segs, rows: rows, isHis: seg === 'his', mks: mks, ranges: ranges, rlabel: rlabel,
+      r: { name: d.name, price: d.price, chg: d.chg, cols: cols, line: line, arrow: arrow, ex: e[0] - 4.5, ey: e[1] - 4.5, dx: kp[0] - 4, dy: kp[1] - 4, tx: Math.max(0, kp[0] - 30), ty: kp[1] - 32, tip: d.fmt }
+    };
+  }
+}
+</script>
+</body>
+</html>
