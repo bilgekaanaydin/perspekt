@@ -43,6 +43,7 @@
     return o;
   }
 
+  var EVENTS = { onclick: 'onClick', oninput: 'onInput', onchange: 'onChange', onscroll: 'onScroll', onpointerdown: 'onPointerDown', onpointermove: 'onPointerMove', onpointerup: 'onPointerUp', onpointercancel: 'onPointerCancel', onkeydown: 'onKeyDown', onfocus: 'onFocus', onblur: 'onBlur', onmouseenter: 'onMouseEnter', onmouseleave: 'onMouseLeave', ontouchstart: 'onTouchStart', ontouchend: 'onTouchEnd' };
   var RENAME = { 'class': 'className', 'for': 'htmlFor', 'autofocus': 'autoFocus', 'tabindex': 'tabIndex', 'readonly': 'readOnly', 'maxlength': 'maxLength' };
 
   // template DOM -> light tree (built once)
@@ -81,7 +82,7 @@
     var props = { key: key };
     n.attrs.forEach(function (a) {
       var name = a[0], raw = a[1];
-      if (/^on[A-Z]/.test(name)) { var f = value(raw, sc); if (typeof f === 'function') props[name] = f; return; }
+      if (/^on[a-zA-Z]/.test(name)) { var f = value(raw, sc); if (typeof f === 'function') props[EVENTS[name.toLowerCase()] || name] = f; return; }
       var v = value(raw, sc);
       if (v === false || v == null) return;
       if (name === 'style') { props.style = styleObj(String(v)); return; }

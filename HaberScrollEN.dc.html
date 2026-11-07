@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=390, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=390, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="theme-color" content="#000000">
-<style>x-dc{display:none}html,body{margin:0;background:#000}#dc-root{display:flex;justify-content:center}</style>
+<style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
 
 <title>Perspekt! article, scrolled</title>
-<script src="./support.js"></script>
+<script src="./support.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -73,7 +76,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
    <div style="margin-top: -372px; padding-bottom: 124px">
 
     <div style="position: relative; width: 390px; height: 330px">
-      <img src="img/3f0c9e8bed18dd755662c29d76abda60.jpg" alt="An Apple store lit up at night" class="hz" style="width: 390px; height: 330px; object-fit: cover; object-position: center 30%">
+      <img src="{{a.img}}" alt="" class="hz" style="width: 390px; height: 330px; object-fit: cover; object-position: {{a.pos}}">
       <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 30%, rgba(0,0,0,0) 55%, var(--k000000) 100%)"></div>
     </div>
 
@@ -81,12 +84,12 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
 
       <div style="display: flex; flex-direction: column; gap: 14px">
         <div style="display: flex; align-items: center; gap: 10px">
-          <span class="dk" style="padding: 4px 8px; background: #205DF4; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: var(--kFFFFFF)">TECH</span>
-          <span style="font-size: 12px; letter-spacing: 0.02em; color: var(--k9AB6ED)">1 hour ago</span>
+          <span class="dk" style="padding: 4px 8px; background: #205DF4; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: var(--kFFFFFF)">{{a.tag}}</span>
+          <span style="font-size: 12px; letter-spacing: 0.02em; color: var(--k9AB6ED)">{{a.time}}</span>
         </div>
-        <h1 style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.14; letter-spacing: -0.025em; color: var(--kFFFFFF)">Apple launch: trading volume hit <span class="gb">2.4x</span> in the first hour</h1>
-        <p style="margin: 0; font-size: 16px; font-weight: 400; line-height: 1.5; letter-spacing: 0.005em; color: var(--kB4BAC6)">The new lineup was priced close to expectations, while investor interest centered on the AI features.</p>
-        <span style="font-size: 12px; color: var(--k6B7080)">Source: 14 reports + exchange trading data</span>
+        <h1 style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.14; letter-spacing: -0.025em; color: var(--kFFFFFF)">{{a.t1}}<span class="gb">{{a.t2}}</span>{{a.t3}}</h1>
+        <p style="margin: 0; font-size: 16px; font-weight: 400; line-height: 1.5; letter-spacing: 0.005em; color: var(--kB4BAC6)">{{a.sum}}</p>
+        <span style="font-size: 12px; color: var(--k6B7080)">{{a.src}}</span>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 4px; padding: 18px 18px 8px; border-radius: 20px; background: var(--k151518)">
@@ -118,7 +121,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
 
       <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 20px; background: var(--k151518)">
         <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">SIMILAR EVENTS IN THE PAST</span>
-        <span style="font-size: 15px; line-height: 1.55; color: var(--kD5D9E2)">After <span class="mk">5 of the last 8</span> launches, the stock ended launch week flat or slightly lower.</span>
+        <span style="font-size: 15px; line-height: 1.55; color: var(--kD5D9E2)">{{a.s1}}<span class="mk">{{a.s2}}</span>{{a.s3}}</span>
         <span style="font-size: 12px; color: var(--k6B7080)">Not a forecast: a summary of past data.</span>
       </div>
 
@@ -129,12 +132,12 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
 
   <div style="position: absolute; left: 0; right: 0; top: 0; height: 100px; background: var(--kt23); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px)"></div>
   <div style="position: absolute; left: 8px; right: 8px; top: 50px; height: 44px; display: flex; align-items: center; gap: 4px">
-    <a href="MainEN.dc.html" aria-label="Back" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+    <a href="MainEN.dc.html" data-back="1" aria-label="Back" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M20 12H5"></path><path d="M10.5 6.5L5 12l5.5 5.5"></path></svg>
     </a>
     <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 1px">
-      <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.08em; color: var(--k9AB6ED)">TECH · 1 HOUR AGO</span>
-      <span style="font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Apple launch: trading volume hit 2.4x</span>
+      <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.08em; color: var(--k9AB6ED)">{{a.tag}} · {{a.timeU}}</span>
+      <span style="font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{a.plain}}</span>
     </span>
     <button onClick="{{act.save}}" aria-label="Save" style="flex-shrink: 0; width: 40px; height: 44px; display: flex; align-items: center; justify-content: center">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="{{act.saveFill}}" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M6 3.5h12V20.5l-6-4.5-6 4.5z"></path></svg>
@@ -195,18 +198,30 @@ class Component extends DCLogic {
           if (!a) return;
           var h = a.getAttribute('href') || '';
           if (!/\.dc\.html/.test(h)) return;
+          var stack = []; try { stack = JSON.parse(sessionStorage.getItem('pk-stack') || '[]'); } catch (err) {}
+          var here = ((location.pathname || '').split('/').pop() || '') + (location.hash || '');
+          if (a.hasAttribute('data-back')) { var prev = stack.pop(); if (prev && /\.dc\.html/.test(prev)) h = prev; }
+          else if (/\.dc\.html/.test(here) && here.split('#')[0] !== h.split('#')[0]) { stack.push(here); if (stack.length > 30) stack.shift(); }
           var p = h.split('#'), t = (p[1] || '').split('.').filter(function (x) { return x && x !== 'lt'; });
+          if (/^Varlik/.test(p[0]) && !t.some(function (x) { return x.charAt(0) === 'a'; })) {
+            var tx = ' ' + (a.innerText || a.textContent || '').replace(/\s+/g, ' ') + ' ', KN = 'QQQ AAPL NVDA TSLA MSFT AMZN GOOGL META AMD NFLX ORCL BTC ETH SOL XRP AVAX BNB ADA DOGE XAU XAG BRENT NG XU100 XU050 SPX NDX DJI THYAO ASELS GARAN BIMAS KCHOL TUPRS EREGL SISE USD/TRY EUR/TRY EUR/USD DXY TEK YTF BHF ALT DEG PPF SOXX XLE GLD RIVN'.split(' '), best = '';
+            if (/BIST 100/.test(tx)) best = 'XU100';
+            else KN.forEach(function (k) { var i = tx.indexOf(' ' + k + ' '); if (i >= 0 && (best === '' || i < tx.indexOf(' ' + best + ' '))) best = k; });
+            if (best) t.push('a' + best.replace('/', '_'));
+          }
           if (window.__pkLT) t.push('lt');
-          try { sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT })); } catch (err) {}
+          try { sessionStorage.setItem('pk-stack', JSON.stringify(stack)); sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT, tok: t })); } catch (err) {}
           a.setAttribute('href', p[0] + (t.length ? '#' + t.join('.') : ''));
         }, true);
       }
     } catch (e) {}
     var o = this._rv();
+    var HB = 'HaberEN.dc.html';
     var LGO = {"AAPL": "img/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "img/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "img/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "img/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "img/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "img/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "img/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "img/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "img/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "img/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "img/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "img/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "img/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "img/cbf6cd52679c939526a5a2252cc76878.svg", "META": "img/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "img/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "img/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "img/11b45c171b1bde3c475c2aff2769ff39.svg"};
     (function pkDec(x, dep) {
       if (!x || dep > 5 || typeof x !== 'object') return;
       if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }
+      if (x.id && x.title && !x.hhref) x.hhref = HB + '#n' + x.id;
       if (typeof x.sym === 'string' && x.ab !== undefined) { var lk = LGO[x.sym]; x.logo = lk || ''; x.nologo = !lk; }
       Object.keys(x).forEach(function (k) { if (k !== 'act' && x[k] && typeof x[k] === 'object') pkDec(x[k], dep + 1); });
     })(o, 0);
@@ -228,20 +243,20 @@ class Component extends DCLogic {
     return o;
   }
   _rv() {
+    var pkTok = function (pre) {
+      var hs = ((typeof location !== 'undefined' && location.hash) || '').slice(1).split('.');
+      for (var i = 0; i < hs.length; i++) if (hs[i].indexOf(pre) === 0 && hs[i].length > pre.length && hs[i] !== 'lt') return hs[i].slice(pre.length);
+      try { var nv = JSON.parse(sessionStorage.getItem('pk-nav') || 'null'); if (nv && Date.now() - nv.t < 8000 && nv.tok) for (var j = 0; j < nv.tok.length; j++) if (nv.tok[j].indexOf(pre) === 0 && nv.tok[j] !== 'lt') return nv.tok[j].slice(pre.length); } catch (e) {}
+      return '';
+    };
+    /*STORIES*/var STORIES = {"apple": {"img": "img/3f0c9e8bed18dd755662c29d76abda60.jpg", "pos": "center 30%", "tag": "TECH", "time": "1 hour ago", "timeU": "1 HOUR AGO", "t1": "Apple launch: trading volume hit ", "t2": "2.4x", "t3": " in the first hour", "plain": "Apple launch: trading volume hit 2.4x in the first hour", "sum": "The new lineup was priced close to expectations, while investor interest centered on the AI features.", "src": "Source: news agencies + exchange trading data", "long": "The new lineup was priced close to expectations, while investor interest centered on the AI features. Apple unveiled its new lineup; prices were close to expectations. During the launch hour, volume reached 2.4x its 30-day average. The most discussed topic was the new AI features.", "bul": [["Apple unveiled its new lineup; prices were ", "close to expectations", "."], ["During the launch hour, volume reached ", "2.4x", " its 30-day average."], ["The most discussed topic was ", "the new AI features", "."]], "imp": [["AAPL", "High interest and trading volume", "UP", "up"], ["Chip suppliers", "Order expectations", "UP", "up"], ["NASDAQ", "Single-company impact is limited", "NEUTRAL", "flat"]], "s1": "After ", "s2": "5 of the last 8", "s3": " launches, the stock ended launch week flat or slightly lower.", "pills": [["AAPL", "+1.08%", true], ["QQQ", "+0.40%", true], ["NVDA", "+0.85%", true]]}, "fed": {"img": "img/5ebfdfcf219e8801edcb5216152fd714.jpg", "pos": "center 40%", "tag": "FINANCE", "time": "12 minutes ago", "timeU": "12 MINUTES AGO", "t1": "The Fed cut its policy rate by ", "t2": "25 basis points", "t3": "", "plain": "The Fed cut its policy rate by 25 basis points", "sum": "The decision matched expectations; tech stocks and gold rose while the dollar slipped.", "src": "Source: news agencies + exchange trading data", "long": "The decision matched expectations; tech stocks and gold rose while the dollar slipped. The Fed lowered rates to a 4.25–4.50% range. Powell said next steps will be data dependent. The Nasdaq rose 1.4% after the decision.", "bul": [["The Fed lowered rates to a ", "4.25–4.50%", " range."], ["Powell said next steps will be ", "data dependent", "."], ["The Nasdaq rose ", "1.4%", " after the decision."]], "imp": [["QQQ", "Lower rates support growth stocks", "UP", "up"], ["XAU", "Demand for non-yielding assets rose", "UP", "up"], ["DXY", "Rate gap is narrowing", "DOWN", "down"]], "s1": "In ", "s2": "4 of the last 6", "s3": " cutting cycles, the Nasdaq ended the next month higher.", "pills": [["QQQ", "+1.42%", true], ["XAU", "+0.92%", true], ["DXY", "−0.48%", false]]}, "ws": {"img": "img/b2ba4d6f6974f308d7de1b72ca98107a.jpg", "pos": "center 40%", "tag": "FINANCE", "time": "1 hour ago", "timeU": "1 HOUR AGO", "t1": "Wall Street closes at a ", "t2": "record", "t3": " on tech strength", "plain": "Wall Street closes at a record on tech strength", "sum": "The S&P 500 and Nasdaq closed at records, led by chip and software stocks.", "src": "Source: news agencies + exchange trading data", "long": "The S&P 500 and Nasdaq closed at records, led by chip and software stocks. The S&P 500 rose 0.62% and the Nasdaq 100 *1.10%*. More than half of the gain came from five big tech stocks. Volume was 18% above the 20-day average.", "bul": [["The S&P 500 rose ", "0.62%", " and the Nasdaq 100 *1.10%*."], ["More than half of the gain came from ", "five big tech", " stocks."], ["Volume was ", "18% above", " the 20-day average."]], "imp": [["SPX", "Broad-based rally", "UP", "up"], ["NVDA", "AI demand continues", "UP", "up"], ["DJI", "Industrials were flat", "NEUTRAL", "flat"]], "s1": "After ", "s2": "62%", "s3": " of record closes, the index also ended the next week higher.", "pills": [["SPX", "+0.62%", true], ["NDX", "+1.10%", true], ["NVDA", "+4.12%", true]]}, "chip": {"img": "img/72e6e03764959a7819b968fec9fee3be.jpg", "pos": "center 45%", "tag": "TECH", "time": "2 hours ago", "timeU": "2 HOURS AGO", "t1": "Nvidia ", "t2": "hits a new high", "t3": " on AI chip demand", "plain": "Nvidia hits a new high on AI chip demand", "sum": "Data center orders beat expectations, putting the stock among the day's top gainers.", "src": "Source: news agencies + exchange trading data", "long": "Data center orders beat expectations, putting the stock among the day's top gainers. The stock rose 4.12% to an all-time high. Data center revenue is expected to grow 35% this quarter. The SOXX chip index also gained 2.30%.", "bul": [["The stock rose ", "4.12%", " to an all-time high."], ["Data center revenue is expected to ", "grow 35%", " this quarter."], ["The SOXX chip index also gained ", "2.30%", "."]], "imp": [["NVDA", "Orders above expectations", "UP", "up"], ["AMD", "Spread across the sector", "UP", "up"], ["TSLA", "Limited impact", "NEUTRAL", "flat"]], "s1": "After the last 5 records, the stock saw profit-taking ", "s2": "3 times", "s3": " the next week.", "pills": [["NVDA", "+4.12%", true], ["AMD", "+2.48%", true], ["SOXX", "+2.30%", true]]}, "btc": {"img": "img/5075448c754ac2226ee3353d34b0ffce.jpg", "pos": "center 45%", "tag": "CRYPTO", "time": "39 minutes ago", "timeU": "39 MINUTES AGO", "t1": "Crypto market sheds ", "t2": "$120 billion", "t3": "", "plain": "Crypto market sheds $120 billion", "sum": "Leveraged liquidations sped up the drop, pushing Bitcoin below $100K.", "src": "Source: news agencies + exchange trading data", "long": "Leveraged liquidations sped up the drop, pushing Bitcoin below $100K. $1.1 billion in positions were liquidated in 24 hours. Bitcoin fell 4.85% and Ethereum *3.10%*. Spot ETF inflows continued for a third week.", "bul": [["", "$1.1 billion", " in positions were liquidated in 24 hours."], ["Bitcoin fell ", "4.85%", " and Ethereum *3.10%*."], ["Spot ETF inflows continued for a ", "third week", "."]], "imp": [["BTC", "Leverage unwind", "DOWN", "down"], ["ETH", "Risk-off move", "DOWN", "down"], ["XAU", "Safe-haven demand", "UP", "up"]], "s1": "After ", "s2": "70%", "s3": " of similar liquidation days, Bitcoin recovered half its loss within a week.", "pills": [["BTC", "−4.85%", false], ["ETH", "−3.10%", false], ["SOL", "−5.02%", false]]}, "gold": {"img": "img/8283936c568ca923cbc58db01ce872e6.jpg", "pos": "center 50%", "tag": "COMMODITIES", "time": "3 hours ago", "timeU": "3 HOURS AGO", "t1": "Gold pushes toward ", "t2": "$2,700", "t3": " an ounce", "plain": "Gold pushes toward $2,700 an ounce", "sum": "The rate cut and a weaker dollar lifted gold, while central bank buying continues.", "src": "Source: news agencies + exchange trading data", "long": "The rate cut and a weaker dollar lifted gold, while central bank buying continues. Gold rose to $2,684 an ounce. Central banks added 18 tonnes to reserves. Silver also gained 1.31%.", "bul": [["Gold rose to ", "$2,684", " an ounce."], ["Central banks added ", "18 tonnes", " to reserves."], ["Silver also gained ", "1.31%", "."]], "imp": [["XAU", "Weaker dollar", "UP", "up"], ["XAG", "Following gold", "UP", "up"], ["DXY", "Rate cut", "DOWN", "down"]], "s1": "Gold gained in ", "s2": "67%", "s3": " of the months after a Fed cut.", "pills": [["XAU", "+0.92%", true], ["XAG", "+1.31%", true], ["DXY", "−0.48%", false]]}, "oil": {"img": "img/2502594da937e79d7d59a04fe251756c.jpg", "pos": "center 50%", "tag": "COMMODITIES", "time": "45 minutes ago", "timeU": "45 MINUTES AGO", "t1": "Brent jumps ", "t2": "3%", "t3": " after the OPEC+ decision", "plain": "Brent jumps 3% after the OPEC+ decision", "sum": "Extended output cuts raised supply worries and lifted energy stocks.", "src": "Source: news agencies + exchange trading data", "long": "Extended output cuts raised supply worries and lifted energy stocks. OPEC+ extended cuts through March. Brent climbed to $73.10 a barrel. Refiners fell on cost pressure.", "bul": [["OPEC+ extended cuts ", "through March", "."], ["Brent climbed to ", "$73.10", " a barrel."], ["Refiners fell on ", "cost pressure", "."]], "imp": [["BRENT", "Supply worries", "UP", "up"], ["XLE", "Energy stocks strong", "UP", "up"], ["TUPRS", "Costs rising", "DOWN", "down"]], "s1": "After ", "s2": "3 of the last 4", "s3": " extensions, Brent ended the month higher.", "pills": [["BRENT", "+3.05%", true], ["XLE", "+1.20%", true], ["TUPRS", "−1.12%", false]]}, "ist": {"img": "img/9ac3c5e8363ccbcba2986ac1bb3b5012.jpg", "pos": "center 50%", "tag": "FINANCE", "time": "3 hours ago", "timeU": "3 HOURS AGO", "t1": "BIST 100 closes ", "t2": "lower", "t3": " on foreign selling", "plain": "BIST 100 closes lower on foreign selling", "sum": "Banks were under pressure as foreign investors were net sellers of equities.", "src": "Source: news agencies + exchange trading data", "long": "Banks were under pressure as foreign investors were net sellers of equities. The BIST 100 fell 1.26% to close at 11,333. Foreign investors sold a net ₺1.2 billion. The banking index dropped 2.04%.", "bul": [["The BIST 100 fell ", "1.26%", " to close at 11,333."], ["Foreign investors sold a net ", "₺1.2 billion", "."], ["The banking index dropped ", "2.04%", "."]], "imp": [["XU100", "Foreign selling", "DOWN", "down"], ["GARAN", "Strong results stand out", "UP", "up"], ["THYAO", "Tourism outlook offsets", "NEUTRAL", "flat"]], "s1": "After ", "s2": "55%", "s3": " of heavy foreign-selling days, the index rebounded the next day.", "pills": [["XU100", "−1.26%", false], ["GARAN", "+1.62%", true], ["THYAO", "+0.74%", true]]}, "ev": {"img": "img/2fb5382a7314ced086eb4679e295883e.jpg", "pos": "center 50%", "tag": "TECH", "time": "4 hours ago", "timeU": "4 HOURS AGO", "t1": "Tesla deliveries ", "t2": "miss expectations", "t3": "", "plain": "Tesla deliveries miss expectations", "sum": "Quarterly deliveries fell short of estimates as price cuts weigh on margins.", "src": "Source: news agencies + exchange trading data", "long": "Quarterly deliveries fell short of estimates as price cuts weigh on margins. Deliveries came in at 462K versus 480K expected. The stock lost 3.40% on the day. The company confirmed a new model in 2026.", "bul": [["Deliveries came in at ", "462K", " versus 480K expected."], ["The stock lost ", "3.40%", " on the day."], ["The company confirmed a new model ", "in 2026", "."]], "imp": [["TSLA", "Delivery shortfall", "DOWN", "down"], ["RIVN", "Sector-wide worry", "DOWN", "down"], ["NVDA", "Self-driving chips diverge", "NEUTRAL", "flat"]], "s1": "After ", "s2": "4 of the last 6", "s3": " delivery misses, the stock recovered within a month.", "pills": [["TSLA", "−3.40%", false], ["RIVN", "−1.85%", false], ["NVDA", "+4.12%", true]]}, "dc": {"img": "img/1f422031daea9f9a254c4b60ecfd0379.jpg", "pos": "center 50%", "tag": "TECH", "time": "5 hours ago", "timeU": "5 HOURS AGO", "t1": "Data center spending set to ", "t2": "double", "t3": " by 2027", "plain": "Data center spending set to double by 2027", "sum": "Big cloud providers are raising budgets for AI infrastructure.", "src": "Source: news agencies + exchange trading data", "long": "Big cloud providers are raising budgets for AI infrastructure. Annual spending is expected to reach $400 billion. Data center power demand could rise 160%. Oracle shares rose 2.10%.", "bul": [["Annual spending is expected to reach ", "$400 billion", "."], ["Data center power demand could rise ", "160%", "."], ["Oracle shares rose ", "2.10%", "."]], "imp": [["MSFT", "Cloud growth", "UP", "up"], ["ORCL", "New contracts", "UP", "up"], ["NVDA", "Chip demand", "UP", "up"]], "s1": "After ", "s2": "60%", "s3": " of similar spending announcements, supplier stocks rose within a month.", "pills": [["MSFT", "+0.84%", true], ["ORCL", "+2.10%", true], ["NVDA", "+4.12%", true]]}, "ipo": {"img": "img/a139ae390119cd978d0c6e7dd6e2a557.jpg", "pos": "center 50%", "tag": "FINANCE", "time": "2 hours ago", "timeU": "2 HOURS AGO", "t1": "Turkish regulator approves ", "t2": "two new", "t3": " IPOs", "plain": "Turkish regulator approves two new IPOs", "sum": "Book building starts next week; the IPO index is up year to date.", "src": "Source: news agencies + exchange trading data", "long": "Book building starts next week; the IPO index is up year to date. Total offering size is ₺4.8 billion. Book building will last 3 days. The IPO index is up 24% year to date.", "bul": [["Total offering size is ", "₺4.8 billion", "."], ["Book building will last ", "3 days", "."], ["The IPO index is up ", "24%", " year to date."]], "imp": [["XU100", "Limited liquidity effect", "NEUTRAL", "flat"], ["IPO index", "Fresh interest", "UP", "up"], ["GARAN", "Brokerage income", "UP", "up"]], "s1": "", "s2": "70%", "s3": " of this year's IPOs closed their first day higher.", "pills": [["XU100", "−0.22%", false], ["THYAO", "+0.74%", true], ["GARAN", "+1.62%", true]]}};/*END*/
+    var sid = this._sid || (this._sid = pkTok('n') || 'apple'), A0 = STORIES[sid] || STORIES.apple || {};
     var UP = '#5BE59A', NE = 'var(--kA9AEBB)';
-    var impacts = [
-      ['AAPL', 'High interest and trading volume', 'UP', UP, 'rgba(91,229,154,0.1)'],
-      ['Chip suppliers', 'Order expectations', 'UP', UP, 'rgba(91,229,154,0.1)'],
-      ['NASDAQ', 'Single-company impact is limited', 'NEUTRAL', NE, 'rgba(169,174,187,0.1)']
-    ].map(function (r) { return { name: r[0], why: r[1], dir: r[2], color: r[3], bg: r[4] }; });
-    var pills = [['AAPL', 'A', '#3B3F4A', '+1.08%', UP], ['QQQ', 'Q', '#2B4E8A', '+0.40%', UP], ['NVDA', 'N', '#3E7A2C', '+0.85%', UP]]
-      .map(function (p) { return { sym: p[0], ab: p[1], bg: p[2], chg: p[3], color: p[4] }; });
-    var bullets = [
-      ['01', 'Apple unveiled its new lineup; prices were ', 'close to expectations', '.'],
-      ['02', 'During the launch hour, volume reached ', '2.4x', ' its 30-day average.'],
-      ['03', 'The most discussed topic was ', 'the new AI features', '.']
-    ].map(function (b) { return { n: b[0], pre: b[1], em: b[2], post: b[3] }; });
-    return { bullets: bullets, impacts: impacts, pills: pills };
+    var DNc = this.pkLT && this.pkLT() ? '#E5484D' : '#FF8A7A';
+    var impacts = (A0.imp || []).map(function (r) { var k = r[3]; return { name: r[0], why: r[1], dir: r[2], color: k === 'up' ? UP : k === 'down' ? DNc : NE, bg: k === 'up' ? 'rgba(91,229,154,0.1)' : k === 'down' ? 'rgba(255,138,122,0.1)' : 'rgba(169,174,187,0.1)' }; });
+    var pills = (A0.pills || []).map(function (p) { return { sym: p[0], ab: p[0].charAt(0), bg: '#3B3F4A', chg: p[1], color: p[2] ? UP : DNc }; });
+    var bullets = (A0.bul || []).map(function (b, i) { return { n: '0' + (i + 1), pre: b[0], em: b[1], post: b[2] }; });
+    return { bullets: bullets, impacts: impacts, pills: pills, a: A0 };
   }
 }
 </script>

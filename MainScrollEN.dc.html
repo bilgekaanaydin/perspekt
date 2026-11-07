@@ -2,12 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=390, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=390, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="theme-color" content="#000000">
-<style>x-dc{display:none}html,body{margin:0;background:#000}#dc-root{display:flex;justify-content:center}</style>
+<style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
 
 <title>Perspekt! Home, scrolled</title>
-<script src="./support.js"></script>
+<script src="./support.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -82,10 +85,10 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
   <div class="nos" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; padding: 57px 20px 120px; display: flex; flex-direction: column; gap: 22px">
 
     <div style="display: flex; align-items: center; justify-content: space-between; margin-top: {{shift}}px">
-      <div style="display: flex; align-items: center; gap: 10px">
+      <a href="ProfilEN.dc.html" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit">
         <img src="img/c8b05613555759c376eca5450fcf62ca.jpg" alt="Profile photo" style="width: 36px; height: 36px; border-radius: 18px; object-fit: cover">
         <span style="font-size: 16px; font-weight: 500">Hi Bilge</span>
-      </div>
+      </a>
       <div style="display: flex">
         <button onClick="{{act.search}}" aria-label="Search" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L20 20"></path></svg>
@@ -126,7 +129,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         </a>
 
         <sc-for list="{{featured}}" as="f" hint-placeholder-count="3">
-          <a href="HaberEN.dc.html" onClick="{{sl.click}}" class="dk" style="flex: 0 0 350px; position: relative; display: block; height: 150px; border-radius: 22px; overflow: hidden; text-decoration: none; color: var(--kFFFFFF); background: #205DF4">
+          <a href="{{f.hhref}}" onClick="{{sl.click}}" class="dk" style="flex: 0 0 350px; position: relative; display: block; height: 150px; border-radius: 22px; overflow: hidden; text-decoration: none; color: var(--kFFFFFF); background: #205DF4">
             <img src="{{f.img}}" alt="" style="position: absolute; right: 0; top: 0; width: 230px; height: 150px; object-fit: cover; object-position: {{f.pos}}; opacity: 0.35; mix-blend-mode: luminosity; -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, #000000 70%); mask-image: linear-gradient(90deg, rgba(0,0,0,0) 0%, #000000 70%)">
             <div style="position: absolute; right: 18px; top: 18px; display: flex; align-items: center">
               <span style="display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 500; letter-spacing: 0.04em; color: var(--kFFFFFF)">
@@ -170,7 +173,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
     <div style="display: flex; flex-direction: column; gap: 12px">
       <div style="display: flex; align-items: baseline; justify-content: space-between">
         <h2 class="gt" style="margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.01em">Top stories</h2>
-        <a href="HaberEN.dc.html" style="font-size: 13px; font-weight: 500; text-decoration: none">See all</a>
+        <button onClick="{{seeAll}}" style="font-size: 13px; font-weight: 500; color: var(--k9AB6ED)">{{seeLabel}}</button>
       </div>
       <div style="display: flex; gap: 6px">
         <sc-for list="{{cats}}" as="c" hint-placeholder-count="5">
@@ -179,7 +182,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       </div>
       <div class="st" style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518); position: relative">
         <sc-for list="{{news}}" as="n" hint-placeholder-count="4">
-          <a href="HaberEN.dc.html" style="display: flex; gap: 12px; align-items: center; padding: 14px 0; border-bottom: {{n.bd}}; text-decoration: none; color: var(--kF5F7FA)">
+          <a href="{{n.hhref}}" style="display: flex; gap: 12px; align-items: center; padding: 14px 0; border-bottom: {{n.bd}}; text-decoration: none; color: var(--kF5F7FA)">
             <sc-if value="{{n.hasImg}}" hint-placeholder-val="{{ true }}">
               <img src="{{n.img}}" alt="" style="flex-shrink: 0; width: 64px; height: 64px; border-radius: 12px; object-fit: cover">
             </sc-if>
@@ -320,18 +323,30 @@ class Component extends DCLogic {
           if (!a) return;
           var h = a.getAttribute('href') || '';
           if (!/\.dc\.html/.test(h)) return;
+          var stack = []; try { stack = JSON.parse(sessionStorage.getItem('pk-stack') || '[]'); } catch (err) {}
+          var here = ((location.pathname || '').split('/').pop() || '') + (location.hash || '');
+          if (a.hasAttribute('data-back')) { var prev = stack.pop(); if (prev && /\.dc\.html/.test(prev)) h = prev; }
+          else if (/\.dc\.html/.test(here) && here.split('#')[0] !== h.split('#')[0]) { stack.push(here); if (stack.length > 30) stack.shift(); }
           var p = h.split('#'), t = (p[1] || '').split('.').filter(function (x) { return x && x !== 'lt'; });
+          if (/^Varlik/.test(p[0]) && !t.some(function (x) { return x.charAt(0) === 'a'; })) {
+            var tx = ' ' + (a.innerText || a.textContent || '').replace(/\s+/g, ' ') + ' ', KN = 'QQQ AAPL NVDA TSLA MSFT AMZN GOOGL META AMD NFLX ORCL BTC ETH SOL XRP AVAX BNB ADA DOGE XAU XAG BRENT NG XU100 XU050 SPX NDX DJI THYAO ASELS GARAN BIMAS KCHOL TUPRS EREGL SISE USD/TRY EUR/TRY EUR/USD DXY TEK YTF BHF ALT DEG PPF SOXX XLE GLD RIVN'.split(' '), best = '';
+            if (/BIST 100/.test(tx)) best = 'XU100';
+            else KN.forEach(function (k) { var i = tx.indexOf(' ' + k + ' '); if (i >= 0 && (best === '' || i < tx.indexOf(' ' + best + ' '))) best = k; });
+            if (best) t.push('a' + best.replace('/', '_'));
+          }
           if (window.__pkLT) t.push('lt');
-          try { sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT })); } catch (err) {}
+          try { sessionStorage.setItem('pk-stack', JSON.stringify(stack)); sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT, tok: t })); } catch (err) {}
           a.setAttribute('href', p[0] + (t.length ? '#' + t.join('.') : ''));
         }, true);
       }
     } catch (e) {}
     var o = this._rv();
+    var HB = 'HaberEN.dc.html';
     var LGO = {"AAPL": "img/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "img/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "img/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "img/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "img/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "img/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "img/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "img/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "img/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "img/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "img/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "img/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "img/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "img/cbf6cd52679c939526a5a2252cc76878.svg", "META": "img/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "img/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "img/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "img/11b45c171b1bde3c475c2aff2769ff39.svg"};
     (function pkDec(x, dep) {
       if (!x || dep > 5 || typeof x !== 'object') return;
       if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }
+      if (x.id && (x.title || x.fid) && !x.hhref) x.hhref = HB + '#n' + x.id;
       if (typeof x.sym === 'string' && x.ab !== undefined) { var lk = LGO[x.sym]; x.logo = lk || ''; x.nologo = !lk; }
       Object.keys(x).forEach(function (k) { if (k !== 'act' && x[k] && typeof x[k] === 'object') pkDec(x[k], dep + 1); });
     })(o, 0);
@@ -386,9 +401,14 @@ class Component extends DCLogic {
       { id: 'gold', cat: 'Commodities', meta: 'COMMODITIES · 3 H', title: 'Gold pushes toward $2,700 an ounce', t1: 'XAU', v1: '+0.92%', c1: UP, t2: 'GLD', v2: '+0.88%', c2: UP, img: 'img/8283936c568ca923cbc58db01ce872e6.jpg' },
       { id: 'oil', cat: 'Commodities', meta: 'COMMODITIES · 45 MIN', title: 'Brent jumps 3% after the OPEC+ decision', t1: 'BRENT', v1: '+3.05%', c1: UP, t2: 'XLE', v2: '+1.20%', c2: UP, img: 'img/2502594da937e79d7d59a04fe251756c.jpg' },
       { id: 'apple', cat: 'Tech', meta: 'TECH · 1 H', title: 'Apple launch: trading volume hit 2.4x', t1: 'AAPL', v1: '+1.08%', c1: UP, t2: 'QQQ', v2: '+0.40%', c2: UP, img: 'img/3f0c9e8bed18dd755662c29d76abda60.jpg' },
-      { id: 'ist', cat: 'Finance', meta: 'FINANCE · 3 H', title: 'BIST 100 closes lower on foreign selling', t1: 'XU100', v1: '−1.26%', c1: DN, t2: 'XBANK', v2: '−2.04%', c2: DN, img: 'img/9ac3c5e8363ccbcba2986ac1bb3b5012.jpg' }
+      { id: 'ist', cat: 'Finance', meta: 'FINANCE · 3 H', title: 'BIST 100 closes lower on foreign selling', t1: 'XU100', v1: '−1.26%', c1: DN, t2: 'XBANK', v2: '−2.04%', c2: DN, img: 'img/9ac3c5e8363ccbcba2986ac1bb3b5012.jpg' },
+      { id: 'ev', cat: 'Tech', meta: 'TECH · 4 H', title: 'Tesla deliveries miss expectations', t1: 'TSLA', v1: '−3.40%', c1: DN, t2: 'RIVN', v2: '−1.85%', c2: DN, img: 'img/2fb5382a7314ced086eb4679e295883e.jpg' },
+      { id: 'dc', cat: 'Tech', meta: 'TECH · 5 H', title: 'Data center spending set to double by 2027', t1: 'MSFT', v1: '+0.84%', c1: UP, t2: 'ORCL', v2: '+2.10%', c2: UP, img: 'img/1f422031daea9f9a254c4b60ecfd0379.jpg' },
+      { id: 'ipo', cat: 'Finance', meta: 'FINANCE · 2 H', title: 'Turkish regulator approves two new IPOs', t1: 'XU100', v1: '−0.22%', c1: DN, t2: 'XHARZ', v2: '+2.01%', c2: UP, img: 'img/a139ae390119cd978d0c6e7dd6e2a557.jpg' }
     ];
+    var showAll = !!(this.state && this.state.all);
     var list = ALL.filter(function (n) { return cat === 'All' || n.cat === cat; });
+    if (!showAll && cat === 'All') list = list.slice(0, 5);
     var news = list.map(function (n, i) {
       var o = Object.assign({}, n);
       o.bd = i < list.length - 1 ? '1px solid var(--kt18)' : '0';
@@ -401,9 +421,9 @@ class Component extends DCLogic {
     });
     var slide = (this.state && this.state.slide) || 0;
     var featured = [
-      { short: 'Nvidia hits\na new high.', img: 'img/72e6e03764959a7819b968fec9fee3be.jpg', pos: 'center 45%', tag: 'TECH', time: '2 h', title: 'Nvidia hits a new high on AI chip demand', t1: 'NVDA', v1: '+4.12%', c1: UP, t2: 'SOXX', v2: '+2.30%', c2: UP },
-      { short: 'Gold pushes\ntoward $2,700.', img: 'img/8283936c568ca923cbc58db01ce872e6.jpg', pos: 'center 50%', tag: 'COMMODITIES', time: '3 h', title: 'Gold pushes toward $2,700 an ounce', t1: 'XAU', v1: '+0.92%', c1: UP, t2: 'GLD', v2: '+0.88%', c2: UP },
-      { short: 'Wall Street\ncloses at a record.', img: 'img/b2ba4d6f6974f308d7de1b72ca98107a.jpg', pos: 'center 30%', tag: 'FINANCE', time: '1 h', title: 'Wall Street closes at a record on tech strength', t1: 'SPX', v1: '+0.62%', c1: UP, t2: 'NDX', v2: '+1.10%', c2: UP }
+      { id: 'chip', fid: 1, short: 'Nvidia hits\na new high.', img: 'img/72e6e03764959a7819b968fec9fee3be.jpg', pos: 'center 45%', tag: 'TECH', time: '2 h', title: 'Nvidia hits a new high on AI chip demand', t1: 'NVDA', v1: '+4.12%', c1: UP, t2: 'SOXX', v2: '+2.30%', c2: UP },
+      { id: 'gold', fid: 1, short: 'Gold pushes\ntoward $2,700.', img: 'img/8283936c568ca923cbc58db01ce872e6.jpg', pos: 'center 50%', tag: 'COMMODITIES', time: '3 h', title: 'Gold pushes toward $2,700 an ounce', t1: 'XAU', v1: '+0.92%', c1: UP, t2: 'GLD', v2: '+0.88%', c2: UP },
+      { id: 'ws', fid: 1, short: 'Wall Street\ncloses at a record.', img: 'img/b2ba4d6f6974f308d7de1b72ca98107a.jpg', pos: 'center 30%', tag: 'FINANCE', time: '1 h', title: 'Wall Street closes at a record on tech strength', t1: 'SPX', v1: '+0.62%', c1: UP, t2: 'NDX', v2: '+1.10%', c2: UP }
     ];
     var go = function (k) { self._touch = Date.now(); self.setState({ slide: (k + 4) % 4 }); };
     var dots = [0, 1, 2, 3].map(function (k) { return { w: k === slide ? 18 : 4, c: k === slide ? 'var(--kFFFFFF)' : 'rgba(255,255,255,0.3)', label: 'Slide ' + (k + 1), go: function () { go(k); } }; });
@@ -434,7 +454,7 @@ class Component extends DCLogic {
     var whales = W8.map(function (w, i) {
       return { who: w[0], what: w[1], amt: w[2], color: w[3] ? UP : DN, ibg: w[3] ? 'rgba(91,229,154,0.1)' : 'rgba(255,138,122,0.1)', icon: w[3] ? IN : OUT, bd: i < W8.length - 1 ? '1px solid var(--kt18)' : '0' };
     });
-    return { shift: (this.props.scrolled ?? true) ? -420 : 0, stories: stories, pixels: pixels, tickers: tickers, news: news, cats: cats, featured: featured, dots: dots, sl: sl, wl: wl, terms: terms, whales: whales };
+    return { shift: (this.props.scrolled ?? true) ? -420 : 0, stories: stories, pixels: pixels, tickers: tickers, news: news, cats: cats, featured: featured, dots: dots, sl: sl, wl: wl, seeAll: function () { self.setState({ all: !showAll, cat: 'All' }); }, seeLabel: showAll ? 'Show less' : 'See all', terms: terms, whales: whales };
   }
 }
 </script>

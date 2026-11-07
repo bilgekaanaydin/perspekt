@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=390, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="theme-color" content="#000000">
+<style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
+
+<title>Perspekt! Profil</title>
+<script src="./support.js?v=3"></script>
+</head>
+<body>
+<x-dc><template>
+<helmet>
+<style>
+@font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
+body{margin:0}
+@media (prefers-reduced-motion: no-preference){
+@keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-in{from{opacity:0}to{opacity:1}}
+@keyframes pk-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pk-zoom{from{transform:scale(1.04)}to{transform:none}}
+@keyframes pk-logo{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:none}}
+@keyframes pk-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pk-sa{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-sb{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
+@keyframes pk-toast{from{opacity:0;transform:translate3d(-50%,10px,0)}to{opacity:1;transform:translate3d(-50%,0,0)}}
+@keyframes pk-sheet{from{opacity:0;transform:translate3d(0,-4px,0)}to{opacity:1;transform:none}}
+@keyframes pk-over{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:none}}
+.nos > *{animation:pk-up .42s cubic-bezier(.2,.8,.2,1) both}
+.nos > *:nth-child(2){animation-delay:.03s}.nos > *:nth-child(3){animation-delay:.06s}.nos > *:nth-child(4){animation-delay:.09s}.nos > *:nth-child(5){animation-delay:.12s}.nos > *:nth-child(n+6){animation-delay:.15s}
+.st > *{animation:pk-up .42s cubic-bezier(.2,.8,.2,1) both}
+.st > *:nth-child(1){animation-delay:.06s}.st > *:nth-child(2){animation-delay:.09s}.st > *:nth-child(3){animation-delay:.12s}.st > *:nth-child(n+4){animation-delay:.15s}
+.draw{stroke-dasharray:1;animation:pk-draw .9s .1s cubic-bezier(.33,1,.68,1) both}
+.cdl{animation:pk-in .4s .12s both}
+.hz{animation:pk-zoom .9s cubic-bezier(.2,.8,.2,1) both}
+.lg{animation:pk-logo .6s cubic-bezier(.2,.8,.2,1) both}
+.bf-on{animation:pk-fill 5s linear both}
+.sa{animation:pk-sa .38s cubic-bezier(.2,.8,.2,1) both}
+.sb{animation:pk-sb .38s cubic-bezier(.2,.8,.2,1) both}
+.pk-toast{animation:pk-toast .28s cubic-bezier(.2,.8,.2,1) both}
+.pk-sheet{animation:pk-sheet .26s cubic-bezier(.2,.8,.2,1) both}
+.pk-over{animation:pk-over .3s cubic-bezier(.2,.8,.2,1) both}
+}
+.bf-done,.bf-on{width:100%}.bf-on{transform-origin:0 50%}.bf-off{width:0}
+.nos{overscroll-behavior:contain}
+button,a{transition:transform .18s cubic-bezier(.2,.8,.2,1),opacity .18s ease,background-color .2s ease,color .2s ease;-webkit-tap-highlight-color:transparent}
+button:active,a:active{transform:scale(.97)}
+*{line-height:1.2 !important;font-kerning:normal;font-optical-sizing:auto}
+a{color:var(--k9AB6ED)}a:hover{color:var(--k9AB6ED);opacity:.85}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2px;border-radius:10px}
+.gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.nos::-webkit-scrollbar{display:none}
+.nos > *{flex-shrink:0}
+:root{--k000000:#000000;--k151518:#151518;--k17171B:#17171B;--k0B0B0E:#0B0B0E;--kFFFFFF:#FFFFFF;--kF5F7FA:#F5F7FA;--k9AB6ED:#9AB6ED;--k7D8290:#7D8290;--k6B7080:#6B7080;--k8B91A0:#8B91A0;--k9AA3C0:#9AA3C0;--kA9AEBB:#A9AEBB;--kD5D9E2:#D5D9E2;--kB4BAC6:#B4BAC6;--kC4C8D2:#C4C8D2;--kE3E7F5:#E3E7F5;--k4F5361:#4F5361;--k2A2B31:#2A2B31;--kt18:rgba(255,255,255,0.06);--kt19:rgba(255,255,255,0.07);--kt20:rgba(255,255,255,0.14);--kt21:rgba(255,255,255,0.16);--kt22:rgba(255,255,255,0.22);--kt23:rgba(0,0,0,0.82);--kt24:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 45%, #000000 78%);--kt25:linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 40%);--kt26:radial-gradient(120% 100% at 85% 0%, rgba(120,140,255,0.38) 0%, rgba(40,46,90,0.5) 40%, #08090F 80%);--kt27:radial-gradient(120% 100% at 75% 10%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 40%, #08090F 80%);--kt28:rgba(170,185,255,0.35);--kt29:rgba(170,185,255,0.38)}
+html.lt{--k000000:#F2F3F6;--k151518:#FFFFFF;--k17171B:#E9EBF0;--k0B0B0E:#FFFFFF;--kFFFFFF:#0B0D12;--kF5F7FA:#0B0D12;--k9AB6ED:#2F5BD8;--k7D8290:#5F6472;--k6B7080:#6B7080;--k8B91A0:#5F6472;--k9AA3C0:#5F6472;--kA9AEBB:#6B7080;--kD5D9E2:#2A2E38;--kB4BAC6:#3A3F4B;--kC4C8D2:#3A3F4B;--kE3E7F5:#2A2E38;--k4F5361:#9AA0AE;--k2A2B31:#D5D8E0;--kt18:rgba(10,20,40,0.08);--kt19:rgba(10,20,40,0.08);--kt20:rgba(10,20,40,0.12);--kt21:rgba(10,20,40,0.16);--kt22:rgba(10,20,40,0.2);--kt23:rgba(242,243,246,0.92);--kt24:linear-gradient(180deg, rgba(242,243,246,0) 0%, rgba(242,243,246,0.8) 45%, #F2F3F6 78%);--kt25:linear-gradient(180deg, rgba(242,243,246,0) 0%, #F2F3F6 40%);--kt26:radial-gradient(120% 100% at 85% 0%, rgba(32,93,244,0.2) 0%, rgba(32,93,244,0.07) 40%, #FFFFFF 80%);--kt27:radial-gradient(120% 100% at 75% 10%, rgba(32,93,244,0.22) 0%, rgba(32,93,244,0.08) 40%, #FFFFFF 80%);--kt28:rgba(32,93,244,0.25);--kt29:rgba(32,93,244,0.28)}
+html.lt .dk{--k000000:#000000;--k151518:#151518;--k17171B:#17171B;--k0B0B0E:#0B0B0E;--kFFFFFF:#FFFFFF;--kF5F7FA:#F5F7FA;--k9AB6ED:#9AB6ED;--k7D8290:#7D8290;--k6B7080:#6B7080;--k8B91A0:#8B91A0;--k9AA3C0:#9AA3C0;--kA9AEBB:#A9AEBB;--kD5D9E2:#D5D9E2;--kB4BAC6:#B4BAC6;--kC4C8D2:#C4C8D2;--kE3E7F5:#E3E7F5;--k4F5361:#4F5361;--k2A2B31:#2A2B31;--kt18:rgba(255,255,255,0.06);--kt19:rgba(255,255,255,0.07);--kt20:rgba(255,255,255,0.14);--kt21:rgba(255,255,255,0.16);--kt22:rgba(255,255,255,0.22);--kt23:rgba(0,0,0,0.82);--kt24:linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.75) 45%, #000000 78%);--kt25:linear-gradient(180deg, rgba(0,0,0,0) 0%, #000000 40%);--kt26:radial-gradient(120% 100% at 85% 0%, rgba(120,140,255,0.38) 0%, rgba(40,46,90,0.5) 40%, #08090F 80%);--kt27:radial-gradient(120% 100% at 75% 10%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 40%, #08090F 80%);--kt28:rgba(170,185,255,0.35);--kt29:rgba(170,185,255,0.38)}
+html.lt body{background:#F2F3F6}
+html.lt .gt{background:linear-gradient(180deg,#0B0D12 35%,#2F5BD8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .gs{background:linear-gradient(180deg,#0B0D12 35%,#3B5FBF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .mk{background:linear-gradient(90deg,#0B0D12 0%,#2F5BD8 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .gb{background:linear-gradient(90deg,#2F5BD8 0%,#205DF4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .dk .gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--k000000); color: var(--kF5F7FA); font-family: Satoshi, Inter, system-ui, sans-serif">
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 0; height: 47px; z-index: 5; box-sizing: border-box; padding: 0 28px 0 40px; display: flex; align-items: center; justify-content: space-between; background: var(--k000000); font-family: Inter, system-ui, sans-serif; font-size: 15px; font-weight: 600; color: var(--kFFFFFF)">
+    <span>9:41</span>
+    <span style="display: flex; align-items: center; gap: 6px">
+      <svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor" style="color: var(--kFFFFFF)"><rect x="0" y="8" width="3" height="4" rx="0.7"></rect><rect x="5" y="5.5" width="3" height="6.5" rx="0.7"></rect><rect x="10" y="3" width="3" height="9" rx="0.7"></rect><rect x="15" y="0" width="3" height="12" rx="0.7"></rect></svg>
+      <svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor" style="color: var(--kFFFFFF)"><path d="M8 2.2c2.3 0 4.4.9 6 2.4l1.2-1.2A10.2 10.2 0 0 0 8 .5 10.2 10.2 0 0 0 .8 3.4L2 4.6a8.5 8.5 0 0 1 6-2.4zm0 3.3c1.4 0 2.6.5 3.6 1.4l1.2-1.2A6.8 6.8 0 0 0 8 3.8a6.8 6.8 0 0 0-4.8 1.9l1.2 1.2c1-.9 2.2-1.4 3.6-1.4zM8 8.8c-.6 0-1.2.2-1.6.6L8 11l1.6-1.6c-.4-.4-1-.6-1.6-.6z"></path></svg>
+      <svg width="27" height="13" viewBox="0 0 27 13"><rect x="0.5" y="0.5" width="23" height="12" rx="3.5" fill="none" stroke="currentColor" stroke-opacity="0.4" style="color: var(--kFFFFFF)"></rect><rect x="2" y="2" width="20" height="9" rx="2" fill="currentColor" style="color: var(--kFFFFFF)"></rect><path d="M25 4.5v4c.8-.3 1.5-1.1 1.5-2s-.7-1.7-1.5-2z" fill="currentColor" fill-opacity="0.4" style="color: var(--kFFFFFF)"></path></svg>
+    </span>
+  </div>
+  <div class="nos" style="position: absolute; inset: 0; overflow-y: auto; scrollbar-width: none; padding: 57px 20px 120px; display: flex; flex-direction: column; gap: 20px">
+    <div style="display: flex; align-items: center; gap: 4px; margin-left: -12px">
+      <a href="MainDE.dc.html" data-back="1" aria-label="Zurück" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M20 12H5"></path><path d="M10.5 6.5L5 12l5.5 5.5"></path></svg></a>
+      <h1 class="gt" style="margin: 0; font-size: 26px; font-weight: 700">Profil</h1>
+    </div>
+
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px 16px 20px; border-radius: 24px; background: var(--kt26); border: 0.75px solid var(--kt28)">
+      <img src="img/c8b05613555759c376eca5450fcf62ca.jpg" alt="" style="width: 84px; height: 84px; border-radius: 42px; object-fit: cover; box-shadow: 0 0 0 3px #205DF4">
+      <span style="font-size: 22px; font-weight: 700; color: var(--kF5F7FA)">Bilge</span>
+      <span class="dk dk" style="padding: 5px 10px; border-radius: 10px; background: #205DF4; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--kFFFFFF)">PERSPEKT! PLUS-MITGLIED</span>
+      <span style="font-size: 13px; color: var(--k9AB6ED)">Seit 2 Jahren Mitglied · seit November 2024</span>
+      <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--kC4C8D2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED)"><path d="M12 3l2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"></path></svg>Frühes Mitglied</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 6px; border-radius: 18px; background: var(--k151518)">
+          <span style="font-size: 20px; font-weight: 700; color: var(--kF5F7FA)">1.284</span>
+          <span style="font-size: 11px; color: var(--k7D8290); text-align: center">gelesene Artikel</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 6px; border-radius: 18px; background: var(--k151518)">
+          <span style="font-size: 20px; font-weight: 700; color: var(--kF5F7FA)">23</span>
+          <span style="font-size: 11px; color: var(--k7D8290); text-align: center">gespeichert</span>
+        </div>
+        <div style="display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 14px 6px; border-radius: 18px; background: var(--k151518)">
+          <span style="font-size: 20px; font-weight: 700; color: var(--kF5F7FA)">11</span>
+          <span style="font-size: 11px; color: var(--k7D8290); text-align: center">verfolgte Werte</span>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">MITGLIEDSCHAFT</span>
+      <div class="dk dk" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 16px 16px 18px; border-radius: 20px; background: #205DF4; color: var(--kFFFFFF)">
+        <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; font-weight: 600">Plus · Monatlich</span><span style="font-size: 12px; color: rgba(255,255,255,0.8)">Nächste Verlängerung: 7. Dezember 2026</span></span>
+        <button onClick="{{manage}}" style="flex-shrink: 0; height: 34px; padding: 0 14px; border-radius: 17px; background: #FFFFFF; color: #1642C2; font-size: 13px; font-weight: 700">Abo verwalten</button>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <div style="display: flex; align-items: center; justify-content: space-between">
+        <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">DEINE INTERESSEN</span>
+        <button onClick="{{toggleEdit}}" style="height: 30px; padding: 0 12px; border-radius: 15px; border: 1px solid var(--kt20); font-size: 12px; font-weight: 600; color: var(--kF5F7FA)">{{editLabel}}</button>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px">
+        <sc-for list="{{ints}}" as="c" hint-placeholder-count="8">
+          <button onClick="{{c.pick}}" aria-pressed="{{c.on}}" style="height: 34px; padding: 0 14px; border-radius: 17px; font-size: 13px; font-weight: 500; background: {{c.bg}}; color: {{c.fg}}; border: 1px solid {{c.bd}}; opacity: {{c.op}}">{{c.label}}</button>
+        </sc-for>
+      </div>
+      <span style="font-size: 12px; color: var(--k7D8290)">Deine Artikel werden nach diesen Themen sortiert.</span>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">DEINE LESEGEWOHNHEITEN</span>
+      <div style="display: flex; flex-direction: column; padding: 2px 16px; border-radius: 20px; background: var(--k151518)">
+          <div style="display: flex; align-items: center; justify-content: space-between; min-height: 50px; border-bottom: 1px solid var(--kt18)">
+            <span style="font-size: 14px; color: var(--kC4C8D2)">diese Woche gelesen</span><span style="font-size: 15px; font-weight: 600; color: var(--kF5F7FA)">42 Min.</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; min-height: 50px; border-bottom: 1px solid var(--kt18)">
+            <span style="font-size: 14px; color: var(--kC4C8D2)">Lesesträhne</span><span style="font-size: 15px; font-weight: 600; color: var(--kF5F7FA)">12 Tage</span>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; min-height: 50px; border-bottom: 0">
+            <span style="font-size: 14px; color: var(--kC4C8D2)">übliche erste Öffnung</span><span style="font-size: 15px; font-weight: 600; color: var(--kF5F7FA)">8:10</span>
+          </div>
+      </div>
+    </div>
+  </div>
+
+  <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 170px; pointer-events: none; background: var(--kt24)"></div>
+  <nav aria-label="Hauptmenü" style="position: absolute; left: 16px; right: 16px; bottom: 20px; height: 68px; box-sizing: border-box; display: flex; gap: 6px; padding: 6px; border-radius: 34px; background: var(--k0B0B0E); border: 1px solid var(--kt19)">
+    <a href="MainDE.dc.html" aria-label="Discover" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; background: var(--k17171B)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><path d="M4 10.5L12 4l8 6.5V20H4z"></path><path d="M12 20v-4.5"></path></svg>
+    </a>
+    <a href="PiyasalarDE.dc.html" aria-label="Märkte" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; background: var(--k17171B)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><path d="M5 19v-7h3v7"></path><path d="M10.5 19V6h3v13"></path><path d="M16 19v-4h3v4"></path><path d="M3 20h18"></path></svg>
+    </a>
+    <a href="KaydedilenlerDE.dc.html" aria-label="Gespeichert" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; display: flex; align-items: center; justify-content: center; background: var(--k17171B)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><path d="M6 3.5h12V20.5l-6-4.5-6 4.5z"></path></svg>
+    </a>
+    <a href="AyarlarDE.dc.html" aria-current="page" class="navon" style="flex-grow: 1; display: flex; align-items: center; gap: 10px; padding: 4px 16px 4px 4px; border-radius: 28px; background: var(--k17171B); text-decoration: none; color: var(--kFFFFFF); font-size: 14px; font-weight: 500">
+      <span class="dk" style="flex-shrink: 0; width: 48px; height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; background: #205DF4">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M3 7h10"></path><path d="M19 7h2"></path><path d="M13 4.5h6v5h-6z"></path><path d="M3 17h2"></path><path d="M11 17h10"></path><path d="M5 14.5h6v5H5z"></path></svg>
+      </span><span style="flex: 1 1 auto; text-align: center">Einstellungen</span></a>
+  </nav>
+  <sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+    <div class="{{tk}}" role="status" style="position: absolute; left: 50%; bottom: 104px; z-index: 9; transform: translate3d(-50%,0,0); max-width: 320px; padding: 11px 16px; border-radius: 14px; background: rgba(28,29,34,0.96); color: #FFFFFF; font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.25)">{{toast}}</div>
+  </sc-if>
+</div>
+</template></x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"light":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  pkLT() {
+    var s = this.state || {};
+    if (s.lt !== undefined) return !!s.lt;
+    var h = ((typeof location !== 'undefined' && location.hash) || '').slice(1).split('.');
+    return !!(this.props.light || h.indexOf('lt') >= 0);
+  }
+  pkSay(m) { var self = this; clearTimeout(this._pt); this.setState({ toast: m, tk: ((this.state && this.state.tk) || 0) + 1 }); this._pt = setTimeout(function () { self.setState({ toast: '' }); }, 1900); }
+  renderVals() {
+    var lt = this.pkLT(), self = this, s = this.state || {};
+    try {
+      window.__pkLT = lt;
+      document.documentElement.classList.toggle('lt', lt);
+      if (!window.__pkNav) {
+        window.__pkNav = 1;
+        document.addEventListener('click', function (e) {
+          var a = e.target && e.target.closest && e.target.closest('a[href]');
+          if (!a) return;
+          var h = a.getAttribute('href') || '';
+          if (!/\.dc\.html/.test(h)) return;
+          var stack = []; try { stack = JSON.parse(sessionStorage.getItem('pk-stack') || '[]'); } catch (err) {}
+          var here = ((location.pathname || '').split('/').pop() || '') + (location.hash || '');
+          if (a.hasAttribute('data-back')) { var prev = stack.pop(); if (prev && /\.dc\.html/.test(prev)) h = prev; }
+          else if (/\.dc\.html/.test(here) && here.split('#')[0] !== h.split('#')[0]) { stack.push(here); if (stack.length > 30) stack.shift(); }
+          var p = h.split('#'), t = (p[1] || '').split('.').filter(function (x) { return x && x !== 'lt'; });
+          if (/^Varlik/.test(p[0]) && !t.some(function (x) { return x.charAt(0) === 'a'; })) {
+            var tx = ' ' + (a.innerText || a.textContent || '').replace(/\s+/g, ' ') + ' ', KN = 'QQQ AAPL NVDA TSLA MSFT AMZN GOOGL META AMD NFLX ORCL BTC ETH SOL XRP AVAX BNB ADA DOGE XAU XAG BRENT NG XU100 XU050 SPX NDX DJI THYAO ASELS GARAN BIMAS KCHOL TUPRS EREGL SISE USD/TRY EUR/TRY EUR/USD DXY TEK YTF BHF ALT DEG PPF SOXX XLE GLD RIVN'.split(' '), best = '';
+            if (/BIST 100/.test(tx)) best = 'XU100';
+            else KN.forEach(function (k) { var i = tx.indexOf(' ' + k + ' '); if (i >= 0 && (best === '' || i < tx.indexOf(' ' + best + ' '))) best = k; });
+            if (best) t.push('a' + best.replace('/', '_'));
+          }
+          if (window.__pkLT) t.push('lt');
+          try { sessionStorage.setItem('pk-stack', JSON.stringify(stack)); sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT, tok: t })); } catch (err) {}
+          a.setAttribute('href', p[0] + (t.length ? '#' + t.join('.') : ''));
+        }, true);
+      }
+    } catch (e) {}
+    var o = this._rv();
+    var M = { share: 'Link kopiert', notif: 'Keine neuen Mitteilungen · Geprüft 9:41', saved: 'Zu Gespeichert hinzugefügt', unsaved: 'Aus Gespeichert entfernt', alarmOn: 'Preisalarm gesetzt', alarmOff: 'Preisalarm entfernt', profile: 'Dein Profil ist aktuell' };
+    o.toast = s.toast || ''; o.hasToast = !!s.toast; o.tk = 'pk-toast t' + (s.tk || 0);
+    o.searchOpen = !!s.search; o.q = s.q || '';
+    o.act = {
+      share: function () { self.pkSay(M.share); },
+      notif: function () { self.pkSay(M.notif); },
+      save: function () { var v = !s.saved; self.setState({ saved: v }); self.pkSay(v ? M.saved : M.unsaved); },
+      alarm: function () { var v = !s.alarm; self.setState({ alarm: v }); self.pkSay(v ? M.alarmOn : M.alarmOff); },
+      search: function () { self.setState({ search: true }); },
+      closeSearch: function () { self.setState({ search: false, q: '' }); },
+      typed: function (e) { self.setState({ q: (e && e.target && e.target.value) || '' }); },
+      profile: function () { self.pkSay(M.profile); },
+      saveFill: s.saved ? 'currentColor' : 'none',
+      alarmBg: s.alarm ? '#205DF4' : 'var(--k151518)'
+    };
+    return o;
+  }
+  _rv() {
+    var self = this, s = this.state || {};
+    var ALL = ["Finanzen", "Krypto", "Technologie", "Rohstoffe", "Börsengänge", "Welt", "Devisen", "Fonds"];
+    var on = s.on || ALL.slice(0, 3), edit = !!s.edit;
+    var ints = ALL.map(function (c) {
+      var sel = on.indexOf(c) >= 0;
+      return { label: c, on: sel ? 'true' : 'false', bg: sel ? 'var(--kF5F7FA)' : 'transparent', fg: sel ? 'var(--k000000)' : 'var(--kC4C8D2)', bd: sel ? 'var(--kF5F7FA)' : 'var(--kt20)', op: edit || sel ? 1 : 0.55,
+        pick: function () { if (!edit) { self.setState({ edit: true }); return; } var n = sel ? on.filter(function (x) { return x !== c; }) : on.concat([c]); if (n.length) self.setState({ on: n }); } };
+    });
+    return {
+      ints: ints, editLabel: edit ? "Fertig" : "Bearbeiten",
+      toggleEdit: function () { if (edit) self.pkSay("Deine Interessen wurden aktualisiert"); self.setState({ edit: !edit }); },
+      manage: function () { self.pkSay("Abo-Einstellungen öffnen sich im App Store"); }
+    };
+  }
+}
+</script>
+</body>
+</html>

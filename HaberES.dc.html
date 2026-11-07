@@ -2,12 +2,15 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=390, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=390, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="theme-color" content="#000000">
-<style>x-dc{display:none}html,body{margin:0;background:#000}#dc-root{display:flex;justify-content:center}</style>
+<style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
 
 <title>Perspekt! noticia</title>
-<script src="./support.js"></script>
+<script src="./support.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -73,10 +76,10 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
    <div style="margin-top: {{shift}}px; padding-bottom: 124px">
 
     <div style="position: relative; width: 390px; height: 330px">
-      <img src="img/3f0c9e8bed18dd755662c29d76abda60.jpg" alt="Una tienda Apple iluminada de noche" class="hz" style="width: 390px; height: 330px; object-fit: cover; object-position: center 30%">
+      <img src="{{a.img}}" alt="" class="hz" style="width: 390px; height: 330px; object-fit: cover; object-position: {{a.pos}}">
       <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.6) 22%, rgba(0,0,0,0.1) 42%, rgba(0,0,0,0) 55%, var(--k000000) 100%)"></div>
       <div class="dk" style="position: absolute; left: 12px; right: 12px; top: 50px; display: flex; justify-content: space-between">
-        <a href="MainES.dc.html" aria-label="Atrás" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+        <a href="MainES.dc.html" data-back="1" aria-label="Atrás" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M20 12H5"></path><path d="M10.5 6.5L5 12l5.5 5.5"></path></svg>
         </a>
         <div style="display: flex">
@@ -94,12 +97,12 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
 
       <div style="display: flex; flex-direction: column; gap: 14px">
         <div style="display: flex; align-items: center; gap: 10px">
-          <span class="dk" style="padding: 4px 8px; background: #205DF4; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: var(--kFFFFFF)">TECNOLOGÍA</span>
-          <span style="font-size: 12px; letter-spacing: 0.02em; color: var(--k9AB6ED)">Hace 1 hora</span>
+          <span class="dk" style="padding: 4px 8px; background: #205DF4; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: var(--kFFFFFF)">{{a.tag}}</span>
+          <span style="font-size: 12px; letter-spacing: 0.02em; color: var(--k9AB6ED)">{{a.time}}</span>
         </div>
-        <h1 style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.14; letter-spacing: -0.025em; color: var(--kFFFFFF)">Lanzamiento de Apple: el volumen se multiplicó por <span class="gb">2.4x</span> en la primera hora</h1>
-        <p style="margin: 0; font-size: 16px; font-weight: 400; line-height: 1.2; letter-spacing: 0.005em; color: var(--kB4BAC6)">La nueva gama llegó con precios cercanos a lo previsto y el interés se centró en las funciones de IA.</p>
-        <span style="font-size: 12px; color: var(--k6B7080)">Fuente: 14 noticias + datos de negociación</span>
+        <h1 style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.14; letter-spacing: -0.025em; color: var(--kFFFFFF)">{{a.t1}}<span class="gb">{{a.t2}}</span>{{a.t3}}</h1>
+        <p style="margin: 0; font-size: 16px; font-weight: 400; line-height: 1.2; letter-spacing: 0.005em; color: var(--kB4BAC6)">{{a.sum}}</p>
+        <span style="font-size: 12px; color: var(--k6B7080)">{{a.src}}</span>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 4px; padding: 18px 18px 8px; border-radius: 20px; background: var(--k151518)">
@@ -117,7 +120,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
           </div>
         </sc-for>
         <sc-if value="{{long}}" hint-placeholder-val="{{ false }}">
-          <p style="margin: 0; padding: 12px 0; border-top: 1px solid var(--kt18); font-size: 15px; line-height: 1.65; color: var(--kB4BAC6)">Apple presentó su nueva gama de productos. Los precios fueron cercanos a lo previsto y, en la hora del lanzamiento, el volumen de la acción llegó a 2,4 veces su media de 30 días. Lo más comentado en redes fueron las nuevas funciones de IA.</p>
+          <p style="margin: 0; padding: 12px 0; border-top: 1px solid var(--kt18); font-size: 15px; line-height: 1.65; color: var(--kB4BAC6)">{{a.long}}</p>
         </sc-if>
         <button onClick="{{toggle}}" style="display: flex; align-items: center; gap: 6px; height: 44px; border-top: 1px solid var(--kt18); font-size: 13px; font-weight: 500; color: var(--k9AB6ED)">{{toggleLabel}}
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED)"><path d="{{toggleIcon}}"></path></svg>
@@ -139,7 +142,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
 
       <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 20px; background: var(--k151518)">
         <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">EVENTOS SIMILARES EN EL PASADO</span>
-        <span style="font-size: 15px; line-height: 1.55; color: var(--kD5D9E2)">After <span class="mk">5 de los últimos 8</span> lanzamientos, la acción cerró la semana plana o algo a la baja.</span>
+        <span style="font-size: 15px; line-height: 1.55; color: var(--kD5D9E2)">{{a.s1}}<span class="mk">{{a.s2}}</span>{{a.s3}}</span>
         <span style="font-size: 12px; color: var(--k6B7080)">No es una previsión: resume datos pasados.</span>
       </div>
 
@@ -151,12 +154,12 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
   <sc-if value="{{scrolled}}" hint-placeholder-val="{{ false }}">
     <div style="position: absolute; left: 0; right: 0; top: 0; height: 100px; background: var(--kt23); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); border-bottom: 1px solid var(--kt18)"></div>
     <div style="position: absolute; left: 8px; right: 8px; top: 50px; height: 44px; display: flex; align-items: center; gap: 4px">
-      <a href="MainES.dc.html" aria-label="Atrás" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+      <a href="MainES.dc.html" data-back="1" aria-label="Atrás" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M20 12H5"></path><path d="M10.5 6.5L5 12l5.5 5.5"></path></svg>
       </a>
       <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column">
-        <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.08em; color: var(--k9AB6ED)">TECNOLOGÍA</span>
-        <span style="font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">Lanzamiento de Apple: el volumen se multiplicó por 2,4</span>
+        <span style="font-size: 10px; font-weight: 500; letter-spacing: 0.08em; color: var(--k9AB6ED)">{{a.tag}} · {{a.timeU}}</span>
+        <span style="font-size: 14px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{a.plain}}</span>
       </span>
       <button onClick="{{act.share}}" aria-label="Compartir" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M12 3v12"></path><path d="M7.5 7.5L12 3l4.5 4.5"></path><path d="M5 12v8h14v-8"></path></svg>
@@ -215,18 +218,30 @@ class Component extends DCLogic {
           if (!a) return;
           var h = a.getAttribute('href') || '';
           if (!/\.dc\.html/.test(h)) return;
+          var stack = []; try { stack = JSON.parse(sessionStorage.getItem('pk-stack') || '[]'); } catch (err) {}
+          var here = ((location.pathname || '').split('/').pop() || '') + (location.hash || '');
+          if (a.hasAttribute('data-back')) { var prev = stack.pop(); if (prev && /\.dc\.html/.test(prev)) h = prev; }
+          else if (/\.dc\.html/.test(here) && here.split('#')[0] !== h.split('#')[0]) { stack.push(here); if (stack.length > 30) stack.shift(); }
           var p = h.split('#'), t = (p[1] || '').split('.').filter(function (x) { return x && x !== 'lt'; });
+          if (/^Varlik/.test(p[0]) && !t.some(function (x) { return x.charAt(0) === 'a'; })) {
+            var tx = ' ' + (a.innerText || a.textContent || '').replace(/\s+/g, ' ') + ' ', KN = 'QQQ AAPL NVDA TSLA MSFT AMZN GOOGL META AMD NFLX ORCL BTC ETH SOL XRP AVAX BNB ADA DOGE XAU XAG BRENT NG XU100 XU050 SPX NDX DJI THYAO ASELS GARAN BIMAS KCHOL TUPRS EREGL SISE USD/TRY EUR/TRY EUR/USD DXY TEK YTF BHF ALT DEG PPF SOXX XLE GLD RIVN'.split(' '), best = '';
+            if (/BIST 100/.test(tx)) best = 'XU100';
+            else KN.forEach(function (k) { var i = tx.indexOf(' ' + k + ' '); if (i >= 0 && (best === '' || i < tx.indexOf(' ' + best + ' '))) best = k; });
+            if (best) t.push('a' + best.replace('/', '_'));
+          }
           if (window.__pkLT) t.push('lt');
-          try { sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT })); } catch (err) {}
+          try { sessionStorage.setItem('pk-stack', JSON.stringify(stack)); sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT, tok: t })); } catch (err) {}
           a.setAttribute('href', p[0] + (t.length ? '#' + t.join('.') : ''));
         }, true);
       }
     } catch (e) {}
     var o = this._rv();
+    var HB = 'HaberES.dc.html';
     var LGO = {"AAPL": "img/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "img/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "img/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "img/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "img/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "img/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "img/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "img/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "img/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "img/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "img/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "img/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "img/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "img/cbf6cd52679c939526a5a2252cc76878.svg", "META": "img/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "img/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "img/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "img/11b45c171b1bde3c475c2aff2769ff39.svg"};
     (function pkDec(x, dep) {
       if (!x || dep > 5 || typeof x !== 'object') return;
       if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }
+      if (x.id && x.title && !x.hhref) x.hhref = HB + '#n' + x.id;
       if (typeof x.sym === 'string' && x.ab !== undefined) { var lk = LGO[x.sym]; x.logo = lk || ''; x.nologo = !lk; }
       Object.keys(x).forEach(function (k) { if (k !== 'act' && x[k] && typeof x[k] === 'object') pkDec(x[k], dep + 1); });
     })(o, 0);
@@ -248,28 +263,28 @@ class Component extends DCLogic {
     return o;
   }
   _rv() {
+    var pkTok = function (pre) {
+      var hs = ((typeof location !== 'undefined' && location.hash) || '').slice(1).split('.');
+      for (var i = 0; i < hs.length; i++) if (hs[i].indexOf(pre) === 0 && hs[i].length > pre.length && hs[i] !== 'lt') return hs[i].slice(pre.length);
+      try { var nv = JSON.parse(sessionStorage.getItem('pk-nav') || 'null'); if (nv && Date.now() - nv.t < 8000 && nv.tok) for (var j = 0; j < nv.tok.length; j++) if (nv.tok[j].indexOf(pre) === 0 && nv.tok[j] !== 'lt') return nv.tok[j].slice(pre.length); } catch (e) {}
+      return '';
+    };
+    /*STORIES*/var STORIES = {"apple": {"img": "img/3f0c9e8bed18dd755662c29d76abda60.jpg", "pos": "center 30%", "tag": "TECNOLOGÍA", "time": "Hace 1 h", "timeU": "HACE 1 H", "t1": "Lanzamiento de Apple: el volumen se multiplicó por ", "t2": "2,4", "t3": " en la primera hora", "plain": "Lanzamiento de Apple: el volumen se multiplicó por 2,4 en la primera hora", "sum": "La nueva gama llegó con precios cercanos a lo previsto y el interés se centró en las funciones de IA.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "La nueva gama llegó con precios cercanos a lo previsto y el interés se centró en las funciones de IA. Apple presentó su nueva gama; los precios fueron cercanos a lo previsto. En la hora del lanzamiento, el volumen llegó a 2,4 veces su media de 30 días. Lo más comentado fueron las nuevas funciones de IA.", "bul": [["Apple presentó su nueva gama; los precios fueron ", "cercanos a lo previsto", "."], ["En la hora del lanzamiento, el volumen llegó a ", "2,4 veces", " su media de 30 días."], ["Lo más comentado fueron ", "las nuevas funciones de IA", "."]], "imp": [["AAPL", "Alto interés y volumen", "SUBE", "up"], ["Proveedores de chips", "Expectativa de pedidos", "SUBE", "up"], ["NASDAQ", "Impacto limitado de una sola empresa", "NEUTRAL", "flat"]], "s1": "En ", "s2": "5 de los últimos 8", "s3": " lanzamientos, la acción cerró la semana plana o algo a la baja.", "pills": [["AAPL", "+1,08 %", true], ["QQQ", "+0,40 %", true], ["NVDA", "+0,85 %", true]]}, "fed": {"img": "img/5ebfdfcf219e8801edcb5216152fd714.jpg", "pos": "center 40%", "tag": "FINANZAS", "time": "Hace 12 min", "timeU": "HACE 12 MIN", "t1": "La Fed recortó su tipo ", "t2": "25 puntos básicos", "t3": "", "plain": "La Fed recortó su tipo 25 puntos básicos", "sum": "La decisión fue la esperada; subieron la tecnología y el oro y cayó el dólar.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "La decisión fue la esperada; subieron la tecnología y el oro y cayó el dólar. La Fed bajó los tipos al rango 4,25–4,50 %. Powell dijo que los próximos pasos dependerán de los datos. El Nasdaq subió un 1,4 % tras la decisión.", "bul": [["La Fed bajó los tipos al rango ", "4,25–4,50 %", "."], ["Powell dijo que los próximos pasos ", "dependerán de los datos", "."], ["El Nasdaq subió un ", "1,4 %", " tras la decisión."]], "imp": [["QQQ", "Tipos bajos apoyan el crecimiento", "SUBE", "up"], ["XAU", "Más demanda de activos sin rendimiento", "SUBE", "up"], ["DXY", "Se reduce el diferencial de tipos", "BAJA", "down"]], "s1": "En ", "s2": "4 de los últimos 6", "s3": " ciclos de recortes, el Nasdaq subió el mes siguiente.", "pills": [["QQQ", "+1,42 %", true], ["XAU", "+0,92 %", true], ["DXY", "−0,48 %", false]]}, "ws": {"img": "img/b2ba4d6f6974f308d7de1b72ca98107a.jpg", "pos": "center 40%", "tag": "FINANZAS", "time": "Hace 1 h", "timeU": "HACE 1 H", "t1": "Wall Street cierra en ", "t2": "récord", "t3": " impulsado por la tecnología", "plain": "Wall Street cierra en récord impulsado por la tecnología", "sum": "El S&P 500 y el Nasdaq cerraron en récord, liderados por chips y software.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "El S&P 500 y el Nasdaq cerraron en récord, liderados por chips y software. El S&P 500 subió un 0,62 % y el Nasdaq 100 un *1,10 %*. Más de la mitad de la subida vino de cinco grandes tecnológicas. El volumen estuvo un 18 % por encima de la media de 20 días.", "bul": [["El S&P 500 subió un ", "0,62 %", " y el Nasdaq 100 un *1,10 %*."], ["Más de la mitad de la subida vino de ", "cinco grandes tecnológicas", "."], ["El volumen estuvo un ", "18 % por encima", " de la media de 20 días."]], "imp": [["SPX", "Subida generalizada", "SUBE", "up"], ["NVDA", "Sigue la demanda de IA", "SUBE", "up"], ["DJI", "Industriales planos", "NEUTRAL", "flat"]], "s1": "Tras el ", "s2": "62 %", "s3": " de los cierres récord, el índice también subió la semana siguiente.", "pills": [["SPX", "+0,62 %", true], ["NDX", "+1,10 %", true], ["NVDA", "+4,12 %", true]]}, "chip": {"img": "img/72e6e03764959a7819b968fec9fee3be.jpg", "pos": "center 45%", "tag": "TECNOLOGÍA", "time": "Hace 2 h", "timeU": "HACE 2 H", "t1": "Nvidia ", "t2": "marca máximos", "t3": " por la demanda de chips de IA", "plain": "Nvidia marca máximos por la demanda de chips de IA", "sum": "Los pedidos de centros de datos superaron lo previsto; la acción está entre las que más suben.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "Los pedidos de centros de datos superaron lo previsto; la acción está entre las que más suben. La acción subió un 4,12 % hasta máximos históricos. Se espera que los ingresos de centros de datos crezcan un 35 %. El índice de chips SOXX ganó un 2,30 %.", "bul": [["La acción subió un ", "4,12 %", " hasta máximos históricos."], ["Se espera que los ingresos de centros de datos ", "crezcan un 35 %", "."], ["El índice de chips SOXX ganó un ", "2,30 %", "."]], "imp": [["NVDA", "Pedidos por encima de lo previsto", "SUBE", "up"], ["AMD", "Se extendió al sector", "SUBE", "up"], ["TSLA", "Impacto limitado", "NEUTRAL", "flat"]], "s1": "Tras los últimos 5 récords, hubo recogida de beneficios ", "s2": "3 veces", "s3": " la semana siguiente.", "pills": [["NVDA", "+4,12 %", true], ["AMD", "+2,48 %", true], ["SOXX", "+2,30 %", true]]}, "btc": {"img": "img/5075448c754ac2226ee3353d34b0ffce.jpg", "pos": "center 45%", "tag": "CRIPTO", "time": "Hace 39 min", "timeU": "HACE 39 MIN", "t1": "El mercado cripto pierde ", "t2": "$120.000 millones", "t3": "", "plain": "El mercado cripto pierde $120.000 millones", "sum": "Las liquidaciones apalancadas aceleraron la caída y el Bitcoin bajó de $100.000.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "Las liquidaciones apalancadas aceleraron la caída y el Bitcoin bajó de $100.000. Se liquidaron $1.100 millones en posiciones en 24 horas. El Bitcoin cayó un 4,85 % y Ethereum un *3,10 %*. Las entradas en ETF siguieron por tercera semana.", "bul": [["Se liquidaron ", "$1.100 millones", " en posiciones en 24 horas."], ["El Bitcoin cayó un ", "4,85 %", " y Ethereum un *3,10 %*."], ["Las entradas en ETF siguieron por ", "tercera semana", "."]], "imp": [["BTC", "Desapalancamiento", "BAJA", "down"], ["ETH", "Huida del riesgo", "BAJA", "down"], ["XAU", "Demanda refugio", "SUBE", "up"]], "s1": "Tras el ", "s2": "70 %", "s3": " de días similares, el Bitcoin recuperó la mitad en una semana.", "pills": [["BTC", "−4,85 %", false], ["ETH", "−3,10 %", false], ["SOL", "−5,02 %", false]]}, "gold": {"img": "img/8283936c568ca923cbc58db01ce872e6.jpg", "pos": "center 50%", "tag": "MATERIAS PRIMAS", "time": "Hace 3 h", "timeU": "HACE 3 H", "t1": "El oro se acerca a ", "t2": "$2.700", "t3": " la onza", "plain": "El oro se acerca a $2.700 la onza", "sum": "El recorte y un dólar débil impulsaron el oro; siguen las compras de bancos centrales.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "El recorte y un dólar débil impulsaron el oro; siguen las compras de bancos centrales. El oro subió a $2.684 la onza. Los bancos centrales sumaron 18 t a sus reservas. La plata ganó un 1,31 %.", "bul": [["El oro subió a ", "$2.684", " la onza."], ["Los bancos centrales sumaron ", "18 t", " a sus reservas."], ["La plata ganó un ", "1,31 %", "."]], "imp": [["XAU", "Dólar débil", "SUBE", "up"], ["XAG", "Siguiendo al oro", "SUBE", "up"], ["DXY", "Recorte de tipos", "BAJA", "down"]], "s1": "El oro subió en el ", "s2": "67 %", "s3": " de los meses tras un recorte.", "pills": [["XAU", "+0,92 %", true], ["XAG", "+1,31 %", true], ["DXY", "−0,48 %", false]]}, "oil": {"img": "img/2502594da937e79d7d59a04fe251756c.jpg", "pos": "center 50%", "tag": "MATERIAS PRIMAS", "time": "Hace 45 min", "timeU": "HACE 45 MIN", "t1": "El Brent sube un ", "t2": "3 %", "t3": " tras la decisión de la OPEP+", "plain": "El Brent sube un 3 % tras la decisión de la OPEP+", "sum": "La prórroga de recortes aumentó la preocupación por la oferta y subieron las energéticas.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "La prórroga de recortes aumentó la preocupación por la oferta y subieron las energéticas. La OPEP+ prorrogó los recortes hasta marzo. El Brent subió a $73,10 el barril. Las refinerías cayeron por presión de costes.", "bul": [["La OPEP+ prorrogó los recortes ", "hasta marzo", "."], ["El Brent subió a ", "$73,10", " el barril."], ["Las refinerías cayeron por ", "presión de costes", "."]], "imp": [["BRENT", "Temor por la oferta", "SUBE", "up"], ["XLE", "Energéticas fuertes", "SUBE", "up"], ["TUPRS", "Costes al alza", "BAJA", "down"]], "s1": "Tras ", "s2": "3 de las últimas 4", "s3": " prórrogas, el Brent cerró el mes al alza.", "pills": [["BRENT", "+3,05 %", true], ["XLE", "+1,20 %", true], ["TUPRS", "−1,12 %", false]]}, "ist": {"img": "img/9ac3c5e8363ccbcba2986ac1bb3b5012.jpg", "pos": "center 50%", "tag": "FINANZAS", "time": "Hace 3 h", "timeU": "HACE 3 H", "t1": "El BIST 100 ", "t2": "cae", "t3": " por ventas extranjeras", "plain": "El BIST 100 cae por ventas extranjeras", "sum": "La banca sufrió presión y los extranjeros fueron vendedores netos.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "La banca sufrió presión y los extranjeros fueron vendedores netos. El BIST 100 cayó un 1,26 % hasta 11.333. Los extranjeros vendieron ₺1.200 millones netos. El índice bancario cayó un 2,04 %.", "bul": [["El BIST 100 cayó un ", "1,26 %", " hasta 11.333."], ["Los extranjeros vendieron ", "₺1.200 millones", " netos."], ["El índice bancario cayó un ", "2,04 %", "."]], "imp": [["XU100", "Ventas extranjeras", "BAJA", "down"], ["GARAN", "Resultados sólidos", "SUBE", "up"], ["THYAO", "El turismo compensa", "NEUTRAL", "flat"]], "s1": "Tras el ", "s2": "55 %", "s3": " de días con fuerte venta extranjera, el índice rebotó al día siguiente.", "pills": [["XU100", "−1,26 %", false], ["GARAN", "+1,62 %", true], ["THYAO", "+0,74 %", true]]}, "ev": {"img": "img/2fb5382a7314ced086eb4679e295883e.jpg", "pos": "center 50%", "tag": "TECNOLOGÍA", "time": "Hace 4 h", "timeU": "HACE 4 H", "t1": "Las entregas de Tesla ", "t2": "decepcionan", "t3": "", "plain": "Las entregas de Tesla decepcionan", "sum": "Las entregas trimestrales quedaron por debajo y los descuentos presionan márgenes.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "Las entregas trimestrales quedaron por debajo y los descuentos presionan márgenes. Las entregas fueron 462.000 frente a 480.000 previstas. La acción perdió un 3,40 %. La empresa confirmó un nuevo modelo en 2026.", "bul": [["Las entregas fueron ", "462.000", " frente a 480.000 previstas."], ["La acción perdió un ", "3,40 %", "."], ["La empresa confirmó un nuevo modelo ", "en 2026", "."]], "imp": [["TSLA", "Déficit de entregas", "BAJA", "down"], ["RIVN", "Inquietud sectorial", "BAJA", "down"], ["NVDA", "Chips autónomos divergen", "NEUTRAL", "flat"]], "s1": "Tras ", "s2": "4 de los últimos 6", "s3": " fallos, la acción se recuperó en un mes.", "pills": [["TSLA", "−3,40 %", false], ["RIVN", "−1,85 %", false], ["NVDA", "+4,12 %", true]]}, "dc": {"img": "img/1f422031daea9f9a254c4b60ecfd0379.jpg", "pos": "center 50%", "tag": "TECNOLOGÍA", "time": "Hace 5 h", "timeU": "HACE 5 H", "t1": "La inversión en centros de datos se ", "t2": "duplicará", "t3": " en 2027", "plain": "La inversión en centros de datos se duplicará en 2027", "sum": "Las grandes nubes aumentan su inversión en infraestructura de IA.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "Las grandes nubes aumentan su inversión en infraestructura de IA. Se espera que el gasto anual llegue a $400.000 millones. La demanda eléctrica podría subir un 160 %. Oracle subió un 2,10 %.", "bul": [["Se espera que el gasto anual llegue a ", "$400.000 millones", "."], ["La demanda eléctrica podría subir un ", "160 %", "."], ["Oracle subió un ", "2,10 %", "."]], "imp": [["MSFT", "Crecimiento de la nube", "SUBE", "up"], ["ORCL", "Nuevos contratos", "SUBE", "up"], ["NVDA", "Demanda de chips", "SUBE", "up"]], "s1": "Tras el ", "s2": "60 %", "s3": " de anuncios similares, los proveedores subieron en un mes.", "pills": [["MSFT", "+0,84 %", true], ["ORCL", "+2,10 %", true], ["NVDA", "+4,12 %", true]]}, "ipo": {"img": "img/a139ae390119cd978d0c6e7dd6e2a557.jpg", "pos": "center 50%", "tag": "FINANZAS", "time": "Hace 2 h", "timeU": "HACE 2 H", "t1": "El regulador turco aprueba ", "t2": "dos nuevas", "t3": " OPV", "plain": "El regulador turco aprueba dos nuevas OPV", "sum": "La colocación empieza la próxima semana; el índice de OPV sube en el año.", "src": "Fuente: agencias de noticias + datos bursátiles", "long": "La colocación empieza la próxima semana; el índice de OPV sube en el año. El tamaño total es de ₺4.800 millones. La colocación durará 3 días. El índice de OPV sube un 24 % en el año.", "bul": [["El tamaño total es de ", "₺4.800 millones", "."], ["La colocación durará ", "3 días", "."], ["El índice de OPV sube un ", "24 %", " en el año."]], "imp": [["XU100", "Efecto de liquidez limitado", "NEUTRAL", "flat"], ["Índice de OPV", "Nuevo interés", "SUBE", "up"], ["GARAN", "Ingresos de corretaje", "SUBE", "up"]], "s1": "El ", "s2": "70 %", "s3": " de las OPV del año cerró su primer día al alza.", "pills": [["XU100", "−0,22 %", false], ["THYAO", "+0,74 %", true], ["GARAN", "+1,62 %", true]]}};/*END*/
+    var sid = this._sid || (this._sid = pkTok('n') || 'apple'), A0 = STORIES[sid] || STORIES.apple || {};
     var self = this, long = !!(this.state && this.state.long);
     var scrolled = this.props.scrolled ?? false;
     var UP = '#5BE59A', NE = 'var(--kA9AEBB)';
-    var impacts = [
-      ['AAPL', 'Alto interés y volumen', 'SUBE', UP, 'rgba(91,229,154,0.1)'],
-      ['Proveedores de chips', 'Expectativa de pedidos', 'SUBE', UP, 'rgba(91,229,154,0.1)'],
-      ['NASDAQ', 'Impacto limitado de una sola empresa', 'NEUTRAL', NE, 'rgba(169,174,187,0.1)']
-    ].map(function (r) { return { name: r[0], why: r[1], dir: r[2], color: r[3], bg: r[4] }; });
-    var pills = [['AAPL', 'A', '#3B3F4A', '+1,08 %', UP], ['QQQ', 'Q', '#2B4E8A', '+0,40 %', UP], ['NVDA', 'N', '#3E7A2C', '+0,85 %', UP]]
-      .map(function (p) { return { sym: p[0], ab: p[1], bg: p[2], chg: p[3], color: p[4] }; });
-    var bullets = [
-      ['01', 'Apple presentó su nueva gama; los precios fueron ', 'cercanos a lo previsto', '.'],
-      ['02', 'En la hora del lanzamiento, el volumen alcanzó ', '2.4x', ' su media de 30 días.'],
-      ['03', 'El tema más comentado fue ', 'las nuevas funciones de IA', '.']
-    ].map(function (b) { return { n: b[0], pre: b[1], em: b[2], post: b[3] }; });
+    var DNc = this.pkLT && this.pkLT() ? '#E5484D' : '#FF8A7A';
+    var impacts = (A0.imp || []).map(function (r) { var k = r[3]; return { name: r[0], why: r[1], dir: r[2], color: k === 'up' ? UP : k === 'down' ? DNc : NE, bg: k === 'up' ? 'rgba(91,229,154,0.1)' : k === 'down' ? 'rgba(255,138,122,0.1)' : 'rgba(169,174,187,0.1)' }; });
+    var pills = (A0.pills || []).map(function (p) { return { sym: p[0], ab: p[0].charAt(0), bg: '#3B3F4A', chg: p[1], color: p[2] ? UP : DNc }; });
+    var bullets = (A0.bul || []).map(function (b, i) { return { n: '0' + (i + 1), pre: b[0], em: b[1], post: b[2] }; });
     return {
       shift: scrolled ? -360 : 0, scrolled: scrolled,
       bullets: bullets, long: long,
       toggleLabel: long ? 'Volver al resumen' : 'Leer la noticia completa',
       toggleIcon: long ? 'M6 15l6-6 6 6' : 'M6 9l6 6 6-6',
       toggle: function () { self.setState({ long: !long }); },
-      impacts: impacts, pills: pills
+      impacts: impacts, pills: pills, a: A0
     };
   }
 }

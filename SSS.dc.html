@@ -2,12 +2,15 @@
 <html lang="tr">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=390, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=390, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="theme-color" content="#000000">
-<style>x-dc{display:none}html,body{margin:0;background:#000}#dc-root{display:flex;justify-content:center}</style>
+<style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
 
 <title>Perspekt! sıkça sorulan sorular</title>
-<script src="./support.js"></script>
+<script src="./support.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -152,18 +155,30 @@ class Component extends DCLogic {
           if (!a) return;
           var h = a.getAttribute('href') || '';
           if (!/\.dc\.html/.test(h)) return;
+          var stack = []; try { stack = JSON.parse(sessionStorage.getItem('pk-stack') || '[]'); } catch (err) {}
+          var here = ((location.pathname || '').split('/').pop() || '') + (location.hash || '');
+          if (a.hasAttribute('data-back')) { var prev = stack.pop(); if (prev && /\.dc\.html/.test(prev)) h = prev; }
+          else if (/\.dc\.html/.test(here) && here.split('#')[0] !== h.split('#')[0]) { stack.push(here); if (stack.length > 30) stack.shift(); }
           var p = h.split('#'), t = (p[1] || '').split('.').filter(function (x) { return x && x !== 'lt'; });
+          if (/^Varlik/.test(p[0]) && !t.some(function (x) { return x.charAt(0) === 'a'; })) {
+            var tx = ' ' + (a.innerText || a.textContent || '').replace(/\s+/g, ' ') + ' ', KN = 'QQQ AAPL NVDA TSLA MSFT AMZN GOOGL META AMD NFLX ORCL BTC ETH SOL XRP AVAX BNB ADA DOGE XAU XAG BRENT NG XU100 XU050 SPX NDX DJI THYAO ASELS GARAN BIMAS KCHOL TUPRS EREGL SISE USD/TRY EUR/TRY EUR/USD DXY TEK YTF BHF ALT DEG PPF SOXX XLE GLD RIVN'.split(' '), best = '';
+            if (/BIST 100/.test(tx)) best = 'XU100';
+            else KN.forEach(function (k) { var i = tx.indexOf(' ' + k + ' '); if (i >= 0 && (best === '' || i < tx.indexOf(' ' + best + ' '))) best = k; });
+            if (best) t.push('a' + best.replace('/', '_'));
+          }
           if (window.__pkLT) t.push('lt');
-          try { sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT })); } catch (err) {}
+          try { sessionStorage.setItem('pk-stack', JSON.stringify(stack)); sessionStorage.setItem('pk-nav', JSON.stringify({ t: Date.now(), lt: !!window.__pkLT, tok: t })); } catch (err) {}
           a.setAttribute('href', p[0] + (t.length ? '#' + t.join('.') : ''));
         }, true);
       }
     } catch (e) {}
     var o = this._rv();
+    var HB = 'Haber.dc.html';
     var LGO = {"AAPL": "img/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "img/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "img/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "img/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "img/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "img/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "img/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "img/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "img/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "img/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "img/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "img/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "img/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "img/cbf6cd52679c939526a5a2252cc76878.svg", "META": "img/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "img/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "img/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "img/11b45c171b1bde3c475c2aff2769ff39.svg"};
     (function pkDec(x, dep) {
       if (!x || dep > 5 || typeof x !== 'object') return;
       if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }
+      if (x.id && x.title && !x.hhref) x.hhref = HB + '#n' + x.id;
       if (typeof x.sym === 'string' && x.ab !== undefined) { var lk = LGO[x.sym]; x.logo = lk || ''; x.nologo = !lk; }
       Object.keys(x).forEach(function (k) { if (k !== 'act' && x[k] && typeof x[k] === 'object') pkDec(x[k], dep + 1); });
     })(o, 0);
