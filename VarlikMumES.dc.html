@@ -127,13 +127,13 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
               <span style="position: absolute; left: {{hv.lx}}px; top: 0; z-index: 3; transform: translateX(-50%); height: 22px; padding: 0 8px; display: flex; align-items: center; gap: 6px; border-radius: 7px; pointer-events: none; background: #FFFFFF; color: #000000; font-size: 11px; font-weight: 700; white-space: nowrap"><span style="font-weight: 500; color: #4A4F5C">{{hv.t}}</span><span>{{hv.v}}</span></span>
             </sc-if>
             <svg width="318" height="{{g.CH}}" viewBox="0 0 318 {{g.CH}}" aria-hidden="true" style="position: absolute; inset: 0; overflow: visible">
-              <defs><linearGradient id="pkArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#205DF4" stop-opacity="0.5"></stop><stop offset="1" stop-color="#205DF4" stop-opacity="0"></stop></linearGradient></defs>
+              <defs><linearGradient id="pkArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{pc.ar}}" stop-opacity="0.45"></stop><stop offset="1" stop-color="{{pc.ar}}" stop-opacity="0"></stop></linearGradient></defs>
               <path d="{{g.grid}}" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"></path>
               <path class="cdl" d="{{g.area}}" fill="url(#pkArea)"></path>
-              <path class="draw" pathLength="1" d="{{r.line}}" fill="none" stroke="#A9C1FF" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"></path>
+              <path class="draw" pathLength="1" d="{{r.line}}" fill="none" stroke="{{pc.ln}}" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"></path>
             </svg>
-            <span style="position: absolute; left: {{g.sx}}px; top: {{g.sy}}px; width: 7px; height: 7px; border-radius: 4px; background: #A9C1FF"></span>
-            <span style="position: absolute; left: {{r.ex}}px; top: {{r.ey}}px; width: 9px; height: 9px; border-radius: 5px; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(169,193,255,0.22), 0 0 12px rgba(169,193,255,0.6)"></span>
+            <span style="position: absolute; left: {{g.sx}}px; top: {{g.sy}}px; width: 7px; height: 7px; border-radius: 4px; background: {{pc.ln}}"></span>
+            <span style="position: absolute; left: {{r.ex}}px; top: {{r.ey}}px; width: 9px; height: 9px; border-radius: 5px; background: #FFFFFF; box-shadow: 0 0 0 4px {{pc.gl}}, 0 0 12px {{pc.ln}}"></span>
           </div>
           <div style="display: flex; justify-content: space-between; font-size: 9px; font-weight: 500; letter-spacing: 0.04em; color: var(--k9AA3C0)"><sc-for list="{{labels}}" as="l" hint-placeholder-count="7"><span>{{l}}</span></sc-for></div>
         </div>
@@ -393,12 +393,13 @@ class Component extends DCLogic {
     for (var gi = 1; gi <= 4; gi++) { var gyy = Math.round(CH * gi / 5) + 0.5; grid += 'M0 ' + gyy + 'H318'; }
     for (var gj = 1; gj < 6; gj++) { var gxx = Math.round(318 * gj / 6) + 0.5; grid += 'M' + gxx + ' 0V' + CH; }
     var area = line + ' L' + W + ' ' + CH + ' L0 ' + CH + ' Z';
+    var PCU = String(d.chg).charAt(0) !== '−', PC = PCU ? { ln: '#5BE59A', ar: '#16A884', gl: 'rgba(91,229,154,0.25)', b1: 'rgba(22,168,132,0.9)', b2: 'rgba(22,168,132,0.14)' } : { ln: '#FF8A7A', ar: '#F0394D', gl: 'rgba(255,138,122,0.25)', b1: 'rgba(240,57,77,0.9)', b2: 'rgba(240,57,77,0.14)' };
     var NB = 12, bvals = [];
     for (var bi = 0; bi < NB; bi++) bvals.push(dense[Math.round((bi + 1) * NP / NB)]);
     var bmn = Math.min.apply(null, bvals), bmx = Math.max.apply(null, bvals), bslot = W / NB, bwid = Math.floor(bslot * 0.62), imax = NB - 1;
     var bars = bvals.map(function (v, i) {
       var bh = Math.round((CH - 30) * (0.3 + 0.7 * (v - bmn) / ((bmx - bmn) || 1)));
-      return { x: Math.round(i * bslot + (bslot - bwid) / 2), w: bwid, h: bh, bg: i === imax ? '#A9C1FF' : 'linear-gradient(180deg, rgba(32,93,244,0.9) 0%, rgba(32,93,244,0.14) 100%)' };
+      return { x: Math.round(i * bslot + (bslot - bwid) / 2), w: bwid, h: bh, bg: i === imax ? PC.ln : 'linear-gradient(180deg, ' + PC.b1 + ' 0 %, ' + PC.b2 + ' 100 %)' };
     });
     var DEC = ',', THO = '.';
     var fmtv = function (v) { var dp = v >= 1000 ? 0 : 2, sp = v.toFixed(dp).split('.'); sp[0] = sp[0].replace(/\B(?=(\d{3})+(?!\d))/g, THO); return sp.join(DEC); };
@@ -435,7 +436,7 @@ class Component extends DCLogic {
     }
     var ON = 'rgba(195,206,255,0.18)';
     return {
-      hv: HV,
+      hv: HV, pc: PC,
       asset: asset,
       isLine: mode === 'line', isBar: mode === 'bar', isCandle: mode === 'candle', bars: bars, tip: tip, g: { CH: CH, grid: grid, area: area, sx: pts[0][0] - 3.5, sy: pts[0][1] - 3.5 }, candles: candles, labels: d.t,
       tg: { l: mode === 'line' ? ON : 'transparent', b: mode === 'bar' ? ON : 'transparent', c: mode === 'candle' ? ON : 'transparent' },
