@@ -13,9 +13,9 @@
 <x-dc><template>
 <helmet>
 <style>
-@font-face{font-family:"Satoshi";src:url("_blob/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
-@font-face{font-family:"Satoshi";src:url("_blob/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
-@font-face{font-family:"Satoshi";src:url("_blob/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
 body{margin:0}
 @media (prefers-reduced-motion: no-preference){
 @keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
@@ -81,7 +81,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
     <h1 class="gt" style="margin: 0; padding: 8px 0 2px; font-size: 26px; font-weight: 700">Einstellungen</h1>
 
     <div style="display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: 22px; background: var(--kt26); border: 0.75px solid var(--kt28)">
-      <img src="_blob/c8b05613555759c376eca5450fcf62ca.jpg" alt="Profilfoto" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; object-fit: cover">
+      <img src="img/c8b05613555759c376eca5450fcf62ca.jpg" alt="Profilfoto" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; object-fit: cover">
       <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
         <span style="font-size: 17px; font-weight: 500">Bilge</span>
         <span style="font-size: 12px; color: var(--k9AB6ED)">Perspekt! Plus · folgt 4 Werten</span>
@@ -220,7 +220,7 @@ class Component extends DCLogic {
       }
     } catch (e) {}
     var o = this._rv();
-    var LGO = {"AAPL": "_blob/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "_blob/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "_blob/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "_blob/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "_blob/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "_blob/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "_blob/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "_blob/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "_blob/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "_blob/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "_blob/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "_blob/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "_blob/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "_blob/cbf6cd52679c939526a5a2252cc76878.svg", "META": "_blob/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "_blob/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "_blob/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "_blob/11b45c171b1bde3c475c2aff2769ff39.svg"};
+    var LGO = {"AAPL": "img/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "img/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "img/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "img/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "img/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "img/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "img/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "img/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "img/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "img/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "img/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "img/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "img/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "img/cbf6cd52679c939526a5a2252cc76878.svg", "META": "img/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "img/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "img/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "img/11b45c171b1bde3c475c2aff2769ff39.svg"};
     (function pkDec(x, dep) {
       if (!x || dep > 5 || typeof x !== 'object') return;
       if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }

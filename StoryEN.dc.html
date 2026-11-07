@@ -13,9 +13,9 @@
 <x-dc><template>
 <helmet>
 <style>
-@font-face{font-family:"Satoshi";src:url("_blob/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
-@font-face{font-family:"Satoshi";src:url("_blob/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
-@font-face{font-family:"Satoshi";src:url("_blob/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
 body{margin:0}
 @media (prefers-reduced-motion: no-preference){
 @keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
@@ -59,7 +59,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2p
 <div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: {{st.bg}}; color: #FFFFFF; font-family: Satoshi, Inter, system-ui, sans-serif">
 
   <sc-if value="{{st.photo}}" hint-placeholder-val="{{ false }}">
-    <img src="_blob/3f0c9e8bed18dd755662c29d76abda60.jpg" alt="An Apple store lit up at night" style="position: absolute; left: 0; top: 0; width: 390px; height: 600px; object-fit: cover">
+    <img src="img/3f0c9e8bed18dd755662c29d76abda60.jpg" alt="An Apple store lit up at night" style="position: absolute; left: 0; top: 0; width: 390px; height: 600px; object-fit: cover">
     <div style="position: absolute; left: 0; top: 0; width: 390px; height: 600px; background: linear-gradient(180deg, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.55) 18%, rgba(0,0,0,0) 34%, rgba(0,0,0,0) 50%, #000000 100%)"></div>
   </sc-if>
   <sc-if value="{{st.feather}}" hint-placeholder-val="{{ true }}">
@@ -86,7 +86,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2p
 
   <div style="position: absolute; left: 16px; right: 8px; top: 62px; display: flex; align-items: center; justify-content: space-between">
     <div style="display: flex; align-items: center; gap: 10px">
-      <img src="_blob/288a361143f8a27076a177fbfa9a8a0f.png" alt="" style="width: 20px; height: auto">
+      <img src="img/288a361143f8a27076a177fbfa9a8a0f.png" alt="" style="width: 20px; height: auto">
       <span style="font-size: 14px; font-weight: 500; letter-spacing: 0.02em">{{st.kind}}</span>
       <span style="font-size: 13px; color: #9AB6ED">{{st.time}}</span>
     </div>
@@ -153,7 +153,7 @@ class Component extends DCLogic {
       }
     } catch (e) {}
     var o = this._rv();
-    var LGO = {"AAPL": "_blob/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "_blob/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "_blob/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "_blob/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "_blob/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "_blob/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "_blob/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "_blob/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "_blob/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "_blob/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "_blob/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "_blob/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "_blob/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "_blob/cbf6cd52679c939526a5a2252cc76878.svg", "META": "_blob/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "_blob/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "_blob/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "_blob/11b45c171b1bde3c475c2aff2769ff39.svg"};
+    var LGO = {"AAPL": "img/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "img/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "img/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "img/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "img/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "img/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "img/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "img/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "img/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "img/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "img/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "img/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "img/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "img/cbf6cd52679c939526a5a2252cc76878.svg", "META": "img/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "img/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "img/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "img/11b45c171b1bde3c475c2aff2769ff39.svg"};
     (function pkDec(x, dep) {
       if (!x || dep > 5 || typeof x !== 'object') return;
       if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }
@@ -189,7 +189,7 @@ class Component extends DCLogic {
   _rv() {
     var self = this, i = this.cur();
     var UP = '#5BE59A', DN = '#FF8A7A';
-    var CHIP = '_blob/72e6e03764959a7819b968fec9fee3be.jpg', FED = '_blob/5ebfdfcf219e8801edcb5216152fd714.jpg', TICK = '_blob/a139ae390119cd978d0c6e7dd6e2a557.jpg', BTCN = '_blob/5075448c754ac2226ee3353d34b0ffce.jpg', WS = '_blob/3d862a2fe82f508e91ed2958b3f48364.jpg', GOLD = '_blob/8283936c568ca923cbc58db01ce872e6.jpg', DOLLAR = '_blob/3516465269c3e9ff8466485e28932a70.jpg', DOLLAR2 = '_blob/0cef152b12203bcdd6b3f254914b2d7c.jpg', BTC = '_blob/9aacd7ac55547ce0c5d2091e4cfd89b1.jpg';
+    var CHIP = 'img/72e6e03764959a7819b968fec9fee3be.jpg', FED = 'img/5ebfdfcf219e8801edcb5216152fd714.jpg', TICK = 'img/a139ae390119cd978d0c6e7dd6e2a557.jpg', BTCN = 'img/5075448c754ac2226ee3353d34b0ffce.jpg', WS = 'img/3d862a2fe82f508e91ed2958b3f48364.jpg', GOLD = 'img/8283936c568ca923cbc58db01ce872e6.jpg', DOLLAR = 'img/3516465269c3e9ff8466485e28932a70.jpg', DOLLAR2 = 'img/0cef152b12203bcdd6b3f254914b2d7c.jpg', BTC = 'img/9aacd7ac55547ce0c5d2091e4cfd89b1.jpg';
     var S = [
       { kind: 'Breaking News', time: '12 min', bg: '#205DF4', top: 170, img: FED, title: 'The Fed cut\nrates by\n25 bps.', sub: 'Tech and gold rose,\nthe dollar slipped.', subColor: 'rgba(255,255,255,0.8)' },
       { kind: 'Market Update', time: '08:00', bg: '#000000', top: 170, img: TICK, title: 'The numbers\nthat matter.', sub: 'Markets at the open', subColor: '#9AB6ED', rows: [['NASDAQ', '+1.42%', UP], ['Gold', '+0.92%', UP], ['DXY', '−0.48%', DN], ['BTC', '−4.85%', DN]] },

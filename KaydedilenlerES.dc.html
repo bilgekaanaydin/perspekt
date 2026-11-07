@@ -13,9 +13,9 @@
 <x-dc><template>
 <helmet>
 <style>
-@font-face{font-family:"Satoshi";src:url("_blob/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
-@font-face{font-family:"Satoshi";src:url("_blob/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
-@font-face{font-family:"Satoshi";src:url("_blob/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
 body{margin:0}
 @media (prefers-reduced-motion: no-preference){
 @keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
@@ -207,12 +207,12 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
             <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+1,42 %</span>
           </a>
           <a href="VarlikES.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
-            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #E8891C"><img src="_blob/f74b93dd661ed37f19989b4797a87446.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #E8891C"><img src="img/f74b93dd661ed37f19989b4797a87446.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
             <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">BTC</span><span style="font-size: 12px; color: var(--k7D8290)">Bitcoin</span></span>
             <span style="font-size: 13px; font-weight: 500; color: #FF8A7A">−4,85 %</span>
           </a>
           <a href="VarlikES.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
-            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A"><img src="_blob/161ff1d447dd128b7dbee48db2806b2b.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
+            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A"><img src="img/161ff1d447dd128b7dbee48db2806b2b.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
             <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">AAPL</span><span style="font-size: 12px; color: var(--k7D8290)">Apple</span></span>
             <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+1,08 %</span>
           </a>
@@ -270,7 +270,7 @@ class Component extends DCLogic {
       }
     } catch (e) {}
     var o = this._rv();
-    var LGO = {"AAPL": "_blob/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "_blob/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "_blob/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "_blob/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "_blob/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "_blob/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "_blob/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "_blob/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "_blob/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "_blob/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "_blob/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "_blob/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "_blob/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "_blob/cbf6cd52679c939526a5a2252cc76878.svg", "META": "_blob/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "_blob/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "_blob/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "_blob/11b45c171b1bde3c475c2aff2769ff39.svg"};
+    var LGO = {"AAPL": "img/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "img/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "img/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "img/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "img/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "img/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "img/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "img/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "img/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "img/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "img/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "img/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "img/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "img/cbf6cd52679c939526a5a2252cc76878.svg", "META": "img/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "img/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "img/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "img/11b45c171b1bde3c475c2aff2769ff39.svg"};
     (function pkDec(x, dep) {
       if (!x || dep > 5 || typeof x !== 'object') return;
       if (Array.isArray(x)) { x.forEach(function (y) { pkDec(y, dep + 1); }); return; }
@@ -303,12 +303,12 @@ class Component extends DCLogic {
       return { label: t[1], bg: on ? 'var(--kF5F7FA)' : 'transparent', fg: on ? 'var(--k000000)' : 'var(--kA9AEBB)', pick: function () { self.setState({ tab: t[0] }); } };
     });
     var NEWSDB = {
-      fed: { id: 'fed', cat: 'Finanzas', meta: 'FINANZAS · 12 MIN', title: 'La Fed recortó su tipo de interés 25 puntos básicos', t1: 'QQQ', v1: '+1,42 %', c1: UP, t2: 'DXY', v2: '−0,48 %', c2: DN, img: '_blob/5ebfdfcf219e8801edcb5216152fd714.jpg' },
-      oil: { id: 'oil', cat: 'Materias primas', meta: 'MATERIAS PRIMAS · 45 MIN', title: 'El Brent sube un 3 % tras la decisión de la OPEP+', t1: 'BRENT', v1: '+3,05 %', c1: UP, t2: 'XLE', v2: '+1,20 %', c2: UP, img: '_blob/2502594da937e79d7d59a04fe251756c.jpg' },
-      ev: { id: 'ev', cat: 'Tecnología', meta: 'TECNOLOGÍA · 4 H', title: 'Las entregas de Tesla decepcionan', t1: 'TSLA', v1: '−3,40 %', c1: DN, t2: 'RIVN', v2: '−1,85 %', c2: DN, img: '_blob/2fb5382a7314ced086eb4679e295883e.jpg' },
-      ipo: { id: 'ipo', cat: 'Finanzas', meta: 'FINANZAS · 2 H', title: 'El regulador turco aprueba dos nuevas OPV', t1: 'XU100', v1: '−0,22 %', c1: DN, t2: 'XHARZ', v2: '+2,01 %', c2: UP, img: '_blob/a139ae390119cd978d0c6e7dd6e2a557.jpg' },
-      gold: { id: 'gold', cat: 'Materias primas', meta: 'MATERIAS PRIMAS · 3 H', title: 'El oro se acerca a $2,700 la onza', t1: 'XAU', v1: '+0,92 %', c1: UP, t2: 'GLD', v2: '+0,88 %', c2: UP, img: '_blob/8283936c568ca923cbc58db01ce872e6.jpg' },
-      dc: { id: 'dc', cat: 'Tecnología', meta: 'TECNOLOGÍA · 5 H', title: 'La inversión en centros de datos se duplicará en 2027', t1: 'MSFT', v1: '+0,84 %', c1: UP, t2: 'ORCL', v2: '+2,10 %', c2: UP, img: '_blob/1f422031daea9f9a254c4b60ecfd0379.jpg' }
+      fed: { id: 'fed', cat: 'Finanzas', meta: 'FINANZAS · 12 MIN', title: 'La Fed recortó su tipo de interés 25 puntos básicos', t1: 'QQQ', v1: '+1,42 %', c1: UP, t2: 'DXY', v2: '−0,48 %', c2: DN, img: 'img/5ebfdfcf219e8801edcb5216152fd714.jpg' },
+      oil: { id: 'oil', cat: 'Materias primas', meta: 'MATERIAS PRIMAS · 45 MIN', title: 'El Brent sube un 3 % tras la decisión de la OPEP+', t1: 'BRENT', v1: '+3,05 %', c1: UP, t2: 'XLE', v2: '+1,20 %', c2: UP, img: 'img/2502594da937e79d7d59a04fe251756c.jpg' },
+      ev: { id: 'ev', cat: 'Tecnología', meta: 'TECNOLOGÍA · 4 H', title: 'Las entregas de Tesla decepcionan', t1: 'TSLA', v1: '−3,40 %', c1: DN, t2: 'RIVN', v2: '−1,85 %', c2: DN, img: 'img/2fb5382a7314ced086eb4679e295883e.jpg' },
+      ipo: { id: 'ipo', cat: 'Finanzas', meta: 'FINANZAS · 2 H', title: 'El regulador turco aprueba dos nuevas OPV', t1: 'XU100', v1: '−0,22 %', c1: DN, t2: 'XHARZ', v2: '+2,01 %', c2: UP, img: 'img/a139ae390119cd978d0c6e7dd6e2a557.jpg' },
+      gold: { id: 'gold', cat: 'Materias primas', meta: 'MATERIAS PRIMAS · 3 H', title: 'El oro se acerca a $2,700 la onza', t1: 'XAU', v1: '+0,92 %', c1: UP, t2: 'GLD', v2: '+0,88 %', c2: UP, img: 'img/8283936c568ca923cbc58db01ce872e6.jpg' },
+      dc: { id: 'dc', cat: 'Tecnología', meta: 'TECNOLOGÍA · 5 H', title: 'La inversión en centros de datos se duplicará en 2027', t1: 'MSFT', v1: '+0,84 %', c1: UP, t2: 'ORCL', v2: '+2,10 %', c2: UP, img: 'img/1f422031daea9f9a254c4b60ecfd0379.jpg' }
     };
     var SAVEDAT = {"fed": "Guardado hoy", "oil": "Guardado hoy", "ev": "Guardado ayer", "ipo": "Guardado hace 3 días"}, WHY = {"gold": "Porque lees noticias de materias primas", "dc": "Porque leíste la noticia de Nvidia"};
     var ids = s.ids || ["fed", "oil", "ev", "ipo"];
