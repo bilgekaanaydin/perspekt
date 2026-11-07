@@ -10,7 +10,7 @@
 <style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
 
 <title>Perspekt! القصة</title>
-<script src="./support.js?v=3"></script>
+<script src="./support.js?v=4"></script>
 </head>
 <body>
 <x-dc><template>
@@ -58,6 +58,7 @@ a{color:#FFFFFF}a:hover{color:#FFFFFF}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2px;border-radius:10px}
 .gt{background:linear-gradient(180deg,#FFFFFF 30%,#B8CBF2 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gt{padding-block:.12em!important;margin-block:-.12em!important}
 
 [dir=rtl] *{letter-spacing:0 !important}
 [dir=rtl] svg:has(path[d="M13.5 6.5L19 12l-5.5 5.5"]),[dir=rtl] svg:has(path[d="M10.5 6.5L5 12l5.5 5.5"]),[dir=rtl] svg:has(path[d="M9 6l6 6-6 6"]){transform:scaleX(-1)}
@@ -105,7 +106,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2p
     </a>
   </div>
 
-  <div class="{{st.anim}}" style="position: absolute; left: 24px; right: 24px; top: {{st.top}}px; display: flex; flex-direction: column; gap: 16px; pointer-events: none">
+  <div class="{{st.anim}}" style="position: absolute; left: 24px; right: 24px; bottom: 110px; display: flex; flex-direction: column; justify-content: flex-end; gap: 16px; pointer-events: none">
     <sc-if value="{{st.tag}}" hint-placeholder-val="{{ false }}">
       <span style="align-self: flex-start; padding: 5px 9px; background: #205DF4; font-size: 11px; font-weight: 500; letter-spacing: 0.08em">{{st.tagText}}</span>
     </sc-if>

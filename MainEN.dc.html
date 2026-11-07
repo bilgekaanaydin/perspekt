@@ -10,7 +10,7 @@
 <style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
 
 <title>Perspekt! Home</title>
-<script src="./support.js?v=3"></script>
+<script src="./support.js?v=4"></script>
 </head>
 <body>
 <x-dc><template>
@@ -71,6 +71,7 @@ html.lt .gb{background:linear-gradient(90deg,#2F5BD8 0%,#205DF4 100%);-webkit-ba
 html.lt .dk .gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 html.lt .dk .gs{background:linear-gradient(180deg,#FFFFFF 35%,#D3E0FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gt{padding-block:.12em!important;margin-block:-.12em!important}
 </style>
 </helmet>
 <div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--k000000); color: var(--kF5F7FA); font-family: Satoshi, Inter, system-ui, sans-serif">
@@ -202,35 +203,48 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
     <div style="display: flex; flex-direction: column; gap: 12px">
       <div style="display: flex; align-items: baseline; justify-content: space-between">
         <h2 class="gt" style="margin: 0; font-size: 20px; font-weight: 700">What big investors did today</h2>
-        <span style="font-size: 12px; color: var(--k7D8290)">Fund flows</span>
+        <span style="font-size: 12px; color: var(--k7D8290)">Fund managers</span>
       </div>
       <div class="st" style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518)">
         <sc-for list="{{whales}}" as="wh" hint-placeholder-count="4">
-          <div style="display: flex; align-items: center; gap: 12px; padding: 13px 0; border-bottom: {{wh.bd}}">
-            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; background: {{wh.ibg}}">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{wh.color}}" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="{{wh.icon}}"></path></svg>
-            </span>
-            <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
-              <span style="font-size: 14px; font-weight: 500">{{wh.who}}</span>
-              <span style="font-size: 12px; color: var(--k7D8290)">{{wh.what}}</span>
-            </span>
-            <span style="flex-shrink: 0; font-size: 13px; font-weight: 500; color: {{wh.color}}">{{wh.amt}}</span>
+          <div style="border-bottom: {{wh.bd}}">
+            <button onClick="{{wh.pick}}" aria-expanded="{{wh.ex}}" style="width: 100%; display: flex; align-items: center; gap: 12px; padding: 13px 0; text-align: start; color: var(--kF5F7FA)">
+              <span class="dk" style="flex-shrink: 0; width: 38px; height: 38px; border-radius: 19px; display: flex; align-items: center; justify-content: center; background: {{wh.bg}}; color: #FFFFFF; font-size: 13px; font-weight: 700">{{wh.ini}}</span>
+              <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+                <span style="font-size: 14px; font-weight: 500">{{wh.who}}</span>
+                <span style="font-size: 12px; color: var(--k7D8290)">{{wh.firm}}</span>
+                <span style="font-size: 12.5px; line-height: 1.35; color: var(--kC4C8D2)">{{wh.what}}</span>
+              </span>
+              <span style="flex-shrink: 0; align-self: flex-start; margin-top: 2px; display: flex; align-items: center; gap: 6px">
+                <span style="padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 500; color: var(--k9AB6ED); background: rgba(154,182,237,0.12)">{{wh.tag}}</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290); transform: rotate({{wh.rot}}deg); transition: transform 0.25s"><path d="M6 9l6 6 6-6"></path></svg>
+              </span>
+            </button>
+            <sc-if value="{{wh.open}}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-direction: column; gap: 10px; padding: 0 0 14px 50px">
+                <span style="font-size: 13px; line-height: 1.45; color: var(--kC4C8D2)">{{wh.info}}</span>
+                <div style="display: flex; flex-direction: column; gap: 4px; padding: 10px 12px; border-radius: 12px; background: rgba(154,182,237,0.08)">
+                  <span style="font-size: 10.5px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">PERSPEKT! VIEW</span>
+                  <span style="font-size: 13px; line-height: 1.4; color: var(--kF5F7FA)">{{wh.note}}</span>
+                </div>
+              </div>
+            </sc-if>
           </div>
         </sc-for>
       </div>
-      <span style="font-size: 11px; color: var(--k6B7080)">Source: fund flow reports, exchange data. Not investment advice.</span>
+      <span style="font-size: 11px; color: var(--k6B7080)">Source: company statements and 13F filings. Not investment advice.</span>
     </div>
 
     <div style="display: flex; flex-direction: column; gap: 10px">
       <div style="display: flex; align-items: baseline; justify-content: space-between">
-        <h2 class="gt" style="margin: 0; font-size: 17px; font-weight: 700">Terms of the day</h2>
+        <h2 class="gt" style="margin: 0; font-size: 20px; font-weight: 700">Terms of the day</h2>
         <span style="font-size: 11px; color: var(--k7D8290)">2 terms a day</span>
       </div>
       <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
         <sc-for list="{{terms}}" as="tm" hint-placeholder-count="2">
-          <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 14px; background: var(--k151518)">
-            <span class="gt" style="font-size: 14px; font-weight: 700">{{tm.term}}</span>
-            <span style="font-size: 11.5px; color: var(--kA9AEBB)">{{tm.def}}</span>
+          <div style="display: flex; flex-direction: column; gap: 6px; padding: 14px; border-radius: 16px; background: var(--k151518)">
+            <span class="gt" style="font-size: 17px; font-weight: 700">{{tm.term}}</span>
+            <span style="font-size: 13.5px; line-height: 1.35; color: var(--kA9AEBB)">{{tm.def}}</span>
           </div>
         </sc-for>
       </div>
@@ -393,6 +407,25 @@ class Component extends DCLogic {
     var tickers = [
       ['QQQ', 'Q', '#3B3F4A', '+1.42%', UP], ['BTC', '₿', '#E8891C', '−4.85%', DN], ['ETH', 'E', '#5865D8', '−3.10%', DN], ['SOL', 'S', '#7A3FD0', '−5.02%', DN], ['NVDA', 'N', '#3E7A2C', '+4.12%', UP], ['XAU', 'Au', '#9A7B2F', '+0.92%', UP], ['XRP', 'X', '#30343E', '−2.37%', DN]
     ].map(function (t) { return { sym: t[0], ab: t[1], bg: t[2], chg: t[3], color: t[4] }; });
+    var AS = { QQQ: ['Invesco QQQ', 'NASDAQ 100', 651.98, 1.42, '$', 2], AAPL: ['Apple', 'NASDAQ', 241.80, 1.08, '$', 2], NVDA: ['Nvidia', 'NASDAQ', 148.20, 4.12, '$', 2], TSLA: ['Tesla', 'NASDAQ', 352.40, -3.40, '$', 2],
+      MSFT: ['Microsoft', 'NASDAQ', 432.60, 0.84, '$', 2], AMZN: ['Amazon', 'NASDAQ', 214.10, 1.35, '$', 2], GOOGL: ['Alphabet', 'NASDAQ', 176.40, 0.92, '$', 2], META: ['Meta', 'NASDAQ', 582.30, -0.66, '$', 2],
+      AMD: ['AMD', 'NASDAQ', 142.80, 2.48, '$', 2], NFLX: ['Netflix', 'NASDAQ', 768.20, 0.57, '$', 2], ORCL: ['Oracle', 'NYSE', 178.50, 2.10, '$', 2], RIVN: ['Rivian', 'NASDAQ', 12.84, -1.85, '$', 2],
+      BTC: ['Bitcoin', 'BTC/USD', 97420, -4.85, '$', 0], ETH: ['Ethereum', 'ETH/USD', 3612, -3.10, '$', 0], SOL: ['Solana', 'SOL/USD', 214.30, -5.02, '$', 2], XRP: ['XRP', 'XRP/USD', 1.24, -2.37, '$', 2],
+      AVAX: ['Avalanche', 'AVAX/USD', 38.90, 0.52, '$', 2], BNB: ['BNB', 'BNB/USD', 612.40, -1.84, '$', 2], ADA: ['Cardano', 'ADA/USD', 0.72, -3.95, '$', 2], DOGE: ['Dogecoin', 'DOGE/USD', 0.182, 2.16, '$', 3],
+      XAU: ['Gold (oz)', 'XAU/USD', 2684, 0.92, '$', 0], XAG: ['Silver (oz)', 'XAG/USD', 31.40, 1.31, '$', 2], BRENT: ['Brent crude', 'ICE', 73.10, 3.05, '$', 2], NG: ['Natural gas', 'NYMEX', 3.12, 2.20, '$', 2],
+      XU100: ['BIST 100', 'Borsa İstanbul', 11333.27, -1.26, '', 2], XU050: ['BIST 50', 'Borsa İstanbul', 10596.83, -1.45, '', 2], SPX: ['S&P 500', 'US', 7427.76, -3.40, '', 2], NDX: ['Nasdaq 100', 'US', 24635.03, -4.28, '', 2], DJI: ['Dow Jones', 'US', 51811.54, -2.89, '', 2],
+      THYAO: ['Turkish Airlines', 'BIST', 312.50, 0.74, '₺', 2], ASELS: ['Aselsan', 'BIST', 86.15, 1.08, '₺', 2], GARAN: ['Garanti BBVA', 'BIST', 128.40, 1.62, '₺', 2], BIMAS: ['BIM Stores', 'BIST', 512.00, -0.45, '₺', 2],
+      KCHOL: ['Koç Holding', 'BIST', 178.90, 0.38, '₺', 2], TUPRS: ['Tüpraş', 'BIST', 146.20, -1.12, '₺', 2], EREGL: ['Erdemir', 'BIST', 48.36, 2.04, '₺', 2], SISE: ['Şişecam', 'BIST', 41.80, -0.71, '₺', 2],
+      'USD/TRY': ['USD / TRY', 'FX', 34.72, 0.18, '₺', 2], 'EUR/TRY': ['Euro / Lira', 'FX', 37.55, -0.22, '₺', 2], 'EUR/USD': ['Euro / Dollar', 'FX', 1.0815, -0.35, '', 4], DXY: ['Dollar index', 'ICE', 104.12, -0.48, '', 2],
+      TEK: ['Tech Equity Fund', 'TEFAS', 2.1847, 1.12, '₺', 4], YTF: ['Global Tech Fund', 'TEFAS', 1.8932, 1.46, '₺', 4], BHF: ['BIST Equity Fund', 'TEFAS', 0.4521, 0.84, '₺', 4],
+      ALT: ['Gold Fund', 'TEFAS', 0.9876, 0.61, '₺', 4], DEG: ['Flexible Fund', 'TEFAS', 3.7104, -0.22, '₺', 4], PPF: ['Money Market Fund', 'TEFAS', 1.0453, 0.13, '₺', 4],
+      SOXX: ['iShares Semiconductor', 'NASDAQ', 248.60, 2.30, '$', 2], XLE: ['Energy Select', 'NYSE', 94.20, 1.20, '$', 2], GLD: ['SPDR Gold', 'NYSE', 247.10, 0.88, '$', 2] };
+    var NF = { d: '.', g: ',', p: 'post' };
+    var nfmt = function (x, dp) { var sp = Math.abs(x).toFixed(dp).split('.'); sp[0] = sp[0].replace(/\B(?=(\d{3})+(?!\d))/g, NF.g); return sp.join(NF.d); };
+    var pfmt = function (x) { var sg = x < 0 ? '−' : '+', n = nfmt(x, 2); return NF.p === 'pre' ? sg + '%' + n : NF.p === 'space' ? sg + n + '\u00a0%' : sg + n + '%'; };
+    var PKF = (function () { var D0 = ['QQQ', 'BTC', 'XAU', 'AAPL', 'USD/TRY', 'ETH', 'SOL', 'NVDA', 'XRP']; try { var v = JSON.parse(localStorage.getItem('pk-follow') || 'null'); return Array.isArray(v) ? v : D0; } catch (e) { return D0; } })();
+    var PKAB = function (x) { return ({ XAU: 'Au', XAG: 'Ag', BRENT: 'Br', NG: 'NG', 'USD/TRY': '$', 'EUR/TRY': '€', 'EUR/USD': '€', DXY: '$', XU100: 'BI', XU050: 'BI', SPX: 'S', NDX: 'N', DJI: 'D' })[x] || x.charAt(0); };
+    tickers = PKF.map(function (x) { var f = tickers.filter(function (q) { return q.sym === x; })[0]; if (f) return f; var a = AS[x]; return a ? { sym: x, ab: PKAB(x), bg: '#3B3F4A', chg: pfmt(a[3]), color: a[3] < 0 ? DN : UP } : null; }).filter(Boolean);
     var ALL = [
       { id: 'ws', cat: 'Finance', meta: 'FINANCE · 1 H', title: 'Wall Street closes at a record on tech strength', t1: 'SPX', v1: '+0.62%', c1: UP, t2: 'NDX', v2: '+1.10%', c2: UP, img: 'img/b2ba4d6f6974f308d7de1b72ca98107a.jpg' },
       { id: 'fed', cat: 'Finance', meta: 'FINANCE · 12 MIN', title: 'The Fed cut its policy rate by 25 basis points', t1: 'QQQ', v1: '+1.42%', c1: UP, t2: 'DXY', v2: '−0.48%', c2: DN, img: 'img/5ebfdfcf219e8801edcb5216152fd714.jpg' },
@@ -444,16 +477,9 @@ class Component extends DCLogic {
       { kicker: 'TERM 1', term: 'Basis point', def: 'A 0.01 percentage-point move in a rate.', ex: '25 basis points = 0.25%' },
       { kicker: 'TERM 2', term: 'Liquidation', def: 'Forced closing of a leveraged position when its collateral runs short.', ex: 'Accelerated the crypto drop today' }
     ];
-    var IN = 'M12 4v14M6 12l6 6 6-6', OUT = 'M12 20V6M6 12l6-6 6 6';
-    var W8 = [
-      ['Spot Bitcoin ETFs', 'Net inflows, week 3', '+$420M', true],
-      ['Foreign investors · BIST', 'Net selling in equities', '−₺1.2B', false],
-      ['Central banks', 'Adding to gold reserves', '+18 tonnes', true],
-      ['Tech funds', 'Buying back in after the Fed', '+$1.6B', true]
-    ];
-    var whales = W8.map(function (w, i) {
-      return { who: w[0], what: w[1], amt: w[2], color: w[3] ? UP : DN, ibg: w[3] ? 'rgba(91,229,154,0.1)' : 'rgba(255,138,122,0.1)', icon: w[3] ? IN : OUT, bd: i < W8.length - 1 ? '1px solid var(--kt18)' : '0' };
-    });
+    var W8 = [["WB", "#2B4E8A", "Warren Buffett", "Berkshire Hathaway", "Value", "Cash pile at a record; selling more than buying", "The holding company Buffett has run since 1965. Long-term, value-focused investing. Buffett said he would hand the CEO role to Greg Abel at the end of 2025.", "The record cash pile is read as management finding valuations expensive."], ["CW", "#7A3FD0", "Cathie Wood", "ARK Invest", "Innovation", "Actively managing positions in innovation stocks", "Founded in 2014. Focuses on themes such as AI, robotics, genomics and blockchain. Publishes its fund trades every day.", "The daily trade list is a useful gauge of where thematic funds are heading."], ["RD", "#1F7A55", "Ray Dalio", "Bridgewater Associates", "Macro", "Keeps warning about the US debt load", "Founded in 1975, one of the largest hedge funds in the world. Known for macro research and the All Weather portfolio approach. Dalio handed over control in 2022.", "The warnings support interest in hedges such as gold."], ["MS", "#C86A12", "Michael Saylor", "Strategy", "Bitcoin", "Keeps adding Bitcoin", "Formerly MicroStrategy. The largest public company holding Bitcoin on its balance sheet since 2020, with more than 600,000 BTC.", "Its purchase announcements are a signal traders watch for BTC in the short term."]];
+    var wo = (this.state || {}).wh;
+    var whales = W8.map(function (w, i) { var op = wo === i; return { ini: w[0], bg: w[1], who: w[2], firm: w[3], tag: w[4], what: w[5], info: w[6], note: w[7], open: op, ex: op ? 'true' : 'false', rot: op ? 180 : 0, bd: i < W8.length - 1 ? '1px solid var(--kt18)' : '0', pick: function () { self.setState({ wh: op ? -1 : i }); } }; });
     return { shift: (this.props.scrolled ?? false) ? -420 : 0, stories: stories, pixels: pixels, tickers: tickers, news: news, cats: cats, featured: featured, dots: dots, sl: sl, wl: wl, seeAll: function () { self.setState({ all: !showAll, cat: 'All' }); }, seeLabel: showAll ? 'Show less' : 'See all', terms: terms, whales: whales };
   }
 }

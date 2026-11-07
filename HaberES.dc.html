@@ -10,7 +10,7 @@
 <style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
 
 <title>Perspekt! noticia</title>
-<script src="./support.js?v=3"></script>
+<script src="./support.js?v=4"></script>
 </head>
 <body>
 <x-dc><template>
@@ -69,6 +69,7 @@ html.lt .mk{background:linear-gradient(90deg,#0B0D12 0%,#2F5BD8 100%);-webkit-ba
 html.lt .gb{background:linear-gradient(90deg,#2F5BD8 0%,#205DF4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 html.lt .dk .gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gt{padding-block:.12em!important;margin-block:-.12em!important}
 </style>
 </helmet>
 <div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--k000000); color: var(--kF5F7FA); font-family: Satoshi, Inter, system-ui, sans-serif">
@@ -145,6 +146,17 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         <span style="font-size: 15px; line-height: 1.55; color: var(--kD5D9E2)">{{a.s1}}<span class="mk">{{a.s2}}</span>{{a.s3}}</span>
         <span style="font-size: 12px; color: var(--k6B7080)">No es una previsión: resume datos pasados.</span>
       </div>
+
+      <button onClick="{{nx.go}}" style="width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 20px; text-align: start; background: var(--k151518); color: var(--kF5F7FA)">
+        <img src="{{nx.img}}" alt="" style="flex-shrink: 0; width: 64px; height: 64px; border-radius: 12px; object-fit: cover">
+        <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 5px">
+          <span style="font-size: 10.5px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">SIGUIENTE NOTICIA</span>
+          <span style="font-size: 15px; font-weight: 500; line-height: 1.3">{{nx.title}}</span>
+        </span>
+        <span class="dk" style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: #205DF4">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12h14"></path><path d="M13.5 6.5L19 12l-5.5 5.5"></path></svg>
+        </span>
+      </button>
 
       <p style="margin: 0; font-size: 12px; line-height: 1.5; color: var(--k6B7080)">No es asesoramiento de inversión. Comentario general de mercado, sin recomendaciones personales.</p>
     </div>
@@ -278,7 +290,14 @@ class Component extends DCLogic {
     var impacts = (A0.imp || []).map(function (r) { var k = r[3]; return { name: r[0], why: r[1], dir: r[2], color: k === 'up' ? UP : k === 'down' ? DNc : NE, bg: k === 'up' ? 'rgba(91,229,154,0.1)' : k === 'down' ? 'rgba(255,138,122,0.1)' : 'rgba(169,174,187,0.1)' }; });
     var pills = (A0.pills || []).map(function (p) { return { sym: p[0], ab: p[0].charAt(0), bg: '#3B3F4A', chg: p[1], color: p[2] ? UP : DNc }; });
     var bullets = (A0.bul || []).map(function (b, i) { return { n: '0' + (i + 1), pre: b[0], em: b[1], post: b[2] }; });
-    return {
+    var me = this, ORD = Object.keys(STORIES), ni = ORD[(ORD.indexOf(sid) + 1) % ORD.length], NXS = STORIES[ni] || {};
+    var nx = { img: NXS.img, title: NXS.plain, go: function (ev) {
+      var el = ev && ev.currentTarget;
+      while (el && el.parentElement) { el = el.parentElement; try { if (el.scrollHeight > el.clientHeight + 4 && /auto|scroll/.test(getComputedStyle(el).overflowY)) { el.scrollTop = 0; break; } } catch (e) {} }
+      try { if (/github\.io$/.test(location.hostname)) history.replaceState(null, '', '#n' + ni + (window.__pkLT ? '.lt' : '')); } catch (e) {}
+      me._sid = ni; me.setState({ long: false, saved: false, nk: ni });
+    } };
+    return { nx: nx,
       shift: scrolled ? -360 : 0, scrolled: scrolled,
       bullets: bullets, long: long,
       toggleLabel: long ? 'Volver al resumen' : 'Leer la noticia completa',

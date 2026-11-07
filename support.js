@@ -43,7 +43,7 @@
     return o;
   }
 
-  var EVENTS = { onclick: 'onClick', oninput: 'onInput', onchange: 'onChange', onscroll: 'onScroll', onpointerdown: 'onPointerDown', onpointermove: 'onPointerMove', onpointerup: 'onPointerUp', onpointercancel: 'onPointerCancel', onkeydown: 'onKeyDown', onfocus: 'onFocus', onblur: 'onBlur', onmouseenter: 'onMouseEnter', onmouseleave: 'onMouseLeave', ontouchstart: 'onTouchStart', ontouchend: 'onTouchEnd' };
+  var EVENTS = { onclick: 'onClick', oninput: 'onInput', onchange: 'onChange', onscroll: 'onScroll', onpointerdown: 'onPointerDown', onpointermove: 'onPointerMove', onpointerup: 'onPointerUp', onpointercancel: 'onPointerCancel', onpointerleave: 'onPointerLeave', onkeydown: 'onKeyDown', onfocus: 'onFocus', onblur: 'onBlur', onmouseenter: 'onMouseEnter', onmouseleave: 'onMouseLeave', ontouchstart: 'onTouchStart', ontouchend: 'onTouchEnd' };
   var RENAME = { 'class': 'className', 'for': 'htmlFor', 'autofocus': 'autoFocus', 'tabindex': 'tabIndex', 'readonly': 'readOnly', 'maxlength': 'maxLength' };
 
   // template DOM -> light tree (built once)

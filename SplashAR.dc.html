@@ -10,7 +10,7 @@
 <style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
 
 <title>Perspekt! شاشة البدء</title>
-<script src="./support.js?v=3"></script>
+<script src="./support.js?v=4"></script>
 </head>
 <body>
 <x-dc><template>
@@ -54,6 +54,7 @@ button:active,a:active{transform:scale(.97)}
 a{color:#FFFFFF}a:hover{color:#FFFFFF}
 a:focus-visible{outline:2px solid #6FA0FF;outline-offset:2px}
 .gt{background:linear-gradient(180deg,#FFFFFF 35%,#8DB2FF 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gt{padding-block:.12em!important;margin-block:-.12em!important}
 
 [dir=rtl] *{letter-spacing:0 !important}
 [dir=rtl] svg:has(path[d="M13.5 6.5L19 12l-5.5 5.5"]),[dir=rtl] svg:has(path[d="M10.5 6.5L5 12l5.5 5.5"]),[dir=rtl] svg:has(path[d="M9 6l6 6-6 6"]){transform:scaleX(-1)}

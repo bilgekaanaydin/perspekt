@@ -10,7 +10,7 @@
 <style>x-dc{display:none}html,body{margin:0;background:#000;overscroll-behavior:none}#dc-root{display:flex;justify-content:center}#dc-root>div,#dc-root>a{height:calc(100dvh + 47px - env(safe-area-inset-bottom,0px)) !important;margin-top:-47px}</style>
 
 <title>Perspekt! asset detail, bar chart</title>
-<script src="./support.js?v=3"></script>
+<script src="./support.js?v=4"></script>
 </head>
 <body>
 <x-dc><template>
@@ -69,6 +69,7 @@ html.lt .mk{background:linear-gradient(90deg,#0B0D12 0%,#2F5BD8 100%);-webkit-ba
 html.lt .gb{background:linear-gradient(90deg,#2F5BD8 0%,#205DF4 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 html.lt .dk .gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.gt{padding-block:.12em!important;margin-block:-.12em!important}
 </style>
 </helmet>
 <div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: var(--k000000); color: var(--kF5F7FA); font-family: Satoshi, Inter, system-ui, sans-serif">
@@ -87,15 +88,20 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M20 12H5"></path><path d="M10.5 6.5L5 12l5.5 5.5"></path></svg>
       </a>
       <span style="font-size: 13px; font-weight: 500; color: var(--kA9AEBB)">{{asset.title}}</span>
+      <div style="display: flex">
+        <button onClick="{{toggleFollow}}" aria-label="Watchlist" aria-pressed="{{follow.on}}" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="{{follow.fill}}" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M6 3.5h12V20.5l-6-4.5-6 4.5z"></path></svg>
+        </button>
       <button onClick="{{act.share}}" aria-label="Share" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M12 3v12"></path><path d="M7.5 7.5L12 3l4.5 4.5"></path><path d="M5 12v8h14v-8"></path></svg>
       </button>
+      </div>
     </div>
 
     <div class="dk" style="display: flex; flex-direction: column; gap: 14px; padding: 18px 16px 12px; border-radius: 24px; background: radial-gradient(120% 90% at 78% 8%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 38%, #08090F 78%); border: 1px solid var(--kt29)">
       <div style="display: flex; justify-content: space-between; align-items: flex-start">
         <div style="display: flex; flex-direction: column; gap: 4px">
-          <span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: #A9B8FF">{{asset.sym}}</span>
+          <span style="display: flex; align-items: center; gap: 7px"><span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #FFFFFF; font-size: 8px; font-weight: 700; color: #0B0D12"><sc-if value="{{asset.logo}}" hint-placeholder-val="{{ false }}"><img src="{{asset.logo}}" alt="" style="width: 62%; height: 62%; object-fit: contain"></sc-if><sc-if value="{{asset.nologo}}" hint-placeholder-val="{{ true }}">{{asset.ab}}</sc-if></span><span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: #A9B8FF">{{asset.sym}}</span></span>
           <span style="font-size: 40px; font-weight: 500; line-height: 1.05; letter-spacing: -0.02em; color: var(--kFFFFFF)">{{asset.price}}</span>
           <span style="font-size: 13px; font-weight: 500; color: var(--kE3E7F5)">{{r.chg}} <span style="color: var(--k9AA3C0)">{{r.label}}</span></span>
         </div>
@@ -114,6 +120,12 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       <sc-if value="{{isLine}}" hint-placeholder-val="{{ true }}">
         <div style="display: flex; flex-direction: column; gap: 8px">
           <div style="position: relative; width: 318px; height: {{g.CH}}px">
+            <div onPointerMove="{{hv.move}}" onPointerDown="{{hv.down}}" onPointerLeave="{{hv.leave}}" style="position: absolute; left: 0; right: 0; top: -8px; bottom: -6px; z-index: 4; touch-action: pan-y; cursor: crosshair"></div>
+            <sc-if value="{{hv.on}}" hint-placeholder-val="{{ false }}">
+              <span style="position: absolute; left: {{hv.x}}px; top: 26px; bottom: 0; width: 1px; z-index: 2; pointer-events: none; background: rgba(255,255,255,0.4)"></span>
+              <sc-if value="{{hv.dot}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: {{hv.dx}}px; top: {{hv.y}}px; width: 9px; height: 9px; z-index: 3; pointer-events: none; border-radius: 5px; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(169,193,255,0.25)"></span></sc-if>
+              <span style="position: absolute; left: {{hv.lx}}px; top: 0; z-index: 3; transform: translateX(-50%); height: 22px; padding: 0 8px; display: flex; align-items: center; gap: 6px; border-radius: 7px; pointer-events: none; background: #FFFFFF; color: #000000; font-size: 11px; font-weight: 700; white-space: nowrap"><span style="font-weight: 500; color: #4A4F5C">{{hv.t}}</span><span>{{hv.v}}</span></span>
+            </sc-if>
             <svg width="318" height="{{g.CH}}" viewBox="0 0 318 {{g.CH}}" aria-hidden="true" style="position: absolute; inset: 0; overflow: visible">
               <defs><linearGradient id="pkArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#205DF4" stop-opacity="0.5"></stop><stop offset="1" stop-color="#205DF4" stop-opacity="0"></stop></linearGradient></defs>
               <path d="{{g.grid}}" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"></path>
@@ -129,11 +141,17 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       <sc-if value="{{isBar}}" hint-placeholder-val="{{ false }}">
         <div style="display: flex; flex-direction: column; gap: 8px">
           <div class="cdl" style="position: relative; width: 318px; height: {{g.CH}}px">
+            <div onPointerMove="{{hv.move}}" onPointerDown="{{hv.down}}" onPointerLeave="{{hv.leave}}" style="position: absolute; left: 0; right: 0; top: -8px; bottom: -6px; z-index: 4; touch-action: pan-y; cursor: crosshair"></div>
+            <sc-if value="{{hv.on}}" hint-placeholder-val="{{ false }}">
+              <span style="position: absolute; left: {{hv.x}}px; top: 26px; bottom: 0; width: 1px; z-index: 2; pointer-events: none; background: rgba(255,255,255,0.4)"></span>
+              <sc-if value="{{hv.dot}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: {{hv.dx}}px; top: {{hv.y}}px; width: 9px; height: 9px; z-index: 3; pointer-events: none; border-radius: 5px; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(169,193,255,0.25)"></span></sc-if>
+              <span style="position: absolute; left: {{hv.lx}}px; top: 0; z-index: 3; transform: translateX(-50%); height: 22px; padding: 0 8px; display: flex; align-items: center; gap: 6px; border-radius: 7px; pointer-events: none; background: #FFFFFF; color: #000000; font-size: 11px; font-weight: 700; white-space: nowrap"><span style="font-weight: 500; color: #4A4F5C">{{hv.t}}</span><span>{{hv.v}}</span></span>
+            </sc-if>
             <svg width="318" height="{{g.CH}}" viewBox="0 0 318 {{g.CH}}" aria-hidden="true" style="position: absolute; inset: 0"><path d="{{g.grid}}" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"></path></svg>
             <sc-for list="{{bars}}" as="b" hint-placeholder-count="12">
               <span style="position: absolute; left: {{b.x}}px; bottom: 0; width: {{b.w}}px; height: {{b.h}}px; border-radius: 6px 6px 2px 2px; background: {{b.bg}}"></span>
             </sc-for>
-            <span style="position: absolute; left: {{tip.x}}px; top: {{tip.y}}px; transform: translateX(-50%); height: 22px; padding: 0 8px; display: flex; align-items: center; border-radius: 7px; background: #FFFFFF; color: var(--k000000); font-size: 11px; font-weight: 700; white-space: nowrap">{{tip.v}}</span>
+            <span style="position: absolute; opacity: {{hv.op}}; left: {{tip.x}}px; top: {{tip.y}}px; transform: translateX(-50%); height: 22px; padding: 0 8px; display: flex; align-items: center; border-radius: 7px; background: #FFFFFF; color: var(--k000000); font-size: 11px; font-weight: 700; white-space: nowrap">{{tip.v}}</span>
           </div>
           <div style="display: flex; justify-content: space-between; font-size: 9px; font-weight: 500; letter-spacing: 0.04em; color: var(--k9AA3C0)"><sc-for list="{{labels}}" as="l" hint-placeholder-count="7"><span>{{l}}</span></sc-for></div>
         </div>
@@ -141,6 +159,12 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       <sc-if value="{{isCandle}}" hint-placeholder-val="{{ false }}">
         <div style="display: flex; flex-direction: column; gap: 8px">
           <div class="cdl" style="position: relative; width: 318px; height: {{g.CH}}px">
+            <div onPointerMove="{{hv.move}}" onPointerDown="{{hv.down}}" onPointerLeave="{{hv.leave}}" style="position: absolute; left: 0; right: 0; top: -8px; bottom: -6px; z-index: 4; touch-action: pan-y; cursor: crosshair"></div>
+            <sc-if value="{{hv.on}}" hint-placeholder-val="{{ false }}">
+              <span style="position: absolute; left: {{hv.x}}px; top: 26px; bottom: 0; width: 1px; z-index: 2; pointer-events: none; background: rgba(255,255,255,0.4)"></span>
+              <sc-if value="{{hv.dot}}" hint-placeholder-val="{{ false }}"><span style="position: absolute; left: {{hv.dx}}px; top: {{hv.y}}px; width: 9px; height: 9px; z-index: 3; pointer-events: none; border-radius: 5px; background: #FFFFFF; box-shadow: 0 0 0 4px rgba(169,193,255,0.25)"></span></sc-if>
+              <span style="position: absolute; left: {{hv.lx}}px; top: 0; z-index: 3; transform: translateX(-50%); height: 22px; padding: 0 8px; display: flex; align-items: center; gap: 6px; border-radius: 7px; pointer-events: none; background: #FFFFFF; color: #000000; font-size: 11px; font-weight: 700; white-space: nowrap"><span style="font-weight: 500; color: #4A4F5C">{{hv.t}}</span><span>{{hv.v}}</span></span>
+            </sc-if>
             <svg width="318" height="{{g.CH}}" viewBox="0 0 318 {{g.CH}}" aria-hidden="true" style="position: absolute; inset: 0"><path d="{{g.grid}}" fill="none" stroke="rgba(255,255,255,0.16)" stroke-width="1" stroke-dasharray="1 3"></path></svg>
             <sc-for list="{{candles}}" as="k" hint-placeholder-count="20">
               <span style="position: absolute; left: {{k.wx}}px; top: {{k.wt}}px; width: 1px; height: {{k.wh}}px; background: {{k.c}}"></span>
@@ -282,7 +306,7 @@ class Component extends DCLogic {
       return '';
     };
     var self = this, s = this.state || {};
-    var rg = s.rg || '1Y', fol = !!s.follow;
+    var rg = s.rg || '1Y';
     var R = {
       '1D': { v: [642.85, 644.68, 643.76, 646.96, 646.05, 648.51, 650.15, 651.98], t: ['00:00', '04:00', '08:00', '12:00', '16:00', '20:00', '24:00'], k: 3, chg: '+$9.13 (+1.42%)', label: 'today' },
       '1W': { v: [667.4, 665.08, 668.94, 662.77, 658.92, 660.46, 654.29, 651.98], t: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'MON', 'TUE'], k: 2, chg: '−$15.42 (−2.31%)', label: 'past week' },
@@ -307,6 +331,9 @@ class Component extends DCLogic {
     var NF = { d: '.', g: ',', p: 'post' };
     var sym = this._sym || (this._sym = (pkTok('a') || 'QQQ').replace('_', '/'));
     if (!AS[sym]) sym = 'QQQ';
+    var PKF = (function () { var D0 = ['QQQ', 'BTC', 'XAU', 'AAPL', 'USD/TRY', 'ETH', 'SOL', 'NVDA', 'XRP']; try { var v = JSON.parse(localStorage.getItem('pk-follow') || 'null'); return Array.isArray(v) ? v : D0; } catch (e) { return D0; } })();
+    var PKAB = function (x) { return ({ XAU: 'Au', XAG: 'Ag', BRENT: 'Br', NG: 'NG', 'USD/TRY': '$', 'EUR/TRY': '€', 'EUR/USD': '€', DXY: '$', XU100: 'BI', XU050: 'BI', SPX: 'S', NDX: 'N', DJI: 'D' })[x] || x.charAt(0); };
+    var fol = s.follow !== undefined ? !!s.follow : PKF.indexOf(sym) >= 0;
     var A = AS[sym], PCQ = [1.42, -2.31, -5.77, 8.90, 18.40, 67.39], SH1 = [0, 0.15, -0.1, 0.3, 0.55, 0.45, 0.85, 1];
     var nfmt = function (x, dp) { var sp = Math.abs(x).toFixed(dp).split('.'); sp[0] = sp[0].replace(/\B(?=(\d{3})+(?!\d))/g, NF.g); return sp.join(NF.d); };
     var pfmt = function (x) { var sg = x < 0 ? '−' : '+', n = nfmt(x, 2); return NF.p === 'pre' ? sg + '%' + n : NF.p === 'space' ? sg + n + '\u00a0%' : sg + n + '%'; };
@@ -316,7 +343,7 @@ class Component extends DCLogic {
       d0.v = ri === 0 ? SH1.map(function (f, i) { return i === 7 ? A[2] : st + (A[2] - st) * f; }) : d0.v.map(function (x) { return x * k; });
       d0.chg = (pc < 0 ? '−' : '+') + A[4] + nfmt(A[2] - st, A[5]) + ' (' + pfmt(pc) + ')';
     });
-    var asset = { sym: sym, title: A[0] + ' · ' + A[1], price: PRICE };
+    var asset = { sym: sym, ab: PKAB(sym), title: A[0] + ' · ' + A[1], price: PRICE };
     var d = R[rg], W = 318, H = 150, n = 7, w = W / n;
     var at = function (t) { var x = Math.min(6.9999, t * 7), i = Math.floor(x), f = x - i; return d.v[i] + (d.v[i + 1] - d.v[i]) * f; };
     var baseSpan = (Math.max.apply(null, d.v) - Math.min.apply(null, d.v)) || 1;
@@ -347,7 +374,7 @@ class Component extends DCLogic {
     var kp = pts[Math.round(d.k * NP / n)];
     var ranges = Object.keys(R).map(function (k) {
       var on = k === rg;
-      return { label: k, bg: on ? 'rgba(195,206,255,0.16)' : 'transparent', fg: on ? 'var(--kFFFFFF)' : 'var(--k9AA3C0)', pick: function () { self.setState({ rg: k }); } };
+      return { label: k, bg: on ? 'rgba(195,206,255,0.16)' : 'transparent', fg: on ? 'var(--kFFFFFF)' : 'var(--k9AA3C0)', pick: function () { self.setState({ rg: k, hx: null }); } };
     });
     var mode = s.mode || 'bar';
     var span = (hi - lo) || 1, NC = long ? 48 : 28, raw = [], bw = Math.max(3, Math.floor(W / NC * 0.55) | 1);
@@ -393,8 +420,22 @@ class Component extends DCLogic {
       var hcx = (i + 0.5) * W / HN, hb0 = Math.round(hcx - hbw / 2), top = HY(Math.max(q[0], q[1])), bot = HY(Math.min(q[0], q[1]));
       return { wx: hb0 + (hbw - 1) / 2, wt: Math.round(HY(q[2])), wh: Math.max(1, Math.round(HY(q[3]) - HY(q[2]))), bx: hb0, bw: hbw, bt: Math.round(top), bh: Math.max(1, Math.round(bot - top)), c: q[1] >= q[0] ? '#16A884' : '#F0394D' };
     });
+    var hx = (this.state || {}).hx, HV = { on: false, x: 0, dx: 0, y: 0, lx: 0, t: '', v: '', dot: false, op: 1 };
+    HV.move = function (ev) { var el = ev.currentTarget, b = el.getBoundingClientRect(); if (!b.width) return; self.setState({ hx: Math.max(0, Math.min(1, (ev.clientX - b.left) / b.width)) }); };
+    HV.down = HV.move;
+    HV.leave = function (ev) { if (!ev || ev.pointerType === 'mouse') self.setState({ hx: null }); };
+    if (hx != null) {
+      var hi2 = Math.round(hx * NP), hv0 = dense[hi2], hpx = pts[hi2][0], hri = Object.keys(R).indexOf(rg), hl = '', LOC = 'en-US';
+      var two = function (q) { return (q < 10 ? '0' : '') + q; };
+      if (hri <= 0) { var hm = Math.round(hx * 96) * 15; hl = two(Math.floor(hm / 60)) + ':' + two(hm % 60); }
+      else if (hri === 1) { var dpos = hx * 6, LB = d.t; hl = (LB[Math.floor(Math.min(5.999, dpos))] || '') + ' ' + two(Math.floor((dpos % 1) * 24)) + ':00'; }
+      else { var hd = new Date(new Date(2026, 10, 7, 18, 0).getTime() - (1 - hx) * [0, 7, 30, 92, 365, 1826][hri] * 86400000); try { hl = hd.toLocaleDateString(LOC, hri === 5 ? { month: 'short', year: 'numeric' } : hri === 4 ? { day: 'numeric', month: 'short', year: 'numeric' } : { day: 'numeric', month: 'short' }); } catch (e) { hl = hd.getDate() + '.' + (hd.getMonth() + 1) + '.' + hd.getFullYear(); } }
+      var hdp = A[5], hsp = Math.abs(hv0).toFixed(hdp).split('.'); hsp[0] = hsp[0].replace(/\B(?=(\d{3})+(?!\d))/g, THO);
+      HV.on = true; HV.x = Math.round(hpx); HV.dx = hpx - 4.5; HV.y = pts[hi2][1] - 4.5; HV.lx = Math.max(64, Math.min(318 - 64, hpx)); HV.t = hl; HV.v = A[4] + hsp.join(DEC); HV.dot = mode === 'line'; HV.op = 0;
+    }
     var ON = 'rgba(195,206,255,0.18)';
     return {
+      hv: HV,
       asset: asset,
       isLine: mode === 'line', isBar: mode === 'bar', isCandle: mode === 'candle', bars: bars, tip: tip, g: { CH: CH, grid: grid, area: area, sx: pts[0][0] - 3.5, sy: pts[0][1] - 3.5 }, candles: candles, labels: d.t,
       tg: { l: mode === 'line' ? ON : 'transparent', b: mode === 'bar' ? ON : 'transparent', c: mode === 'candle' ? ON : 'transparent' },
@@ -403,8 +444,8 @@ class Component extends DCLogic {
       setCandle: function () { self.setState({ mode: 'candle' }); },
       r: { cols: cols, line: line, arrow: arrow, ex: e[0] - 4.5, ey: e[1] - 4.5, chg: d.chg, label: d.label, dx: kp[0] - 4, dy: kp[1] - 4, tx: Math.max(0, kp[0] - 26), ty: kp[1] - 32, tip: '$' + d.v[d.k] + '.00' },
       ranges: ranges,
-      follow: fol ? { label: 'Following', bg: 'transparent', fg: 'var(--kF5F7FA)', bd: 'var(--kt21)' } : { label: 'Follow', bg: '#205DF4', fg: '#FFFFFF', bd: '#205DF4' },
-      toggleFollow: function () { self.setState({ follow: !fol }); }
+      follow: fol ? { label: 'Following', bg: 'transparent', fg: 'var(--kF5F7FA)', bd: 'var(--kt21)', fill: 'currentColor', on: 'true' } : { label: 'Follow', bg: '#205DF4', fg: '#FFFFFF', bd: '#205DF4', fill: 'none', on: 'false' },
+      toggleFollow: function () { var v = !fol; try { var FL = PKF.filter(function (x) { return x !== sym; }); if (v) FL.unshift(sym); localStorage.setItem('pk-follow', JSON.stringify(FL)); } catch (e) {} self.setState({ follow: v }); self.pkSay(v ? "Added to your watchlist" : "Removed from your watchlist"); }
     };
   }
 }
