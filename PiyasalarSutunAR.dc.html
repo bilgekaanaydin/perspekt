@@ -108,7 +108,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         <a href="VarlikAR.dc.html" style="display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--kFFFFFF)">
           <span style="display: flex; align-items: center; gap: 7px"><span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #FFFFFF; font-size: 8px; font-weight: 700; color: #0B0D12"><sc-if value="{{r.logo}}" hint-placeholder-val="{{ false }}"><img src="{{r.logo}}" alt="" style="width: 62%; height: 62%; object-fit: contain"></sc-if><sc-if value="{{r.nologo}}" hint-placeholder-val="{{ true }}">{{r.ab}}</sc-if></span><span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: #A9B8FF">{{r.name}}</span></span>
           <span style="font-size: 34px; font-weight: 500; line-height: 1.05; letter-spacing: -0.02em">{{r.price}}</span>
-          <span style="font-size: 13px; font-weight: 500; color: var(--kE3E7F5)">{{r.chg}} <span style="color: var(--k9AA3C0)">{{rlabel}}</span></span>
+          <span style="font-size: 13px; font-weight: 500; color: {{pc.tx}}">{{r.chg}} <span style="color: var(--k9AA3C0)">{{rlabel}}</span></span>
         </a>
         <div style="display: flex; gap: 2px; padding: 2px; border-radius: 9px; background: var(--kt18); border: 0.75px solid rgba(170,185,255,0.25)">
           <button onClick="{{setLine}}" aria-label="رسم خطي" style="width: 28px; height: 24px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: {{tg.l}}">
@@ -132,7 +132,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
               <span style="position: absolute; left: {{hv.lx}}px; top: 0; z-index: 3; transform: translateX(-50%); height: 22px; padding: 0 8px; display: flex; align-items: center; gap: 6px; border-radius: 7px; pointer-events: none; background: #FFFFFF; color: #000000; font-size: 11px; font-weight: 700; white-space: nowrap"><span style="font-weight: 500; color: #4A4F5C">{{hv.t}}</span><span>{{hv.v}}</span></span>
             </sc-if>
             <svg width="318" height="{{g.CH}}" viewBox="0 0 318 {{g.CH}}" aria-hidden="true" style="position: absolute; inset: 0; overflow: visible">
-              <defs><linearGradient id="pkArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{pc.ar}}" stop-opacity="0.45"></stop><stop offset="1" stop-color="{{pc.ar}}" stop-opacity="0"></stop></linearGradient></defs>
+              <defs><linearGradient id="pkArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{pc.ar}}" stop-opacity="0.5"></stop><stop offset="1" stop-color="{{pc.ar}}" stop-opacity="0"></stop></linearGradient></defs>
               <path d="{{g.grid}}" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"></path>
               <path class="cdl" d="{{g.area}}" fill="url(#pkArea)"></path>
               <path class="draw" pathLength="1" d="{{r.line}}" fill="none" stroke="{{pc.ln}}" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"></path>
@@ -426,7 +426,7 @@ class Component extends DCLogic {
     for (var gi = 1; gi <= 4; gi++) { var gyy = Math.round(CH * gi / 5) + 0.5; grid += 'M0 ' + gyy + 'H318'; }
     for (var gj = 1; gj < 6; gj++) { var gxx = Math.round(318 * gj / 6) + 0.5; grid += 'M' + gxx + ' 0V' + CH; }
     var area = line + ' L' + W + ' ' + CH + ' L0 ' + CH + ' Z';
-    var PCU = String(d.chg).charAt(0) !== '−', PC = PCU ? { ln: '#5BE59A', ar: '#16A884', gl: 'rgba(91,229,154,0.25)', b1: 'rgba(22,168,132,0.9)', b2: 'rgba(22,168,132,0.14)' } : { ln: '#FF8A7A', ar: '#F0394D', gl: 'rgba(255,138,122,0.25)', b1: 'rgba(240,57,77,0.9)', b2: 'rgba(240,57,77,0.14)' };
+    var PCU = String(d.chg).charAt(0) !== '−', PC = { ln: '#A9C1FF', ar: '#205DF4', gl: 'rgba(169,193,255,0.22)', b1: 'rgba(32,93,244,0.9)', b2: 'rgba(32,93,244,0.14)', tx: PCU ? '#5BE59A' : '#FF8A7A' };
     var NB = 12, bvals = [];
     for (var bi = 0; bi < NB; bi++) bvals.push(dense[Math.round((bi + 1) * NP / NB)]);
     var bmn = Math.min.apply(null, bvals), bmx = Math.max.apply(null, bvals), bslot = W / NB, bwid = Math.floor(bslot * 0.62), imax = NB - 1;
