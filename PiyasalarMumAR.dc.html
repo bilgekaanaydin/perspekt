@@ -71,6 +71,7 @@ html.lt .gb{background:linear-gradient(90deg,#2F5BD8 0%,#205DF4 100%);-webkit-ba
 html.lt .dk .gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
 .gt{padding-block:.12em!important;margin-block:-.12em!important}
+html.lt .pkc{background:linear-gradient(160deg,#E9F0FF 0%,#FFFFFF 70%) !important;border-color:rgba(32,93,244,0.18) !important}html.lt .pkc path.draw{stroke:#205DF4}html.lt .pkc path[stroke^='rgba(255,255,255']{stroke:rgba(10,20,40,0.09)}html.lt .pkc .pks{color:#2F5BD8 !important}html.lt .pkc .pkd{background:#205DF4 !important}html.lt .pkc .pke{background:#205DF4 !important;box-shadow:0 0 0 4px rgba(32,93,244,0.18) !important}
 
 [dir=rtl] *{letter-spacing:0 !important}
 [dir=rtl] svg:has(path[d="M13.5 6.5L19 12l-5.5 5.5"]),[dir=rtl] svg:has(path[d="M10.5 6.5L5 12l5.5 5.5"]),[dir=rtl] svg:has(path[d="M9 6l6 6-6 6"]){transform:scaleX(-1)}
@@ -103,10 +104,10 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       </sc-for>
     </div>
 
-    <div class="dk" style="display: flex; flex-direction: column; gap: 14px; padding: 18px 16px 14px; border-radius: 24px; color: var(--kFFFFFF); background: radial-gradient(120% 90% at 78% 8%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 38%, #08090F 78%); border: 1px solid var(--kt29)">
+    <div class="pkc" style="display: flex; flex-direction: column; gap: 14px; padding: 18px 16px 14px; border-radius: 24px; color: var(--kFFFFFF); background: radial-gradient(120% 90% at 78% 8%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 38%, #08090F 78%); border: 1px solid var(--kt29)">
       <div style="display: flex; justify-content: space-between; align-items: flex-start">
         <a href="VarlikAR.dc.html" style="display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--kFFFFFF)">
-          <span style="display: flex; align-items: center; gap: 7px"><span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #FFFFFF; font-size: 8px; font-weight: 700; color: #0B0D12"><sc-if value="{{r.logo}}" hint-placeholder-val="{{ false }}"><img src="{{r.logo}}" alt="" style="width: 62%; height: 62%; object-fit: contain"></sc-if><sc-if value="{{r.nologo}}" hint-placeholder-val="{{ true }}">{{r.ab}}</sc-if></span><span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: #A9B8FF">{{r.name}}</span></span>
+          <span style="display: flex; align-items: center; gap: 7px"><span style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #FFFFFF; font-size: 8px; font-weight: 700; color: #0B0D12"><sc-if value="{{r.logo}}" hint-placeholder-val="{{ false }}"><img src="{{r.logo}}" alt="" style="width: 62%; height: 62%; object-fit: contain"></sc-if><sc-if value="{{r.nologo}}" hint-placeholder-val="{{ true }}">{{r.ab}}</sc-if></span><span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: #A9B8FF" class="pks">{{r.name}}</span></span>
           <span style="font-size: 34px; font-weight: 500; line-height: 1.05; letter-spacing: -0.02em">{{r.price}}</span>
           <span style="font-size: 13px; font-weight: 500; color: {{pc.tx}}">{{r.chg}} <span style="color: var(--k9AA3C0)">{{rlabel}}</span></span>
         </a>
@@ -137,8 +138,8 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
               <path class="cdl" d="{{g.area}}" fill="url(#pkArea)"></path>
               <path class="draw" pathLength="1" d="{{r.line}}" fill="none" stroke="{{pc.ln}}" stroke-width="1" stroke-linejoin="round" stroke-linecap="round"></path>
             </svg>
-            <span style="position: absolute; left: {{g.sx}}px; top: {{g.sy}}px; width: 7px; height: 7px; border-radius: 4px; background: {{pc.ln}}"></span>
-            <span style="position: absolute; left: {{r.ex}}px; top: {{r.ey}}px; width: 9px; height: 9px; border-radius: 5px; background: #FFFFFF; box-shadow: 0 0 0 4px {{pc.gl}}, 0 0 12px {{pc.ln}}"></span>
+            <span class="pkd" style="position: absolute; left: {{g.sx}}px; top: {{g.sy}}px; width: 7px; height: 7px; border-radius: 4px; background: {{pc.ln}}"></span>
+            <span class="pke" style="position: absolute; left: {{r.ex}}px; top: {{r.ey}}px; width: 9px; height: 9px; border-radius: 5px; background: #FFFFFF; box-shadow: 0 0 0 4px {{pc.gl}}, 0 0 12px {{pc.ln}}"></span>
           </div>
           <div class="ltr" style="display: flex; justify-content: space-between; font-size: 9px; font-weight: 500; letter-spacing: 0.04em; color: var(--k9AA3C0)"><sc-for list="{{labels}}" as="l" hint-placeholder-count="7"><span>{{l}}</span></sc-for></div>
         </div>
