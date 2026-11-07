@@ -468,7 +468,7 @@ class Component extends DCLogic {
       setBar: function () { self.setState({ mode: 'bar' }); },
       setCandle: function () { self.setState({ mode: 'candle' }); },
       segs: segs, rows: rows, isHis: seg === 'his', mks: mks, ranges: ranges, rlabel: rlabel,
-      r: { sym: (d.name.split(' · ')[1] || d.name), ab: (d.name.split(' · ')[1] || d.name).charAt(0), name: d.name, price: d.price, chg: d.chg, cols: cols, line: line, arrow: arrow, ex: e[0] - 4.5, ey: e[1] - 4.5, dx: kp[0] - 4, dy: kp[1] - 4, tx: Math.max(0, kp[0] - 30), ty: kp[1] - 32, tip: d.fmt }
+      r: { sym: (d.name.split(' · ')[1] || ({ BITCOIN: 'BTC' })[d.name] || d.name), ab: (d.name.split(' · ')[1] || d.name).charAt(0), name: d.name, price: d.price, chg: d.chg, cols: cols, line: line, arrow: arrow, ex: e[0] - 4.5, ey: e[1] - 4.5, dx: kp[0] - 4, dy: kp[1] - 4, tx: Math.max(0, kp[0] - 30), ty: kp[1] - 32, tip: d.fmt }
     };
   }
 }
