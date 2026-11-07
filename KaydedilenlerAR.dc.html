@@ -162,7 +162,9 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">الأصول التي تتابعها</span>
         <div class="st" style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518)">
           <sc-for list="{{assets}}" as="m" hint-placeholder-count="5">
-            <div style="display: flex; align-items: center; gap: 4px; border-bottom: {{m.bd}}">
+            <div style="position: relative; overflow: hidden; border-bottom: {{m.bd}}">
+            <button onClick="{{m.remove}}" class="dk" style="position: absolute; top: 0; bottom: 0; right: 0; width: 132px; padding: 0 10px; display: flex; align-items: center; justify-content: center; background: #E5484D; color: #FFFFFF; font-size: 12.5px; font-weight: 600; line-height: 1.2; text-align: center">إزالة من المحفوظات</button>
+            <div onPointerDown="{{m.pd}}" onPointerMove="{{m.pm}}" onPointerUp="{{m.pu}}" onPointerCancel="{{m.pu}}" onClick="{{m.pc}}" style="position: relative; display: flex; align-items: center; gap: 4px; background: var(--k151518); transform: translateX({{m.tx}}px); transition: transform 0.25s ease; touch-action: pan-y">
             <a href="VarlikAR.dc.html" style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 12px; padding: 13px 0; text-decoration: none; color: var(--kF5F7FA)">
               <span style="flex-shrink: 0; width: 36px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: {{m.bg}}"><sc-if value="{{m.logo}}" hint-placeholder-val="{{ false }}"><img src="{{m.logo}}" alt="" style="width: 58%; height: 58%; object-fit: contain"></sc-if><sc-if value="{{m.nologo}}" hint-placeholder-val="{{ true }}">{{m.ab}}</sc-if></span>
               <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px">
@@ -178,6 +180,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
               <button onClick="{{m.remove}}" aria-label="قائمة المتابعة" style="flex-shrink: 0; width: 40px; height: 44px; display: flex; align-items: center; justify-content: center">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED)"><path d="M6 3.5h12V20.5l-6-4.5-6 4.5z"></path></svg>
               </button>
+            </div>
             </div>
           </sc-for>
         </div>
@@ -386,7 +389,7 @@ class Component extends DCLogic {
     var PKF = (function () { var D0 = ['QQQ', 'BTC', 'XAU', 'AAPL', 'USD/TRY', 'ETH', 'SOL', 'NVDA', 'XRP']; try { var v = JSON.parse(localStorage.getItem('pk-follow') || 'null'); return Array.isArray(v) ? v : D0; } catch (e) { return D0; } })();
     var PKAB = function (x) { return ({ XAU: 'Au', XAG: 'Ag', BRENT: 'Br', NG: 'NG', 'USD/TRY': '$', 'EUR/TRY': '€', 'EUR/USD': '€', DXY: '$', XU100: 'BI', XU050: 'BI', SPX: 'S', NDX: 'N', DJI: 'D' })[x] || x.charAt(0); };
     A = PKF.map(function (x) { var f = A.filter(function (q) { return q[0] === x; })[0]; if (f) return f; var a = AS[x]; return a ? [x, PKAB(x), '#3B3F4A', a[0], a[4] + nfmt(a[2], a[5]), pfmt(a[3]), a[3] >= 0] : null; }).filter(Boolean);
-    var assets = A.map(function (a, i) { return { remove: function () { try { localStorage.setItem('pk-follow', JSON.stringify(PKF.filter(function (x) { return x !== a[0]; }))); } catch (e) {} self.setState({ fx: Date.now() }); self.pkSay('أُزيل من قائمة المتابعة'); }, sym: a[0], ab: a[1], bg: a[2], note: a[3], price: a[4], chg: a[5], color: a[6] ? UP : DN, spark: spark(i + 1, a[6]), bd: i < A.length - 1 ? '1px solid var(--kt18)' : '0' }; });
+    var assets = A.map(function (a, i) { return { tx: (s.sw === a[0] ? -132 : 0), pd: function (e) { self._sx = e.clientX; self._sd = false; }, pm: function (e) { if (self._sx == null) return; var dx = e.clientX - self._sx; if (dx < -30) { self._sd = true; if (s.sw !== a[0]) self.setState({ sw: a[0] }); } else if (dx > 30) { self._sd = true; if (s.sw === a[0]) self.setState({ sw: null }); } }, pu: function () { self._sx = null; }, pc: function (e) { if (self._sd || s.sw === a[0]) { e.preventDefault(); e.stopPropagation(); if (!self._sd) self.setState({ sw: null }); self._sd = false; } }, remove: function () { try { localStorage.setItem('pk-follow', JSON.stringify(PKF.filter(function (x) { return x !== a[0]; }))); } catch (e) {} self.setState({ fx: Date.now(), sw: null }); self.pkSay('أُزيل من قائمة المتابعة'); }, sym: a[0], ab: a[1], bg: a[2], note: a[3], price: a[4], chg: a[5], color: a[6] ? UP : DN, spark: spark(i + 1, a[6]), bd: i < A.length - 1 ? '1px solid var(--kt18)' : '0' }; });
     return { tabs: tabs, isNews: tab === 'news', isAssets: tab === 'assets', news: news, rec: rec, assets: assets, undo: undo, countLabel: countLabel, readLabel: readLabel, empty: empty };
   }
 }
