@@ -60,7 +60,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2p
 .gt{padding-block:.12em!important;margin-block:-.12em!important}
 </style>
 </helmet>
-<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: {{st.bg}}; color: #FFFFFF; font-family: Satoshi, Inter, system-ui, sans-serif">
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; background: {{st.bg}}; color: #FFFFFF; font-family: Satoshi, Inter, system-ui, sans-serif">
 
   <sc-if value="{{st.photo}}" hint-placeholder-val="{{ false }}">
     <img src="img/3f0c9e8bed18dd755662c29d76abda60.jpg" alt="Ein nachts beleuchteter Apple Store" style="position: absolute; left: 0; top: 0; width: 390px; height: 600px; object-fit: cover">
@@ -99,7 +99,7 @@ button:focus-visible,a:focus-visible{outline:2px solid #9AB6ED;outline-offset:2p
     </a>
   </div>
 
-  <div class="{{st.anim}}" style="position: absolute; left: 24px; right: 24px; top: 150px; bottom: 110px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-start; gap: 16px; pointer-events: none">
+  <div class="{{st.anim}}" style="position: absolute; left: 24px; right: 24px; top: 150px; bottom: 110px; overflow: hidden; display: flex; flex-direction: column; justify-content: {{st.just}}; gap: 16px; pointer-events: none">
     <sc-if value="{{st.tag}}" hint-placeholder-val="{{ false }}">
       <span style="align-self: flex-start; padding: 5px 9px; background: #205DF4; font-size: 11px; font-weight: 500; letter-spacing: 0.08em">{{st.tagText}}</span>
     </sc-if>
@@ -219,7 +219,7 @@ class Component extends DCLogic {
     var s = S[i];
     var st = {
       kind: s.kind, time: s.time, bg: s.bg, top: s.top, title: s.title, sub: s.sub, subColor: s.subColor,
-      photo: !!s.photo, feather: !s.photo, img: s.img || '', ih: s.ih || 470, pos: s.pos || 'center', tag: !!s.tag, tagText: s.tag || '',
+      photo: !!s.photo, feather: !s.photo, just: s.photo ? 'flex-end' : 'flex-start', img: s.img || '', ih: s.ih || 470, pos: s.pos || 'center', tag: !!s.tag, tagText: s.tag || '',
       hasRows: !!s.rows, rows: (s.rows || []).map(function (r) { return { n: r[0], v: r[1], c: r[2] }; })
     };
     var bars = S.map(function (x, k) { return { cls: k < i ? 'bf-done' : (k === i ? 'bf-on' : 'bf-off') }; });

@@ -298,7 +298,7 @@ class Component extends DCLogic {
     var ON_BG = lt ? '#FFFFFF' : '#2E2F36', ON_FG = lt ? '#0B0D12' : '#FFFFFF', OFF_FG = 'var(--k7D8290)';
     var theme = { isLink: false, isBtn: false, isSwitch: true, open: false, on: lt ? 'true' : 'false', off: lt ? 'false' : 'true', lbg: lt ? ON_BG : 'transparent', lfg: lt ? ON_FG : OFF_FG, dbg: lt ? 'transparent' : ON_BG, dfg: lt ? OFF_FG : ON_FG, setLight: function () { self.setState({ lt: true }); }, setDark: function () { self.setState({ lt: false }); } };
     function grp(title, list) { list.forEach(function (x, i) { x.bd = i < list.length - 1 ? '1px solid var(--kt18)' : '0'; }); return { title: title, rows: list }; }
-    var LANGS = [['Türkçe', ''], ['English', 'EN'], ['Español', 'ES'], ['Deutsch', 'DE'], ['العربية', 'AR']].map(function (l) {
+    var LANGS = [['Türkçe', ''], ['English', 'EN'], ['Español', 'ES'], ['Deutsch', 'DE']].map(function (l) {
       var on = l[1] === '';
       return { label: l[0], on: on ? 'true' : 'false', bg: on ? 'var(--kF5F7FA)' : 'transparent', fg: on ? 'var(--k000000)' : 'var(--kC4C8D2)', bd: on ? 'var(--kF5F7FA)' : 'var(--kt22)',
         href: on ? '' : 'Ayarlar' + l[1] + '.dc.html', pick: on ? function () {} : null };

@@ -101,7 +101,7 @@ html.lt .pkc .pkp{background:#205DF4 !important;color:#FFFFFF !important}html.lt
 
     <div class="pkc" style="display: flex; flex-direction: column; gap: 14px; padding: 18px 16px 14px; border-radius: 24px; color: var(--kFFFFFF); background: radial-gradient(120% 90% at 78% 8%, rgba(120,140,255,0.42) 0%, rgba(40,46,90,0.55) 38%, #08090F 78%); border: 1px solid var(--kt29)">
       <div style="display: flex; justify-content: space-between; align-items: flex-start">
-        <a href="Varlik.dc.html" style="display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--kFFFFFF)">
+        <a href="Varlik.dc.html#a{{r.tok}}" style="display: flex; flex-direction: column; gap: 4px; text-decoration: none; color: var(--kFFFFFF)">
           <span style="display: flex; align-items: center; gap: 7px"><span class="pkl" style="flex-shrink: 0; width: 20px; height: 20px; border-radius: 10px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #FFFFFF; font-size: 8px; font-weight: 700; color: #0B0D12"><sc-if value="{{r.logo}}" hint-placeholder-val="{{ false }}"><img src="{{r.logo}}" alt="" style="width: 62%; height: 62%; object-fit: contain"></sc-if><sc-if value="{{r.nologo}}" hint-placeholder-val="{{ true }}">{{r.ab}}</sc-if></span><span style="font-size: 12px; font-weight: 500; letter-spacing: 0.08em; color: #A9B8FF" class="pks">{{r.name}}</span></span>
           <span style="font-size: 34px; font-weight: 500; line-height: 1.05; letter-spacing: -0.02em">{{r.price}}</span>
           <span style="font-size: 13px; font-weight: 500; color: {{pc.tx}}">{{r.chg}} <span style="color: var(--k9AA3C0)">{{rlabel}}</span></span>
@@ -475,7 +475,7 @@ class Component extends DCLogic {
       setBar: function () { self.setState({ mode: 'bar' }); },
       setCandle: function () { self.setState({ mode: 'candle' }); },
       segs: segs, rows: rows, isHis: seg === 'his', mks: mks, ranges: ranges, rlabel: rlabel,
-      r: { sym: (d.name.split(' · ')[1] || ({ BITCOIN: 'BTC' })[d.name] || d.name), ab: (d.name.split(' · ')[1] || d.name).charAt(0), name: d.name, price: d.price, chg: d.chg, cols: cols, line: line, arrow: arrow, ex: e[0] - 4.5, ey: e[1] - 4.5, dx: kp[0] - 4, dy: kp[1] - 4, tx: Math.max(0, kp[0] - 30), ty: kp[1] - 32, tip: d.fmt }
+      r: { tok: (({ end: 'XU100', kri: 'BTC', dov: 'USD_TRY', emt: 'XAU', fon: 'YNT' })[seg] || d.name.split(' · ')[1] || 'AAPL'), sym: (d.name.split(' · ')[1] || ({ BITCOIN: 'BTC' })[d.name] || d.name), ab: (d.name.split(' · ')[1] || d.name).charAt(0), name: d.name, price: d.price, chg: d.chg, cols: cols, line: line, arrow: arrow, ex: e[0] - 4.5, ey: e[1] - 4.5, dx: kp[0] - 4, dy: kp[1] - 4, tx: Math.max(0, kp[0] - 30), ty: kp[1] - 32, tip: d.fmt }
     };
   }
 }
