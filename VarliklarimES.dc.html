@@ -77,6 +77,7 @@ html.lt span[style*="rgb(91, 229, 154)"]{color:#0E9F5B !important}html.lt span[s
 input[type="search"]::-webkit-search-cancel-button{display:none}
 @media (max-height:740px){.kpg{grid-auto-rows:46px !important}.calg{grid-auto-rows:50px !important}.calg .cc{width:34px !important;height:34px !important;font-size:14px !important}}
 .whl{height:220px;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 36%,#000 64%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 36%,#000 64%,transparent 100%)}.whl::-webkit-scrollbar{display:none}.whl::before,.whl::after{content:"";display:block;height:88px}.whl>div{height:44px;line-height:44px;text-align:center;white-space:nowrap;font-size:20px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--k8B91A0);scroll-snap-align:center;cursor:pointer}.whl>.on{font-weight:600;color:var(--kF5F7FA)}
+.hrow{position:relative;transition:transform .18s cubic-bezier(.2,.8,.2,1);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.hrow.hdrag{transition:none;z-index:3;margin:0 -8px;padding:0 8px;border-radius:16px;border-bottom-color:transparent !important;background:var(--k17171B);box-shadow:0 12px 32px rgba(0,0,0,.5),0 0 0 .75px var(--kt21)}.hgrip{touch-action:none;cursor:grab}
 @media (prefers-reduced-motion: no-preference){@keyframes pk-blink{50%{opacity:0}}.pk-cur{animation:pk-blink 1.1s steps(1) infinite}}
 </style>
 </helmet>
@@ -181,30 +182,43 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
       <span style="display: flex; flex-direction: column; gap: 3px; font-size: 13px; color: rgba(255,255,255,0.85)"><span>{{sum.s}}</span><span>{{sum.s2}}</span></span>
     </div>
 
-    <div style="display: flex; flex-direction: column; gap: 12px">
+    <div class="pk-list" style="display: flex; flex-direction: column; gap: 12px">
       <div style="display: flex; align-items: center; justify-content: space-between">
         <h2 class="gt" style="margin: 0; font-size: 20px; font-weight: 700">Tus activos</h2>
         <button onClick="{{toggleEd}}" style="height: 30px; padding: 0 12px; border-radius: 15px; border: 1px solid var(--kt20); font-size: 12px; font-weight: 600; color: var(--kF5F7FA)">{{edLabel}}</button>
       </div>
-      <div class="st" style="display: flex; flex-direction: column; padding: 4px 14px; border-radius: 20px; background: var(--k151518)">
-        <sc-for list="{{rows}}" as="r" hint-placeholder-count="5">
-          <div style="display: flex; align-items: center; gap: 10px; min-height: 64px; border-bottom: {{r.bd}}">
-            <button onClick="{{r.open}}" style="flex: 1 1 auto; min-width: 0; min-height: 64px; display: flex; align-items: center; gap: 12px; text-align: left; color: var(--kF5F7FA)">
-              <span class="pkl" style="flex-shrink: 0; width: 36px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #FFFFFF; box-shadow: 0 0 0 1px var(--kt18); font-size: 12px; font-weight: 700; color: #0B0D12"><sc-if value="{{r.logo}}" hint-placeholder-val="{{ false }}"><img src="{{r.logo}}" alt="" style="width: 62%; height: 62%; object-fit: contain"></sc-if><sc-if value="{{r.nologo}}" hint-placeholder-val="{{ true }}">{{r.ab}}</sc-if></span>
-              <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px">
-                <span style="font-size: 15px; font-weight: 600">{{r.sym}}</span>
-                <span style="font-size: 12px; color: var(--k7D8290); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.sub}}</span>
-              </span>
-              <span style="flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 3px">
-                <span style="font-size: 15px; font-weight: 600">{{r.v}}</span>
-                <span style="font-size: 12px; font-weight: 500; color: {{r.c}}">{{r.pl}}</span>
-              </span>
-            </button>
-            <sc-if value="{{ed}}" hint-placeholder-val="{{ false }}">
-              <button onClick="{{r.del}}" aria-label="Quitar activo" style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: rgba(255,138,122,0.16)">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF8A7A" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 12h12"></path></svg>
-              </button>
-            </sc-if>
+      <div class="st" style="display: flex; flex-direction: column; gap: 16px">
+        <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 4px">
+              <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--kC4C8D2)"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: {{g.c}}"></span>{{g.n}}</span>
+              <span style="font-size: 12px; font-weight: 500; color: var(--k7D8290)">{{g.v}} · {{g.p}}</span>
+            </div>
+            <div class="hgrp" style="display: flex; flex-direction: column; padding: 4px 14px; border-radius: 20px; background: var(--k151518)">
+              <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="2">
+              <div class="hrow" data-k="{{r.sym}}" style="display: flex; align-items: center; gap: 10px; min-height: 64px; border-bottom: {{r.bd}}">
+                <button onClick="{{r.open}}" style="flex: 1 1 auto; min-width: 0; min-height: 64px; display: flex; align-items: center; gap: 12px; text-align: left; color: var(--kF5F7FA)">
+                  <span class="pkl" style="flex-shrink: 0; width: 36px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; overflow: hidden; background: #FFFFFF; box-shadow: 0 0 0 1px var(--kt18); font-size: 12px; font-weight: 700; color: #0B0D12"><sc-if value="{{r.logo}}" hint-placeholder-val="{{ false }}"><img src="{{r.logo}}" alt="" style="width: 62%; height: 62%; object-fit: contain"></sc-if><sc-if value="{{r.nologo}}" hint-placeholder-val="{{ true }}">{{r.ab}}</sc-if></span>
+                  <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+                    <span style="font-size: 15px; font-weight: 600">{{r.sym}}</span>
+                    <span style="font-size: 12px; color: var(--k7D8290); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.sub}}</span>
+                  </span>
+                  <span style="flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 3px">
+                    <span style="font-size: 15px; font-weight: 600">{{r.v}}</span>
+                    <span style="font-size: 12px; font-weight: 500; color: {{r.c}}">{{r.pl}}</span>
+                  </span>
+                </button>
+                <sc-if value="{{ed}}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{r.del}}" aria-label="Quitar activo" style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: rgba(255,138,122,0.16)">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FF8A7A" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 12h12"></path></svg>
+                  </button>
+                  <span class="hgrip" aria-hidden="true" style="flex-shrink: 0; width: 28px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--k7D8290)">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 9h14"></path><path d="M5 15h14"></path></svg>
+                  </span>
+                </sc-if>
+              </div>
+              </sc-for>
+            </div>
           </div>
         </sc-for>
       </div>
@@ -234,7 +248,7 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
       </div>
     </sc-if>
 
-    <div style="display: flex; flex-direction: column; gap: 12px">
+    <div class="pk-what" style="display: flex; flex-direction: column; gap: 12px">
       <div style="display: flex; flex-direction: column; gap: 4px">
         <h2 class="gt" style="margin: 0; font-size: 20px; font-weight: 700">¿Y si hubiera comprado?</h2>
         <span style="font-size: 13px; color: var(--k7D8290)">Elige un activo y una fecha y mira cuánto valdría hoy.</span>
@@ -383,24 +397,17 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
         <button onClick="{{cal.togglePhase}}" style="height: 40px; display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 500; color: var(--kF5F7FA)">{{cal.phase}}
           <sc-if value="{{cal.canPhase}}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 9.5l6 6 6-6"></path></svg></sc-if>
         </button>
-        <sc-if value="{{cal.dayView}}" hint-placeholder-val="{{ false }}">
         <div style="display: flex; align-items: center; gap: 2px">
           <button onClick="{{cal.prev}}" aria-label="Mes anterior" style="width: 36px; height: 40px; display: flex; align-items: center; justify-content: center; opacity: {{cal.prevOp}}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M14.5 6.5L9 12l5.5 5.5"></path></svg>
           </button>
-          <button onClick="{{cal.toWheel}}" aria-label="Elegir mes y año" style="min-width: 104px; height: 40px; padding: 0 6px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 16px; font-weight: 500; color: var(--kF5F7FA)">{{cal.title}}
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED)"><path d="M6 9.5l6 6 6-6"></path></svg>
+          <button onClick="{{cal.toggleWheel}}" aria-label="Elegir mes y año" style="min-width: 104px; height: 40px; padding: 0 6px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 16px; font-weight: 500; color: var(--kF5F7FA)">{{cal.title}}
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED); transform: rotate({{cal.chev}}deg); transition: transform .2s"><path d="M6 9.5l6 6 6-6"></path></svg>
           </button>
           <button onClick="{{cal.next}}" aria-label="Mes siguiente" style="width: 36px; height: 40px; display: flex; align-items: center; justify-content: center; opacity: {{cal.nextOp}}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M9.5 6.5L15 12l-5.5 5.5"></path></svg>
           </button>
         </div>
-        </sc-if>
-        <sc-if value="{{cal.wheel}}" hint-placeholder-val="{{ true }}">
-          <button onClick="{{cal.toGrid}}" style="height: 36px; padding: 0 14px; border-radius: 18px; display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; color: var(--kF5F7FA); background: var(--kt18); border: 0.75px solid var(--kt21)">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED)"><path d="M4.5 6.5h15v13h-15z"></path><path d="M4.5 10.5h15"></path><path d="M8.5 4v4"></path><path d="M15.5 4v4"></path></svg>{{cal.daily}}
-          </button>
-        </sc-if>
       </div>
       <sc-if value="{{cal.dayView}}" hint-placeholder-val="{{ true }}">
       <div style="display: flex; flex-direction: column; gap: 8px">
@@ -411,17 +418,16 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
           <sc-for list="{{cal.cells}}" as="c" hint-placeholder-count="35">
             <button onClick="{{c.pick}}" style="display: flex; flex-direction: column; align-items: center; gap: 3px; opacity: {{c.op}}">
               <span class="cc" style="width: 42px; height: 42px; box-sizing: border-box; border-radius: 21px; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 500; color: {{c.fg}}; background: {{c.bg}}; border: 0.75px solid {{c.bd}}; box-shadow: {{c.sh}}">{{c.l}}</span>
-              <span style="height: 12px; font-size: 10px; font-weight: 500; white-space: nowrap; color: {{c.vf}}">{{c.v}}</span>
+              <span style="height: 11px; font-size: 9px; font-weight: 500; letter-spacing: -0.1px; white-space: nowrap; color: {{c.vf}}">{{c.v}}</span>
             </button>
           </sc-for>
         </div>
       </div>
       </sc-if>
-      <sc-if value="{{cal.wheel}}" hint-placeholder-val="{{ true }}">
+      <sc-if value="{{cal.wheel}}" hint-placeholder-val="{{ false }}">
         <div style="position: relative; height: 220px">
           <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 88px; height: 44px; box-sizing: border-box; border-radius: 22px; background: var(--kt18); border: 0.75px solid var(--kt21)"></span>
-          <div style="position: relative; height: 220px; padding: 0 10px; display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.6fr) minmax(0, 1fr)">
-            <div class="whl whl-d" onScroll="{{cal.wscroll}}" aria-label="{{cal.wl[0]}}"><sc-for list="{{cal.wd}}" as="w" hint-placeholder-count="5"><div onClick="{{w.pick}}" style="opacity: {{w.op}}">{{w.l}}</div></sc-for></div>
+          <div style="position: relative; height: 220px; padding: 0 24px; display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr)">
             <div class="whl whl-m" onScroll="{{cal.wscroll}}" aria-label="{{cal.wl[1]}}"><sc-for list="{{cal.wm}}" as="w" hint-placeholder-count="5"><div onClick="{{w.pick}}" style="opacity: {{w.op}}">{{w.l}}</div></sc-for></div>
             <div class="whl whl-y" onScroll="{{cal.wscroll}}" aria-label="{{cal.wl[2]}}"><sc-for list="{{cal.wy}}" as="w" hint-placeholder-count="5"><div onClick="{{w.pick}}" style="opacity: {{w.op}}">{{w.l}}</div></sc-for></div>
           </div>
@@ -433,7 +439,7 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
           <span style="flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 3px"><span style="font-size: 15px; font-weight: 700; color: var(--kF5F7FA)">{{cal.res}}</span><sc-if value="{{cal.showGain}}" hint-placeholder-val="{{ true }}"><span style="font-size: 12px; font-weight: 500; color: {{cal.gc}}">{{cal.gain}}</span></sc-if></span>
         </sc-if>
       </div>
-      <button onClick="{{cal.close}}" class="dk" style="height: 50px; border-radius: 25px; text-align: center; font-size: 16px; font-weight: 700; background: #205DF4; color: #FFFFFF">Listo</button>
+      <button onClick="{{cal.ok}}" class="dk" style="height: 50px; border-radius: 25px; text-align: center; font-size: 16px; font-weight: 700; background: #205DF4; color: #FFFFFF">Listo</button>
     </div>
   </sc-if>
 
@@ -538,7 +544,7 @@ class Component extends DCLogic {
     };
     return o;
   }
-  // date wheel: three scroll-snap columns (day, month, year). The centre row is marked straight on the DOM while scrolling; the date is committed once scrolling stops.
+  // month / year wheel (opened from the calendar title): two scroll-snap columns. The centre row is marked straight on the DOM while scrolling; the month is committed once scrolling stops.
   pkWheel(e) {
     var el = e.currentTarget, self = this, i = Math.round(el.scrollTop / 44), ch = el.children, j;
     for (j = 0; j < ch.length; j++) ch[j].classList.toggle('on', j === i);
@@ -546,17 +552,58 @@ class Component extends DCLogic {
   }
   pkWsync(smooth) {
     var t = this._wtgt; if (!t || typeof document === 'undefined') return;
-    ['d', 'm', 'y'].forEach(function (c) {
+    ['m', 'y'].forEach(function (c) {
       var n = document.querySelector('.whl-' + c), j; if (!n) return;
       if (Math.round(n.scrollTop / 44) !== t[c]) { if (smooth && n.scrollTo) n.scrollTo({ top: t[c] * 44, behavior: 'smooth' }); else n.scrollTop = t[c] * 44; }
       for (j = 0; j < n.children.length; j++) n.children[j].classList.toggle('on', j === t[c]);
     });
   }
-  componentDidMount() { this.componentDidUpdate(); }
+  // drag to reorder a holding inside its group: long-press the row (or grab the grip in edit mode), then move it up or down.
+  // Rows are moved straight on the DOM while dragging; the new order is saved on release.
+  pkDragInit() {
+    if (this._dg || typeof document === 'undefined') return; this._dg = 1;
+    var self = this, D = null, P = null, timer = null;
+    var pt = function (e) { var t = e.touches ? (e.touches[0] || e.changedTouches[0]) : e; return { x: t.clientX, y: t.clientY }; };
+    var begin = function () {
+      if (!P) return; var row = P.row, list = Array.prototype.slice.call(row.parentNode.querySelectorAll('.hrow'));
+      if (list.length < 2) { P = null; return; }
+      D = { row: row, list: list, i: list.indexOf(row), to: list.indexOf(row), h: row.offsetHeight, y0: P.y };
+      row.classList.add('hdrag');
+      try { if (navigator.vibrate) navigator.vibrate(8); } catch (e) {}
+    };
+    var down = function (e) {
+      if (D || (e.type === 'mousedown' && e.button !== 0)) return;
+      var el = e.target, row = el && el.closest && el.closest('.hrow'); if (!row) return;
+      var p = pt(e); P = { row: row, x: p.x, y: p.y }; clearTimeout(timer);
+      if (el.closest('.hgrip')) begin(); else timer = setTimeout(begin, 380);
+    };
+    var move = function (e) {
+      if (!P) return; var p = pt(e);
+      if (!D) { if (Math.abs(p.y - P.y) > 8 || Math.abs(p.x - P.x) > 8) { clearTimeout(timer); P = null; } return; }
+      if (e.cancelable) e.preventDefault();
+      var dy = Math.max(-D.i * D.h, Math.min((D.list.length - 1 - D.i) * D.h, p.y - D.y0)), to = D.i + Math.round(dy / D.h);
+      D.to = to; D.row.style.transform = 'translateY(' + dy + 'px)';
+      D.list.forEach(function (r, j) { if (r !== D.row) r.style.transform = j > D.i && j <= to ? 'translateY(' + -D.h + 'px)' : j < D.i && j >= to ? 'translateY(' + D.h + 'px)' : ''; });
+    };
+    var up = function () {
+      clearTimeout(timer); var d = D; P = null; D = null; if (!d) return;
+      d.list.forEach(function (r) { r.style.transition = 'none'; r.style.transform = ''; });
+      d.row.classList.remove('hdrag');
+      setTimeout(function () { d.list.forEach(function (r) { r.style.transition = ''; }); }, 60);
+      self._dragT = Date.now();
+      if (d.to !== d.i && self._reorder) self._reorder(d.row.getAttribute('data-k'), d.to);
+    };
+    document.addEventListener('touchstart', down, { passive: true }); document.addEventListener('touchmove', move, { passive: false });
+    document.addEventListener('touchend', up); document.addEventListener('touchcancel', up);
+    document.addEventListener('mousedown', down); document.addEventListener('mousemove', move); document.addEventListener('mouseup', up);
+    document.addEventListener('contextmenu', function (e) { if (D || (e.target && e.target.closest && e.target.closest('.hrow'))) e.preventDefault(); });
+  }
+  componentDidMount() { this.pkDragInit(); this.componentDidUpdate(); }
   componentDidUpdate() {
     var t = this._wtgt; if (!t) { this._wkey = null; return; }
-    var k = t.d + '.' + t.m + '.' + t.y; if (k !== this._wkey) { this.pkWsync(this._wkey != null); this._wkey = k; }
+    var k = t.m + '.' + t.y; if (k !== this._wkey) { this.pkWsync(this._wkey != null); this._wkey = k; }
   }
+  pkGo(cls) { if (typeof document === 'undefined') return; var n = document.querySelector('.nos'), el = document.querySelector('.' + cls); if (n && el) n.scrollTop = Math.max(0, el.offsetTop - 62); }
   _rv() {
     var self = this, s0 = this._s0;
     // optional start state from the URL hash (used for deck screenshots), e.g. #vcalc, #vamt, #vcal, #vrange, #vwheel, #vpick, #vbar, #vcandle, #vact, #vlist, #vwhat
@@ -565,15 +612,16 @@ class Component extends DCLogic {
       if (x === 'vamt') s0.cmode = 'a';
       if (x === 'vcal' || x === 'vrange') { s0.cal = true; s0.calm = 2; }
       if (x === 'vrange') { s0.cend = 47; s0.cph = 1; }
-      if (x === 'vwheel' || x === 'vmonth') { s0.kp = 'calc'; s0.cal = true; s0.cw = true; }
+      if (x === 'vwheel' || x === 'vmonth') { s0.kp = 'calc'; s0.cal = true; s0.calm = 2; s0.cw = true; }
+      if (x === 'vedit') { s0.ed = true; s0.scroll = 'pk-list'; }
       if (x === 'vpick') s0.sheet = 'pick';
       if (x === 'vbar') s0.cm = 'bar';
       if (x === 'vcandle') s0.cm = 'candle';
       if (x === 'vact') s0.act = 'NVDA';
-      if (x === 'vlist') s0.scroll = 478;
-      if (x === 'vwhat') s0.scroll = 1010;
+      if (x === 'vlist') s0.scroll = 'pk-list';
+      if (x === 'vwhat') s0.scroll = 'pk-what';
     }); }
-    if (s0.scroll && !this._sc) { this._sc = 1; var sy0 = s0.scroll; setTimeout(function () { var n = document.querySelector('.nos'); if (n) n.scrollTop = sy0; }, 60); }
+    if (s0.scroll && !this._sc) { this._sc = 1; var sy0 = s0.scroll; setTimeout(function () { self.pkGo(sy0); }, 60); }
     var s = Object.assign({}, s0, this.state || {});
     var AS = { QQQ: ['Invesco QQQ', 'NASDAQ 100', 651.98, 1.42, '$', 2], AAPL: ['Apple', 'NASDAQ', 241.80, 1.08, '$', 2], NVDA: ['Nvidia', 'NASDAQ', 148.20, 4.12, '$', 2], TSLA: ['Tesla', 'NASDAQ', 352.40, -3.40, '$', 2],
       MSFT: ['Microsoft', 'NASDAQ', 432.60, 0.84, '$', 2], AMZN: ['Amazon', 'NASDAQ', 214.10, 1.35, '$', 2], GOOGL: ['Alphabet', 'NASDAQ', 176.40, 0.92, '$', 2], META: ['Meta', 'NASDAQ', 582.30, -0.66, '$', 2],
@@ -591,7 +639,7 @@ class Component extends DCLogic {
       COIN: ['Coinbase', 'NASDAQ', 284.50, -3.60, '$', 2], CRCL: ['Circle', 'NYSE', 128.40, -2.15, '$', 2], PLTR: ['Palantir', 'NASDAQ', 164.30, 2.84, '$', 2], ROKU: ['Roku', 'NASDAQ', 92.60, 1.48, '$', 2],
       SPY: ['SPDR S&P 500', 'NYSE', 741.20, -3.40, '$', 2], IVV: ['iShares Core S&P 500', 'NYSE', 744.60, -3.40, '$', 2], YNT: ['Fondo Nuevas Tecnologías', 'TEFAS', 1.2845, 1.29, '₺', 4],
       SOXX: ['iShares Semiconductor', 'NASDAQ', 248.60, 2.30, '$', 2], XLE: ['Energy Select', 'NYSE', 94.20, 1.20, '$', 2], GLD: ['SPDR Gold', 'NYSE', 247.10, 0.88, '$', 2] };
-    var T = {"NM": {"USD/TRY": "Dólar", "EUR/TRY": "Euro"}, "GN": {"kripto": "Cripto", "abd": "Bolsa de EE. UU.", "bist": "Borsa Istanbul", "emtia": "Materias primas", "doviz": "Divisas", "fon": "Fondos"}, "cats": {"all": "Todo", "kripto": "Cripto", "abd": "EE. UU.", "bist": "BIST", "emtia": "Mat. primas", "doviz": "Divisas", "fon": "Fondos"}, "MON": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"], "MS": ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"], "MSH": ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sept", "oct", "nov", "dic"], "wd": ["L", "M", "X", "J", "V", "S", "D"], "dl": "{0} de {1} de {2}", "ds": "{0} {1}", "mlow": true, "u": {"ons": "oz", "varil": "barriles", "pay": "part.", "adet": "acciones"}, "rng": {"1A": "1M", "3A": "3M", "6A": "6M", "1Y": "1A", "3Y": "3A", "Tümü": "Todo"}, "RL": {"1A": "en el último mes", "3A": "en los últimos 3 meses", "6A": "en los últimos 6 meses", "1Y": "en el último año", "3Y": "en los últimos 3 años", "Tümü": "desde tu primera compra"}, "RLb": {"1A": "en el último mes", "3A": "en los últimos 3 meses", "6A": "en los últimos 6 meses", "1Y": "en el último año", "3Y": "en los últimos 3 años", "Tümü": "desde tu primera compra"}, "RK": {"1A": "ÚLTIMO MES", "3A": "ÚLTIMOS 3 MESES", "6A": "ÚLTIMOS 6 MESES", "1Y": "ÚLTIMO AÑO", "3Y": "ÚLTIMOS 3 AÑOS", "Tümü": "DESDE LA PRIMERA COMPRA"}, "sumUp": "Ganaste {1} {0}", "sumDn": "Perdiste {1} {0}", "grew": "Tu cartera creció un {0}", "shrank": "Tu cartera cayó un {0}", "best": "Mayor aporte {0}: {1}", "removed": "{0} eliminado de tus activos", "added": "{0} añadido a tus activos", "need": "Primero introduce una cantidad", "done": "Listo", "edit": "Editar", "amtQ": "{0} de {1}", "amtA": "{0} en {1}", "sentNow": "Si hubieras comprado {1} el {0}, hoy valdría {2}.", "sentEnd": "Si hubieras comprado {1} el {0}, el {3} valdría {2}.", "today": "Hoy", "todayV": "Valor hoy", "calcPre": "Si comprara", "calcSuf": "", "addPre": "Añadir", "addSuf": "", "priceOn": "precio del {0}", "priceNow": "precio de hoy", "amount": "Importe", "qty": "Cantidad", "hintAdd": "Introduce cuánto tienes", "hintCalc": "Introduce una cantidad y mira su valor", "cost": "Coste {0}", "daily": "Valores diarios", "wl": ["Día", "Mes", "Año"], "phBuy": "Día de compra", "phVal": "Día de valor", "calHintAdd": "Elige el día en que compraste", "calHintVal": "Elige el día para ver su valor", "calHintBuy": "Elige el día de compra", "pickT": "Elegir activo", "addT": "Añadir activo", "mn": " M", "k": " mil", "subPre": "Reducir", "subSuf": "", "btnAdd": "Añadir a mis activos", "btnSub": "Quitar de mis activos", "left": "Queda", "held": "Tienes {0}", "hintSub": "Introduce cuánto quieres quitar", "reduced": "{0} reducido", "aInc": "Aumentar", "aDec": "Reducir", "aDel": "Eliminar", "aOpen": "Abrir página del activo"}, NF = { d: ',', g: '.', p: 'space' }, SUF = 'ES', NM = T.NM;
+    var T = {"NM": {"USD/TRY": "Dólar", "EUR/TRY": "Euro"}, "GN": {"kripto": "Cripto", "abd": "Bolsa de EE. UU.", "bist": "Borsa Istanbul", "emtia": "Materias primas", "doviz": "Divisas", "fon": "Fondos"}, "cats": {"all": "Todo", "kripto": "Cripto", "abd": "EE. UU.", "bist": "BIST", "emtia": "Mat. primas", "doviz": "Divisas", "fon": "Fondos"}, "MON": ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"], "MS": ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"], "MSH": ["ene", "feb", "mar", "abr", "may", "jun", "jul", "ago", "sept", "oct", "nov", "dic"], "wd": ["L", "M", "X", "J", "V", "S", "D"], "dl": "{0} de {1} de {2}", "ds": "{0} {1}", "mlow": true, "u": {"ons": "oz", "varil": "barriles", "pay": "part.", "adet": "acciones"}, "rng": {"1A": "1M", "3A": "3M", "6A": "6M", "1Y": "1A", "3Y": "3A", "Tümü": "Todo"}, "RL": {"1A": "en el último mes", "3A": "en los últimos 3 meses", "6A": "en los últimos 6 meses", "1Y": "en el último año", "3Y": "en los últimos 3 años", "Tümü": "desde tu primera compra"}, "RLb": {"1A": "en el último mes", "3A": "en los últimos 3 meses", "6A": "en los últimos 6 meses", "1Y": "en el último año", "3Y": "en los últimos 3 años", "Tümü": "desde tu primera compra"}, "RK": {"1A": "ÚLTIMO MES", "3A": "ÚLTIMOS 3 MESES", "6A": "ÚLTIMOS 6 MESES", "1Y": "ÚLTIMO AÑO", "3Y": "ÚLTIMOS 3 AÑOS", "Tümü": "DESDE LA PRIMERA COMPRA"}, "sumUp": "Ganaste {1} {0}", "sumDn": "Perdiste {1} {0}", "grew": "Tu cartera creció un {0}", "shrank": "Tu cartera cayó un {0}", "best": "Mayor aporte {0}: {1}", "removed": "{0} eliminado de tus activos", "added": "{0} añadido a tus activos", "need": "Primero introduce una cantidad", "done": "Listo", "edit": "Editar", "amtQ": "{0} de {1}", "amtA": "{0} en {1}", "sentNow": "Si hubieras comprado {1} el {0}, hoy valdría {2}.", "sentEnd": "Si hubieras comprado {1} el {0}, el {3} valdría {2}.", "today": "Hoy", "todayV": "Valor hoy", "calcPre": "Si comprara", "calcSuf": "", "addPre": "Añadir", "addSuf": "", "priceOn": "precio del {0}", "priceNow": "precio de hoy", "amount": "Importe", "qty": "Cantidad", "hintAdd": "Introduce cuánto tienes", "hintCalc": "Introduce una cantidad y mira su valor", "cost": "Coste {0}", "wl": ["Día", "Mes", "Año"], "phBuy": "Día de compra", "phVal": "Día de valor", "calHintAdd": "Elige el día en que compraste", "calHintVal": "Elige el día para ver su valor", "calHintBuy": "Elige el día de compra", "pickT": "Elegir activo", "addT": "Añadir activo", "mn": " M", "k": " mil", "subPre": "Reducir", "subSuf": "", "btnAdd": "Añadir a mis activos", "btnCalc": "Calcular valor", "btnSub": "Quitar de mis activos", "left": "Queda", "held": "Tienes {0}", "hintSub": "Introduce cuánto quieres quitar", "reduced": "{0} reducido", "aInc": "Aumentar", "aDec": "Reducir", "aDel": "Eliminar", "aOpen": "Abrir página del activo"}, NF = { d: ',', g: '.', p: 'space' }, SUF = 'ES', NM = T.NM;
     var F = function (t) { var a = arguments; return String(t).replace(/\{(\d)\}/g, function (_, i) { return a[+i + 1]; }); };
     var NOBUY = ['XU100', 'XU050', 'SPX', 'NDX', 'DJI', 'DXY', 'EUR/USD'];
     var BUY = Object.keys(AS).filter(function (k) { return NOBUY.indexOf(k) < 0; });
@@ -732,12 +780,30 @@ class Component extends DCLogic {
     var ed = !!s.ed;
     var GM = {}, GL = [];
     HX.forEach(function (x) { var k = x.h.s, g = GM[k]; if (!g) { g = GM[k] = { k: k, q: 0, now: 0, cost: 0 }; GL.push(g); } g.q += x.h.q; g.now += V(x, 0); g.cost += conv(k, x.h.q * x.bp, x.ago, dc); });
-    var rows = GL.sort(function (a, b) { return b.now - a.now; }).map(function (g, i, arr) {
+    // rows are shown per asset type; inside a type the order is the user's own (drag to reorder), by value until they change it
+    var ORD = s.ord;
+    if (!ORD) { try { var so = JSON.parse(localStorage.getItem('pk-ord') || 'null'); ORD = Array.isArray(so) ? so : []; } catch (e) { ORD = []; } }
+    var oi = function (k) { var i = ORD.indexOf(k); return i < 0 ? 1e9 : i; };
+    GL.sort(function (a, b) { return (oi(a.k) - oi(b.k)) || (b.now - a.now); });
+    var mkRow = function (g, i, arr) {
       var k = g.k, gn = g.now - g.cost;
-      return { sym: k, name: name(k), ab: PKAB(k), open: function () { self.setState({ act: k, ed: false }); }, sub: unit(k, g.q), v: money(g.now, dc), pl: smoney(gn, dc) + ' · ' + pct(g.cost ? gn / g.cost * 100 : 0), c: col(gn),
-        bd: i === arr.length - 1 ? '0' : '1px solid var(--kt18)',
+      return { sym: k, name: name(k), ab: PKAB(k), open: function () { if (Date.now() - (self._dragT || 0) < 450) return; self.setState({ act: k, ed: false }); }, sub: unit(k, g.q), v: money(g.now, dc), pl: smoney(gn, dc) + ' · ' + pct(g.cost ? gn / g.cost * 100 : 0), c: col(gn),
+        bd: i === arr.length - 1 ? '1px solid transparent' : '1px solid var(--kt18)',
         del: function () { setH(H.filter(function (h) { return h.s !== k; }), F(T.removed, k)); } };
-    });
+    };
+    var GG = {}, GO;
+    GL.forEach(function (g) { var gk = GRP(g.k); (GG[gk] || (GG[gk] = [])).push(g); });
+    GO = Object.keys(GG).sort(function (a, b) { return gv[b] - gv[a]; });
+    var groups = GO.map(function (gk) { var p = V1 ? gv[gk] / V1 * 100 : 0;
+      return { n: GN[gk], c: GC[gk], v: money(gv[gk], dc), p: pfx(nfmt(p, p >= 10 ? 0 : 1)), rows: GG[gk].map(mkRow) }; });
+    this._reorder = function (k, to) {
+      var gk = GRP(k), list = (GG[gk] || []).map(function (g) { return g.k; }), from = list.indexOf(k), ord = [];
+      if (from < 0 || to < 0 || to >= list.length) return;
+      list.splice(to, 0, list.splice(from, 1)[0]);
+      GO.forEach(function (x) { ord = ord.concat(x === gk ? list : GG[x].map(function (g) { return g.k; })); });
+      try { localStorage.setItem('pk-ord', JSON.stringify(ord)); } catch (e) {}
+      self.setState({ ord: ord });
+    };
 
     // keypad screen: the what-if calculator and the add-asset flow share it
     var kp = s.kp || null, isSub = kp === 'sub', isAdd = kp === 'add' || isSub;
@@ -785,7 +851,7 @@ class Component extends DCLogic {
       on: !!kp, add: isAdd, sym: K.k, ab: K.L.ab,
       close: function () { self.setState({ kp: null, cal: false }); },
       pickAsset: function () { self.setState({ sheet: 'pick', pq: '', pcat: 'all' }); },
-      prefix: isSub ? T.subPre : isAdd ? T.addPre : T.calcPre, suffix: isSub ? T.subSuf : isAdd ? T.addSuf : T.calcSuf, btn: isSub ? T.btnSub : T.btnAdd, showDate: !isSub, priceLine: money(K.bp, K.cc) + ' · ' + (K.ago ? F(T.priceOn, dLong(K.ago)) : T.priceNow),
+      prefix: isSub ? T.subPre : isAdd ? T.addPre : T.calcPre, suffix: isSub ? T.subSuf : isAdd ? T.addSuf : T.calcSuf, btn: isSub ? T.btnSub : isAdd ? T.btnAdd : T.btnCalc, showDate: !isSub, priceLine: money(K.bp, K.cc) + ' · ' + (K.ago ? F(T.priceOn, dLong(K.ago)) : T.priceNow),
       modeLabel: K.c.mode === 'a' ? T.amount : T.qty, toggleMode: function () { put(isAdd, { mode: K.c.mode === 'a' ? 'q' : 'a', val: isAdd ? '' : null }); },
       big: kempty ? (K.c.mode === 'a' ? '0' + NF.d + '00' : '0') : big, bs: kbs, ch: Math.round(kbs * 0.86), bigFg: kempty ? 'var(--k6B7080)' : 'var(--kFFFFFF)', curL: kempty, curR: !kempty,
       pre: K.c.mode === 'a' ? K.cc : '', post: K.c.mode === 'q' ? qUnit(K.k) : '', hasPost: K.c.mode === 'q',
@@ -794,12 +860,13 @@ class Component extends DCLogic {
       has: K.val > 0, none: !(K.val > 0), resLabel: isSub ? T.left : isAdd ? T.todayV : endTxt, res: isSub ? unit(K.k, Math.round(remain * 1e4) / 1e4) : money(K.worth * rate, dcur), gain: smoney(K.gain * rate, dcur) + ' (' + pct(K.gp) + ')', gc: col(K.gain), showGain: !isSub && K.ago > K.end,
       sub: isSub ? F(T.held, unit(K.k, held)) : !(K.val > 0) ? '' : K.c.mode === 'q' ? F(T.cost, money(K.cost, K.cc)) : unit(K.k, K.q),
       date: K.end ? dShort(K.ago, twoY) + ' → ' + dShort(K.end, twoY) : K.ago ? dShort(K.ago, true) : T.today,
-      openCal: function () { var t = dOf(K.ago); self.setState({ cal: true, cw: true, calm: (2026 - t.getUTCFullYear()) * 12 + (10 - t.getUTCMonth()), cph: 0 }); },
+      openCal: function () { var t = dOf(K.ago); self.setState({ cal: true, cw: false, calm: (2026 - t.getUTCFullYear()) * 12 + (10 - t.getUTCMonth()), cph: 0 }); },
       p0: press('0'), p1: press('1'), p2: press('2'), p3: press('3'), p4: press('4'), p5: press('5'), p6: press('6'), p7: press('7'), p8: press('8'), p9: press('9'), pc: press(','), del: press('del'),
       save: function () { if (!(K.q > 0)) { self.pkSay(T.need); return; }
         if (isSub) { var fac = held > 0 ? remain / held : 0, gone = fac < 1e-9;
           setH(gone ? H.filter(function (h) { return h.s !== K.k; }) : H.map(function (h) { return h.s === K.k ? { s: h.s, q: Math.round(h.q * fac * 1e6) / 1e6, d: h.d, b: h.b } : h; }), F(gone ? T.removed : T.reduced, K.k));
           self.setState({ kp: null, cal: false }); return; }
+        if (!isAdd) { self.setState({ kp: null, cal: false }); setTimeout(function () { self.pkGo('pk-what'); }, 80); return; }
         setH(H.concat([{ s: K.k, q: Math.round(K.q * 1e6) / 1e6, d: iso(K.ago), b: K.bp }]), F(T.added, K.k)); self.setState({ kp: null, cal: false }); }
     };
 
@@ -819,32 +886,26 @@ class Component extends DCLogic {
           if (cph === 1 && a < K.ago) put(false, { end: a });
           else { put(false, { ago: a, end: a > K.end ? K.end : 0 }); self.setState({ cph: 1 }); } } });
     })(di);
-    // date wheel (first view of the date sheet): day / month / year columns for the date being edited
-    var cw = !!s.cw, wa = !isAdd && cph === 1 ? K.end : K.ago, wt = dOf(wa), wy = wt.getUTCFullYear(), wm = wt.getUTCMonth(), wdd = wt.getUTCDate(), wdim = new Date(Date.UTC(wy, wm + 1, 0)).getUTCDate();
-    var wlo = !isAdd && cph === 1 ? 0 : 0, whi = !isAdd && cph === 1 ? Math.max(0, K.ago - 1) : N;
+    // month / year wheel: jumps the calendar to another month; the days are still picked on the calendar
+    var cw = !!s.cw, wi, wyears = [];
     var wpick = function (i) { return function (e) { var p = e.currentTarget.parentNode; if (p.scrollTo) p.scrollTo({ top: i * 44, behavior: 'smooth' }); else p.scrollTop = i * 44; }; };
-    var wdays = [], wyears = [], wi;
-    for (wi = 1; wi <= wdim; wi++) { var wago = Math.round((T0 - Date.UTC(wy, wm, wi)) / DAY); wdays.push({ l: wi, op: wago >= wlo && wago <= whi ? 1 : 0.3, pick: wpick(wi - 1) }); }
-    var wmons = MON.map(function (m, mi) { return { l: m, op: Date.UTC(wy, mi, 1) <= T0 ? 1 : 0.3, pick: wpick(mi) }; });
+    var wmons = MON.map(function (m, mi) { return { l: m, op: Date.UTC(cyr, mi, 1) <= T0 ? 1 : 0.3, pick: wpick(mi) }; });
     for (wi = YMIN; wi <= 2026; wi++) wyears.push({ l: wi, op: 1, pick: wpick(wi - YMIN) });
     var calOn = !!s.cal && !!kp;
-    this._wtgt = calOn && cw ? { d: wdd - 1, m: wm, y: wy - YMIN } : null;
+    this._wtgt = calOn && cw ? { m: cmi, y: cyr - YMIN } : null;
     this._wcommit = function () {
       if (typeof document === 'undefined') return;
       var q = function (c) { var n = document.querySelector('.whl-' + c); return n ? Math.round(n.scrollTop / 44) : -1; };
-      var qd = q('d'), qm = q('m'), qy = q('y'); if (qd < 0 || qm < 0 || qy < 0) return;
-      var y = YMIN + qy, d = Math.min(qd + 1, new Date(Date.UTC(y, qm + 1, 0)).getUTCDate());
-      var a2 = Math.max(wlo, Math.min(whi, Math.round((T0 - Date.UTC(y, qm, d)) / DAY)));
-      if (a2 === wa) { self.pkWsync(true); return; }
-      if (isAdd) put(true, { ago: a2 });
-      else if (cph === 1) put(false, { end: a2 });
-      else put(false, { ago: a2, end: a2 > K.end ? K.end : 0 });
+      var qm = q('m'), qy = q('y'); if (qm < 0 || qy < 0) return;
+      var c2 = Math.max(0, Math.min(CM, (2026 - (YMIN + qy)) * 12 + (10 - qm)));
+      if (c2 === calm) { self.pkWsync(true); return; }
+      self.setState({ calm: c2 });
     };
     var cal = { on: calOn, title: MON[cmi] + ' ' + cyr, cells: cells, days: T.wd, wheel: cw, dayView: !cw,
-      wd: wdays, wm: wmons, wy: wyears, wl: T.wl, wscroll: function (e) { self.pkWheel(e); }, daily: T.daily,
-      toWheel: function () { self.setState({ cw: true }); }, toGrid: function () { self.setState({ cw: false, calm: (2026 - wy) * 12 + (10 - wm) }); },
+      wm: wmons, wy: wyears, wl: T.wl, wscroll: function (e) { self.pkWheel(e); }, chev: cw ? 180 : 0,
+      toggleWheel: function () { self.setState({ cw: !cw }); }, ok: function () { self.setState(cw ? { cw: false } : { cal: false }); },
       prev: function () { if (calm < CM) self.setState({ calm: calm + 1 }); }, next: function () { if (calm > 0) self.setState({ calm: calm - 1 }); },
-      prevOp: calm < CM ? 1 : 0.3, nextOp: calm > 0 ? 1 : 0.3, close: function () { self.setState({ cal: false }); },
+      prevOp: calm < CM ? 1 : 0.3, nextOp: calm > 0 ? 1 : 0.3, close: function () { self.setState({ cal: false, cw: false }); },
       phase: !isAdd && cph === 1 ? T.phVal : T.phBuy, canPhase: !isAdd, togglePhase: function () { if (!isAdd) self.setState({ cph: cph === 1 ? 0 : 1 }); },
       hint: isAdd ? T.calHintAdd : cph === 1 ? T.calHintVal : T.calHintBuy,
       range: dShort(K.ago, true) + ' → ' + (isAdd ? T.today : endTxt), has: K.q > 0, none: !(K.q > 0),
@@ -879,7 +940,7 @@ class Component extends DCLogic {
       isLine: cm === 'line', isBar: cm === 'bar', isCandle: cm === 'candle', bars: bars, tip: tip, candles: candles,
       tg: { l: cm === 'line' ? TON : 'transparent', b: cm === 'bar' ? TON : 'transparent', c: cm === 'candle' ? TON : 'transparent' },
       setLine: function () { self.setState({ cm: 'line', hx: null }); }, setBar: function () { self.setState({ cm: 'bar', hx: null }); }, setCandle: function () { self.setState({ cm: 'candle', hx: null }); },
-      has: H.length > 0, none: H.length === 0, tot: tot, sum: sum, chart: chart, hv: hv, labels: labels, ranges: ranges, curs: curs, alloc: alloc, rows: rows,
+      has: H.length > 0, none: H.length === 0, tot: tot, sum: sum, chart: chart, hv: hv, labels: labels, ranges: ranges, curs: curs, alloc: alloc, groups: groups,
       ed: ed, edLabel: ed ? T.done : T.edit, toggleEd: function () { self.setState({ ed: !ed }); },
       openAdd: function () { self.setState({ sheet: 'pick', pq: '', pcat: 'all', ed: false }); },
       calc: calc, key: key, cal: cal, sh: sh, actv: actv
