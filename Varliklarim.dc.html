@@ -185,14 +185,26 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
     <div class="pk-list" style="display: flex; flex-direction: column; gap: 12px">
       <div style="display: flex; align-items: center; justify-content: space-between">
         <h2 class="gt" style="margin: 0; font-size: 20px; font-weight: 700">Varlıkların</h2>
-        <button onClick="{{toggleEd}}" style="height: 30px; padding: 0 12px; border-radius: 15px; border: 1px solid var(--kt20); font-size: 12px; font-weight: 600; color: var(--kF5F7FA)">{{edLabel}}</button>
+        <div style="display: flex; align-items: center; gap: 8px">
+          <div class="pkt" style="display: flex; gap: 2px; padding: 2px; border-radius: 10px; background: var(--k151518); border: 0.75px solid var(--kt20)">
+            <sc-for list="{{lcurs}}" as="c" hint-placeholder-count="2">
+              <button onClick="{{c.pick}}" aria-pressed="{{c.on}}" aria-label="Para birimi {{c.l}}" style="width: 30px; height: 26px; border-radius: 8px; text-align: center; font-size: 13px; font-weight: 700; background: {{c.bg}}; color: {{c.fg}}">{{c.l}}</button>
+            </sc-for>
+          </div>
+          <button onClick="{{toggleEd}}" style="height: 30px; padding: 0 12px; border-radius: 15px; border: 1px solid var(--kt20); font-size: 12px; font-weight: 600; color: var(--kF5F7FA)">{{edLabel}}</button>
+        </div>
       </div>
       <div class="st" style="display: flex; flex-direction: column; gap: 16px">
         <sc-for list="{{groups}}" as="g" hint-placeholder-count="3">
           <div style="display: flex; flex-direction: column; gap: 8px">
             <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 4px">
               <span style="display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--kC4C8D2)"><span aria-hidden="true" style="width: 8px; height: 8px; border-radius: 4px; background: {{g.c}}"></span>{{g.n}}</span>
-              <span style="font-size: 12px; font-weight: 500; color: var(--k7D8290)">{{g.v}} · {{g.p}}</span>
+              <span style="display: flex; align-items: center; gap: 6px"><span style="font-size: 12px; font-weight: 500; color: var(--k7D8290)">{{g.v}} · {{g.p}}</span>
+                <sc-if value="{{ed}}" hint-placeholder-val="{{ false }}">
+                  <button onClick="{{g.up}}" aria-label="Grubu yukarı taşı" style="width: 30px; height: 30px; border-radius: 15px; display: flex; align-items: center; justify-content: center; border: 0.75px solid var(--kt20); color: var(--kF5F7FA); opacity: {{g.upOp}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 14.5l6-6 6 6"></path></svg></button>
+                  <button onClick="{{g.down}}" aria-label="Grubu aşağı taşı" style="width: 30px; height: 30px; border-radius: 15px; display: flex; align-items: center; justify-content: center; border: 0.75px solid var(--kt20); color: var(--kF5F7FA); opacity: {{g.downOp}}"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 9.5l6 6 6-6"></path></svg></button>
+                </sc-if>
+              </span>
             </div>
             <div class="hgrp" style="display: flex; flex-direction: column; padding: 4px 14px; border-radius: 20px; background: var(--k151518)">
               <sc-for list="{{g.rows}}" as="r" hint-placeholder-count="2">
@@ -205,6 +217,7 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
                   </span>
                   <span style="flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 3px">
                     <span style="font-size: 15px; font-weight: 600">{{r.v}}</span>
+                    <sc-if value="{{r.dual}}" hint-placeholder-val="{{ false }}"><span style="font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">≈ {{r.v2}}</span></sc-if>
                     <span style="font-size: 12px; font-weight: 500; color: {{r.c}}">{{r.pl}}</span>
                   </span>
                 </button>
@@ -785,17 +798,26 @@ class Component extends DCLogic {
     if (!ORD) { try { var so = JSON.parse(localStorage.getItem('pk-ord') || 'null'); ORD = Array.isArray(so) ? so : []; } catch (e) { ORD = []; } }
     var oi = function (k) { var i = ORD.indexOf(k); return i < 0 ? 1e9 : i; };
     GL.sort(function (a, b) { return (oi(a.k) - oi(b.k)) || (b.now - a.now); });
+    // crypto rows also show the value in the other currency (today's rate)
+    var od = dc === '₺' ? '$' : '₺', ofx = dc === '₺' ? 1 / fx(0) : fx(0);
     var mkRow = function (g, i, arr) {
-      var k = g.k, gn = g.now - g.cost;
-      return { sym: k, name: name(k), ab: PKAB(k), open: function () { if (Date.now() - (self._dragT || 0) < 450) return; self.setState({ act: k, ed: false }); }, sub: unit(k, g.q), v: money(g.now, dc), pl: smoney(gn, dc) + ' · ' + pct(g.cost ? gn / g.cost * 100 : 0), c: col(gn),
+      var k = g.k, gn = g.now - g.cost, dual = GRP(k) === 'kripto';
+      return { sym: k, name: name(k), ab: PKAB(k), open: function () { if (Date.now() - (self._dragT || 0) < 450) return; self.setState({ act: k, ed: false }); }, sub: unit(k, g.q), v: money(g.now, dc), pl: smoney(gn, dc) + ' · ' + pct(g.cost ? gn / g.cost * 100 : 0), c: col(gn), dual: dual, v2: dual ? money(g.now * ofx, od) : '',
         bd: i === arr.length - 1 ? '1px solid transparent' : '1px solid var(--kt18)',
         del: function () { setH(H.filter(function (h) { return h.s !== k; }), F(T.removed, k)); } };
     };
     var GG = {}, GO;
     GL.forEach(function (g) { var gk = GRP(g.k); (GG[gk] || (GG[gk] = [])).push(g); });
-    GO = Object.keys(GG).sort(function (a, b) { return gv[b] - gv[a]; });
-    var groups = GO.map(function (gk) { var p = V1 ? gv[gk] / V1 * 100 : 0;
-      return { n: GN[gk], c: GC[gk], v: money(gv[gk], dc), p: pfx(nfmt(p, p >= 10 ? 0 : 1)), rows: GG[gk].map(mkRow) }; });
+    // asset types are shown in the user's own order (arrows in edit mode), by value until they change it
+    var GORD = s.gord;
+    if (!GORD) { try { var sg = JSON.parse(localStorage.getItem('pk-gord') || 'null'); GORD = Array.isArray(sg) ? sg : []; } catch (e) { GORD = []; } }
+    var goi = function (g) { var i = GORD.indexOf(g); return i < 0 ? 1e9 : i; };
+    GO = Object.keys(GG).sort(function (a, b) { return (goi(a) - goi(b)) || (gv[b] - gv[a]); });
+    var moveG = function (gk, d) { var l = GO.slice(), i = l.indexOf(gk), j = i + d; if (i < 0 || j < 0 || j >= l.length) return;
+      l.splice(j, 0, l.splice(i, 1)[0]); try { localStorage.setItem('pk-gord', JSON.stringify(l)); } catch (e) {} self.setState({ gord: l }); };
+    var groups = GO.map(function (gk, gi) { var p = V1 ? gv[gk] / V1 * 100 : 0;
+      return { n: GN[gk], c: GC[gk], v: money(gv[gk], dc), p: pfx(nfmt(p, p >= 10 ? 0 : 1)), rows: GG[gk].map(mkRow),
+        up: function () { moveG(gk, -1); }, down: function () { moveG(gk, 1); }, upOp: gi > 0 ? 1 : 0.3, downOp: gi < GO.length - 1 ? 1 : 0.3 }; });
     this._reorder = function (k, to) {
       var gk = GRP(k), list = (GG[gk] || []).map(function (g) { return g.k; }), from = list.indexOf(k), ord = [];
       if (from < 0 || to < 0 || to >= list.length) return;
@@ -941,6 +963,8 @@ class Component extends DCLogic {
       tg: { l: cm === 'line' ? TON : 'transparent', b: cm === 'bar' ? TON : 'transparent', c: cm === 'candle' ? TON : 'transparent' },
       setLine: function () { self.setState({ cm: 'line', hx: null }); }, setBar: function () { self.setState({ cm: 'bar', hx: null }); }, setCandle: function () { self.setState({ cm: 'candle', hx: null }); },
       has: H.length > 0, none: H.length === 0, tot: tot, sum: sum, chart: chart, hv: hv, labels: labels, ranges: ranges, curs: curs, alloc: alloc, groups: groups,
+      // the list's own ₺/$ switch (same setting as the total card, colours that work on both themes)
+      lcurs: ['₺', '$'].map(function (c) { var on = c === dc; return { l: c, on: on ? 'true' : 'false', fg: on ? 'var(--k000000)' : 'var(--kC4C8D2)', bg: on ? 'var(--kF5F7FA)' : 'transparent', pick: function () { self.setState({ dc: c, hx: null }); } }; }),
       ed: ed, edLabel: ed ? T.done : T.edit, toggleEd: function () { self.setState({ ed: !ed }); },
       openAdd: function () { self.setState({ sheet: 'pick', pq: '', pcat: 'all', ed: false }); },
       calc: calc, key: key, cal: cal, sh: sh, actv: actv
