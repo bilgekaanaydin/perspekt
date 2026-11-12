@@ -76,7 +76,7 @@ html.lt .pkc .pkp{background:#205DF4 !important;color:#FFFFFF !important}html.lt
 html.lt span[style*="rgb(91, 229, 154)"]{color:#0E9F5B !important}html.lt span[style*="rgb(255, 138, 122)"]{color:#D9442E !important}
 input[type="search"]::-webkit-search-cancel-button{display:none}
 @media (max-height:740px){.kpg{grid-auto-rows:46px !important}.calg{grid-auto-rows:50px !important}.calg .cc{width:34px !important;height:34px !important;font-size:14px !important}}
-.whl{height:220px;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 36%,#000 64%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 36%,#000 64%,transparent 100%)}.whl::-webkit-scrollbar{display:none}.whl::before,.whl::after{content:"";display:block;height:88px}.whl>div{height:44px;line-height:44px;text-align:center;white-space:nowrap;font-size:20px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--k8B91A0);scroll-snap-align:center;cursor:pointer}.whl>.on{font-weight:600;color:var(--kF5F7FA)}
+.whl{height:220px;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 36%,#000 64%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 36%,#000 64%,transparent 100%)}.whl::-webkit-scrollbar{display:none}.whl::before,.whl::after{content:"";display:block;height:88px}.whl>div{height:44px;display:flex;align-items:center;justify-content:center;line-height:1;white-space:nowrap;font-size:20px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--k8B91A0);scroll-snap-align:center;cursor:pointer}.whl>.on{font-weight:600;color:var(--kF5F7FA)}
 .hrow{position:relative;transition:transform .18s cubic-bezier(.2,.8,.2,1);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}.hrow.hdrag{transition:none;z-index:3;margin:0 -8px;padding:0 8px;border-radius:16px;border-bottom-color:transparent !important;background:var(--k17171B);box-shadow:0 12px 32px rgba(0,0,0,.5),0 0 0 .75px var(--kt21)}.hgrip{touch-action:none;cursor:grab}
 @media (prefers-reduced-motion: no-preference){@keyframes pk-blink{50%{opacity:0}}.pk-cur{animation:pk-blink 1.1s steps(1) infinite}}
 </style>
@@ -663,7 +663,7 @@ class Component extends DCLogic {
       SOXX: [0.1, 1.0, 0.35], XLE: [0.05, 0.9, 0.25], GLD: [0.35, 0.5, 0.14] };
     var MON = T.MON, MS = T.MS;
     // N5: the five years the demo returns are anchored to; N: every day back to 1 January YMIN (older prices fall back at the five-year average rate, kept between 4% and 30% a year; sample data, not history)
-    var DAY = 864e5, T0 = Date.UTC(2026, 10, 11), YMIN = 2012, N5 = 1830, N = Math.round((T0 - Date.UTC(YMIN, 0, 1)) / DAY), CM = (2026 - YMIN) * 12 + 10;
+    var DAY = 864e5, T0 = Date.UTC(2026, 10, 11), YMIN = 2009, N5 = 1830, N = Math.round((T0 - Date.UTC(YMIN, 0, 1)) / DAY), CM = (2026 - YMIN) * 12 + 10;
     var dAgo = function (y, m, d) { return Math.max(0, Math.round((T0 - Date.UTC(y, m, d)) / DAY)); };
     var dOf = function (ago) { return new Date(T0 - ago * DAY); };
     var dLong = function (ago) { var t = dOf(ago); return F(T.dl, t.getUTCDate(), T.mlow ? MON[t.getUTCMonth()].toLowerCase() : MON[t.getUTCMonth()], t.getUTCFullYear()); };
