@@ -76,6 +76,7 @@ html.lt .pkc .pkp{background:#205DF4 !important;color:#FFFFFF !important}html.lt
 html.lt span[style*="rgb(91, 229, 154)"]{color:#0E9F5B !important}html.lt span[style*="rgb(255, 138, 122)"]{color:#D9442E !important}
 input[type="search"]::-webkit-search-cancel-button{display:none}
 @media (max-height:740px){.kpg{grid-auto-rows:46px !important}.calg{grid-auto-rows:50px !important}.calg .cc{width:34px !important;height:34px !important;font-size:14px !important}}
+.whl{height:220px;overflow-y:auto;overflow-x:hidden;scroll-snap-type:y mandatory;overscroll-behavior:contain;scrollbar-width:none;-webkit-overflow-scrolling:touch;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 36%,#000 64%,transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 36%,#000 64%,transparent 100%)}.whl::-webkit-scrollbar{display:none}.whl::before,.whl::after{content:"";display:block;height:88px}.whl>div{height:44px;line-height:44px;text-align:center;white-space:nowrap;font-size:20px;font-weight:400;font-variant-numeric:tabular-nums;color:var(--k8B91A0);scroll-snap-align:center;cursor:pointer}.whl>.on{font-weight:600;color:var(--kF5F7FA)}
 @media (prefers-reduced-motion: no-preference){@keyframes pk-blink{50%{opacity:0}}.pk-cur{animation:pk-blink 1.1s steps(1) infinite}}
 </style>
 </helmet>
@@ -382,17 +383,24 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
         <button onClick="{{cal.togglePhase}}" style="height: 40px; display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: 500; color: var(--kF5F7FA)">{{cal.phase}}
           <sc-if value="{{cal.canPhase}}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 9.5l6 6 6-6"></path></svg></sc-if>
         </button>
+        <sc-if value="{{cal.dayView}}" hint-placeholder-val="{{ false }}">
         <div style="display: flex; align-items: center; gap: 2px">
           <button onClick="{{cal.prev}}" aria-label="Previous month" style="width: 36px; height: 40px; display: flex; align-items: center; justify-content: center; opacity: {{cal.prevOp}}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M14.5 6.5L9 12l5.5 5.5"></path></svg>
           </button>
-          <button onClick="{{cal.toggleMY}}" aria-label="Pick month and year" style="min-width: 104px; height: 40px; padding: 0 6px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 16px; font-weight: 500; color: var(--kF5F7FA)">{{cal.title}}
+          <button onClick="{{cal.toWheel}}" aria-label="Pick month and year" style="min-width: 104px; height: 40px; padding: 0 6px; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 16px; font-weight: 500; color: var(--kF5F7FA)">{{cal.title}}
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED)"><path d="M6 9.5l6 6 6-6"></path></svg>
           </button>
           <button onClick="{{cal.next}}" aria-label="Next month" style="width: 36px; height: 40px; display: flex; align-items: center; justify-content: center; opacity: {{cal.nextOp}}">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M9.5 6.5L15 12l-5.5 5.5"></path></svg>
           </button>
         </div>
+        </sc-if>
+        <sc-if value="{{cal.wheel}}" hint-placeholder-val="{{ true }}">
+          <button onClick="{{cal.toGrid}}" style="height: 36px; padding: 0 14px; border-radius: 18px; display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 500; color: var(--kF5F7FA); background: var(--kt18); border: 0.75px solid var(--kt21)">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED)"><path d="M4.5 6.5h15v13h-15z"></path><path d="M4.5 10.5h15"></path><path d="M8.5 4v4"></path><path d="M15.5 4v4"></path></svg>{{cal.daily}}
+          </button>
+        </sc-if>
       </div>
       <sc-if value="{{cal.dayView}}" hint-placeholder-val="{{ true }}">
       <div style="display: flex; flex-direction: column; gap: 8px">
@@ -409,13 +417,13 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
         </div>
       </div>
       </sc-if>
-      <sc-if value="{{cal.my}}" hint-placeholder-val="{{ false }}">
-        <div style="display: flex; flex-direction: column; gap: 14px; padding: 6px 0 10px">
-          <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px">
-            <sc-for list="{{cal.years}}" as="y" hint-placeholder-count="6"><button onClick="{{y.pick}}" style="height: 40px; border-radius: 20px; text-align: center; font-size: 14px; font-weight: 600; background: {{y.bg}}; color: {{y.fg}}; border: 0.75px solid {{y.bd}}">{{y.l}}</button></sc-for>
-          </div>
-          <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px 8px">
-            <sc-for list="{{cal.months}}" as="m" hint-placeholder-count="12"><button onClick="{{m.pick}}" style="height: 52px; border-radius: 26px; text-align: center; font-size: 15px; font-weight: 500; opacity: {{m.op}}; background: {{m.bg}}; color: {{m.fg}}; border: 0.75px solid {{m.bd}}; box-shadow: {{m.sh}}">{{m.l}}</button></sc-for>
+      <sc-if value="{{cal.wheel}}" hint-placeholder-val="{{ true }}">
+        <div style="position: relative; height: 220px">
+          <span aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 88px; height: 44px; box-sizing: border-box; border-radius: 22px; background: var(--kt18); border: 0.75px solid var(--kt21)"></span>
+          <div style="position: relative; height: 220px; padding: 0 10px; display: grid; grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.6fr) minmax(0, 1fr)">
+            <div class="whl whl-d" onScroll="{{cal.wscroll}}" aria-label="{{cal.wl[0]}}"><sc-for list="{{cal.wd}}" as="w" hint-placeholder-count="5"><div onClick="{{w.pick}}" style="opacity: {{w.op}}">{{w.l}}</div></sc-for></div>
+            <div class="whl whl-m" onScroll="{{cal.wscroll}}" aria-label="{{cal.wl[1]}}"><sc-for list="{{cal.wm}}" as="w" hint-placeholder-count="5"><div onClick="{{w.pick}}" style="opacity: {{w.op}}">{{w.l}}</div></sc-for></div>
+            <div class="whl whl-y" onScroll="{{cal.wscroll}}" aria-label="{{cal.wl[2]}}"><sc-for list="{{cal.wy}}" as="w" hint-placeholder-count="5"><div onClick="{{w.pick}}" style="opacity: {{w.op}}">{{w.l}}</div></sc-for></div>
           </div>
         </div>
       </sc-if>
@@ -530,15 +538,34 @@ class Component extends DCLogic {
     };
     return o;
   }
+  // date wheel: three scroll-snap columns (day, month, year). The centre row is marked straight on the DOM while scrolling; the date is committed once scrolling stops.
+  pkWheel(e) {
+    var el = e.currentTarget, self = this, i = Math.round(el.scrollTop / 44), ch = el.children, j;
+    for (j = 0; j < ch.length; j++) ch[j].classList.toggle('on', j === i);
+    clearTimeout(this._wt); this._wt = setTimeout(function () { if (self._wcommit) self._wcommit(); }, 140);
+  }
+  pkWsync(smooth) {
+    var t = this._wtgt; if (!t || typeof document === 'undefined') return;
+    ['d', 'm', 'y'].forEach(function (c) {
+      var n = document.querySelector('.whl-' + c), j; if (!n) return;
+      if (Math.round(n.scrollTop / 44) !== t[c]) { if (smooth && n.scrollTo) n.scrollTo({ top: t[c] * 44, behavior: 'smooth' }); else n.scrollTop = t[c] * 44; }
+      for (j = 0; j < n.children.length; j++) n.children[j].classList.toggle('on', j === t[c]);
+    });
+  }
+  componentDidMount() { this.componentDidUpdate(); }
+  componentDidUpdate() {
+    var t = this._wtgt; if (!t) { this._wkey = null; return; }
+    var k = t.d + '.' + t.m + '.' + t.y; if (k !== this._wkey) { this.pkWsync(this._wkey != null); this._wkey = k; }
+  }
   _rv() {
     var self = this, s0 = this._s0;
-    // optional start state from the URL hash (used for deck screenshots), e.g. #vcalc, #vamt, #vcal, #vrange, #vpick, #vbar, #vcandle, #vact, #vlist, #vwhat
+    // optional start state from the URL hash (used for deck screenshots), e.g. #vcalc, #vamt, #vcal, #vrange, #vwheel, #vpick, #vbar, #vcandle, #vact, #vlist, #vwhat
     if (!s0) { s0 = this._s0 = {}; ((typeof location !== 'undefined' && location.hash) || '').slice(1).split('.').forEach(function (x) {
       if (x === 'vcalc' || x === 'vamt' || x === 'vcal' || x === 'vrange') s0.kp = 'calc';
       if (x === 'vamt') s0.cmode = 'a';
       if (x === 'vcal' || x === 'vrange') { s0.cal = true; s0.calm = 2; }
       if (x === 'vrange') { s0.cend = 47; s0.cph = 1; }
-      if (x === 'vmonth') { s0.kp = 'calc'; s0.cal = true; s0.calm = 2; s0.cmy = true; }
+      if (x === 'vwheel' || x === 'vmonth') { s0.kp = 'calc'; s0.cal = true; s0.cw = true; }
       if (x === 'vpick') s0.sheet = 'pick';
       if (x === 'vbar') s0.cm = 'bar';
       if (x === 'vcandle') s0.cm = 'candle';
@@ -564,7 +591,7 @@ class Component extends DCLogic {
       COIN: ['Coinbase', 'NASDAQ', 284.50, -3.60, '$', 2], CRCL: ['Circle', 'NYSE', 128.40, -2.15, '$', 2], PLTR: ['Palantir', 'NASDAQ', 164.30, 2.84, '$', 2], ROKU: ['Roku', 'NASDAQ', 92.60, 1.48, '$', 2],
       SPY: ['SPDR S&P 500', 'NYSE', 741.20, -3.40, '$', 2], IVV: ['iShares Core S&P 500', 'NYSE', 744.60, -3.40, '$', 2], YNT: ['New Technologies Fund', 'TEFAS', 1.2845, 1.29, '₺', 4],
       SOXX: ['iShares Semiconductor', 'NASDAQ', 248.60, 2.30, '$', 2], XLE: ['Energy Select', 'NYSE', 94.20, 1.20, '$', 2], GLD: ['SPDR Gold', 'NYSE', 247.10, 0.88, '$', 2] };
-    var T = {"NM": {"USD/TRY": "US dollar", "EUR/TRY": "Euro"}, "GN": {"kripto": "Crypto", "abd": "US stocks", "bist": "Borsa Istanbul", "emtia": "Commodities", "doviz": "FX", "fon": "Funds"}, "cats": {"all": "All", "kripto": "Crypto", "abd": "US stocks", "bist": "BIST", "emtia": "Commodities", "doviz": "FX", "fon": "Funds"}, "MON": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], "MS": ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"], "MSH": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], "wd": ["M", "T", "W", "T", "F", "S", "S"], "dl": "{0} {1} {2}", "ds": "{0} {1}", "mlow": false, "u": {"ons": "oz", "varil": "bbl", "pay": "units", "adet": "shares"}, "rng": {"1A": "1M", "3A": "3M", "6A": "6M", "1Y": "1Y", "3Y": "3Y", "Tümü": "All"}, "RL": {"1A": "in the last month", "3A": "in the last 3 months", "6A": "in the last 6 months", "1Y": "in the last year", "3Y": "in the last 3 years", "Tümü": "since your first buy"}, "RLb": {"1A": "in the last month", "3A": "in the last 3 months", "6A": "in the last 6 months", "1Y": "in the last year", "3Y": "in the last 3 years", "Tümü": "since your first buy"}, "RK": {"1A": "LAST MONTH", "3A": "LAST 3 MONTHS", "6A": "LAST 6 MONTHS", "1Y": "LAST YEAR", "3Y": "LAST 3 YEARS", "Tümü": "SINCE FIRST BUY"}, "sumUp": "You made {1} {0}", "sumDn": "You lost {1} {0}", "grew": "Your portfolio grew {0}", "shrank": "Your portfolio fell {0}", "best": "Biggest contributor {0}: {1}", "removed": "{0} removed from your assets", "added": "{0} added to your assets", "need": "Enter an amount first", "done": "Done", "edit": "Edit", "amtQ": "{0} of {1}", "amtA": "{0} of {1}", "sentNow": "If you had bought {1} on {0}, it would be worth {2} today.", "sentEnd": "If you had bought {1} on {0}, it would be worth {2} on {3}.", "today": "Today", "todayV": "Value today", "calcPre": "If I'd bought", "calcSuf": "", "addPre": "Add", "addSuf": "", "priceOn": "price on {0}", "priceNow": "today's price", "amount": "Amount", "qty": "Quantity", "hintAdd": "Enter how much you hold", "hintCalc": "Enter an amount to see its value", "cost": "Cost {0}", "phBuy": "Buy date", "phVal": "Value date", "calHintAdd": "Pick the day you bought", "calHintVal": "Pick the day to value it on", "calHintBuy": "Pick the buy date", "pickT": "Choose asset", "addT": "Add asset", "mn": "M", "k": "K", "subPre": "Reduce", "subSuf": "", "btnAdd": "Add to my assets", "btnSub": "Remove from my assets", "left": "Remaining", "held": "You hold {0}", "hintSub": "Enter how much to remove", "reduced": "{0} reduced", "aInc": "Add more", "aDec": "Reduce", "aDel": "Delete", "aOpen": "Open asset page"}, NF = { d: '.', g: ',', p: 'post' }, SUF = 'EN', NM = T.NM;
+    var T = {"NM": {"USD/TRY": "US dollar", "EUR/TRY": "Euro"}, "GN": {"kripto": "Crypto", "abd": "US stocks", "bist": "Borsa Istanbul", "emtia": "Commodities", "doviz": "FX", "fon": "Funds"}, "cats": {"all": "All", "kripto": "Crypto", "abd": "US stocks", "bist": "BIST", "emtia": "Commodities", "doviz": "FX", "fon": "Funds"}, "MON": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], "MS": ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"], "MSH": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], "wd": ["M", "T", "W", "T", "F", "S", "S"], "dl": "{0} {1} {2}", "ds": "{0} {1}", "mlow": false, "u": {"ons": "oz", "varil": "bbl", "pay": "units", "adet": "shares"}, "rng": {"1A": "1M", "3A": "3M", "6A": "6M", "1Y": "1Y", "3Y": "3Y", "Tümü": "All"}, "RL": {"1A": "in the last month", "3A": "in the last 3 months", "6A": "in the last 6 months", "1Y": "in the last year", "3Y": "in the last 3 years", "Tümü": "since your first buy"}, "RLb": {"1A": "in the last month", "3A": "in the last 3 months", "6A": "in the last 6 months", "1Y": "in the last year", "3Y": "in the last 3 years", "Tümü": "since your first buy"}, "RK": {"1A": "LAST MONTH", "3A": "LAST 3 MONTHS", "6A": "LAST 6 MONTHS", "1Y": "LAST YEAR", "3Y": "LAST 3 YEARS", "Tümü": "SINCE FIRST BUY"}, "sumUp": "You made {1} {0}", "sumDn": "You lost {1} {0}", "grew": "Your portfolio grew {0}", "shrank": "Your portfolio fell {0}", "best": "Biggest contributor {0}: {1}", "removed": "{0} removed from your assets", "added": "{0} added to your assets", "need": "Enter an amount first", "done": "Done", "edit": "Edit", "amtQ": "{0} of {1}", "amtA": "{0} of {1}", "sentNow": "If you had bought {1} on {0}, it would be worth {2} today.", "sentEnd": "If you had bought {1} on {0}, it would be worth {2} on {3}.", "today": "Today", "todayV": "Value today", "calcPre": "If I'd bought", "calcSuf": "", "addPre": "Add", "addSuf": "", "priceOn": "price on {0}", "priceNow": "today's price", "amount": "Amount", "qty": "Quantity", "hintAdd": "Enter how much you hold", "hintCalc": "Enter an amount to see its value", "cost": "Cost {0}", "daily": "Daily values", "wl": ["Day", "Month", "Year"], "phBuy": "Buy date", "phVal": "Value date", "calHintAdd": "Pick the day you bought", "calHintVal": "Pick the day to value it on", "calHintBuy": "Pick the buy date", "pickT": "Choose asset", "addT": "Add asset", "mn": "M", "k": "K", "subPre": "Reduce", "subSuf": "", "btnAdd": "Add to my assets", "btnSub": "Remove from my assets", "left": "Remaining", "held": "You hold {0}", "hintSub": "Enter how much to remove", "reduced": "{0} reduced", "aInc": "Add more", "aDec": "Reduce", "aDel": "Delete", "aOpen": "Open asset page"}, NF = { d: '.', g: ',', p: 'post' }, SUF = 'EN', NM = T.NM;
     var F = function (t) { var a = arguments; return String(t).replace(/\{(\d)\}/g, function (_, i) { return a[+i + 1]; }); };
     var NOBUY = ['XU100', 'XU050', 'SPX', 'NDX', 'DJI', 'DXY', 'EUR/USD'];
     var BUY = Object.keys(AS).filter(function (k) { return NOBUY.indexOf(k) < 0; });
@@ -587,7 +614,8 @@ class Component extends DCLogic {
       'USD/TRY': [0.22, 3.0, 0.05], 'EUR/TRY': [0.24, 3.0, 0.12], TEK: [0.6, 5, 0.35], YTF: [0.5, 3, 0.3], BHF: [0.4, 4, 0.3], ALT: [0.5, 3, 0.2], DEG: [0.45, 3, 0.2], PPF: [0.55, 2.5, 0.02],
       SOXX: [0.1, 1.0, 0.35], XLE: [0.05, 0.9, 0.25], GLD: [0.35, 0.5, 0.14] };
     var MON = T.MON, MS = T.MS;
-    var DAY = 864e5, T0 = Date.UTC(2026, 10, 11), N = 1830;
+    // N5: the five years the demo returns are anchored to; N: every day back to 1 January YMIN (older prices fall back at the five-year average rate, kept between 4% and 30% a year; sample data, not history)
+    var DAY = 864e5, T0 = Date.UTC(2026, 10, 11), YMIN = 2012, N5 = 1830, N = Math.round((T0 - Date.UTC(YMIN, 0, 1)) / DAY), CM = (2026 - YMIN) * 12 + 10;
     var dAgo = function (y, m, d) { return Math.max(0, Math.round((T0 - Date.UTC(y, m, d)) / DAY)); };
     var dOf = function (ago) { return new Date(T0 - ago * DAY); };
     var dLong = function (ago) { var t = dOf(ago); return F(T.dl, t.getUTCDate(), T.mlow ? MON[t.getUTCMonth()].toLowerCase() : MON[t.getUTCMonth()], t.getUTCFullYear()); };
@@ -633,8 +661,8 @@ class Component extends DCLogic {
       var g = function () { var u = rnd() || 1e-9, v = rnd(); return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
       var sd = r[2] * 0.7 / Math.sqrt(365), B = [0], a;
       for (a = 1; a <= N; a++) B[a] = B[a - 1] + g() * sd;
-      var c1 = -Math.log(1 + r[0]) - B[365], c5 = -Math.log(1 + r[1]) - B[N], P = [], p0 = AS[k][2];
-      for (a = 0; a <= N; a++) { var c = a <= 365 ? c1 * a / 365 : c1 + (c5 - c1) * (a - 365) / (N - 365); P[a] = a === 0 ? p0 : p0 * Math.exp(B[a] + c); }
+      var c1 = -Math.log(1 + r[0]) - B[365], c5 = -Math.log(1 + r[1]) - B[N5], gd = Math.max(0.04, Math.min(0.3, Math.log(1 + r[1]) / 5)) / 365, P = [], p0 = AS[k][2];
+      for (a = 0; a <= N; a++) { var c = a <= 365 ? c1 * a / 365 : a <= N5 ? c1 + (c5 - c1) * (a - 365) / (N5 - 365) : c5 - gd * (a - N5) - (B[N] - B[N5]) * (a - N5) / (N - N5); P[a] = a === 0 ? p0 : p0 * Math.exp(B[a] + c); }
       return (PP[k] = P);
     };
     var px = function (k, ago) { return path(k)[Math.max(0, Math.min(N, Math.round(ago)))]; };
@@ -752,6 +780,7 @@ class Component extends DCLogic {
     }; };
     var kempty = K.raw === '', big = disp(kempty ? '0' : K.raw), kbs = big.length + (K.c.mode === 'a' ? 1 : 0) <= 6 ? 64 : big.length <= 9 ? 52 : 42;
     var endTxt = K.end ? dShort(K.end, true) : T.today, held = GM[K.k] ? GM[K.k].q : 0, remain = Math.max(0, held - K.q);
+    var twoY = dOf(K.ago).getUTCFullYear() !== dOf(K.end).getUTCFullYear();
     var key = {
       on: !!kp, add: isAdd, sym: K.k, ab: K.L.ab,
       close: function () { self.setState({ kp: null, cal: false }); },
@@ -764,8 +793,8 @@ class Component extends DCLogic {
       flip: function () { self.setState({ kc: dcur === '$' ? '₺' : '$' }); },
       has: K.val > 0, none: !(K.val > 0), resLabel: isSub ? T.left : isAdd ? T.todayV : endTxt, res: isSub ? unit(K.k, Math.round(remain * 1e4) / 1e4) : money(K.worth * rate, dcur), gain: smoney(K.gain * rate, dcur) + ' (' + pct(K.gp) + ')', gc: col(K.gain), showGain: !isSub && K.ago > K.end,
       sub: isSub ? F(T.held, unit(K.k, held)) : !(K.val > 0) ? '' : K.c.mode === 'q' ? F(T.cost, money(K.cost, K.cc)) : unit(K.k, K.q),
-      date: K.end ? dShort(K.ago) + ' → ' + dShort(K.end) : K.ago ? dShort(K.ago, true) : T.today,
-      openCal: function () { var t = dOf(K.ago); self.setState({ cal: true, cmy: false, calm: (2026 - t.getUTCFullYear()) * 12 + (10 - t.getUTCMonth()), cph: 0 }); },
+      date: K.end ? dShort(K.ago, twoY) + ' → ' + dShort(K.end, twoY) : K.ago ? dShort(K.ago, true) : T.today,
+      openCal: function () { var t = dOf(K.ago); self.setState({ cal: true, cw: true, calm: (2026 - t.getUTCFullYear()) * 12 + (10 - t.getUTCMonth()), cph: 0 }); },
       p0: press('0'), p1: press('1'), p2: press('2'), p3: press('3'), p4: press('4'), p5: press('5'), p6: press('6'), p7: press('7'), p8: press('8'), p9: press('9'), pc: press(','), del: press('del'),
       save: function () { if (!(K.q > 0)) { self.pkSay(T.need); return; }
         if (isSub) { var fac = held > 0 ? remain / held : 0, gone = fac < 1e-9;
@@ -790,16 +819,32 @@ class Component extends DCLogic {
           if (cph === 1 && a < K.ago) put(false, { end: a });
           else { put(false, { ago: a, end: a > K.end ? K.end : 0 }); self.setState({ cph: 1 }); } } });
     })(di);
-    // month / year picker inside the calendar (opened by tapping the month title)
-    var cmy = !!s.cmy, cyy = s.cyy || cyr;
-    var calYears = [2021, 2022, 2023, 2024, 2025, 2026].map(function (y) { var on = y === cyy; return { l: y, bg: on ? 'var(--kF5F7FA)' : 'transparent', fg: on ? 'var(--k000000)' : 'var(--kF5F7FA)', bd: on ? 'var(--kF5F7FA)' : 'var(--kt21)', pick: function () { self.setState({ cyy: y }); } }; });
-    var calMonths = MSH.map(function (m, mi) { var kk = (2026 - cyy) * 12 + (10 - mi), ok = kk >= 0 && kk <= 60, on = cyy === cyr && mi === cmi;
-      return { l: m, op: ok ? 1 : 0.22, bg: on ? '#205DF4' : 'transparent', bd: on ? '#205DF4' : 'var(--kt21)', sh: on ? '0 0 0 4px rgba(32,93,244,0.28)' : 'none', fg: on ? '#FFFFFF' : 'var(--kF5F7FA)',
-        pick: function () { if (ok) self.setState({ calm: kk, cmy: false }); } }; });
-    var cal = { on: !!s.cal && !!kp, title: MON[cmi] + ' ' + cyr, cells: cells, days: T.wd, my: cmy, dayView: !cmy, years: calYears, months: calMonths,
-      toggleMY: function () { self.setState({ cmy: !cmy, cyy: cyr }); },
-      prev: function () { if (calm < 60) self.setState({ calm: calm + 1 }); }, next: function () { if (calm > 0) self.setState({ calm: calm - 1 }); },
-      prevOp: calm < 60 ? 1 : 0.3, nextOp: calm > 0 ? 1 : 0.3, close: function () { self.setState({ cal: false, cmy: false }); },
+    // date wheel (first view of the date sheet): day / month / year columns for the date being edited
+    var cw = !!s.cw, wa = !isAdd && cph === 1 ? K.end : K.ago, wt = dOf(wa), wy = wt.getUTCFullYear(), wm = wt.getUTCMonth(), wdd = wt.getUTCDate(), wdim = new Date(Date.UTC(wy, wm + 1, 0)).getUTCDate();
+    var wlo = !isAdd && cph === 1 ? 0 : 0, whi = !isAdd && cph === 1 ? Math.max(0, K.ago - 1) : N;
+    var wpick = function (i) { return function (e) { var p = e.currentTarget.parentNode; if (p.scrollTo) p.scrollTo({ top: i * 44, behavior: 'smooth' }); else p.scrollTop = i * 44; }; };
+    var wdays = [], wyears = [], wi;
+    for (wi = 1; wi <= wdim; wi++) { var wago = Math.round((T0 - Date.UTC(wy, wm, wi)) / DAY); wdays.push({ l: wi, op: wago >= wlo && wago <= whi ? 1 : 0.3, pick: wpick(wi - 1) }); }
+    var wmons = MON.map(function (m, mi) { return { l: m, op: Date.UTC(wy, mi, 1) <= T0 ? 1 : 0.3, pick: wpick(mi) }; });
+    for (wi = YMIN; wi <= 2026; wi++) wyears.push({ l: wi, op: 1, pick: wpick(wi - YMIN) });
+    var calOn = !!s.cal && !!kp;
+    this._wtgt = calOn && cw ? { d: wdd - 1, m: wm, y: wy - YMIN } : null;
+    this._wcommit = function () {
+      if (typeof document === 'undefined') return;
+      var q = function (c) { var n = document.querySelector('.whl-' + c); return n ? Math.round(n.scrollTop / 44) : -1; };
+      var qd = q('d'), qm = q('m'), qy = q('y'); if (qd < 0 || qm < 0 || qy < 0) return;
+      var y = YMIN + qy, d = Math.min(qd + 1, new Date(Date.UTC(y, qm + 1, 0)).getUTCDate());
+      var a2 = Math.max(wlo, Math.min(whi, Math.round((T0 - Date.UTC(y, qm, d)) / DAY)));
+      if (a2 === wa) { self.pkWsync(true); return; }
+      if (isAdd) put(true, { ago: a2 });
+      else if (cph === 1) put(false, { end: a2 });
+      else put(false, { ago: a2, end: a2 > K.end ? K.end : 0 });
+    };
+    var cal = { on: calOn, title: MON[cmi] + ' ' + cyr, cells: cells, days: T.wd, wheel: cw, dayView: !cw,
+      wd: wdays, wm: wmons, wy: wyears, wl: T.wl, wscroll: function (e) { self.pkWheel(e); }, daily: T.daily,
+      toWheel: function () { self.setState({ cw: true }); }, toGrid: function () { self.setState({ cw: false, calm: (2026 - wy) * 12 + (10 - wm) }); },
+      prev: function () { if (calm < CM) self.setState({ calm: calm + 1 }); }, next: function () { if (calm > 0) self.setState({ calm: calm - 1 }); },
+      prevOp: calm < CM ? 1 : 0.3, nextOp: calm > 0 ? 1 : 0.3, close: function () { self.setState({ cal: false }); },
       phase: !isAdd && cph === 1 ? T.phVal : T.phBuy, canPhase: !isAdd, togglePhase: function () { if (!isAdd) self.setState({ cph: cph === 1 ? 0 : 1 }); },
       hint: isAdd ? T.calHintAdd : cph === 1 ? T.calHintVal : T.calHintBuy,
       range: dShort(K.ago, true) + ' → ' + (isAdd ? T.today : endTxt), has: K.q > 0, none: !(K.q > 0),
