@@ -21,7 +21,7 @@
 @font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
 @font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
 @font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
-body{margin:0}img[src*="lg-fx-"]{width:100%!important;height:100%!important}img[src*="-w.png"]{width:76%!important;height:76%!important}
+body{margin:0}img[src*="lg-fx-"]{width:100%!important;height:100%!important}span:has(> img[src*="lg-fx-"]){background:transparent!important;box-shadow:none!important}img[src*="-w.png"]{width:76%!important;height:76%!important}
 @media (prefers-reduced-motion: no-preference){
 @keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
 @keyframes pk-in{from{opacity:0}to{opacity:1}}
@@ -198,10 +198,10 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
         <sc-if value="{{intro.hasBack}}" hint-placeholder-val="{{ false }}">
           <button onClick="{{intro.prev}}" aria-label="{{t.back}}" style="flex-shrink: 0; width: 64px; height: 64px; border-radius: 32px; display: flex; align-items: center; justify-content: center; border: 0.75px solid var(--kt21); background: var(--k151518); color: var(--kF5F7FA)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M19 12H5"></path><path d="M10.5 6.5L5 12l5.5 5.5"></path></svg></button>
         </sc-if>
-        <button onClick="{{intro.next}}" style="flex: 1 1 auto; height: 64px; box-sizing: border-box; padding: 0 22px 0 6px; border-radius: 32px; display: flex; align-items: center; gap: 14px; border: 0.75px solid var(--kt21); background: var(--k151518); color: var(--kF5F7FA)">
+        <button onClick="{{intro.next}}" style="flex: 1 1 auto; height: 64px; box-sizing: border-box; padding: {{intro.pad}}; border-radius: 32px; display: flex; flex-direction: {{intro.dir}}; align-items: center; gap: 14px; border: 0.75px solid var(--kt21); background: var(--k151518); color: var(--kF5F7FA)">
           <span aria-hidden="true" style="flex-shrink: 0; width: 52px; height: 52px; border-radius: 26px; display: flex; align-items: center; justify-content: center; background: var(--kF5F7FA); color: var(--k000000)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12h14"></path><path d="M13.5 6.5L19 12l-5.5 5.5"></path></svg></span>
           <span style="flex: 1 1 auto; text-align: left; font-size: 16px; font-weight: 500">{{intro.btn}}</span>
-          <span aria-hidden="true" style="display: flex; margin-right: -4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="margin-left: -6px; opacity: 0.25"><path d="M9 6l6 6-6 6"></path></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="margin-left: -6px; opacity: 0.5"><path d="M9 6l6 6-6 6"></path></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="margin-left: -6px; opacity: 0.9"><path d="M9 6l6 6-6 6"></path></svg></span>
+          <span aria-hidden="true" style="display: {{intro.chd}}; margin-right: -4px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="margin-left: -6px; opacity: 0.25"><path d="M9 6l6 6-6 6"></path></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="margin-left: -6px; opacity: 0.5"><path d="M9 6l6 6-6 6"></path></svg><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="margin-left: -6px; opacity: 0.9"><path d="M9 6l6 6-6 6"></path></svg></span>
         </button>
       </div>
     </div>
@@ -308,7 +308,7 @@ class Component extends DCLogic {
     var ii = step === 'c0' ? 0 : step === 'c1' ? 1 : step === 'c2' ? 2 : -1, isIntro = ii >= 0, sl = T.slides[Math.max(0, ii)];
     var next = function () { if (ii < 2) self.setState({ step: 'c' + (ii + 1) }); else home(); };
     var prev = function () { if (ii > 0) self.setState({ step: 'c' + (ii - 1) }); };
-    var intro = { cls: ii % 2 ? 'sb' : 'sa', k: sl.k, h0: sl.h[0], h1: sl.h[1], h2: sl.h[2], p: sl.p, btn: ii === 2 ? T.start : T.next, hasBack: ii > 0, next: next, prev: prev, skip: home,
+    var intro = { dir: ii === 2 ? 'row-reverse' : 'row', pad: ii === 2 ? '0 6px 0 26px' : '0 22px 0 6px', chd: ii === 2 ? 'none' : 'flex', cls: ii % 2 ? 'sb' : 'sa', k: sl.k, h0: sl.h[0], h1: sl.h[1], h2: sl.h[2], p: sl.p, btn: ii === 2 ? T.start : T.next, hasBack: ii > 0, next: next, prev: prev, skip: home,
       cards: [0, 1, 2].map(function (i) { var o = i - ii; return { ph: F(T.ph, i + 1), op: o === 0 ? 1 : Math.abs(o) === 1 ? 0.5 : 0,
         tf: o === 0 ? 'translateX(0px) rotate(-2.5deg) scale(1)' : 'translateX(' + o * 272 + 'px) translateY(14px) rotate(' + o * 7 + 'deg) scale(0.9)' }; }),
       dots: [0, 1, 2].map(function (i) { return { w: i === ii ? 22 : 10, bg: i === ii ? 'var(--kF5F7FA)' : 'var(--kt22)' }; }) };

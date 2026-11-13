@@ -20,7 +20,7 @@
 @font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
 @font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
 @font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
-body{margin:0}img[src*="lg-fx-"]{width:100%!important;height:100%!important}img[src*="-w.png"]{width:76%!important;height:76%!important}
+body{margin:0}img[src*="lg-fx-"]{width:100%!important;height:100%!important}span:has(> img[src*="lg-fx-"]){background:transparent!important;box-shadow:none!important}img[src*="-w.png"]{width:76%!important;height:76%!important}
 @media (prefers-reduced-motion: no-preference){
 @keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
 @keyframes pk-in{from{opacity:0}to{opacity:1}}
@@ -241,39 +241,41 @@ html.lt .pkc .pkp{background:#205DF4 !important;color:#FFFFFF !important}html.lt
       <div style="display: flex; align-items: center; gap: 12px">
         <div style="flex-grow: 1; height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 14px; display: flex; align-items: center; gap: 10px; background: var(--k151518)">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k7D8290)"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="M15.5 15.5L20 20"></path></svg>
-          <input type="search" autofocus placeholder="Busca acciones, cripto o noticias" aria-label="Busca acciones, cripto o noticias" style="flex-grow: 1; min-width: 0; height: 40px; padding: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 15px; color: var(--kF5F7FA)">
+          <input type="search" autofocus onInput="{{srch.typed}}" value="{{srch.q}}" placeholder="Busca acciones, cripto o noticias" aria-label="Busca acciones, cripto o noticias" style="flex-grow: 1; min-width: 0; height: 40px; padding: 0; border: 0; outline: none; background: transparent; font-family: inherit; font-size: 15px; color: var(--kF5F7FA)">
         </div>
         <button onClick="{{act.closeSearch}}" style="flex-shrink: 0; height: 44px; font-size: 14px; font-weight: 500; color: var(--k9AB6ED)">Cancelar</button>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">POPULAR</span>
-        <div style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518)">
-          <a href="VarlikES.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
-            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A">Q</span>
-            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">QQQ</span><span style="font-size: 12px; color: var(--k7D8290)">Invesco QQQ</span></span>
-            <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+1,42 %</span>
-          </a>
-          <a href="VarlikES.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
-            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #E8891C"><img src="img/f74b93dd661ed37f19989b4797a87446.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
-            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">BTC</span><span style="font-size: 12px; color: var(--k7D8290)">Bitcoin</span></span>
-            <span style="font-size: 13px; font-weight: 500; color: #FF8A7A">−4,85 %</span>
-          </a>
-          <a href="VarlikES.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
-            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A"><img src="img/161ff1d447dd128b7dbee48db2806b2b.svg" alt="" style="width: 58%; height: 58%; object-fit: contain"></span>
-            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">AAPL</span><span style="font-size: 12px; color: var(--k7D8290)">Apple</span></span>
-            <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+1,08 %</span>
-          </a>
-          <a href="VarlikES.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 0; text-decoration: none; color: var(--kF5F7FA)">
-            <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #9A7B2F">Au</span>
-            <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">XAU</span><span style="font-size: 12px; color: var(--k7D8290)">Oro (onza)</span></span>
-            <span style="font-size: 13px; font-weight: 500; color: #5BE59A">+0,92 %</span>
-          </a>
+      <sc-if value="{{srch.empty}}" hint-placeholder-val="{{ true }}">
+      <div style="display: flex; flex-direction: column; gap: 20px">
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">{{srch.popL}}</span>
+          <div style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518)">
+            <sc-for list="{{srch.pop}}" as="r" hint-placeholder-count="4"><a href="{{r.href}}" onClick="{{r.rmb}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: {{r.bd}}; text-decoration: none; color: var(--kF5F7FA)">
+              <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A"><sc-if value="{{r.hasLogo}}" hint-placeholder-val="{{ true }}"><img src="{{r.logo}}" alt="" style="width: 58%; height: 58%; object-fit: contain"></sc-if><sc-if value="{{r.noLogo}}" hint-placeholder-val="{{ false }}">{{r.ab}}</sc-if></span>
+              <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">{{r.sym}}</span><span style="font-size: 12px; color: var(--k7D8290); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span></span>
+              <span style="flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 3px"><span style="font-size: 13px; font-weight: 600">{{r.price}}</span><span style="font-size: 12px; font-weight: 500; color: {{r.color}}">{{r.chg}}</span></span>
+            </a></sc-for>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px">
+          <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">{{srch.recL}}</span>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px"><sc-for list="{{srch.rec}}" as="t" hint-placeholder-count="4"><a href="{{t.href}}" onClick="{{t.rmb}}" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">{{t.label}}</a></sc-for></div>
         </div>
       </div>
-      <div style="display: flex; flex-direction: column; gap: 10px">
-        <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">BÚSQUEDAS RECIENTES</span>
-        <div style="display: flex; flex-wrap: wrap; gap: 8px"><a href="HaberES.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">Tipos de la Fed</a><a href="HaberES.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">NVDA</a><a href="HaberES.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">Oro</a><a href="HaberES.dc.html" style="height: 32px; padding: 0 12px; border-radius: 16px; display: flex; align-items: center; border: 1px solid var(--kt20); text-decoration: none; font-size: 12px; font-weight: 500; color: var(--kC4C8D2)">BIST 100</a></div>
+      </sc-if>
+      <sc-if value="{{srch.has}}" hint-placeholder-val="{{ false }}">
+      <div style="flex: 1 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: none; display: flex; flex-direction: column; gap: 10px; padding-bottom: 120px">
+          <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">{{srch.resL}}</span>
+          <div style="display: flex; flex-direction: column; padding: 2px 14px; border-radius: 20px; background: var(--k151518)">
+            <sc-for list="{{srch.res}}" as="r" hint-placeholder-count="4"><a href="{{r.href}}" onClick="{{r.rmb}}" style="display: flex; align-items: center; gap: 12px; padding: 12px 0; border-bottom: {{r.bd}}; text-decoration: none; color: var(--kF5F7FA)">
+              <span style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(10,20,40,0.08); color: #3B3F4A"><sc-if value="{{r.hasLogo}}" hint-placeholder-val="{{ true }}"><img src="{{r.logo}}" alt="" style="width: 58%; height: 58%; object-fit: contain"></sc-if><sc-if value="{{r.noLogo}}" hint-placeholder-val="{{ false }}">{{r.ab}}</sc-if></span>
+              <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px"><span style="font-size: 14px; font-weight: 700">{{r.sym}}</span><span style="font-size: 12px; color: var(--k7D8290); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{r.name}}</span></span>
+              <span style="flex-shrink: 0; display: flex; flex-direction: column; align-items: flex-end; gap: 3px"><span style="font-size: 13px; font-weight: 600">{{r.price}}</span><span style="font-size: 12px; font-weight: 500; color: {{r.color}}">{{r.chg}}</span></span>
+            </a></sc-for>
+          </div>
       </div>
+      </sc-if>
+      <sc-if value="{{srch.none}}" hint-placeholder-val="{{ false }}"><span style="padding: 8px 2px; font-size: 14px; color: var(--kA9AEBB)">{{srch.noneL}}</span></sc-if>
     </div>
   </sc-if>
   <sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}">
@@ -346,6 +348,98 @@ class Component extends DCLogic {
       saveFill: s.saved ? 'currentColor' : 'none',
       alarmBg: s.alarm ? '#205DF4' : 'var(--k151518)'
     };
+    /*SEARCH*/var SAS = { QQQ: ['Invesco QQQ', 'NASDAQ 100', 651.98, 1.42, '$', 2], AAPL: ['Apple', 'NASDAQ', 241.80, 1.08, '$', 2], NVDA: ['Nvidia', 'NASDAQ', 148.20, 4.12, '$', 2], TSLA: ['Tesla', 'NASDAQ', 352.40, -3.40, '$', 2],
+      MSFT: ['Microsoft', 'NASDAQ', 432.60, 0.84, '$', 2], AMZN: ['Amazon', 'NASDAQ', 214.10, 1.35, '$', 2], GOOGL: ['Alphabet', 'NASDAQ', 176.40, 0.92, '$', 2], META: ['Meta', 'NASDAQ', 582.30, -0.66, '$', 2],
+      AMD: ['AMD', 'NASDAQ', 142.80, 2.48, '$', 2], NFLX: ['Netflix', 'NASDAQ', 768.20, 0.57, '$', 2], ORCL: ['Oracle', 'NYSE', 178.50, 2.10, '$', 2], RIVN: ['Rivian', 'NASDAQ', 12.84, -1.85, '$', 2],
+      BTC: ['Bitcoin', 'BTC/USD', 97420, -4.85, '$', 0], ETH: ['Ethereum', 'ETH/USD', 3612, -3.10, '$', 0], SOL: ['Solana', 'SOL/USD', 214.30, -5.02, '$', 2], XRP: ['XRP', 'XRP/USD', 1.24, -2.37, '$', 2],
+      AVAX: ['Avalanche', 'AVAX/USD', 38.90, 0.52, '$', 2], BNB: ['BNB', 'BNB/USD', 612.40, -1.84, '$', 2], ADA: ['Cardano', 'ADA/USD', 0.72, -3.95, '$', 2], DOGE: ['Dogecoin', 'DOGE/USD', 0.182, 2.16, '$', 3],
+      XAU: ['Oro (onza)', 'XAU/USD', 2684, 0.92, '$', 0], XAG: ['Plata (onza)', 'XAG/USD', 31.40, 1.31, '$', 2], BRENT: ['Petróleo Brent', 'ICE', 73.10, 3.05, '$', 2], NG: ['Gas natural', 'NYMEX', 3.12, 2.20, '$', 2],
+      XU100: ['BIST 100', 'Borsa İstanbul', 11333.27, -1.26, '', 2], XU050: ['BIST 50', 'Borsa İstanbul', 10596.83, -1.45, '', 2], SPX: ['S&P 500', 'EE. UU.', 7427.76, -3.40, '', 2], NDX: ['Nasdaq 100', 'EE. UU.', 24635.03, -4.28, '', 2], DJI: ['Dow Jones', 'EE. UU.', 51811.54, -2.89, '', 2],
+      THYAO: ['Turkish Airlines', 'BIST', 312.50, 0.74, '₺', 2], ASELS: ['Aselsan', 'BIST', 86.15, 1.08, '₺', 2], GARAN: ['Garanti BBVA', 'BIST', 128.40, 1.62, '₺', 2], BIMAS: ['Tiendas BIM', 'BIST', 512.00, -0.45, '₺', 2],
+      KCHOL: ['Koç Holding', 'BIST', 178.90, 0.38, '₺', 2], TUPRS: ['Tüpraş', 'BIST', 146.20, -1.12, '₺', 2], EREGL: ['Erdemir', 'BIST', 48.36, 2.04, '₺', 2], SISE: ['Şişecam', 'BIST', 41.80, -0.71, '₺', 2],
+      'USD/TRY': ['USD / TRY', 'Divisas', 34.72, 0.18, '₺', 2], 'EUR/TRY': ['Euro / Lira', 'Divisas', 37.55, -0.22, '₺', 2], 'EUR/USD': ['Euro / Dólar', 'Divisas', 1.0815, -0.35, '', 4], DXY: ['Índice dólar', 'ICE', 104.12, -0.48, '', 2],
+      TEK: ['Fondo de acciones tecnológicas', 'TEFAS', 2.1847, 1.12, '₺', 4], YTF: ['Fondo tecnológico global', 'TEFAS', 1.8932, 1.46, '₺', 4], BHF: ['Fondo de acciones BIST', 'TEFAS', 0.4521, 0.84, '₺', 4],
+      ALT: ['Fondo de oro', 'TEFAS', 0.9876, 0.61, '₺', 4], DEG: ['Fondo flexible', 'TEFAS', 3.7104, -0.22, '₺', 4], PPF: ['Fondo monetario', 'TEFAS', 1.0453, 0.13, '₺', 4],
+      UNH: ['UnitedHealth', 'NYSE', 312.40, 1.15, '$', 2], BAC: ['Bank of America', 'NYSE', 46.80, -0.42, '$', 2], KO: ['Coca-Cola', 'NYSE', 68.90, 0.31, '$', 2], AXP: ['American Express', 'NYSE', 318.20, 0.74, '$', 2], CVX: ['Chevron', 'NYSE', 156.30, 1.02, '$', 2],
+      COIN: ['Coinbase', 'NASDAQ', 284.50, -3.60, '$', 2], CRCL: ['Circle', 'NYSE', 128.40, -2.15, '$', 2], PLTR: ['Palantir', 'NASDAQ', 164.30, 2.84, '$', 2], ROKU: ['Roku', 'NASDAQ', 92.60, 1.48, '$', 2],
+      SPY: ['SPDR S&P 500', 'NYSE', 741.20, -3.40, '$', 2], IVV: ['iShares Core S&P 500', 'NYSE', 744.60, -3.40, '$', 2], YNT: ['Fondo Nuevas Tecnologías', 'TEFAS', 1.2845, 1.29, '₺', 4],
+      SOXX: ['iShares Semiconductor', 'NASDAQ', 248.60, 2.30, '$', 2], XLE: ['Energy Select', 'NYSE', 94.20, 1.20, '$', 2], GLD: ['SPDR Gold', 'NYSE', 247.10, 0.88, '$', 2],
+      AKBNK: ['Akbank', 'BIST', 68.5, 1.24, '₺', 2],
+      YKBNK: ['Yapı Kredi', 'BIST', 33.1, 0.92, '₺', 2],
+      ISCTR: ['İş Bankası', 'BIST', 14.2, 1.43, '₺', 2],
+      SAHOL: ['Sabancı Holding', 'BIST', 92.4, -0.38, '₺', 2],
+      FROTO: ['Ford Otosan', 'BIST', 1012.0, -0.86, '₺', 2],
+      TOASO: ['Tofaş', 'BIST', 205.3, -1.2, '₺', 2],
+      PGSUS: ['Pegasus', 'BIST', 228.4, 1.66, '₺', 2],
+      TTKOM: ['Türk Telekom', 'BIST', 52.15, 0.48, '₺', 2],
+      ARCLK: ['Arçelik', 'BIST', 156.8, -0.57, '₺', 2],
+      PETKM: ['Petkim', 'BIST', 19.82, -1.74, '₺', 2],
+      MGROS: ['Migros', 'BIST', 528.0, 0.95, '₺', 2],
+      ULKER: ['Ülker', 'BIST', 118.6, 0.42, '₺', 2],
+      TAVHL: ['TAV Airports', 'BIST', 262.75, 1.08, '₺', 2],
+      AVGO: ['Broadcom', 'NASDAQ', 228.4, 2.92, '$', 2],
+      JPM: ['JPMorgan Chase', 'NYSE', 248.6, 0.64, '$', 2],
+      V: ['Visa', 'NYSE', 318.2, 0.41, '$', 2],
+      MA: ['Mastercard', 'NYSE', 528.4, 0.37, '$', 2],
+      WMT: ['Walmart', 'NYSE', 94.1, 0.88, '$', 2],
+      COST: ['Costco', 'NASDAQ', 968.5, 0.52, '$', 2],
+      DIS: ['Disney', 'NYSE', 112.3, -0.74, '$', 2],
+      INTC: ['Intel', 'NASDAQ', 20.15, -2.86, '$', 2],
+      ADBE: ['Adobe', 'NASDAQ', 438.7, -1.12, '$', 2],
+      CRM: ['Salesforce', 'NYSE', 334.2, 1.05, '$', 2],
+      PYPL: ['PayPal', 'NASDAQ', 86.4, 0.63, '$', 2],
+      UBER: ['Uber', 'NYSE', 68.9, 1.84, '$', 2],
+      LLY: ['Eli Lilly', 'NYSE', 812.3, 1.37, '$', 2],
+      XOM: ['ExxonMobil', 'NYSE', 108.4, 0.82, '$', 2],
+      MCD: ['McDonald\'s', 'NYSE', 292.6, 0.18, '$', 2],
+      NKE: ['Nike', 'NYSE', 74.8, -1.46, '$', 2],
+      USDT: ['Tether', 'USDT/USD', 1.0, 0.01, '$', 3],
+      TRX: ['Tron', 'TRX/USD', 0.248, 1.86, '$', 3],
+      LINK: ['Chainlink', 'LINK/USD', 22.4, -4.12, '$', 2],
+      DOT: ['Polkadot', 'DOT/USD', 6.85, -3.58, '$', 2],
+      LTC: ['Litecoin', 'LTC/USD', 104.2, -2.44, '$', 2],
+      TON: ['Toncoin', 'TON/USD', 5.42, -1.95, '$', 2],
+      BCH: ['Bitcoin Cash', 'BCH/USD', 438.6, -3.07, '$', 2],
+      XLM: ['Stellar', 'XLM/USD', 0.428, -2.81, '$', 3],
+      UNI: ['Uniswap', 'UNI/USD', 13.8, -4.65, '$', 2],
+      ATOM: ['Cosmos', 'ATOM/USD', 6.92, -3.33, '$', 2],
+      NEAR: ['NEAR Protocol', 'NEAR/USD', 5.18, -4.02, '$', 2],
+      'GBP/TRY': ['Libra / Lira', 'Divisas', 43.85, 0.27, '₺', 2],
+      'CHF/TRY': ['Franco suizo / Lira', 'Divisas', 39.12, 0.12, '₺', 2],
+      'GBP/USD': ['Libra / Dólar', 'Divisas', 1.2615, 0.21, '', 4],
+      'USD/JPY': ['Dólar / Yen', 'Divisas', 152.4, -0.33, '', 2],
+      WTI: ['Petróleo WTI', 'NYMEX', 69.4, 2.71, '$', 2],
+      XPT: ['Platino (onza)', 'XPT/USD', 968.0, 0.74, '$', 2],
+      XPD: ['Paladio (onza)', 'XPD/USD', 1012.0, -0.58, '$', 2],
+      HG: ['Cobre', 'COMEX', 4.32, 1.12, '$', 2],
+      XU030: ['BIST 30', 'Borsa İstanbul', 12184.55, -1.31, '', 2],
+      XBANK: ['BIST Bancos', 'Borsa İstanbul', 14862.4, -0.96, '', 2] };
+    /*FX*/(function () { var R = {"USD": [1, 0], "EUR": [0.9246, 0.35], "GBP": [0.7918, -0.21], "CHF": [0.8875, 0.06], "CNY": [7.241, 0.12], "JPY": [152.4, -0.33], "TRY": [34.72, 0.18]}, N = {"USD": "Dólar", "EUR": "Euro", "GBP": "Libra", "CHF": "Franco suizo", "CNY": "Yuan", "JPY": "Yen", "TRY": "Lira"}, C = Object.keys(R); C.forEach(function (b) { C.forEach(function (q) { var k = b + '/' + q; if (b === q) return; var v = R[q][0] / R[b][0], o = SAS[k]; SAS[k] = [o ? o[0] : N[b] + ' / ' + N[q], o ? o[1] : "Divisas", +v.toFixed(6), +(R[q][1] - R[b][1]).toFixed(2), q === 'TRY' ? '₺' : '', v >= 10 ? 2 : v >= 0.1 ? 4 : 6]; }); }); })();
+    var ST = {"pop": "POPULAR", "rec": "BÚSQUEDAS RECIENTES", "res": "RESULTADOS", "none": "Sin resultados para «{q}»", "fed": "Tipos de la Fed", "short": {"XAU": "Oro", "XAG": "Plata", "XU100": "BIST 100", "XU050": "BIST 50", "XU030": "BIST 30"}}, SAL = {"USD/TRY": "dólar lira", "XAU": "oro", "XAG": "plata", "BRENT": "petróleo", "WTI": "petróleo", "BTC": "bitcoin"}, SLGO = typeof LGO !== 'undefined' ? LGO : {}, SNF = [",", ".", "space"], VP = "VarlikES.dc.html", HP = "HaberES.dc.html";
+    var snf = function (x, dp) { var sp = Math.abs(x).toFixed(dp).split('.'); sp[0] = sp[0].replace(/\B(?=(\d{3})+(?!\d))/g, SNF[1]); return sp.join(SNF[0]); };
+    var spc = function (x) { var sg = x < 0 ? '−' : '+', n = snf(x, 2); return SNF[2] === 'pre' ? sg + '%' + n : SNF[2] === 'space' ? sg + n + ' %' : sg + n + '%'; };
+    var snorm = function (t) { return String(t).toLocaleLowerCase('tr').replace(/ı/g, 'i').normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9/ ]/g, ''); };
+    var sget = function () { try { var v = JSON.parse(localStorage.getItem('pk-recent') || 'null'); return Array.isArray(v) ? v : null; } catch (e) { return null; } };
+    var remember = function (k) { var v = (sget() || ['@fed', 'NVDA', 'XAU', 'XU100']).filter(function (x) { return x !== k; }); v.unshift(k); try { localStorage.setItem('pk-recent', JSON.stringify(v.slice(0, 6))); } catch (e) {} };
+    var srow = function (k, i, n) {
+      var a = SAS[k], lg = SLGO[k] || '', up = a[3] >= 0;
+      return { sym: k, name: a[0], href: VP + '#a' + k.replace('/', '_'), rmb: function () { remember(k); }, logo: lg, hasLogo: !!lg, noLogo: !lg, ab: k.replace('/', '').slice(0, 2),
+        price: a[4] + snf(a[2], a[5]), chg: spc(a[3]), color: up ? (self.pkLT && self.pkLT() ? '#0E9F6E' : '#5BE59A') : (self.pkLT && self.pkLT() ? '#E5484D' : '#FF8A7A'), bd: i < n - 1 ? '1px solid var(--kt18)' : '0' };
+    };
+    var sq = s.sq || '', nq = snorm(sq).trim(), res = [];
+    if (nq) {
+      Object.keys(SAS).forEach(function (k) {
+        var ks = snorm(k), nm = snorm(SAS[k][0] + ' ' + (SAL[k] || '')), sc = ks === nq || ks.replace('/', '') === nq.replace(/[ /]/g, '') ? 0 : ks.indexOf(nq) === 0 ? 1 : nm.indexOf(nq) === 0 || nm.indexOf(' ' + nq) >= 0 ? 2 : ks.indexOf(nq) >= 0 || nm.indexOf(nq) >= 0 ? 3 : -1;
+        if (sc >= 0) res.push([sc, k]);
+      });
+      res.sort(function (x, y) { return x[0] - y[0] || x[1].length - y[1].length; });
+      res = res.slice(0, 20).map(function (x) { return x[1]; });
+    }
+    var pop = ['QQQ', 'BTC', 'AAPL', 'XAU'], recent = sget() || ['@fed', 'NVDA', 'XAU', 'XU100'];
+    o.srch = { q: sq, typed: function (e) { self.setState({ sq: (e && e.target && e.target.value) || '' }); }, empty: !nq, has: !!nq && res.length > 0, none: !!nq && !res.length,
+      popL: ST.pop, recL: ST.rec, resL: ST.res, noneL: ST.none.replace('{q}', sq.trim()),
+      pop: pop.map(function (k, i) { return srow(k, i, pop.length); }), res: res.map(function (k, i) { return srow(k, i, res.length); }),
+      rec: recent.filter(function (k) { return k === '@fed' || SAS[k]; }).map(function (k) { return k === '@fed' ? { label: ST.fed, href: HP + '#nfed', rmb: function () {} } : { label: ST.short[k] || k, href: VP + '#a' + k.replace('/', '_'), rmb: function () { remember(k); } }; }) };
     return o;
   }
   _rv() {
