@@ -4,5 +4,5 @@ Interactive mobile prototype of Perspekt!, an AI finance-news app, in Turkish, E
 
 Open `index.html` (or the GitHub Pages site) and pick a language. Each screen is a `.dc.html` file rendered by `support.js` with React.
 
-Photos: Unsplash (Unsplash License). Brand logos: Simple Icons (CC0). Font: Satoshi (Fontshare / ITF Free Font License).
+Photos: Unsplash (Unsplash License). Brand logos: Simple Icons (CC0), cryptocurrency-icons (CC0), flag-icons (MIT), Wikimedia Commons and the issuers' own sites (Borsa İstanbul, TEFAS, Invesco); logos are trademarks of their owners. Font: Satoshi (Fontshare / ITF Free Font License).
 Market figures are illustrative demo data, not investment advice.

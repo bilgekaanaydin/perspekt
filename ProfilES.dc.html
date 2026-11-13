@@ -11,6 +11,7 @@
 
 <title>Perspekt! perfil</title>
 <script src="./support.js?v=4"></script>
+<script src="./track.js?v=1"></script>
 </head>
 <body>
 <x-dc><template>
@@ -19,7 +20,7 @@
 @font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
 @font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
 @font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
-body{margin:0}
+body{margin:0}.bdl{filter:grayscale(1) brightness(.9);opacity:.55}img[src*="lg-fx-"]{width:100%!important;height:100%!important}img[src*="-w.png"]{width:76%!important;height:76%!important}
 @media (prefers-reduced-motion: no-preference){
 @keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
 @keyframes pk-in{from{opacity:0}to{opacity:1}}
@@ -87,9 +88,14 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
     </div>
 
     <div style="display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 24px 16px 20px; border-radius: 24px; background: var(--kt26); border: 0.75px solid var(--kt28)">
-      <img src="img/c8b05613555759c376eca5450fcf62ca.jpg" alt="" style="width: 84px; height: 84px; border-radius: 42px; object-fit: cover; box-shadow: 0 0 0 3px #205DF4">
+      <label aria-label="{{av.change}}" style="position: relative; display: block; width: 84px; height: 84px; cursor: pointer">
+        <img src="{{pkAv}}" alt="" style="width: 84px; height: 84px; border-radius: 42px; object-fit: cover; box-shadow: 0 0 0 3px #205DF4">
+        <span class="dk" style="position: absolute; right: -4px; bottom: -4px; width: 30px; height: 30px; border-radius: 15px; display: flex; align-items: center; justify-content: center; background: #205DF4; box-shadow: 0 0 0 3px var(--k000000); color: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3 8h4l2-3h6l2 3h4v11H3z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>
+        <input type="file" accept="image/*" onChange="{{av.pick}}" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none">
+      </label>
       <span style="font-size: 22px; font-weight: 700; color: var(--kF5F7FA)">Bilge</span>
       <span class="dk dk" style="padding: 5px 10px; border-radius: 10px; background: #205DF4; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--kFFFFFF)">MIEMBRO DE PERSPEKT! PLUS</span>
+      <sc-if value="{{av.custom}}" hint-placeholder-val="{{ false }}"><button onClick="{{av.reset}}" style="height: 30px; padding: 0 12px; border-radius: 15px; border: 0.75px solid var(--kt20); font-family: inherit; font-size: 12px; font-weight: 600; color: var(--kC4C8D2)">{{av.remove}}</button></sc-if>
       <span style="font-size: 13px; color: var(--k9AB6ED)">Miembro desde hace 2 años · desde noviembre de 2024</span>
       <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--kC4C8D2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED)"><path d="M12 3l2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"></path></svg>Miembro pionero</span>
     </div>
@@ -108,6 +114,17 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
           <span style="font-size: 11px; color: var(--k7D8290); text-align: center">activos seguidos</span>
         </div>
     </div>
+
+    <button onClick="{{bdg.openList}}" style="display: flex; align-items: center; gap: 12px; padding: 14px 14px 14px 12px; border-radius: 20px; background: var(--k151518); font-family: inherit; text-align: left">
+      <span style="display: flex; flex-shrink: 0">
+        <sc-for list="{{bdg.prev}}" as="pv" hint-placeholder-count="3"><img src="{{pv.src}}" alt="" style="width: 40px; height: 40px; margin-right: -12px"></sc-for>
+      </span>
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 2px; margin-left: 14px">
+        <span style="display: flex; align-items: center; gap: 6px; font-size: 16px; font-weight: 700; color: var(--kF5F7FA)">{{bdg.btn}}<sc-if value="{{bdg.hasNew}}" hint-placeholder-val="{{ false }}"><span style="width: 7px; height: 7px; border-radius: 4px; background: #205DF4"></span></sc-if></span>
+        <span style="font-size: 12px; color: var(--k9AB6ED)">{{bdg.n}}</span>
+      </span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="flex-shrink: 0; color: var(--k7D8290)"><path d="M9 6l6 6-6 6"></path></svg>
+    </button>
 
     <div style="display: flex; flex-direction: column; gap: 10px">
       <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">SUSCRIPCIÓN</span>
@@ -165,6 +182,43 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M3 7h10"></path><path d="M19 7h2"></path><path d="M13 4.5h6v5h-6z"></path><path d="M3 17h2"></path><path d="M11 17h10"></path><path d="M5 14.5h6v5H5z"></path></svg>
       </span><span style="flex: 1 1 auto; text-align: center">Ajustes</span></a>
   </nav>
+  <sc-if value="{{bdg.lst}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; z-index: 25; overflow-y: auto; scrollbar-width: none; box-sizing: border-box; padding: 57px 20px 40px; background: var(--k000000)">
+      <div class="pk-over" style="display: flex; flex-direction: column; gap: 18px">
+        <div style="display: flex; align-items: center; gap: 4px; margin-left: -12px">
+          <button onClick="{{bdg.closeList}}" aria-label="Atrás" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M20 12H5"></path><path d="M10.5 6.5L5 12l5.5 5.5"></path></svg></button>
+          <h1 class="gt" style="flex-grow: 1; margin: 0; font-size: 26px; font-weight: 700">{{bdg.btn}}</h1>
+          <span style="font-size: 13px; font-weight: 600; color: var(--kC4C8D2)">{{bdg.n}}</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px">
+          <sc-for list="{{bdg.list}}" as="b" hint-placeholder-count="6">
+            <button onClick="{{b.open}}" style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 14px 6px 12px; border-radius: 18px; background: var(--k151518); font-family: inherit; text-align: center">
+              <img class="{{b.cls}}" src="{{b.src}}" alt="" style="width: 68px; height: 68px">
+              <span style="font-size: 12px; font-weight: 600; line-height: 1.2; color: var(--kF5F7FA)">{{b.name}}</span>
+              <span style="font-size: 11px; color: {{b.subc}}">{{b.sub}}</span>
+              <sc-if value="{{b.isNew}}" hint-placeholder-val="{{ false }}"><span class="dk" style="position: absolute; top: 8px; right: 8px; padding: 2px 6px; border-radius: 8px; background: #205DF4; font-size: 9px; font-weight: 700; letter-spacing: 0.04em; color: #FFFFFF">{{bdg.newL}}</span></sc-if>
+            </button>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+  <sc-if value="{{bdg.on}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; z-index: 30; box-sizing: border-box; padding: 57px 20px 28px; display: flex; flex-direction: column; background: var(--k000000)">
+      <div style="display: flex; justify-content: flex-end"><button onClick="{{bdg.close}}" aria-label="{{bdg.closeL}}" style="width: 44px; height: 44px; margin-right: -10px; display: flex; align-items: center; justify-content: center; color: var(--kF5F7FA)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
+      <div class="pk-over" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center">
+        <img class="{{bdg.cur.cls}}" src="{{bdg.cur.src}}" alt="" style="width: 168px; height: 168px">
+        <span class="dk" style="padding: 5px 10px; border-radius: 10px; background: {{bdg.stc}}; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: #FFFFFF">{{bdg.st}}</span>
+        <span class="gt" style="font-size: 28px; font-weight: 700">{{bdg.cur.name}}</span>
+        <span style="max-width: 290px; font-size: 15px; line-height: 1.4; color: var(--kC4C8D2)">{{bdg.cur.desc}}</span>
+        <div style="width: 100%; max-width: 300px; display: flex; flex-direction: column; gap: 8px; margin-top: 8px">
+          <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--kA9AEBB)"><span>{{bdg.prog}}</span><span>{{bdg.cur.cnt}}</span></div>
+          <div style="height: 6px; border-radius: 3px; overflow: hidden; background: var(--kt20)"><div style="height: 100%; width: {{bdg.cur.pct}}; border-radius: 3px; background: linear-gradient(90deg, #205DF4 0%, #A9C1FF 100%)"></div></div>
+        </div>
+      </div>
+      <button onClick="{{bdg.close}}" style="height: 54px; border-radius: 27px; background: var(--kF5F7FA); font-family: inherit; font-size: 16px; font-weight: 700; color: var(--k000000)">{{bdg.done}}</button>
+    </div>
+  </sc-if>
   <sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}">
     <div class="{{tk}}" role="status" style="position: absolute; left: 50%; bottom: 104px; z-index: 9; transform: translate3d(-50%,0,0); max-width: 320px; padding: 11px 16px; border-radius: 14px; background: rgba(28,29,34,0.96); color: #FFFFFF; font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.25)">{{toast}}</div>
   </sc-if>
@@ -197,7 +251,7 @@ class Component extends DCLogic {
           else if (/\.dc\.html/.test(here) && here.split('#')[0] !== h.split('#')[0]) { stack.push(here); if (stack.length > 30) stack.shift(); }
           var p = h.split('#'), t = (p[1] || '').split('.').filter(function (x) { return x && x !== 'lt'; });
           if (/^Varlik/.test(p[0]) && !t.some(function (x) { return x.charAt(0) === 'a'; })) {
-            var tx = ' ' + (a.innerText || a.textContent || '').replace(/\s+/g, ' ') + ' ', KN = 'QQQ AAPL NVDA TSLA MSFT AMZN GOOGL META AMD NFLX ORCL BTC ETH SOL XRP AVAX BNB ADA DOGE XAU XAG BRENT NG XU100 XU050 SPX NDX DJI THYAO ASELS GARAN BIMAS KCHOL TUPRS EREGL SISE USD/TRY EUR/TRY EUR/USD DXY TEK YTF BHF ALT DEG PPF SOXX XLE GLD RIVN'.split(' '), best = '';
+            var tx = ' ' + (a.innerText || a.textContent || '').replace(/\s+/g, ' ') + ' ', KN = 'QQQ AAPL NVDA TSLA MSFT AMZN GOOGL META AMD NFLX ORCL BTC ETH SOL XRP AVAX BNB ADA DOGE XAU XAG BRENT NG XU100 XU050 SPX NDX DJI THYAO ASELS GARAN BIMAS KCHOL TUPRS EREGL SISE USD/TRY EUR/TRY EUR/USD DXY TEK YTF BHF ALT DEG PPF SOXX XLE GLD RIVN AKBNK YKBNK ISCTR SAHOL FROTO TOASO PGSUS TTKOM ARCLK PETKM MGROS ULKER TAVHL AVGO JPM V MA WMT COST DIS INTC ADBE CRM PYPL UBER LLY XOM MCD NKE USDT TRX LINK DOT LTC TON BCH XLM UNI ATOM NEAR GBP/TRY CHF/TRY GBP/USD USD/JPY WTI XPT XPD HG XU030 XBANK UNH BAC KO AXP CVX COIN CRCL PLTR ROKU USD/EUR USD/GBP USD/CHF USD/CNY EUR/GBP EUR/CHF EUR/CNY EUR/JPY GBP/EUR GBP/CHF GBP/CNY GBP/JPY CHF/USD CHF/EUR CHF/GBP CHF/CNY CHF/JPY CNY/USD CNY/EUR CNY/GBP CNY/CHF CNY/JPY CNY/TRY JPY/USD JPY/EUR JPY/GBP JPY/CHF JPY/CNY JPY/TRY TRY/USD TRY/EUR TRY/GBP TRY/CHF TRY/CNY TRY/JPY'.split(' '), best = '';
             if (/BIST 100/.test(tx)) best = 'XU100';
             else KN.forEach(function (k) { var i = tx.indexOf(' ' + k + ' '); if (i >= 0 && (best === '' || i < tx.indexOf(' ' + best + ' '))) best = k; });
             if (best) t.push('a' + best.replace('/', '_'));
@@ -209,6 +263,7 @@ class Component extends DCLogic {
       }
     } catch (e) {}
     var o = this._rv();
+    /*AV*/o.pkAv = (function () { try { return localStorage.getItem('pk-avatar') || ''; } catch (e) { return ''; } })() || 'img/c8b05613555759c376eca5450fcf62ca.jpg';
     var M = { share: 'Enlace copiado', notif: 'Sin notificaciones nuevas · Revisado 9:41', saved: 'Añadido a Guardados', unsaved: 'Eliminado de Guardados', alarmOn: 'Alerta de precio creada', alarmOff: 'Alerta de precio eliminada', profile: 'Tu perfil está al día' };
     o.toast = s.toast || ''; o.hasToast = !!s.toast; o.tk = 'pk-toast t' + (s.tk || 0);
     o.searchOpen = !!s.search; o.q = s.q || '';
@@ -224,6 +279,44 @@ class Component extends DCLogic {
       saveFill: s.saved ? 'currentColor' : 'none',
       alarmBg: s.alarm ? '#205DF4' : 'var(--k151518)'
     };
+    /*BADGES*/var BT = {"names": ["Primer paso", "Tigre de la Bolsa", "Lobo de Wall Street", "Ballena cripto", "Cazador de oro", "Viajero de divisas", "Maestro de fondos", "Explorador de mercados", "Devorador de noticias", "Madrugador", "Racha semanal", "Voluntad de hierro", "Inversor paciente", "Arquitecto de cartera"], "desc": ["Abriste Perspekt! por primera vez.", "Consulta 10 acciones distintas de Borsa Istanbul.", "Consulta 10 acciones distintas de EE. UU.", "Consulta 8 criptomonedas distintas.", "Consulta 4 materias primas distintas.", "Consulta 5 tipos de cambio distintos.", "Consulta 4 fondos distintos.", "Consulta al menos un activo de cada uno de los seis mercados.", "Lee 20 noticias.", "Abre la app antes de las 8:00.", "Abre la app 7 días seguidos.", "Abre la app 30 días seguidos.", "Pasa 60 minutos en total en la app.", "Añade 5 activos a Mis activos."], "title": "INSIGNIAS", "earned": "Conseguida", "locked": "Bloqueada", "new": "Nueva", "done": "Listo", "prog": "Progreso", "close": "Cerrar"}, BG = {"bist": ["THYAO", "ASELS", "GARAN", "BIMAS", "KCHOL", "TUPRS", "EREGL", "SISE", "AKBNK", "YKBNK", "ISCTR", "SAHOL", "FROTO", "TOASO", "PGSUS", "TTKOM", "ARCLK", "PETKM", "MGROS", "ULKER", "TAVHL"], "us": ["AAPL", "NVDA", "TSLA", "MSFT", "AMZN", "GOOGL", "META", "AMD", "NFLX", "ORCL", "RIVN", "UNH", "BAC", "KO", "AXP", "CVX", "COIN", "CRCL", "PLTR", "ROKU", "SPY", "IVV", "SOXX", "XLE", "GLD", "AVGO", "JPM", "V", "MA", "WMT", "COST", "DIS", "INTC", "ADBE", "CRM", "PYPL", "UBER", "LLY", "XOM", "MCD", "NKE"], "kripto": ["BTC", "ETH", "SOL", "XRP", "AVAX", "BNB", "ADA", "DOGE", "USDT", "TRX", "LINK", "DOT", "LTC", "TON", "BCH", "XLM", "UNI", "ATOM", "NEAR"], "emtia": ["XAU", "XAG", "BRENT", "NG", "WTI", "XPT", "XPD", "HG"], "fon": ["TEK", "YTF", "BHF", "ALT", "DEG", "PPF", "YNT"]}, BIDS = ["first", "tiger", "wolf", "whale", "gold", "fx", "fund", "explorer", "news", "early", "streak7", "streak30", "patient", "portfolio"];
+    var bget = function (k, d) { try { var v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? d : v; } catch (e) { return d; } };
+    var seen = bget('pk-seen', []), cnt = function (g) { return seen.filter(function (k) { return g === 'doviz' ? k.indexOf('/') > 0 : (BG[g] || []).indexOf(k) >= 0; }).length; };
+    var groups = ['bist', 'us', 'kripto', 'emtia', 'doviz', 'fon'].filter(function (g) { return cnt(g) > 0; }).length;
+    var stkS = bget('pk-stk', {}), best = Math.max(stkS.best || 0, stkS.n || 0), hold = bget('pk-hold', null);
+    var VAL = { first: [1, 1], tiger: [cnt('bist'), 10], wolf: [cnt('us'), 10], whale: [cnt('kripto'), 8], gold: [cnt('emtia'), 4], fx: [cnt('doviz'), 5], fund: [cnt('fon'), 4], explorer: [groups, 6],
+      news: [bget('pk-read', []).length, 20], early: [localStorage.getItem('pk-early') ? 1 : 0, 1], streak7: [best, 7], streak30: [best, 30], patient: [Math.floor((+localStorage.getItem('pk-sec') || 0) / 60), 60],
+      portfolio: [Array.isArray(hold) ? hold.length : 7, 5] };
+    var bseen = bget('pk-bseen', null), earnedIds = BIDS.filter(function (id) { return VAL[id][0] >= VAL[id][1]; });
+    if (!this._bdMark) { this._bdMark = { prev: bseen }; try { localStorage.setItem('pk-bseen', JSON.stringify(earnedIds)); } catch (e) {} }
+    var prevSeen = this._bdMark.prev, bsel = s.bd || '';
+    var bl = BIDS.map(function (id, i) {
+      var v = VAL[id], got = v[0] >= v[1], c = Math.min(v[0], v[1]);
+      return { id: id, name: BT.names[i], desc: BT.desc[i], src: 'img/bd-' + id + '.svg', got: got, cls: got ? 'bdg' : 'bdg bdl', isNew: got && prevSeen !== null && prevSeen.indexOf(id) < 0,
+        sub: got ? BT.earned : c + '/' + v[1], subc: got ? '#7FA3FF' : 'var(--k7D8290)', pct: Math.round(c / v[1] * 100) + '%', cnt: c + '/' + v[1],
+        open: function () { self.setState({ bd: id }); } };
+    });
+    var cur = bl.filter(function (b) { return b.id === bsel; })[0];
+    o.bdg = { btn: "Insignias", lst: !!s.bl, openList: function () { self.setState({ bl: true }); }, closeList: function () { self.setState({ bl: false, bd: '' }); },
+      prev: (bl.filter(function (b) { return b.got; }).length ? bl.filter(function (b) { return b.got; }) : bl).slice(0, 3), hasNew: bl.some(function (b) { return b.isNew; }), title: BT.title, n: earnedIds.length + '/' + BIDS.length, list: bl, newL: BT.new, on: !!cur, cur: cur || bl[0], st: cur && cur.got ? BT.earned : BT.locked,
+      stc: cur && cur.got ? '#205DF4' : 'var(--k151518)', prog: BT.prog, done: BT.done, closeL: BT.close, close: function () { self.setState({ bd: '' }); } };
+    /*AVP*/var AVT = {"change": "Cambiar foto", "remove": "Quitar foto", "saved": "Foto de perfil actualizada", "removed": "Foto de perfil eliminada", "bad": "No se pudo abrir este archivo"};
+    o.av = { custom: o.pkAv !== 'img/c8b05613555759c376eca5450fcf62ca.jpg', change: AVT.change, remove: AVT.remove,
+      pick: function (e) {
+        var f = e && e.target && e.target.files && e.target.files[0]; if (!f) return;
+        var rd = new FileReader();
+        rd.onload = function () {
+          var im = new Image();
+          im.onload = function () {
+            var z = 320, c = document.createElement('canvas'), m = Math.min(im.width, im.height); c.width = c.height = z;
+            c.getContext('2d').drawImage(im, (im.width - m) / 2, (im.height - m) / 2, m, m, 0, 0, z, z);
+            try { localStorage.setItem('pk-avatar', c.toDataURL('image/jpeg', 0.86)); self.setState({ avt: Date.now() }); self.pkSay(AVT.saved); } catch (er) { self.pkSay(AVT.bad); }
+          };
+          im.onerror = function () { self.pkSay(AVT.bad); }; im.src = rd.result;
+        };
+        rd.readAsDataURL(f); e.target.value = '';
+      },
+      reset: function () { try { localStorage.removeItem('pk-avatar'); } catch (er) {} self.setState({ avt: Date.now() }); self.pkSay(AVT.removed); } };
     return o;
   }
   _rv() {
