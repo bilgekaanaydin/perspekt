@@ -183,10 +183,9 @@ input[type="search"]::-webkit-search-cancel-button{display:none}
         <img class="pklogo" src="img/617218bebfdc0252568d560943992165.png" alt="Perspekt!" style="width: 30px; height: auto">
         <button onClick="{{intro.skip}}" style="height: 44px; padding: 0 2px; font-size: 14px; font-weight: 500; color: var(--kC4C8D2)">{{t.skip}}</button>
       </div>
-      <div class="{{intro.cls}}" style="min-height: 148px; margin-top: 18px; padding: 0 24px; display: flex; flex-direction: column; gap: 10px">
-        <span style="font-size: 14px; font-weight: 500; color: var(--k9AB6ED)">{{intro.k}}</span>
-        <h1 class="gt" style="font-size: 32px; line-height: 1.12; font-weight: 500">{{intro.h0}}<b style="font-weight: 700">{{intro.h1}}</b>{{intro.h2}}</h1>
-        <p style="margin: 0; font-size: 15px; line-height: 1.45; color: var(--kC4C8D2)">{{intro.p}}</p>
+      <div class="{{intro.cls}}" style="min-height: 148px; margin-top: 22px; padding: 0 32px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+        <h1 class="gt" style="margin: 0; font-size: 32px; line-height: 1.12; font-weight: 500">{{intro.h0}}<br><b style="font-weight: 700">{{intro.h1}}</b>{{intro.h2}}</h1>
+        <p style="margin: 0; max-width: 300px; font-size: 15px; line-height: 1.45; color: var(--kF5F7FA)">{{intro.p}}</p>
       </div>
       <div style="position: relative; flex: 1 1 auto; min-height: 180px; margin-top: 10px">
         <sc-for list="{{intro.cards}}" as="c" hint-placeholder-count="3"><div style="position: absolute; left: 50%; top: 8px; bottom: 8px; width: 262px; margin-left: -131px; box-sizing: border-box; border-radius: 34px; background: var(--kt26), var(--k0B0B0E); border: 0.75px solid var(--kt28); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--k9AB6ED); transform: {{c.tf}}; opacity: {{c.op}}; transition: transform .5s cubic-bezier(.2,.8,.2,1), opacity .4s ease"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3.5 5h17v14h-17z"></path><path d="M3.5 16l5-5 4.5 4.5 3-3 4.5 4.5"></path><circle cx="15.5" cy="9" r="1.4"></circle></svg><span style="font-size: 13px; font-weight: 500; color: var(--kC4C8D2)">{{c.ph}}</span></div></sc-for>
