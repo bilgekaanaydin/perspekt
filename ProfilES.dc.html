@@ -289,7 +289,8 @@ class Component extends DCLogic {
       portfolio: [Array.isArray(hold) ? hold.length : 7, 5] };
     var bseen = bget('pk-bseen', null), earnedIds = BIDS.filter(function (id) { return VAL[id][0] >= VAL[id][1]; });
     if (!this._bdMark) { this._bdMark = { prev: bseen }; try { localStorage.setItem('pk-bseen', JSON.stringify(earnedIds)); } catch (e) {} }
-    var prevSeen = this._bdMark.prev, bsel = s.bd || '';
+    /*BDHASH*/var bhash = (typeof location !== 'undefined' ? location.hash : '').slice(1).split('.'), bhd = (bhash.filter(function (x) { return x.indexOf('bd_') === 0; })[0] || '').slice(3);
+    var prevSeen = this._bdMark.prev, bsel = s.bd !== undefined ? s.bd : bhd;
     var bl = BIDS.map(function (id, i) {
       var v = VAL[id], got = v[0] >= v[1], c = Math.min(v[0], v[1]);
       return { id: id, name: BT.names[i], desc: BT.desc[i], src: 'img/bd-' + id + '.svg', got: got, cls: got ? 'bdg' : 'bdg bdl', isNew: got && prevSeen !== null && prevSeen.indexOf(id) < 0,
@@ -297,7 +298,7 @@ class Component extends DCLogic {
         open: function () { self.setState({ bd: id }); } };
     });
     var cur = bl.filter(function (b) { return b.id === bsel; })[0];
-    o.bdg = { btn: "Insignias", lst: !!s.bl, openList: function () { self.setState({ bl: true }); }, closeList: function () { self.setState({ bl: false, bd: '' }); },
+    o.bdg = { btn: "Insignias", lst: s.bl !== undefined ? !!s.bl : bhash.indexOf('bl') >= 0 || !!bhd, openList: function () { self.setState({ bl: true }); }, closeList: function () { self.setState({ bl: false, bd: '' }); },
       prev: (bl.filter(function (b) { return b.got; }).length ? bl.filter(function (b) { return b.got; }) : bl).slice(0, 3), hasNew: bl.some(function (b) { return b.isNew; }), title: BT.title, n: earnedIds.length + '/' + BIDS.length, list: bl, newL: BT.new, on: !!cur, cur: cur || bl[0], st: cur && cur.got ? BT.earned : BT.locked,
       stc: cur && cur.got ? '#205DF4' : 'var(--k151518)', prog: BT.prog, done: BT.done, closeL: BT.close, close: function () { self.setState({ bd: '' }); } };
     /*AVP*/var AVT = {"change": "Cambiar foto", "remove": "Quitar foto", "saved": "Foto de perfil actualizada", "removed": "Foto de perfil eliminada", "bad": "No se pudo abrir este archivo"};
