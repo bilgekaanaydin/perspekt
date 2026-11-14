@@ -113,6 +113,27 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       </div>
     </div>
 
+    <div style="display: flex; flex-direction: column; gap: 10px">
+      <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">{{acc.title}}</span>
+      <div class="st" style="display: flex; flex-direction: column; padding: 2px 16px; border-radius: 20px; background: var(--k151518)">
+        <sc-for list="{{acc.rows}}" as="a" hint-placeholder-count="4">
+          <div style="display: flex; align-items: center; gap: 12px; min-height: 60px; border-bottom: {{a.bd}}">
+            <span aria-hidden="true" style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; background: {{a.ibg}}; color: var(--kF5F7FA)">
+              <sc-if value="{{a.isImg}}" hint-placeholder-val="{{ false }}"><img src="{{a.img}}" alt="" style="width: 16px; height: 16px"></sc-if>
+              <sc-if value="{{a.isMail}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3.5 5.5h17v13h-17z"></path><path d="M3.5 6.5l8.5 7 8.5-7"></path></svg></sc-if>
+              <sc-if value="{{a.isPhone}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M7.5 2.5h9v19h-9z"></path><path d="M10.5 18.5h3"></path></svg></sc-if>
+            </span>
+            <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px">
+              <span style="font-size: 15px; font-weight: 500">{{a.label}}</span>
+              <span style="font-size: 12px; color: var(--k7D8290); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{a.sub}}</span>
+            </span>
+            <sc-if value="{{a.isBadge}}" hint-placeholder-val="{{ false }}"><span style="flex-shrink: 0; display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: #7FA3FF"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{a.badge}}</span></sc-if>
+            <sc-if value="{{a.isBtn}}" hint-placeholder-val="{{ false }}"><button onClick="{{a.tap}}" style="flex-shrink: 0; height: 32px; padding: 0 14px; border-radius: 16px; font-family: inherit; font-size: 13px; font-weight: 600; border: 0.75px solid {{a.bbd}}; background: {{a.bbg}}; color: {{a.bfg}}">{{a.btn}}</button></sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
     <sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
       <div style="display: flex; flex-direction: column; gap: 10px">
         <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">{{g.title}}</span>
@@ -263,6 +284,21 @@ class Component extends DCLogic {
       saveFill: s.saved ? 'currentColor' : 'none',
       alarmBg: s.alarm ? '#205DF4' : 'var(--k151518)'
     };
+    /*ACC*/var AT = {"title": "LINKED ACCOUNTS", "mail": "Email", "phone": "Phone", "verified": "Verified", "link": "Link", "linked": "Linked", "on": "Your {0} account is linked", "off": "{0} unlinked", "primary": "You sign in with this account, so it cannot be removed", "notLinked": "Not linked", "unlink": "Remove"};
+    var aget = function (k, d) { try { var v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? d : v; } catch (e) { return d; } };
+    var prof = aget('pk-profile', { email: 'bilge@ornek.com', phone: '+90 532 123 45 67', prov: 'apple' });
+    var lk = s.lk || aget('pk-linked', { apple: prof.prov === 'apple', google: prof.prov === 'google' });
+    var mask = function (p) { var d = String(p || '').replace(/\D/g, ''); return d.length >= 12 ? '+90 ' + d.slice(2, 5) + ' ••• •• ' + d.slice(-2) : p; };
+    var AF = function (t, n) { return String(t).replace('{0}', n); };
+    var flip = function (k, name) { return function () {
+      if (lk[k] && prof.prov === k) { self.pkSay(AT.primary); return; }
+      var n = Object.assign({}, lk); n[k] = !lk[k]; try { localStorage.setItem('pk-linked', JSON.stringify(n)); } catch (e) {} self.setState({ lk: n }); self.pkSay(AF(n[k] ? AT.on : AT.off, name)); }; };
+    var prov = function (k, name, img) { var on = !!lk[k]; return { label: name, sub: on ? (prof.prov === k ? prof.email : AT.linked) : AT.notLinked, isImg: true, img: img, ibg: '#FFFFFF', isBtn: true, tap: flip(k, name),
+      btn: on ? (prof.prov === k ? AT.linked : AT.unlink) : AT.link, bbd: on ? 'var(--kt21)' : '#205DF4', bbg: on ? 'transparent' : '#205DF4', bfg: on ? 'var(--kF5F7FA)' : '#FFFFFF' }; };
+    var rows = [{ label: AT.mail, sub: prof.email, isMail: true, ibg: 'var(--k17171B)', isBadge: true, badge: AT.verified },
+                { label: AT.phone, sub: mask(prof.phone), isPhone: true, ibg: 'var(--k17171B)', isBadge: true, badge: AT.verified },
+                prov('apple', 'Apple', 'img/161ff1d447dd128b7dbee48db2806b2b.svg'), prov('google', 'Google', 'img/cbf6cd52679c939526a5a2252cc76878.svg')];
+    o.acc = { title: AT.title, rows: rows.map(function (r, i) { r.bd = i < rows.length - 1 ? '1px solid var(--kt18)' : '0'; return r; }) };
     return o;
   }
   _rv() {
