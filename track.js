@@ -37,3 +37,19 @@
   document.addEventListener('click', function (e) { var t = e.target && e.target.closest && e.target.closest('button,a,[role=switch],label'); if (t && t !== sw && !(sw && sw.contains(t))) window.pkHaptic('light'); }, true);
   document.addEventListener('input', function (e) { if (e.target && e.target.tagName === 'INPUT') window.pkHaptic('light'); }, true);
 })();
+
+/* Headers in Title Case: every word of h1/h2 and story titles starts with a capital, with the page language's rules
+   (Turkish i -> İ, which CSS capitalize gets wrong). News articles keep their headline as written. */
+(function () {
+  if (/^Haber/.test(location.pathname.split('/').pop() || '')) return;
+  var lang = (document.documentElement.lang || 'tr').toLowerCase(), busy = false;
+  function fix(el) { var w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT | NodeFilter.SHOW_ELEMENT), n, prev = ' ';
+    while ((n = w.nextNode())) { if (n.nodeType === 1) { if (n.tagName === 'BR') prev = ' '; continue; } var t = n.nodeValue, out = '';
+      for (var i = 0; i < t.length; i++) { var ch = t.charAt(i); out += /\s/.test(prev) && /\S/.test(ch) ? ch.toLocaleUpperCase(lang) : ch; prev = ch; }
+      if (out !== t) n.nodeValue = out; } }
+  function run() { busy = true; try { var els = document.querySelectorAll('h1, h2, .gt[style*="font-size: 40px"]'); for (var i = 0; i < els.length; i++) fix(els[i]); } catch (e) {} busy = false; }
+  var queued = false;
+  function later() { if (busy || queued) return; queued = true; requestAnimationFrame(function () { queued = false; run(); }); }
+  function start() { run(); try { new MutationObserver(later).observe(document.body, { childList: true, subtree: true, characterData: true }); } catch (e) {} }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
