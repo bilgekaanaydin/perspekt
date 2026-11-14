@@ -11,7 +11,7 @@
 
 <title>Perspekt! faq</title>
 <script src="./support.js?v=4"></script>
-<script src="./track.js?v=1"></script>
+<script src="./track.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -107,8 +107,8 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       </sc-for>
     </div>
 
-    <a href="DestekEN.dc.html" class="dk" style="display: flex; align-items: center; gap: 14px; padding: 16px 16px 16px 18px; border-radius: 20px; background: #205DF4; text-decoration: none; color: var(--kFFFFFF)">
-      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 15px; font-weight: 500">Didn't find your answer?</span><span style="font-size: 13px; color: rgba(255,255,255,0.8)">Our support team is here to help.</span></span>
+    <a href="#c0" class="dk" style="display: flex; align-items: center; gap: 14px; padding: 16px 16px 16px 18px; border-radius: 20px; background: #205DF4; text-decoration: none; color: var(--kFFFFFF)">
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 15px; font-weight: 500">Support center coming soon</span><span style="font-size: 13px; color: rgba(255,255,255,0.8)">Meanwhile, you can find answers on this page</span></span>
       <span style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#205DF4" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12h14"></path><path d="M13.5 6.5L19 12l-5.5 5.5"></path></svg></span>
     </a>
   </div>
@@ -206,7 +206,7 @@ class Component extends DCLogic {
   }
   _rv() {
     var self = this, s = this.state || {};
-    var CATS = ["All", "News", "Data", "Account"], QA = [["News", "Where does Perspekt! get its news?", "From licensed news agencies, exchange data and official filings from regulators. AI summarizes them, and every story shows how many sources it used."], ["News", "Are AI summaries investment advice?", "No. Summaries are general information and never include personal buy or sell recommendations."], ["Data", "How delayed are prices?", "Stock, index and FX prices are delayed by 15 minutes. Crypto prices are real time."], ["Data", "How do I set a price alert?", "Tap the bell on any asset page and enter a target price. Manage alerts in Settings > Notifications."], ["Account", "What's included in Perspekt! Plus?", "Unlimited follows, the morning briefing, advanced charts and an ad-free experience."], ["Account", "How do I cancel my subscription?", "Cancel any time in your App Store or Google Play subscription settings. Plus stays active until the end of the period."], ["Account", "How do I manage notifications?", "In Settings, under Notifications, you can turn the morning briefing and price alerts on or off."], ["Account", "How do I delete my data?", "Write to our support team and we will delete your account and personal data. The request is completed within 30 days."]];
+    var CATS = ["All", "News", "Data", "Account"], QA = [["News", "Where does Perspekt! get its news?", "From licensed news agencies, exchange data and official filings from regulators. AI summarizes them, and every story shows how many sources it used."], ["News", "Are AI summaries investment advice?", "No. Summaries are general information and never include personal buy or sell recommendations."], ["Data", "How delayed are prices?", "Stock, index and FX prices are delayed by 15 minutes. Crypto prices are real time."], ["Data", "How do I set a price alert?", "Tap the bell on any asset page and enter a target price. Manage alerts in Settings > Notifications."], ["Account", "What's included in Perspekt! Plus?", "Coming soon: unlimited asset tracking, morning briefing, advanced charts and no ads. For now, every feature is free."], ["Account", "How do I cancel my subscription?", "Plus isn't live yet. Once it launches, you can cancel anytime in your App Store or Google Play subscription settings."], ["Account", "How do I manage notifications?", "In Settings, under Notifications, you can turn the morning briefing and price alerts on or off."], ["Account", "How do I delete my data?", "Write to our support team and we will delete your account and personal data. The request is completed within 30 days."]];
     /*FAQTOK*/var HT = (typeof location !== 'undefined' ? location.hash : '').slice(1).split('.'), htk = function (c) { var x = HT.filter(function (y) { return y.charAt(0) === c && /^\d+$/.test(y.slice(1)); })[0]; return x ? +x.slice(1) : null; };
     var cat = s.cat || CATS[htk('c') || 0], open = s.open === undefined ? (htk('q') != null ? htk('q') : 0) : s.open;
     var cats = CATS.map(function (c) {

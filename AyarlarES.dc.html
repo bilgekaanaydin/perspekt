@@ -11,7 +11,7 @@
 
 <title>Perspekt! ajustes</title>
 <script src="./support.js?v=4"></script>
-<script src="./track.js?v=1"></script>
+<script src="./track.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -89,7 +89,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       <img src="{{pkAv}}" alt="Foto de perfil" style="flex-shrink: 0; width: 56px; height: 56px; border-radius: 28px; object-fit: cover">
       <span style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
         <span style="font-size: 17px; font-weight: 500">Bilge</span>
-        <span style="font-size: 12px; color: var(--k9AB6ED)">Perspekt! Plus · sigues 4 activos</span>
+        <span style="font-size: 12px; color: var(--k9AB6ED)">Sigues 4 activos</span>
       </span>
       <a href="ProfilES.dc.html" aria-label="Editar perfil" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kF5F7FA)"><path d="M9 6l6 6-6 6"></path></svg>
@@ -113,26 +113,25 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       </div>
     </div>
 
+    <sc-for list="{{acc.secs}}" as="sec" hint-placeholder-count="2">
     <div style="display: flex; flex-direction: column; gap: 10px">
-      <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">{{acc.title}}</span>
+      <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">{{sec.title}}</span>
       <div class="st" style="display: flex; flex-direction: column; padding: 2px 16px; border-radius: 20px; background: var(--k151518)">
-        <sc-for list="{{acc.rows}}" as="a" hint-placeholder-count="4">
+        <sc-for list="{{sec.rows}}" as="a" hint-placeholder-count="3">
           <div style="display: flex; align-items: center; gap: 12px; min-height: 60px; border-bottom: {{a.bd}}">
-            <span aria-hidden="true" style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; background: {{a.ibg}}; color: var(--kF5F7FA)">
-              <sc-if value="{{a.isImg}}" hint-placeholder-val="{{ false }}"><img src="{{a.img}}" alt="" style="width: 16px; height: 16px"></sc-if>
-              <sc-if value="{{a.isMail}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3.5 5.5h17v13h-17z"></path><path d="M3.5 6.5l8.5 7 8.5-7"></path></svg></sc-if>
-              <sc-if value="{{a.isPhone}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M7.5 2.5h9v19h-9z"></path><path d="M10.5 18.5h3"></path></svg></sc-if>
-            </span>
+            <span aria-hidden="true" style="flex-shrink: 0; width: 34px; height: 34px; border-radius: 17px; display: flex; align-items: center; justify-content: center; background: var(--k17171B); color: var(--kF5F7FA)"><sc-if value="{{a.isUser}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><circle cx="12" cy="8.5" r="3.5"></circle><path d="M5 20c.8-3.6 3.6-5.5 7-5.5s6.2 1.9 7 5.5"></path></svg></sc-if><sc-if value="{{a.isCal}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 5.5h16v15H4z"></path><path d="M4 10h16"></path><path d="M8.5 3v4M15.5 3v4"></path></svg></sc-if><sc-if value="{{a.isMail}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M3.5 5.5h17v13h-17z"></path><path d="M3.5 6.5l8.5 7 8.5-7"></path></svg></sc-if><sc-if value="{{a.isPhone}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M7.5 2.5h9v19h-9z"></path><path d="M10.5 18.5h3"></path></svg></sc-if><sc-if value="{{a.isTab}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 3h14v18H5z"></path><path d="M10.5 18h3"></path></svg></sc-if><sc-if value="{{a.isLap}}" hint-placeholder-val="{{ false }}"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 5h14v10H5z"></path><path d="M3 18.5h18"></path></svg></sc-if></span>
             <span style="flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px">
-              <span style="font-size: 15px; font-weight: 500">{{a.label}}</span>
-              <span style="font-size: 12px; color: var(--k7D8290); white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{a.sub}}</span>
+              <span style="font-size: 12px; color: var(--k7D8290)">{{a.label}}</span>
+              <span style="font-size: 15px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{a.value}}</span>
             </span>
             <sc-if value="{{a.isBadge}}" hint-placeholder-val="{{ false }}"><span style="flex-shrink: 0; display: flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; color: #7FA3FF"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{a.badge}}</span></sc-if>
-            <sc-if value="{{a.isBtn}}" hint-placeholder-val="{{ false }}"><button onClick="{{a.tap}}" style="flex-shrink: 0; height: 32px; padding: 0 14px; border-radius: 16px; font-family: inherit; font-size: 13px; font-weight: 600; border: 0.75px solid {{a.bbd}}; background: {{a.bbg}}; color: {{a.bfg}}">{{a.btn}}</button></sc-if>
+            <sc-if value="{{a.isBtn}}" hint-placeholder-val="{{ false }}"><button onClick="{{a.tap}}" style="flex-shrink: 0; height: 32px; padding: 0 14px; border-radius: 16px; font-family: inherit; font-size: 13px; font-weight: 600; border: 0.75px solid var(--kt21); background: transparent; color: var(--kF5F7FA)">{{a.btn}}</button></sc-if>
           </div>
         </sc-for>
       </div>
+      <sc-if value="{{sec.hasAct}}" hint-placeholder-val="{{ false }}"><button onClick="{{sec.act}}" style="height: 48px; border-radius: 24px; display: flex; align-items: center; justify-content: center; gap: 8px; font-family: inherit; font-size: 14px; font-weight: 600; border: 0.75px solid var(--kt21); background: transparent; color: var(--kF5F7FA)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16z"></path><path d="M13.5 6.5l4 4"></path></svg>{{sec.actL}}</button></sc-if>
     </div>
+    </sc-for>
 
     <sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
       <div style="display: flex; flex-direction: column; gap: 10px">
@@ -213,6 +212,34 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--kFFFFFF)"><path d="M3 7h10"></path><path d="M19 7h2"></path><path d="M13 4.5h6v5h-6z"></path><path d="M3 17h2"></path><path d="M11 17h10"></path><path d="M5 14.5h6v5H5z"></path></svg>
       </span><span style="flex: 1 1 auto; text-align: center">Ajustes</span></a>
   </nav>
+  <sc-if value="{{pe.on}}" hint-placeholder-val="{{ false }}">
+    <div style="position: absolute; inset: 0; z-index: 30; overflow-y: auto; scrollbar-width: none; box-sizing: border-box; padding: 57px 20px 28px; display: flex; flex-direction: column; background: var(--k000000)">
+      <div style="display: flex; align-items: center; gap: 4px; margin-left: -12px">
+        <button onClick="{{pe.close}}" aria-label="{{pe.back}}" style="flex-shrink: 0; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; color: var(--kF5F7FA)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M20 12H5"></path><path d="M10.5 6.5L5 12l5.5 5.5"></path></svg></button>
+        <h1 class="gt" style="margin: 0; font-size: 26px; font-weight: 700">{{pe.title}}</h1>
+      </div>
+      <sc-if value="{{pe.isForm}}" hint-placeholder-val="{{ true }}">
+      <div class="pk-over" style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 14px; margin-top: 18px">
+        <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: var(--k9AB6ED)">{{pe.lName}}</span><input type="text" onInput="{{pe.tName}}" value="{{pe.name}}" aria-label="{{pe.lName}}" autocomplete="name" style="width: 100%; height: 54px; box-sizing: border-box; padding: 0 16px; border-radius: 16px; border: 0.75px solid var(--kt21); outline: none; background: var(--k151518); font-family: inherit; font-size: 16px; color: var(--kF5F7FA)"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: var(--k9AB6ED)">{{pe.lDob}}</span><input type="text" onInput="{{pe.tDob}}" value="{{pe.dob}}" aria-label="{{pe.lDob}}" inputmode="numeric" maxlength="10" placeholder="{{pe.dobPh}}" style="width: 100%; height: 54px; box-sizing: border-box; padding: 0 16px; border-radius: 16px; border: 0.75px solid var(--kt21); outline: none; background: var(--k151518); font-family: inherit; font-size: 16px; color: var(--kF5F7FA)"></label>
+        <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: var(--k9AB6ED)">{{pe.lPhone}}</span><span style="position: relative; display: block"><span aria-hidden="true" style="position: absolute; left: 16px; top: 0; height: 54px; display: flex; align-items: center; font-size: 16px; color: var(--kF5F7FA)">+90</span><input type="tel" onInput="{{pe.tPh}}" value="{{pe.ph}}" aria-label="{{pe.lPhone}}" inputmode="tel" maxlength="13" style="width: 100%; height: 54px; box-sizing: border-box; padding: 0 16px 0 56px; border-radius: 16px; border: 0.75px solid var(--kt21); outline: none; background: var(--k151518); font-family: inherit; font-size: 16px; color: var(--kF5F7FA)"></span></label>
+        <label style="display: flex; flex-direction: column; gap: 6px"><span style="font-size: 12px; color: var(--k9AB6ED)">{{pe.lMail}}</span><input type="email" onInput="{{pe.tMail}}" value="{{pe.em}}" aria-label="{{pe.lMail}}" autocomplete="email" style="width: 100%; height: 54px; box-sizing: border-box; padding: 0 16px; border-radius: 16px; border: 0.75px solid var(--kt21); outline: none; background: var(--k151518); font-family: inherit; font-size: 16px; color: var(--kF5F7FA)"></label>
+        <span style="font-size: 13px; line-height: 1.4; color: var(--kF5F7FA)">{{pe.note}}</span>
+        <div style="flex: 1 1 auto; min-height: 16px"></div>
+        <button onClick="{{pe.save}}" style="height: 56px; flex-shrink: 0; border-radius: 28px; font-family: inherit; font-size: 16px; font-weight: 700; background: var(--kF5F7FA); color: var(--k000000)">{{pe.saveL}}</button>
+      </div>
+      </sc-if>
+      <sc-if value="{{pe.isCode}}" hint-placeholder-val="{{ false }}">
+      <div class="pk-over" style="flex: 1 1 auto; display: flex; flex-direction: column; gap: 12px; margin-top: 24px">
+        <span style="font-size: 18px; font-weight: 600">{{pe.codeT}}</span>
+        <span style="font-size: 15px; line-height: 1.45; color: var(--kF5F7FA)">{{pe.codeS}}</span>
+        <label style="position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; margin-top: 8px"><sc-for list="{{pe.boxes}}" as="b" hint-placeholder-count="6"><span style="height: 56px; box-sizing: border-box; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 24px; font-weight: 700; border: {{b.bd}}; background: var(--k151518); color: var(--kF5F7FA)">{{b.d}}</span></sc-for><input type="text" inputmode="numeric" autocomplete="one-time-code" maxlength="6" onInput="{{pe.tCode}}" aria-label="{{pe.codeT}}" style="position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; border: 0; font-size: 16px; color: transparent; background: transparent; caret-color: transparent"></label>
+        <div style="flex: 1 1 auto; min-height: 16px"></div>
+        <button onClick="{{pe.resend}}" style="height: 54px; flex-shrink: 0; border-radius: 27px; font-family: inherit; font-size: 15px; font-weight: 600; border: 0.75px solid var(--kt21); background: transparent; color: var(--kF5F7FA)">{{pe.resendL}}</button>
+      </div>
+      </sc-if>
+    </div>
+  </sc-if>
   <sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}">
     <div class="{{tk}}" role="status" style="position: absolute; left: 50%; bottom: 104px; z-index: 9; transform: translate3d(-50%,0,0); max-width: 320px; padding: 11px 16px; border-radius: 14px; background: rgba(28,29,34,0.96); color: #FFFFFF; font-size: 13px; font-weight: 500; white-space: nowrap; box-shadow: 0 8px 24px rgba(0,0,0,0.25)">{{toast}}</div>
   </sc-if>
@@ -284,21 +311,44 @@ class Component extends DCLogic {
       saveFill: s.saved ? 'currentColor' : 'none',
       alarmBg: s.alarm ? '#205DF4' : 'var(--k151518)'
     };
-    /*ACC*/var AT = {"title": "CUENTAS VINCULADAS", "mail": "Correo", "phone": "Teléfono", "verified": "Verificado", "link": "Vincular", "linked": "Vinculada", "on": "Tu cuenta de {0} está vinculada", "off": "{0} desvinculada", "primary": "Inicias sesión con esta cuenta, así que no se puede quitar", "notLinked": "Sin vincular", "unlink": "Quitar"};
+    /*ACC2*/var AT = {"soon": "Muy pronto", "help": "El centro de ayuda llegará muy pronto. Mientras tanto, encontrarás respuestas en las preguntas frecuentes.", "plus": "Perspekt! Plus llegará muy pronto: resumen matinal, gráficos avanzados y sin anuncios. Por ahora, todas las funciones son gratis.", "head": "Sigues 4 activos", "badge": "PLUS · MUY PRONTO", "mSub": "Muy pronto: resumen matinal, gráficos avanzados, sin anuncios", "mBtn": "Avísame", "mToast": "Te avisaremos cuando llegue Plus", "sssT": "Centro de ayuda muy pronto", "sssS": "Mientras tanto, encontrarás respuestas en esta página", "sssOld": ["¿No encontraste tu respuesta?", "Nuestro equipo de soporte te ayuda."], "qa4": "Muy pronto: seguimiento ilimitado de activos, resumen matinal, gráficos avanzados y sin anuncios. Por ahora, todas las funciones son gratis.", "qa5": "Plus aún no está disponible. Cuando llegue, podrás cancelarlo cuando quieras desde los ajustes de suscripción de App Store o Google Play.", "pi": "DATOS PERSONALES", "dv": "DISPOSITIVOS VINCULADOS", "name": "Nombre y apellidos", "dob": "Fecha de nacimiento", "mail": "Correo", "phone": "Teléfono", "verified": "Verificado", "thisDev": "Este dispositivo", "out": "Cerrar sesión", "outT": "Sesión cerrada en {0}", "d2": "Estambul · hace 2 días", "d5": "Ankara · hace 5 días", "now": "Estambul · Activo ahora", "dobDemo": "12/03/1994"};
     var aget = function (k, d) { try { var v = JSON.parse(localStorage.getItem(k) || 'null'); return v == null ? d : v; } catch (e) { return d; } };
-    var prof = aget('pk-profile', { email: 'bilge@ornek.com', phone: '+90 532 123 45 67', prov: 'apple' });
-    var lk = s.lk || aget('pk-linked', { apple: prof.prov === 'apple', google: prof.prov === 'google' });
+    var prof = Object.assign({ name: 'Bilge Aydın', dob: AT.dobDemo, email: 'bilge@ornek.com', phone: '+90 532 123 45 67' }, aget('pk-profile', {}));
     var mask = function (p) { var d = String(p || '').replace(/\D/g, ''); return d.length >= 12 ? '+90 ' + d.slice(2, 5) + ' ••• •• ' + d.slice(-2) : p; };
-    var AF = function (t, n) { return String(t).replace('{0}', n); };
-    var flip = function (k, name) { return function () {
-      if (lk[k] && prof.prov === k) { self.pkSay(AT.primary); return; }
-      var n = Object.assign({}, lk); n[k] = !lk[k]; try { localStorage.setItem('pk-linked', JSON.stringify(n)); } catch (e) {} self.setState({ lk: n }); self.pkSay(AF(n[k] ? AT.on : AT.off, name)); }; };
-    var prov = function (k, name, img) { var on = !!lk[k]; return { label: name, sub: on ? (prof.prov === k ? prof.email : AT.linked) : AT.notLinked, isImg: true, img: img, ibg: '#FFFFFF', isBtn: true, tap: flip(k, name),
-      btn: on ? (prof.prov === k ? AT.linked : AT.unlink) : AT.link, bbd: on ? 'var(--kt21)' : '#205DF4', bbg: on ? 'transparent' : '#205DF4', bfg: on ? 'var(--kF5F7FA)' : '#FFFFFF' }; };
-    var rows = [{ label: AT.mail, sub: prof.email, isMail: true, ibg: 'var(--k17171B)', isBadge: true, badge: AT.verified },
-                { label: AT.phone, sub: mask(prof.phone), isPhone: true, ibg: 'var(--k17171B)', isBadge: true, badge: AT.verified },
-                prov('apple', 'Apple', 'img/161ff1d447dd128b7dbee48db2806b2b.svg'), prov('google', 'Google', 'img/cbf6cd52679c939526a5a2252cc76878.svg')];
-    o.acc = { title: AT.title, rows: rows.map(function (r, i) { r.bd = i < rows.length - 1 ? '1px solid var(--kt18)' : '0'; return r; }) };
+    var off = s.devoff || aget('pk-devoff', []);
+    var signout = function (id, name) { return function () { var n = off.concat([id]); try { localStorage.setItem('pk-devoff', JSON.stringify(n)); } catch (e) {} self.setState({ devoff: n }); self.pkSay(String(AT.outT).replace('{0}', name)); }; };
+    var bd = function (list) { return list.map(function (r, i) { r.bd = i < list.length - 1 ? '1px solid var(--kt18)' : '0'; return r; }); };
+    var pi = [{ isUser: true, label: AT.name, value: prof.name || 'Bilge Aydın' }, { isCal: true, label: AT.dob, value: prof.dob || AT.dobDemo },
+              { isMail: true, label: AT.mail, value: prof.email, isBadge: true, badge: AT.verified }, { isPhone: true, label: AT.phone, value: mask(prof.phone), isBadge: true, badge: AT.verified }];
+    var DEV = [['ip', 'iPhone 15 Pro', 'isPhone', AT.now, true], ['ipad', 'iPad Air', 'isTab', AT.d2, false], ['mac', 'Chrome · macOS', 'isLap', AT.d5, false]];
+    var dv = DEV.filter(function (d) { return off.indexOf(d[0]) < 0; }).map(function (d) { var r = { label: d[3], value: d[1], isBadge: d[4], badge: AT.thisDev, isBtn: !d[4], btn: AT.out, tap: signout(d[0], d[1]) }; r[d[2]] = true; return r; });
+    o.acc = { secs: [{ title: AT.pi, rows: bd(pi) }, { title: AT.dv, rows: bd(dv) }] };
+    /*PEDIT*/var PT = {"upd": "Actualizar datos personales", "title": "Datos personales", "save": "Guardar", "saved": "Tus datos se han actualizado", "codeT": "Código de verificación", "codeMail": "Hemos enviado un código de 6 cifras a {0}", "codePhone": "Hemos enviado un código de 6 cifras por SMS al +90 {0}", "resend": "Reenviar código", "resent": "Nuevo código enviado", "note": "Si cambias tu correo o tu teléfono, verificaremos el nuevo con un código", "sep": "/", "dobPh": "DD/MM/AAAA", "back": "Atrás", "eFull": "Introduce tu nombre y apellidos", "eDob": "Introduce tu fecha de nacimiento como DD/MM/AAAA", "eAge": "Debes tener al menos 18 años", "ePhone": "Introduce un número de móvil válido", "eMail": "Introduce un correo válido"}, pe = s.pe || null;
+    var pdig = function (v) { return String(v || '').replace(/\D/g, ''); };
+    var pDob = function (v) { var d = pdig(v).slice(0, 8); return d.length > 4 ? d.slice(0, 2) + PT.sep + d.slice(2, 4) + PT.sep + d.slice(4) : d.length > 2 ? d.slice(0, 2) + PT.sep + d.slice(2) : d; };
+    var pPh = function (v) { var d = pdig(v).replace(/^0/, '').slice(0, 10); return [d.slice(0, 3), d.slice(3, 6), d.slice(6, 8), d.slice(8, 10)].filter(Boolean).join(' '); };
+    var phLoc = function (p) { var d = pdig(p); if (d.length === 12 && d.indexOf('90') === 0) d = d.slice(2); return pPh(d); };
+    var setPe = function (k, v) { self.setState(function (st) { var n = Object.assign({}, st.pe); n[k] = v; return { pe: n }; }); };
+    var inp = function (k, fmt) { return function (e) { var v = fmt ? fmt(e.target.value) : e.target.value; if (fmt) e.target.value = v; setPe(k, v); }; };
+    var pAge = function (dob) { var p = String(dob).split(PT.sep), dd = +p[0], mm = +p[1], yy = +p[2]; if (p.length !== 3 || !yy || yy < 1900 || mm < 1 || mm > 12 || dd < 1 || dd > 31) return -1;
+      var now = new Date(), a = now.getFullYear() - yy; if (now.getMonth() + 1 < mm || (now.getMonth() + 1 === mm && now.getDate() < dd)) a--; return a; };
+    var commit = function (x) { var cur = aget('pk-profile', {}); try { localStorage.setItem('pk-profile', JSON.stringify(Object.assign({}, cur, { name: x.name.trim(), dob: x.dob, phone: '+90 ' + x.ph, email: x.em.trim() }))); } catch (e) {}
+      self.setState({ pe: null }); self.pkSay(PT.saved); if (window.pkHaptic) window.pkHaptic('success'); };
+    var openPe = function () { self.setState({ pe: { name: prof.name || '', dob: prof.dob || '', ph: phLoc(prof.phone), em: prof.email || '', step: 'form', code: '' } }); };
+    if (o.acc && o.acc.secs && o.acc.secs[0]) { o.acc.secs[0].hasAct = true; o.acc.secs[0].actL = PT.upd; o.acc.secs[0].act = openPe; }
+    var pc = (pe && pe.code) || '';
+    o.pe = { on: !!pe, isForm: !!pe && pe.step !== 'code', isCode: !!pe && pe.step === 'code', title: PT.title, back: PT.back, note: PT.note, saveL: PT.save, dobPh: PT.dobPh,
+      lName: AT.name, lDob: AT.dob, lPhone: AT.phone, lMail: AT.mail, name: pe ? pe.name : '', dob: pe ? pe.dob : '', ph: pe ? pe.ph : '', em: pe ? pe.em : '',
+      tName: inp('name'), tDob: inp('dob', pDob), tPh: inp('ph', pPh), tMail: inp('em'),
+      close: function () { if (pe && pe.step === 'code') setPe('step', 'form'); else self.setState({ pe: null }); },
+      save: function () { var x = self.state.pe, err = x.name.trim().split(/\s+/).length < 2 ? PT.eFull : pAge(x.dob) < 0 ? PT.eDob : pAge(x.dob) < 18 ? PT.eAge : !/^5\d{9}$/.test(pdig(x.ph)) ? PT.ePhone : !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(x.em.trim()) ? PT.eMail : '';
+        if (err) { self.pkSay(err); if (window.pkHaptic) window.pkHaptic('error'); return; }
+        var chMail = x.em.trim() !== (prof.email || ''), chPh = '+90 ' + x.ph !== phLoc(prof.phone) && x.ph !== phLoc(prof.phone);
+        if (chMail || chPh) { self.setState({ pe: Object.assign({}, x, { step: 'code', code: '', via: chMail ? 'mail' : 'phone' }) }); } else commit(x); },
+      codeT: PT.codeT, codeS: pe ? (pe.via === 'mail' ? PT.codeMail.replace('{0}', pe.em) : PT.codePhone.replace('{0}', pe.ph)) : '', resendL: PT.resend,
+      resend: function () { var el = document.querySelector('input[autocomplete="one-time-code"]'); if (el) el.value = ''; setPe('code', ''); self.pkSay(PT.resent); },
+      boxes: [0, 1, 2, 3, 4, 5].map(function (i) { return { d: pc.charAt(i), bd: i === Math.min(pc.length, 5) ? '1.5px solid #6FA0FF' : '0.75px solid var(--kt21)' }; }),
+      tCode: function (e) { var el = e.target, c = pdig(el.value).slice(0, 6); el.value = c; setPe('code', c); if (c.length === 6) setTimeout(function () { el.value = ''; commit(self.state.pe); }, 450); } };
     return o;
   }
   _rv() {
@@ -345,8 +395,8 @@ class Component extends DCLogic {
     var groups = [
       grp("APARIENCIA", [theme, cyc('chart', "Tipo de gráfico", CH)]),
       grp("CONTENIDO", [exp('lang', "Idioma", "Español", "En iPhone también puedes cambiarlo en Ajustes > Apps > Perspekt!.", LANGS), exp('cats', "Categorías", catVal, '', chips), cyc('sum', "Duración del resumen", SUM)]),
-      grp("SOPORTE", [link("Centro de ayuda", '', 'DestekES.dc.html'), link("Preguntas frecuentes", '', 'SSSES.dc.html')]),
-      grp("CUENTA", [exp('sub', "Suscripción", 'Plus', "Perspekt! Plus se renueva cada mes. Incluye seguimiento ilimitado, el resumen matinal y gráficos avanzados. Se gestiona en App Store o Google Play."), exp('priv', "Privacidad", '', "Tu historial solo se usa para recomendarte noticias y nunca se comparte con terceros. Puedes borrar tus datos cuando quieras."), exp('legal', "Avisos legales", '', "El contenido de Perspekt! es informativo y no constituye asesoramiento. Los precios de acciones, índices y divisas tienen 15 minutos de retraso.")])
+      grp("SOPORTE", [exp('help', "Centro de ayuda", "Muy pronto", "El centro de ayuda llegará muy pronto. Mientras tanto, encontrarás respuestas en las preguntas frecuentes."), link("Preguntas frecuentes", '', 'SSSES.dc.html')]),
+      grp("CUENTA", [exp('sub', "Suscripción", "Muy pronto", "Perspekt! Plus llegará muy pronto: resumen matinal, gráficos avanzados y sin anuncios. Por ahora, todas las funciones son gratis."), exp('priv', "Privacidad", '', "Tu historial solo se usa para recomendarte noticias y nunca se comparte con terceros. Puedes borrar tus datos cuando quieras."), exp('legal', "Avisos legales", '', "El contenido de Perspekt! es informativo y no constituye asesoramiento. Los precios de acciones, índices y divisas tienen 15 minutos de retraso.")])
     ];
     return { toggles: toggles, groups: groups };
   }

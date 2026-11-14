@@ -11,7 +11,7 @@
 
 <title>Perspekt! sıkça sorulan sorular, açık tema</title>
 <script src="./support.js?v=4"></script>
-<script src="./track.js?v=1"></script>
+<script src="./track.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -106,8 +106,8 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       </sc-for>
     </div>
 
-    <a href="Destek.dc.html" class="dk" style="display: flex; align-items: center; gap: 14px; padding: 16px 16px 16px 18px; border-radius: 20px; background: #205DF4; text-decoration: none; color: var(--kFFFFFF)">
-      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 15px; font-weight: 500">Cevabını bulamadın mı?</span><span style="font-size: 13px; color: rgba(255,255,255,0.8)">Destek ekibimiz yardımcı olsun.</span></span>
+    <a href="#c0" class="dk" style="display: flex; align-items: center; gap: 14px; padding: 16px 16px 16px 18px; border-radius: 20px; background: #205DF4; text-decoration: none; color: var(--kFFFFFF)">
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 15px; font-weight: 500">Destek merkezi çok yakında</span><span style="font-size: 13px; color: rgba(255,255,255,0.8)">Bu arada cevapları bu sayfada bulabilirsin</span></span>
       <span style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#205DF4" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12h14"></path><path d="M13.5 6.5L19 12l-5.5 5.5"></path></svg></span>
     </a>
   </div>
@@ -205,7 +205,7 @@ class Component extends DCLogic {
   }
   _rv() {
     var self = this, s = this.state || {};
-    var CATS = ["Tümü", "Haberler", "Veriler", "Hesap"], QA = [["Haberler", "Perspekt! haberleri nereden alıyor?", "Lisanslı haber ajansları, borsa verileri ve SPK, KAP gibi resmi kurum açıklamaları kaynak alınır. Yapay zekâ bunları özetler; her haberde kaynak sayısı görünür."], ["Haberler", "Yapay zekâ özetleri yatırım tavsiyesi mi?", "Hayır. Özetler genel bilgilendirme amaçlıdır, kişiye özel al/sat önerisi içermez."], ["Veriler", "Fiyatlar ne kadar gecikmeli?", "Hisse, endeks ve döviz fiyatları 15 dakika gecikmelidir. Kripto fiyatları anlıktır."], ["Veriler", "Fiyat alarmı nasıl kurarım?", "Varlık sayfasındaki zil ikonuna dokun ve hedef fiyatı gir. Alarmları Ayarlar > Bildirimler'den yönetebilirsin."], ["Hesap", "Perspekt! Plus'ta neler var?", "Sınırsız varlık takibi, sabah brifingi, gelişmiş grafikler ve reklamsız deneyim."], ["Hesap", "Aboneliğimi nasıl iptal ederim?", "App Store veya Google Play abonelik ayarlarından istediğin zaman iptal edebilirsin. Dönem sonuna kadar Plus açık kalır."], ["Hesap", "Bildirimleri nasıl yönetirim?", "Ayarlar'daki Bildirimler bölümünden sabah brifingini ve fiyat alarmlarını açıp kapatabilirsin."], ["Hesap", "Verilerimi nasıl silerim?", "Destek ekibimize yazman yeterli; hesabını ve kişisel verilerini sileriz. Talep 30 gün içinde tamamlanır."]];
+    var CATS = ["Tümü", "Haberler", "Veriler", "Hesap"], QA = [["Haberler", "Perspekt! haberleri nereden alıyor?", "Lisanslı haber ajansları, borsa verileri ve SPK, KAP gibi resmi kurum açıklamaları kaynak alınır. Yapay zekâ bunları özetler; her haberde kaynak sayısı görünür."], ["Haberler", "Yapay zekâ özetleri yatırım tavsiyesi mi?", "Hayır. Özetler genel bilgilendirme amaçlıdır, kişiye özel al/sat önerisi içermez."], ["Veriler", "Fiyatlar ne kadar gecikmeli?", "Hisse, endeks ve döviz fiyatları 15 dakika gecikmelidir. Kripto fiyatları anlıktır."], ["Veriler", "Fiyat alarmı nasıl kurarım?", "Varlık sayfasındaki zil ikonuna dokun ve hedef fiyatı gir. Alarmları Ayarlar > Bildirimler'den yönetebilirsin."], ["Hesap", "Perspekt! Plus'ta neler var?", "Çok yakında: sınırsız varlık takibi, sabah brifingi, gelişmiş grafikler ve reklamsız deneyim. Şimdilik tüm özellikler ücretsiz."], ["Hesap", "Aboneliğimi nasıl iptal ederim?", "Plus henüz yayında değil. Açıldığında App Store veya Google Play abonelik ayarlarından istediğin zaman iptal edebileceksin."], ["Hesap", "Bildirimleri nasıl yönetirim?", "Ayarlar'daki Bildirimler bölümünden sabah brifingini ve fiyat alarmlarını açıp kapatabilirsin."], ["Hesap", "Verilerimi nasıl silerim?", "Destek ekibimize yazman yeterli; hesabını ve kişisel verilerini sileriz. Talep 30 gün içinde tamamlanır."]];
     /*FAQTOK*/var HT = (typeof location !== 'undefined' ? location.hash : '').slice(1).split('.'), htk = function (c) { var x = HT.filter(function (y) { return y.charAt(0) === c && /^\d+$/.test(y.slice(1)); })[0]; return x ? +x.slice(1) : null; };
     var cat = s.cat || CATS[htk('c') || 0], open = s.open === undefined ? (htk('q') != null ? htk('q') : 0) : s.open;
     var cats = CATS.map(function (c) {

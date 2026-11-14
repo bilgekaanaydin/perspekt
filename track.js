@@ -22,3 +22,18 @@
     setInterval(function () { if (document.visibilityState === 'visible') L.setItem('pk-sec', String((+L.getItem('pk-sec') || 0) + 10)); }, 10000);
   } catch (e) {}
 })();
+
+/* Haptics: Vibration API where it exists (Android); on iPhone (iOS 18+ Safari has no vibrate) a hidden switch toggle gives
+   a light tap. Browsers only allow it right after a touch, so it rides on taps and typing. window.pkHaptic(kind) for others. */
+(function () {
+  var sw = null;
+  function ios() { try { if (!sw) { var l = document.createElement('label'), i = document.createElement('input'); l.setAttribute('aria-hidden', 'true');
+      l.style.cssText = 'position:fixed;left:-9999px;top:0;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none'; i.type = 'checkbox'; i.setAttribute('switch', ''); i.tabIndex = -1; l.appendChild(i); document.body.appendChild(l); sw = l; }
+    sw.click(); } catch (e) {} }
+  window.pkHaptic = function (kind) { var pat = ({ light: 8, medium: 16, success: [12, 70, 20], error: [30, 50, 30] })[kind || 'light'] || 8, done = false;
+    var ua = navigator.userActivation; if (ua && !ua.hasBeenActive) return;
+    try { if (navigator.vibrate) done = navigator.vibrate(pat); } catch (e) {}
+    if (!done || /iP(hone|ad|od)/.test(navigator.userAgent)) { ios(); if (kind === 'success' || kind === 'error') setTimeout(ios, 110); } };
+  document.addEventListener('click', function (e) { var t = e.target && e.target.closest && e.target.closest('button,a,[role=switch],label'); if (t && t !== sw && !(sw && sw.contains(t))) window.pkHaptic('light'); }, true);
+  document.addEventListener('input', function (e) { if (e.target && e.target.tagName === 'INPUT') window.pkHaptic('light'); }, true);
+})();

@@ -11,7 +11,7 @@
 
 <title>Perspekt! inicio</title>
 <script src="./support.js?v=4"></script>
-<script src="./track.js?v=1"></script>
+<script src="./track.js?v=3"></script>
 <script src="./ptr.js?v=3"></script>
 </head>
 <body>
@@ -21,7 +21,7 @@
 @font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
 @font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
 @font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
-body{margin:0}img[src*="lg-fx-"]{width:100%!important;height:100%!important}span:has(> img[src*="lg-fx-"]){background:transparent!important;box-shadow:none!important}img[src*="lg-cm-"]{width:100%!important;height:100%!important}span:has(> img[src*="lg-cm-"]){background:transparent!important;box-shadow:none!important}img[src*="-w.png"]{width:76%!important;height:76%!important}
+body{margin:0}@media (prefers-reduced-motion: no-preference){@keyframes stk-pop{0%{transform:scale(.3);opacity:0}55%{transform:scale(1.18);opacity:1}75%{transform:scale(.94)}100%{transform:scale(1)}}@keyframes stk-glow{0%,100%{box-shadow:0 0 0 .75px rgba(169,193,255,.35),0 0 0 0 rgba(32,93,244,0)}50%{box-shadow:0 0 0 .75px rgba(169,193,255,.55),0 0 52px 14px rgba(32,93,244,.5)}}.stk-pop{animation:stk-pop .7s cubic-bezier(.2,.8,.2,1) both,stk-glow 1.5s .7s ease-in-out 2}@keyframes stk-roll{from{transform:translateY(0)}to{transform:translateY(-92px)}}.stk-roll{animation:stk-roll .6s .8s cubic-bezier(.3,1.35,.5,1) both}@keyframes stk-tick{0%{transform:scale(.3);opacity:0}60%{transform:scale(1.22);opacity:1}100%{transform:scale(1)}}.stk-today{animation:stk-tick .5s 1.35s cubic-bezier(.2,.8,.2,1) both}@keyframes stk-bar{from{transform:scaleX(var(--p0))}to{transform:scaleX(1)}}.stk-bar{transform-origin:left center;animation:stk-bar .9s 1.55s cubic-bezier(.2,.8,.2,1) both}@keyframes stk-spark{0%{transform:translate(0,0) scale(.2);opacity:0}25%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1);opacity:0}}.stk-spark{position:absolute;left:50%;top:50%;width:8px;height:8px;margin:-4px 0 0 -4px;border-radius:4px;background:#A9C1FF;pointer-events:none;animation:stk-spark .95s .4s cubic-bezier(.2,.8,.2,1) both}}img[src*="lg-fx-"]{width:100%!important;height:100%!important}span:has(> img[src*="lg-fx-"]){background:transparent!important;box-shadow:none!important}img[src*="lg-cm-"]{width:100%!important;height:100%!important}span:has(> img[src*="lg-cm-"]){background:transparent!important;box-shadow:none!important}img[src*="-w.png"]{width:76%!important;height:76%!important}
 @media (prefers-reduced-motion: no-preference){
 @keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
 @keyframes pk-in{from{opacity:0}to{opacity:1}}
@@ -124,7 +124,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
             </span>
           </div>
           <div style="position: absolute; left: 20px; top: 20px; bottom: 18px; width: 220px; display: flex; flex-direction: column">
-            <span style="font-size: 20px; font-weight: 700; line-height: 1.12; letter-spacing: -0.02em">La Fed bajó los tipos.<br>La tecnología lideró</span>
+            <span style="font-size: 20px; font-weight: 700; line-height: 1.12; letter-spacing: -0.02em">La Fed bajó los tipos<br>La tecnología lideró</span>
             <span style="margin-top: auto; align-self: flex-start; display: flex; align-items: center; gap: 6px; height: 34px; padding: 0 14px; background: #FFFFFF; border-radius: 17px; color: #1642C2; font-size: 13px; font-weight: 700">
               Empieza el día
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1642C2" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12h14"></path><path d="M13.5 6.5L19 12l-5.5 5.5"></path></svg>
@@ -305,9 +305,9 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
     <div style="position: absolute; inset: 0; z-index: 30; box-sizing: border-box; padding: 57px 20px 28px; display: flex; flex-direction: column; background: var(--k000000)">
       <div style="display: flex; justify-content: flex-end"><button onClick="{{stk.close}}" aria-label="{{stk.closeL}}" style="width: 44px; height: 44px; margin-right: -10px; display: flex; align-items: center; justify-content: center; color: var(--kF5F7FA)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button></div>
       <div class="pk-over" style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; text-align: center">
-        <div class="dk" style="width: 112px; height: 112px; border-radius: 56px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, rgba(32,93,244,0.55) 0%, rgba(32,93,244,0.12) 62%, transparent 72%); box-shadow: 0 0 0 0.75px rgba(169,193,255,0.35)"><svg width="56" height="56" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: #FFFFFF"><path d="M10.6 2.3c-.3 3-1.9 4.8-3.9 6.3C4.9 10 4 12.3 4 14.9a8 8 0 0 0 16 .1c0-2.6-1-4.8-2.8-6.7l-1.6 2.8C15.1 7.2 13.5 4.2 10.6 2.3z"></path></svg></div>
+        <div class="dk {{stk.fxFlame}}" style="position: relative; width: 112px; height: 112px; border-radius: 56px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 40%, rgba(32,93,244,0.55) 0%, rgba(32,93,244,0.12) 62%, transparent 72%); box-shadow: 0 0 0 0.75px rgba(169,193,255,0.35)"><svg width="56" height="56" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="color: #FFFFFF"><path d="M10.6 2.3c-.3 3-1.9 4.8-3.9 6.3C4.9 10 4 12.3 4 14.9a8 8 0 0 0 16 .1c0-2.6-1-4.8-2.8-6.7l-1.6 2.8C15.1 7.2 13.5 4.2 10.6 2.3z"></path></svg><sc-if value="{{stk.anim}}" hint-placeholder-val="{{ false }}"><span class="stk-spark" style="--dx: 0px; --dy: -84px"></span><span class="stk-spark" style="--dx: 72px; --dy: -44px"></span><span class="stk-spark" style="--dx: 78px; --dy: 30px"></span><span class="stk-spark" style="--dx: 20px; --dy: 82px"></span><span class="stk-spark" style="--dx: -52px; --dy: 66px"></span><span class="stk-spark" style="--dx: -80px; --dy: -16px"></span><span class="stk-spark" style="--dx: -40px; --dy: -74px"></span></sc-if></div>
         <div style="display: flex; flex-direction: column; align-items: center; gap: 2px">
-          <span class="gt" style="font-size: 88px; font-weight: 700; line-height: 1; letter-spacing: -0.03em">{{stk.n}}</span>
+          <span style="display: block; height: 92px; overflow: hidden"><span class="{{stk.fxNum}}" style="display: flex; flex-direction: column"><sc-if value="{{stk.anim}}" hint-placeholder-val="{{ false }}"><span class="gt" style="display: block; height: 92px; font-size: 88px; font-weight: 700; line-height: 84px; letter-spacing: -0.03em">{{stk.prev}}</span></sc-if><span class="gt" style="display: block; height: 92px; font-size: 88px; font-weight: 700; line-height: 84px; letter-spacing: -0.03em">{{stk.n}}</span></span></span>
           <span style="font-size: 15px; font-weight: 500; color: var(--k9AB6ED)">{{stk.days}}</span>
         </div>
         <span style="max-width: 300px; font-size: 17px; font-weight: 500; line-height: 1.35; color: var(--kF5F7FA)">{{stk.msg}}</span>
@@ -316,7 +316,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
           <sc-for list="{{stk.wk}}" as="d" hint-placeholder-count="7">
             <div style="display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: {{d.op}}">
               <span style="font-size: 12px; font-weight: 600; color: var(--k9AA3C0)">{{d.l}}</span>
-              <span style="width: 34px; height: 34px; box-sizing: border-box; border-radius: 17px; display: flex; align-items: center; justify-content: center; background: {{d.bg}}; border: {{d.bd}}">
+              <span class="{{d.cls}}" style="width: 34px; height: 34px; box-sizing: border-box; border-radius: 17px; display: flex; align-items: center; justify-content: center; background: {{d.bg}}; border: {{d.bd}}">
                 <sc-if value="{{d.done}}" hint-placeholder-val="{{ true }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></sc-if>
                 <sc-if value="{{d.frz}}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: #7FA3FF"><path d="M12 3v18"></path><path d="M4.2 7.5l15.6 9"></path><path d="M4.2 16.5l15.6-9"></path><path d="M9.5 4.5L12 7l2.5-2.5"></path><path d="M9.5 19.5L12 17l2.5 2.5"></path></svg></sc-if>
               </span>
@@ -332,7 +332,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         </div>
         <div style="width: 100%; display: flex; flex-direction: column; gap: 8px">
           <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--kA9AEBB)"><span>{{stk.goal}}</span><span>{{stk.best}}</span></div>
-          <div style="height: 6px; border-radius: 3px; overflow: hidden; background: var(--kt20)"><div style="height: 100%; width: {{stk.prog}}; border-radius: 3px; background: linear-gradient(90deg, #205DF4 0%, #A9C1FF 100%)"></div></div>
+          <div style="height: 6px; border-radius: 3px; overflow: hidden; background: var(--kt20)"><div class="{{stk.fxBar}}" style="height: 100%; width: {{stk.prog}}; border-radius: 3px; --p0: {{stk.p0}}; background: linear-gradient(90deg, #205DF4 0%, #A9C1FF 100%)"></div></div>
         </div>
       </div>
       <button onClick="{{stk.close}}" style="height: 54px; border-radius: 27px; background: var(--kF5F7FA); font-family: inherit; font-size: 16px; font-weight: 700; color: var(--k000000)">{{stk.go}}</button>
@@ -433,6 +433,11 @@ class Component extends DCLogic {
       days: STT.days, msg: F2(s.stk ? STT.keep : STT[stk.kind]), earned: stk.earned && !s.stk, earnTx: STT.earned, fz: STT.fz, fzTx: STT.fz_tx, fzN: stS.fz + '/2', goal: F2(STT.goal), best: F2(STT.best), go: STT.go, closeL: STT.close,
       prog: Math.round((stS.n % 7 || 7) / 7 * 100) + '%',
       wk: stk.wk.map(function (d) { return { l: d.l, done: d.done, frz: d.frz, none: !d.done && !d.frz, bg: d.done ? '#205DF4' : 'transparent', bd: d.today ? '1.5px solid #9AB6ED' : d.done || d.frz ? '0' : '0.75px solid var(--kt20)', op: d.future ? 0.4 : 1 }; }) };
+    /*STKANIM*/var stA = s.stk === undefined && stk.fresh, stPrev = stk.kind === 'lost' ? 0 : Math.max(0, stS.n - 1);
+    var stP = function (n) { return (n % 7 || 7) / 7; }, stP0 = stk.kind === 'lost' || stS.n % 7 === 1 ? 0 : stP(stPrev) / stP(stS.n);
+    o.stk.anim = stA; o.stk.prev = stPrev; o.stk.fxFlame = stA ? 'stk-pop' : ''; o.stk.fxNum = stA ? 'stk-roll' : ''; o.stk.fxBar = stA ? 'stk-bar' : ''; o.stk.p0 = stP0.toFixed(3);
+    o.stk.wk.forEach(function (d, i) { d.cls = stA && stk.wk[i].today ? 'stk-today' : ''; });
+    if (stA && !this._hap) { this._hap = 1; setTimeout(function () { if (window.pkHaptic) window.pkHaptic('success'); }, 1400); }
     /*SEARCH*/var SAS = { XHARZ: ['Índice BIST de OPV', 'Borsa İstanbul', 18452.30, 1.84, '', 2], QQQ: ['Invesco QQQ', 'NASDAQ 100', 651.98, 1.42, '$', 2], AAPL: ['Apple', 'NASDAQ', 241.80, 1.08, '$', 2], NVDA: ['Nvidia', 'NASDAQ', 148.20, 4.12, '$', 2], TSLA: ['Tesla', 'NASDAQ', 352.40, -3.40, '$', 2],
       MSFT: ['Microsoft', 'NASDAQ', 432.60, 0.84, '$', 2], AMZN: ['Amazon', 'NASDAQ', 214.10, 1.35, '$', 2], GOOGL: ['Alphabet', 'NASDAQ', 176.40, 0.92, '$', 2], META: ['Meta', 'NASDAQ', 582.30, -0.66, '$', 2],
       AMD: ['AMD', 'NASDAQ', 142.80, 2.48, '$', 2], NFLX: ['Netflix', 'NASDAQ', 768.20, 0.57, '$', 2], ORCL: ['Oracle', 'NYSE', 178.50, 2.10, '$', 2], RIVN: ['Rivian', 'NASDAQ', 12.84, -1.85, '$', 2],

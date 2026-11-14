@@ -11,7 +11,7 @@
 
 <title>Perspekt! profil, açık tema</title>
 <script src="./support.js?v=4"></script>
-<script src="./track.js?v=1"></script>
+<script src="./track.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -93,7 +93,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         <input type="file" accept="image/*" onChange="{{av.pick}}" style="position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none">
       </label>
       <span style="font-size: 22px; font-weight: 700; color: var(--kF5F7FA)">Bilge</span>
-      <span class="dk dk" style="padding: 5px 10px; border-radius: 10px; background: #205DF4; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--kFFFFFF)">PERSPEKT! PLUS ÜYESİ</span>
+      <span class="dk dk" style="padding: 5px 10px; border-radius: 10px; background: #205DF4; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; color: var(--kFFFFFF)">PLUS · ÇOK YAKINDA</span>
       <sc-if value="{{av.custom}}" hint-placeholder-val="{{ false }}"><button onClick="{{av.reset}}" style="height: 30px; padding: 0 12px; border-radius: 15px; border: 0.75px solid var(--kt20); font-family: inherit; font-size: 12px; font-weight: 600; color: var(--kC4C8D2)">{{av.remove}}</button></sc-if>
       <span style="font-size: 13px; color: var(--k9AB6ED)">2 yıldır üye · Kasım 2024'ten beri</span>
       <span style="display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--kC4C8D2)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true" style="color: var(--k9AB6ED)"><path d="M12 3l2.6 5.5 6 .8-4.4 4.1 1.1 6L12 16.6 6.7 19.4l1.1-6L3.4 9.3l6-.8z"></path></svg>Erken üye</span>
@@ -128,8 +128,8 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
     <div style="display: flex; flex-direction: column; gap: 10px">
       <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">ÜYELİK</span>
       <div class="dk dk" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 16px 16px 18px; border-radius: 20px; background: #205DF4; color: var(--kFFFFFF)">
-        <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; font-weight: 600">Plus · Aylık</span><span style="font-size: 12px; color: rgba(255,255,255,0.8)">Sonraki yenileme: 7 Aralık 2026</span></span>
-        <button onClick="{{manage}}" style="flex-shrink: 0; height: 34px; padding: 0 14px; border-radius: 17px; background: #FFFFFF; color: #1642C2; font-size: 13px; font-weight: 700">Planı yönet</button>
+        <span style="display: flex; flex-direction: column; gap: 4px"><span style="font-size: 16px; font-weight: 600">Perspekt! Plus</span><span style="font-size: 12px; color: rgba(255,255,255,0.8)">Çok yakında: sabah brifingi, gelişmiş grafikler, reklamsız deneyim</span></span>
+        <button onClick="{{manage}}" style="flex-shrink: 0; height: 34px; padding: 0 14px; border-radius: 17px; background: #FFFFFF; color: #1642C2; font-size: 13px; font-weight: 700">Haber ver</button>
       </div>
     </div>
 
@@ -331,7 +331,7 @@ class Component extends DCLogic {
     return {
       ints: ints, editLabel: edit ? "Bitti" : "Düzenle",
       toggleEdit: function () { if (edit) self.pkSay("İlgi alanların güncellendi"); self.setState({ edit: !edit }); },
-      manage: function () { self.pkSay("Abonelik ayarları App Store'da açılır"); }
+      manage: function () { self.pkSay("Plus açıldığında sana haber vereceğiz"); }
     };
   }
 }

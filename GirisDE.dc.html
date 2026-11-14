@@ -12,7 +12,7 @@
 <title>Perspekt! Anmeldung</title>
 <script>try{var h=location.hash||'';if(/intro|out/.test(h)){localStorage.removeItem('pk-user');localStorage.removeItem('pk-int')}else if(!/\bg(w|1|2|3|in|up|int|pf|vm|vp)\b/.test(h)&&localStorage.getItem('pk-user')){location.replace('MainDE.dc.html')}}catch(e){}</script>
 <script src="./support.js?v=4"></script>
-<script src="./track.js?v=1"></script>
+<script src="./track.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -365,8 +365,8 @@ class Component extends DCLogic {
       mkt: !!s.mkt, mktP: s.mkt ? 'true' : 'false', mktBd: boxSt(s.mkt).bd, mktBg: boxSt(s.mkt).bg, tMkt: function () { self.setState({ mkt: !s.mkt }); },
       doc: function () { self.pkSay(T.docSoon); },
       login: function () { if (!okMail) { self.pkSay(T.eMail); return; } if (!pw) { self.pkSay(T.ePass); return; } home(); },
-      signup: function () { var e = check(true, true); if (e) { self.pkSay(e); return; } self.setState({ step: 'vm', code: '', sentAt: Date.now() }); self.pkSay(T.sentMail); },
-      pfDone: function () { var e = check(false, false); if (e) { self.pkSay(e); return; } self.setState({ step: 'vp', code: '', sentAt: Date.now() }); self.pkSay(T.sentSms); },
+      signup: function () { var e = check(true, true); if (e) { self.pkSay(e); if (window.pkHaptic) window.pkHaptic('error'); return; } self.setState({ step: 'vm', code: '', sentAt: Date.now() }); self.pkSay(T.sentMail); },
+      pfDone: function () { var e = check(false, false); if (e) { self.pkSay(e); if (window.pkHaptic) window.pkHaptic('error'); return; } self.setState({ step: 'vp', code: '', sentAt: Date.now() }); self.pkSay(T.sentSms); },
       forgot: function () { self.pkSay(okMail ? T.sent : T.eMail); } };
 
     // code screens: email (vm) and SMS (vp); resend unlocks after 60 seconds
@@ -379,7 +379,7 @@ class Component extends DCLogic {
       rs: left > 0 ? F(T.resendIn, Math.floor(left / 60) + ':' + (left % 60 < 10 ? '0' : '') + (left % 60)) : T.resend, rsFg: left > 0 ? 'var(--k7D8290)' : 'var(--kF5F7FA)',
       resend: function () { if (left > 0) return; var el = document.querySelector('input[autocomplete="one-time-code"]'); if (el) el.value = ''; self.setState({ sentAt: Date.now(), code: '' }); self.pkSay(T.resent); },
       boxes: [0, 1, 2, 3, 4, 5].map(function (i) { return { d: code.charAt(i), bd: i === Math.min(code.length, 5) ? '1.5px solid #6FA0FF' : '0.75px solid var(--kt21)' }; }),
-      typed: function (e) { var el = e.target, c = digits(el.value).slice(0, 6); el.value = c; self.setState({ code: c }); if (c.length === 6) setTimeout(function () { el.value = '';
+      typed: function (e) { var el = e.target, c = digits(el.value).slice(0, 6); el.value = c; self.setState({ code: c }); if (c.length === 6) setTimeout(function () { el.value = ''; if (window.pkHaptic) window.pkHaptic('success');
         if (step === 'vm') { self.setState({ step: 'vp', code: '', sentAt: Date.now() }); self.pkSay(T.mailOk); }
         else { save(); self.setState({ step: 'int', code: '' }); self.pkSay(T.phoneOk); } }, 450); } };
 

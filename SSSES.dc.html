@@ -11,7 +11,7 @@
 
 <title>Perspekt! preguntas frecuentes</title>
 <script src="./support.js?v=4"></script>
-<script src="./track.js?v=1"></script>
+<script src="./track.js?v=3"></script>
 </head>
 <body>
 <x-dc><template>
@@ -107,8 +107,8 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       </sc-for>
     </div>
 
-    <a href="DestekES.dc.html" class="dk" style="display: flex; align-items: center; gap: 14px; padding: 16px 16px 16px 18px; border-radius: 20px; background: #205DF4; text-decoration: none; color: var(--kFFFFFF)">
-      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 15px; font-weight: 500">¿No encontraste tu respuesta?</span><span style="font-size: 13px; color: rgba(255,255,255,0.8)">Nuestro equipo de soporte te ayuda.</span></span>
+    <a href="#c0" class="dk" style="display: flex; align-items: center; gap: 14px; padding: 16px 16px 16px 18px; border-radius: 20px; background: #205DF4; text-decoration: none; color: var(--kFFFFFF)">
+      <span style="flex-grow: 1; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 15px; font-weight: 500">Centro de ayuda muy pronto</span><span style="font-size: 13px; color: rgba(255,255,255,0.8)">Mientras tanto, encontrarás respuestas en esta página</span></span>
       <span style="flex-shrink: 0; width: 32px; height: 32px; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#205DF4" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><path d="M5 12h14"></path><path d="M13.5 6.5L19 12l-5.5 5.5"></path></svg></span>
     </a>
   </div>
@@ -206,7 +206,7 @@ class Component extends DCLogic {
   }
   _rv() {
     var self = this, s = this.state || {};
-    var CATS = ["Todo", "Noticias", "Datos", "Cuenta"], QA = [["Noticias", "¿De dónde saca Perspekt! sus noticias?", "De agencias de noticias con licencia, datos bursátiles y comunicados oficiales de los reguladores. La IA los resume y cada noticia indica cuántas fuentes usó."], ["Noticias", "¿Los resúmenes de IA son asesoramiento?", "No. Son información general y nunca incluyen recomendaciones personales de compra o venta."], ["Datos", "¿Cuánto retraso tienen los precios?", "Acciones, índices y divisas tienen 15 minutos de retraso. Las cripto son en tiempo real."], ["Datos", "¿Cómo creo una alerta de precio?", "Toca la campana en la página de un activo e introduce un precio. Gestiona las alertas en Ajustes > Notificaciones."], ["Cuenta", "¿Qué incluye Perspekt! Plus?", "Seguimiento ilimitado, resumen matinal, gráficos avanzados y sin anuncios."], ["Cuenta", "¿Cómo cancelo mi suscripción?", "Cancela cuando quieras desde App Store o Google Play. Plus sigue activo hasta el final del periodo."], ["Cuenta", "¿Cómo gestiono las notificaciones?", "En Ajustes, en Notificaciones, puedes activar o desactivar el resumen matinal y las alertas de precio."], ["Cuenta", "¿Cómo borro mis datos?", "Escribe a nuestro equipo de soporte y borraremos tu cuenta y tus datos personales. La solicitud se completa en un plazo de 30 días."]];
+    var CATS = ["Todo", "Noticias", "Datos", "Cuenta"], QA = [["Noticias", "¿De dónde saca Perspekt! sus noticias?", "De agencias de noticias con licencia, datos bursátiles y comunicados oficiales de los reguladores. La IA los resume y cada noticia indica cuántas fuentes usó."], ["Noticias", "¿Los resúmenes de IA son asesoramiento?", "No. Son información general y nunca incluyen recomendaciones personales de compra o venta."], ["Datos", "¿Cuánto retraso tienen los precios?", "Acciones, índices y divisas tienen 15 minutos de retraso. Las cripto son en tiempo real."], ["Datos", "¿Cómo creo una alerta de precio?", "Toca la campana en la página de un activo e introduce un precio. Gestiona las alertas en Ajustes > Notificaciones."], ["Cuenta", "¿Qué incluye Perspekt! Plus?", "Muy pronto: seguimiento ilimitado de activos, resumen matinal, gráficos avanzados y sin anuncios. Por ahora, todas las funciones son gratis."], ["Cuenta", "¿Cómo cancelo mi suscripción?", "Plus aún no está disponible. Cuando llegue, podrás cancelarlo cuando quieras desde los ajustes de suscripción de App Store o Google Play."], ["Cuenta", "¿Cómo gestiono las notificaciones?", "En Ajustes, en Notificaciones, puedes activar o desactivar el resumen matinal y las alertas de precio."], ["Cuenta", "¿Cómo borro mis datos?", "Escribe a nuestro equipo de soporte y borraremos tu cuenta y tus datos personales. La solicitud se completa en un plazo de 30 días."]];
     /*FAQTOK*/var HT = (typeof location !== 'undefined' ? location.hash : '').slice(1).split('.'), htk = function (c) { var x = HT.filter(function (y) { return y.charAt(0) === c && /^\d+$/.test(y.slice(1)); })[0]; return x ? +x.slice(1) : null; };
     var cat = s.cat || CATS[htk('c') || 0], open = s.open === undefined ? (htk('q') != null ? htk('q') : 0) : s.open;
     var cats = CATS.map(function (c) {
