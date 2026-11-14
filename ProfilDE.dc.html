@@ -322,8 +322,8 @@ class Component extends DCLogic {
   }
   _rv() {
     var self = this, s = this.state || {};
-    var ALL = ["Finanzen", "Krypto", "Technologie", "Rohstoffe", "Börsengänge", "Welt", "Devisen", "Fonds"];
-    var on = s.on || ALL.slice(0, 3), edit = !!s.edit;
+    /*INTS*/var ALL = ["Finanzen", "Krypto", "US-Aktien", "Borsa Istanbul", "Technologie", "KI", "Gold und Rohstoffe", "Devisen", "Fonds", "Börsengänge", "Dividenden", "Wirtschaft und Zinsen", "Welt", "Energie", "Rüstung", "Gesundheit", "Banken", "Automobil", "Luftfahrt", "Immobilien", "Einzelhandel", "Telekommunikation", "Agrar und Lebensmittel", "Nachhaltigkeit"], IKEYS = ["fin", "kripto", "abd", "bist", "tek", "ai", "altin", "doviz", "fon", "arz", "tem", "eko", "dunya", "enerji", "savunma", "saglik", "banka", "oto", "havacilik", "gyo", "perakende", "telekom", "tarim", "surd"];
+    var on = s.on || (function () { try { var k = JSON.parse(localStorage.getItem('pk-int') || 'null'); if (Array.isArray(k) && k.length) { var l = k.map(function (x) { return ALL[IKEYS.indexOf(x)]; }).filter(Boolean); if (l.length) return l; } } catch (e) {} return [ALL[0], ALL[1], ALL[4]]; })(), edit = !!s.edit;
     var ints = ALL.map(function (c) {
       var sel = on.indexOf(c) >= 0;
       return { label: c, on: sel ? 'true' : 'false', bg: sel ? 'var(--kF5F7FA)' : 'transparent', fg: sel ? 'var(--k000000)' : 'var(--kC4C8D2)', bd: sel ? 'var(--kF5F7FA)' : 'var(--kt20)', op: edit || sel ? 1 : 0.55,
@@ -331,7 +331,7 @@ class Component extends DCLogic {
     });
     return {
       ints: ints, editLabel: edit ? "Fertig" : "Bearbeiten",
-      toggleEdit: function () { if (edit) self.pkSay("Deine Interessen wurden aktualisiert"); self.setState({ edit: !edit }); },
+      toggleEdit: function () { if (edit) { try { localStorage.setItem('pk-int', JSON.stringify(on.map(function (x) { return IKEYS[ALL.indexOf(x)]; }).filter(Boolean))); } catch (e) {} } if (edit) self.pkSay("Deine Interessen wurden aktualisiert"); self.setState({ edit: !edit }); },
       manage: function () { self.pkSay("Wir sagen dir Bescheid, sobald Plus startet"); }
     };
   }
