@@ -1,0 +1,672 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Perspekt! Haber Paneli</title>
+<link rel="icon" href="img/617218bebfdc0252568d560943992165.png">
+<style>
+@font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
+:root{
+  --bg:#000;--s0:#0B0B0E;--s1:#151518;--s2:#1C1C21;--s3:#24242A;
+  --line:rgba(255,255,255,.07);--line2:rgba(255,255,255,.14);--line3:rgba(255,255,255,.22);
+  --t1:#F5F7FA;--t2:#C4C8D2;--t3:#8B91A0;--t4:#6B7080;
+  --b1:#205DF4;--b2:#4F82FF;--b3:#A9C1FF;--bt:rgba(79,130,255,.12);
+  --good:#5BE59A;--warn:#F5C26B;--bad:#FF8A7A;
+  --r:20px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--t1);font-family:Satoshi,system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.45;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;background:radial-gradient(70% 55% at 88% -8%,rgba(32,93,244,.30) 0%,rgba(32,93,244,.08) 45%,rgba(0,0,0,0) 72%) fixed,radial-gradient(50% 40% at 0% 100%,rgba(32,93,244,.10) 0%,rgba(0,0,0,0) 70%) fixed,#000}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+a{color:inherit;text-decoration:none}
+.gt{background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.app{display:grid;grid-template-columns:224px minmax(0,1fr);min-height:100vh}
+/* sidebar */
+.side{position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:4px;padding:24px 16px;border-right:.75px solid var(--line);background:rgba(11,11,14,.72);backdrop-filter:blur(20px)}
+.brand{display:flex;align-items:center;gap:10px;padding:0 10px 22px}
+.brand img{width:30px;height:auto}
+.brand b{font-size:15px;font-weight:700;letter-spacing:-.01em}
+.brand span{display:block;font-size:11px;font-weight:500;color:var(--t3);letter-spacing:.04em;text-transform:uppercase}
+.nav{display:flex;align-items:center;gap:12px;height:42px;padding:0 12px;white-space:nowrap;border-radius:14px;color:var(--t2);font-weight:500}
+.nav:hover{background:var(--s1);color:var(--t1)}
+.nav.on{background:var(--s2);color:var(--t1);box-shadow:inset 0 0 0 .75px var(--line2)}
+.nav svg{flex-shrink:0;opacity:.85}
+.nav .cnt{margin-left:auto;min-width:22px;height:20px;padding:0 6px;border-radius:10px;background:var(--b1);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.side .foot{margin-top:auto;display:flex;flex-direction:column;gap:10px;padding:14px 10px 0;border-top:.75px solid var(--line)}
+.me{display:flex;align-items:center;gap:10px}
+.me .av{width:34px;height:34px;border-radius:17px;background:linear-gradient(135deg,#205DF4,#A9C1FF);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff}
+.me small{display:block;color:var(--t3);font-size:12px}
+.reset{font-size:12px;color:var(--t4);text-align:left}
+.reset:hover{color:var(--t2)}
+/* main */
+.main{min-width:0;padding:28px 28px 60px}
+.top{display:flex;align-items:center;gap:16px;margin-bottom:26px}
+.top h1{margin:0;font-size:30px;font-weight:700;letter-spacing:-.02em;line-height:1.03}
+.top .sub{color:var(--t3);font-size:13px;margin-top:6px}
+.top .sp{flex:1}
+.live{display:flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:18px;background:var(--s1);box-shadow:inset 0 0 0 .75px var(--line2);font-size:13px;color:var(--t2)}
+.dot{width:8px;height:8px;border-radius:4px;background:var(--good);box-shadow:0 0 0 0 rgba(91,229,154,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(91,229,154,.55)}70%{box-shadow:0 0 0 8px rgba(91,229,154,0)}100%{box-shadow:0 0 0 0 rgba(91,229,154,0)}}
+@media (prefers-reduced-motion: reduce){.dot{animation:none}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:40px;padding:0 18px;border-radius:20px;background:var(--s2);box-shadow:inset 0 0 0 .75px var(--line2);font-weight:500;white-space:nowrap}
+.btn:hover{background:var(--s3)}
+.btn.pri{background:var(--b1);box-shadow:none;color:#fff}
+.btn.pri:hover{background:#2E6AFF}
+.btn.sm{height:32px;padding:0 12px;font-size:13px;border-radius:16px}
+.btn.ok{background:rgba(91,229,154,.14);color:var(--good);box-shadow:inset 0 0 0 .75px rgba(91,229,154,.35)}
+.btn.no{background:rgba(255,138,122,.10);color:var(--bad);box-shadow:inset 0 0 0 .75px rgba(255,138,122,.3)}
+.card{background:rgba(21,21,24,.86);border-radius:var(--r);box-shadow:inset 0 0 0 .75px var(--line);padding:22px}
+.card h2{margin:0 0 4px;font-size:16px;font-weight:700;letter-spacing:-.01em}
+.card .hint{color:var(--t3);font-size:12.5px}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:16px}
+.grid{display:grid;gap:16px}.grid>*,.ed>.col,.ed .card{min-width:0}
+.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.g3{grid-template-columns:2fr 1fr}
+.g2{grid-template-columns:1fr 1fr}
+/* kpi */
+.kpi .lab{color:var(--t3);font-size:12.5px;font-weight:500}
+.kpi .val{font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1.03;margin:10px 0 6px;font-variant-numeric:tabular-nums}
+.kpi .foot{font-size:12.5px;color:var(--t3);display:flex;align-items:center;gap:6px}
+.up{color:var(--good)}.dn{color:var(--bad)}
+.bar{height:6px;border-radius:3px;background:var(--s3);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:3px;background:linear-gradient(90deg,#205DF4,#A9C1FF)}
+/* chart */
+.chart{position:relative;height:200px;margin:8px 0 0 34px}
+.chart .gl{position:absolute;left:0;right:0;border-top:.75px dashed var(--line)}
+.chart .gl span{position:absolute;left:-34px;top:-8px;font-size:11px;color:var(--t4);width:28px;text-align:right;font-variant-numeric:tabular-nums}
+.bars{position:absolute;inset:0;display:flex;align-items:flex-end;gap:2px}
+.bars div{flex:1;position:relative;height:100%;display:flex;align-items:flex-end}
+.bars div i{display:block;width:100%;border-radius:4px 4px 0 0;background:var(--b2);transition:height .4s ease}
+.bars div:last-child i{background:var(--b3)}
+.bars div:hover i{background:var(--b3)}
+.xl{display:flex;justify-content:space-between;margin:8px 0 0 34px;font-size:11px;color:var(--t4)}
+.tip{position:fixed;z-index:50;pointer-events:none;padding:8px 10px;border-radius:10px;background:#24242A;box-shadow:0 8px 24px rgba(0,0,0,.5),inset 0 0 0 .75px var(--line2);font-size:12px;color:var(--t2);white-space:nowrap;display:none}
+.tip b{color:var(--t1)}
+.hb{display:flex;flex-direction:column;gap:12px}
+.hb .r{display:grid;grid-template-columns:78px 1fr 44px;align-items:center;gap:10px;font-size:13px}
+.hb .r span:first-child{color:var(--t2)}
+.hb .r span:last-child{text-align:right;font-variant-numeric:tabular-nums;color:var(--t1);font-weight:500}
+.hb .r .bar{height:8px;border-radius:4px}
+/* tables */
+.tw{overflow-x:auto;margin:0 -12px;padding:0 12px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{position:sticky;top:0;text-align:left;font-weight:500;color:var(--t3);font-size:12px;padding:0 8px 12px;white-space:nowrap;border-bottom:.75px solid var(--line2)}
+th.s{cursor:pointer;user-select:none}
+th.s:hover{color:var(--t1)}
+th .ar{opacity:.9;margin-left:4px}
+td{padding:12px 8px;border-bottom:.75px solid var(--line);vertical-align:middle}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.d{color:var(--t3);white-space:nowrap;font-size:12.5px;font-variant-numeric:tabular-nums}
+tr.pin td{background:rgba(79,130,255,.07)}
+tbody tr:hover td{background:rgba(255,255,255,.03)}
+tr.pin:hover td{background:rgba(79,130,255,.11)}
+.story{display:flex;align-items:center;gap:12px;min-width:230px;max-width:288px}
+.thumb{flex-shrink:0;width:56px;height:42px;border-radius:10px;background:var(--s3) center/cover no-repeat;box-shadow:inset 0 0 0 .75px var(--line2);display:flex;align-items:center;justify-content:center;color:var(--t4)}
+.story .tt{font-weight:500;color:var(--t1);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.story .sl{font-size:11.5px;color:var(--t4);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:230px}
+.cat{display:inline-flex;height:24px;align-items:center;padding:0 10px;border-radius:12px;background:var(--s2);color:var(--t2);font-size:12px;font-weight:500;white-space:nowrap}
+.st{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px 0 8px;border-radius:13px;font-size:12px;font-weight:500;white-space:nowrap;background:var(--s2)}
+.lg{display:flex;align-items:center}
+.lg span{width:24px;height:24px;border-radius:12px;background:#fff center/72% no-repeat;box-shadow:0 0 0 2px var(--s1);margin-left:-6px;flex-shrink:0}
+.lg span:first-child{margin-left:0}
+.lg span.tx{background:var(--s3);color:var(--t2);font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center}
+.langs{display:flex;gap:4px}
+.langs span{font-size:10.5px;font-weight:700;letter-spacing:.02em;height:20px;padding:0 6px;border-radius:6px;display:flex;align-items:center;background:var(--s2);color:var(--t4)}
+.langs span.ok{background:rgba(91,229,154,.12);color:var(--good)}
+.acts{display:flex;gap:4px;justify-content:flex-end}
+.ib{width:32px;height:32px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--t2);background:var(--s2)}
+.ib:hover{background:var(--s3);color:var(--t1)}
+.ib.on{background:var(--b1);color:#fff}
+.pipe{display:flex;gap:3px}
+.pipe i{width:10px;height:6px;border-radius:3px;background:var(--s3)}
+.pipe i.ok{background:var(--good)}
+.pipe i.run{background:var(--b2);animation:blink 1.2s ease-in-out infinite}
+.pipe i.fail{background:var(--bad)}
+@keyframes blink{50%{opacity:.35}}
+/* filters */
+.filters{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin-bottom:18px}
+.inp{height:40px;padding:0 14px;border-radius:20px;border:0;outline:none;background:var(--s1);box-shadow:inset 0 0 0 .75px var(--line2);min-width:0}
+.inp:focus{box-shadow:inset 0 0 0 1px var(--b2)}
+.search{display:flex;align-items:center;gap:8px;padding-left:14px;height:40px;border-radius:20px;background:var(--s1);box-shadow:inset 0 0 0 .75px var(--line2);flex:1 1 260px;max-width:380px;color:var(--t3)}
+.search input{flex:1;height:100%;border:0;outline:none;background:none;color:var(--t1);min-width:0}
+.seg{display:flex;gap:4px;padding:4px;border-radius:22px;background:var(--s1);box-shadow:inset 0 0 0 .75px var(--line2);overflow-x:auto}
+.seg button{height:32px;padding:0 12px;border-radius:16px;color:var(--t2);font-size:13px;font-weight:500;white-space:nowrap}
+.seg button.on{background:var(--s3);color:var(--t1)}
+.seg button em{font-style:normal;color:var(--t4);margin-left:5px}
+select.inp{appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23C4C8D2' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+/* editor */
+.ed{display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:16px;align-items:start}
+.ed .col{display:flex;flex-direction:column;gap:16px}
+.f{display:flex;flex-direction:column;gap:7px;margin-bottom:16px}
+.f:last-child{margin-bottom:0}
+.f label{display:flex;justify-content:space-between;gap:8px;font-size:12.5px;font-weight:500;color:var(--t3)}
+.f label em{font-style:normal;font-variant-numeric:tabular-nums}
+.f label em.bad{color:var(--warn)}
+.fi{width:100%;min-height:46px;padding:11px 14px;border-radius:14px;border:0;outline:none;background:var(--s0);box-shadow:inset 0 0 0 .75px var(--line2);color:var(--t1);font-size:15px}
+.fi:focus{box-shadow:inset 0 0 0 1px var(--b2)}
+.fi.big{font-size:19px;font-weight:700;letter-spacing:-.01em}
+textarea.fi{resize:vertical;line-height:1.5;min-height:84px}
+.fi[readonly]{color:var(--t3)}
+.slug{display:flex;gap:8px}
+.slug .pre{display:flex;align-items:center;flex:1;min-width:0;border-radius:14px;background:var(--s0);box-shadow:inset 0 0 0 .75px var(--line2);padding-left:14px;color:var(--t4);font-size:13.5px;white-space:nowrap}
+.slug .pre input{flex:1;min-width:0;height:46px;border:0;outline:none;background:none;color:var(--t2);font-size:13.5px;padding:0 14px 0 0}
+.tabs{display:flex;gap:4px;padding:4px;border-radius:18px;background:var(--s0);box-shadow:inset 0 0 0 .75px var(--line2);width:max-content}
+.tabs button{height:30px;padding:0 14px;border-radius:14px;font-size:13px;font-weight:700;color:var(--t3)}
+.tabs button.on{background:var(--s3);color:var(--t1)}
+.tabs button i{display:inline-block;width:6px;height:6px;border-radius:3px;margin-left:6px;vertical-align:middle;background:var(--t4)}
+.tabs button i.ok{background:var(--good)}
+.tb{display:flex;flex-wrap:wrap;gap:2px;padding:6px;border-radius:14px 14px 0 0;background:var(--s0);box-shadow:inset 0 0 0 .75px var(--line2);border-bottom:0}
+.tb button{width:34px;height:32px;border-radius:9px;color:var(--t2);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+.tb button:hover{background:var(--s2);color:var(--t1)}
+.tb .sep{width:1px;margin:6px 4px;background:var(--line2)}
+.rte{min-height:220px;padding:16px;border-radius:0 0 14px 14px;background:var(--s0);box-shadow:inset 0 0 0 .75px var(--line2);outline:none;font-size:15px;line-height:1.65;color:var(--t2)}
+.rte:focus{box-shadow:inset 0 0 0 1px var(--b2)}
+.rte h2{font-size:18px;color:var(--t1);margin:.6em 0 .3em}
+.rte blockquote{margin:.6em 0;padding-left:14px;border-left:2px solid var(--b2);color:var(--t1)}
+.rte a{color:var(--b3);text-decoration:underline}
+.rte p{margin:0 0 .8em}
+.brow{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:center;margin-bottom:10px}
+.brow b{font-size:12px;color:#4F82FF;text-align:center}
+.irow{display:grid;grid-template-columns:120px 1fr 130px 32px;gap:8px;margin-bottom:8px}
+.irow .fi{min-height:40px;padding:8px 12px;font-size:13.5px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:8px;border-radius:14px;background:var(--s0);box-shadow:inset 0 0 0 .75px var(--line2);min-height:46px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 6px 0 11px;border-radius:15px;background:var(--s2);font-size:13px;color:var(--t1)}
+.chip .lo{width:18px;height:18px;border-radius:9px;background:#fff center/72% no-repeat;margin-left:-5px}
+.chip button{width:20px;height:20px;border-radius:10px;color:var(--t3);display:flex;align-items:center;justify-content:center}
+.chip button:hover{background:var(--s3);color:var(--t1)}
+.chips input{flex:1;min-width:110px;height:30px;border:0;outline:none;background:none;color:var(--t1);font-size:13px;padding:0 6px}
+.stc{border-radius:var(--r);overflow:hidden;box-shadow:inset 0 0 0 .75px var(--line);background:rgba(21,21,24,.86)}
+.stc .hd{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 18px;font-weight:700;font-size:15px}
+.stc .bd{padding:6px 18px 18px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:9px 0;border-bottom:.75px solid var(--line);font-size:13px}
+.kv:last-child{border-bottom:0}
+.kv span:first-child{color:var(--t3)}
+.kv span:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.ag{display:grid;grid-template-columns:26px 1fr;gap:10px;padding:9px 0;border-bottom:.75px solid var(--line)}
+.ag:last-child{border-bottom:0}
+.ag .ic{width:26px;height:26px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:var(--s2)}
+.ag b{font-size:13px;font-weight:700;display:block}
+.ag small{font-size:12px;color:var(--t3)}
+.tog{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 0;font-size:13.5px}
+.sw{position:relative;width:42px;height:24px;border-radius:12px;background:var(--s3);transition:background .2s;flex-shrink:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:9px;background:#fff;transition:transform .2s}
+.sw.on{background:var(--b1)}
+.sw.on::after{transform:translateX(18px)}
+.img{position:relative;aspect-ratio:16/10;border-radius:14px;background:var(--s0) center/cover no-repeat;box-shadow:inset 0 0 0 .75px var(--line2);overflow:hidden;display:flex;align-items:center;justify-content:center;color:var(--t4);font-size:13px;text-align:center}
+.drop{border:1px dashed var(--line3);border-radius:14px;padding:12px;text-align:center;font-size:12.5px;color:var(--t3);margin-top:10px;cursor:pointer}
+.drop:hover,.drop.ov{border-color:var(--b2);color:var(--t1);background:var(--bt)}
+.serp{padding:14px;border-radius:14px;background:#fff;color:#202124;font-family:Arial,sans-serif}
+.serp .u{font-size:12px;color:#4d5156;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.serp .t{font-size:18px;color:#1a0dab;line-height:1.3;margin:4px 0 3px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.serp .d{font-size:13px;color:#4d5156;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.score{display:flex;align-items:center;gap:14px;margin:14px 0 8px}
+.ring{width:56px;height:56px;flex-shrink:0}
+.ck{display:flex;gap:8px;align-items:flex-start;font-size:12.5px;padding:5px 0;color:var(--t2)}
+.ck svg{flex-shrink:0;margin-top:1px}
+.note{padding:12px 14px;border-radius:14px;background:var(--bt);box-shadow:inset 0 0 0 .75px rgba(79,130,255,.3);font-size:13px;color:var(--t2)}
+.note.bad{background:rgba(255,138,122,.08);box-shadow:inset 0 0 0 .75px rgba(255,138,122,.3)}
+.note.warn{background:rgba(245,194,107,.08);box-shadow:inset 0 0 0 .75px rgba(245,194,107,.3)}
+/* pipeline board */
+.board{display:grid;grid-template-columns:repeat(6,minmax(132px,1fr)) minmax(176px,1.3fr);gap:12px;overflow-x:auto;padding-bottom:6px}
+.colm{display:flex;flex-direction:column;gap:10px;min-height:320px;padding:12px;border-radius:var(--r);background:rgba(21,21,24,.7);box-shadow:inset 0 0 0 .75px var(--line)}
+.colm .h{display:flex;align-items:center;justify-content:space-between;font-weight:700;font-size:13.5px}
+.colm .h small{font-weight:500;color:var(--t3);font-size:12px}
+.colm .h em{font-style:normal;min-width:22px;height:20px;border-radius:10px;background:var(--s3);font-size:11px;display:flex;align-items:center;justify-content:center;padding:0 6px}
+.colm .role{font-size:11.5px;color:var(--t4);margin-top:-6px}
+.pc{padding:12px;border-radius:14px;background:var(--s2);box-shadow:inset 0 0 0 .75px var(--line2);display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.pc .tt{font-weight:500;font-size:13px;line-height:1.3;color:var(--t1)}
+.pc .mt{color:var(--t3);display:flex;align-items:center;gap:6px}
+.pc.run{box-shadow:inset 0 0 0 1px rgba(79,130,255,.55)}
+.pc.cand{background:transparent;border:1px dashed var(--line2);box-shadow:none}
+.pc .bt{display:flex;gap:6px}
+.pc .bt .btn{flex:1}
+.banner{display:flex;align-items:center;gap:12px;padding:12px 16px;border-radius:16px;margin-bottom:16px;background:rgba(245,194,107,.08);box-shadow:inset 0 0 0 .75px rgba(245,194,107,.3);color:var(--t1);font-size:13.5px}
+.toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);z-index:60;padding:12px 18px;border-radius:16px;background:#24242A;box-shadow:0 10px 30px rgba(0,0,0,.5),inset 0 0 0 .75px var(--line2);font-size:13.5px;display:none;align-items:center;gap:10px}
+.toast.on{display:flex;animation:tin .25s ease}
+@keyframes tin{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+.empty{padding:40px;text-align:center;color:var(--t3)}
+.lnk{color:var(--b3);font-weight:500}
+.lnk:hover{text-decoration:underline}
+.mt8{margin-top:8px}.mt16{margin-top:16px}
+.row{display:flex;align-items:center;gap:10px}
+.rank{width:22px;color:var(--t4);font-weight:700;font-variant-numeric:tabular-nums}
+.livev{display:inline-flex;align-items:center;gap:6px;font-variant-numeric:tabular-nums}
+.livev i{width:6px;height:6px;border-radius:3px;background:var(--good)}
+@media (max-width:1200px){.g4{grid-template-columns:repeat(2,minmax(0,1fr))}.ed{grid-template-columns:1fr}}
+@media (max-width:960px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{min-width:0}
+  .side{position:sticky;z-index:20;height:auto;flex-direction:row;align-items:center;padding:10px 12px;gap:4px;overflow-x:auto;border-right:0;border-bottom:.75px solid var(--line)}
+  .brand{padding:0 8px 0 4px}.brand div{display:none}
+  .nav{height:38px;padding:0 12px;flex-shrink:0}.nav .tx{display:inline}
+  .side .foot{display:none}
+  .main{padding:20px 16px 48px}
+  .g3,.g2{grid-template-columns:1fr}
+  .top{flex-wrap:wrap}
+}
+@media (max-width:560px){.g4{grid-template-columns:1fr}.top h1{font-size:26px}.irow{grid-template-columns:1fr 1fr}.live .tx{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side"></aside>
+  <main class="main" id="main"></main>
+</div>
+<div class="tip" id="tip"></div>
+<div class="toast" id="toast"></div>
+<input type="file" id="file" accept="image/*" hidden>
+<script>
+const D = {"stories": [{"id": "fed", "cat": "Finans", "title": "Fed politika faizini 25 baz puan indirdi", "hl": "25 baz puan", "home": "Fed politika faizini 25 baz puan indirdi", "flash": "", "spot": "Karar beklentilere uygun geldi; teknoloji hisseleri ve altın yükselirken dolar geriledi.", "long": "Karar beklentilere uygun geldi; teknoloji hisseleri ve altın yükselirken dolar geriledi. Fed faizi %4,25–4,50 aralığına indirdi. Powell, sonraki adımların verilere bağlı olacağını söyledi. Karar sonrası Nasdaq %1,4 yükseldi.", "bul": ["Fed faizi **%4,25–4,50** aralığına indirdi.", "Powell, sonraki adımların **verilere bağlı** olacağını söyledi.", "Karar sonrası Nasdaq **%1,4** yükseldi."], "imp": [["QQQ", "Düşük faiz büyüme hisselerini destekliyor", "up"], ["XAU", "Getirisiz varlıklara ilgi arttı", "up"], ["DXY", "Faiz farkı daralıyor", "down"]], "past": "Son 6 indirim döngüsünün 4'ünde Nasdaq, sonraki ayı artıda kapattı.", "src": "haber ajansları + borsa işlem verisi", "img": "img/5ebfdfcf219e8801edcb5216152fd714.jpg", "pos": "center 40%", "alt": "Haber görseli: Fed politika faizini 25 baz puan indirdi", "lic": "Unsplash lisansı", "status": "yayinda", "pin": true, "ago": 12, "upd": 4, "reads": 48210, "live": 412, "feed": 96400, "tags": ["Fed", "faiz kararı", "faiz indirimi", "dolar endeksi", "Powell"], "assets": ["QQQ", "XAU", "DXY"], "slug": "fed-politika-faizini-25-baz-puan-indirdi", "owner": "Yazar ajanı", "tr": {"EN": {"title": "The Fed cut its policy rate by 25 basis points", "spot": "The decision matched expectations; tech stocks and gold rose while the dollar slipped.", "bul": ["The Fed lowered rates to a **4.25–4.50%** range.", "Powell said next steps will be **data dependent**.", "The Nasdaq rose **1.4%** after the decision."]}, "ES": {"title": "La Fed recortó su tipo de interés 25 puntos básicos", "spot": "La decisión fue la esperada; las tecnológicas y el oro subieron mientras el dólar cedía.", "bul": ["La Fed bajó los tipos al rango del **4,25–4,50 %**.", "Powell dijo que los próximos pasos **dependerán de los datos**.", "El Nasdaq subió un **1,4 %** tras la decisión."]}, "DE": {"title": "Die Fed senkt den Leitzins um 25 Basispunkte", "spot": "Die Entscheidung entsprach den Erwartungen; Tech-Aktien und Gold stiegen, der Dollar gab nach.", "bul": ["Die Fed senkte die Zinsen auf eine Spanne von **4,25–4,50 %**.", "Powell sagte, die nächsten Schritte seien **datenabhängig**.", "Der Nasdaq stieg nach der Entscheidung um **1,4 %**."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 96/100", "TR taslak · 28 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "btc", "cat": "Kripto", "title": "Kripto piyasası 120 milyar dolar eridi", "hl": "120 milyar dolar", "home": "Kripto piyasası 120 milyar dolar eridi", "flash": "", "spot": "Kaldıraçlı pozisyonların tasfiyesi düşüşü hızlandırdı; Bitcoin 100 bin doların altına indi.", "long": "Kaldıraçlı pozisyonların tasfiyesi düşüşü hızlandırdı; Bitcoin 100 bin doların altına indi. Son 24 saatte 1,1 milyar dolarlık pozisyon tasfiye edildi. Bitcoin %4,85, Ethereum *%3,10* geriledi. Spot ETF'lere giriş ise üçüncü haftada sürdü.", "bul": ["Son 24 saatte **1,1 milyar dolarlık** pozisyon tasfiye edildi.", "Bitcoin **%4,85**, Ethereum *%3,10* geriledi.", "Spot ETF'lere giriş ise **üçüncü haftada** sürdü."], "imp": [["BTC", "Kaldıraç tasfiyesi", "down"], ["ETH", "Riskten kaçış", "down"], ["XAU", "Güvenli liman talebi", "up"]], "past": "Benzer tasfiye günlerinin %70'inde Bitcoin bir hafta içinde kaybının yarısını geri aldı.", "src": "haber ajansları + borsa işlem verisi", "img": "img/5075448c754ac2226ee3353d34b0ffce.jpg", "pos": "center 45%", "alt": "Haber görseli: Kripto piyasası 120 milyar dolar eridi", "lic": "Unsplash lisansı", "status": "yayinda", "pin": false, "ago": 39, "upd": 22, "reads": 36870, "live": 288, "feed": 81200, "tags": ["Bitcoin", "kripto para", "Ethereum", "kripto piyasası", "satış dalgası"], "assets": ["BTC", "ETH", "SOL", "XAU"], "slug": "kripto-piyasasi-120-milyar-dolar-eridi", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Crypto market sheds $120 billion", "spot": "Leveraged liquidations sped up the drop, pushing Bitcoin below $100K.", "bul": ["**$1.1 billion** in positions were liquidated in 24 hours.", "Bitcoin fell **4.85%** and Ethereum *3.10%*.", "Spot ETF inflows continued for a **third week**."]}, "ES": {"title": "El mercado cripto pierde $120.000 millones", "spot": "Las liquidaciones apalancadas aceleraron la caída y llevaron al Bitcoin por debajo de $100.000.", "bul": ["**$1.100 millones** en posiciones se liquidaron en 24 horas.", "El Bitcoin cayó un **4,85 %** y Ethereum un *3,10 %*.", "Las entradas en ETF al contado siguieron por **tercera semana**."]}, "DE": {"title": "Kryptomarkt verliert $120 Mrd.", "spot": "Liquidierungen gehebelter Positionen beschleunigten den Rückgang; Bitcoin fiel unter $100.000.", "bul": ["**$1,1 Mrd.** an Positionen wurden in 24 Stunden liquidiert.", "Bitcoin fiel um **4,85 %**, Ethereum um *3,10 %*.", "Die Zuflüsse in Spot-ETFs hielten **die dritte Woche** an."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 93/100", "TR taslak · 32 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "oil", "cat": "Emtia", "title": "OPEC+ kararı sonrası Brent petrol %3 yükseldi", "hl": "%3", "home": "OPEC+ kararı sonrası Brent petrol %3 yükseldi", "flash": "", "spot": "Üretim kesintilerinin uzatılması arz endişesini artırdı; enerji hisseleri yükseldi.", "long": "Üretim kesintilerinin uzatılması arz endişesini artırdı; enerji hisseleri yükseldi. OPEC+ kesintileri mart sonuna kadar uzattı. Brent varil başına 73,10 dolara çıktı. Rafineri hisseleri maliyet baskısıyla geriledi.", "bul": ["OPEC+ kesintileri **mart sonuna** kadar uzattı.", "Brent varil başına **73,10 dolara** çıktı.", "Rafineri hisseleri **maliyet baskısıyla** geriledi."], "imp": [["BRENT", "Arz endişesi", "up"], ["XLE", "Enerji hisseleri güçlü", "up"], ["TUPRS", "Maliyetler artıyor", "down"]], "past": "Son 4 uzatma kararının 3'ünde Brent ay sonunu artıda kapattı.", "src": "haber ajansları + borsa işlem verisi", "img": "img/2502594da937e79d7d59a04fe251756c.jpg", "pos": "center 50%", "alt": "Haber görseli: OPEC+ kararı sonrası Brent petrol %3 yükseldi", "lic": "Unsplash lisansı", "status": "yayinda", "pin": false, "ago": 45, "upd": 45, "reads": 12940, "live": 96, "feed": 40100, "tags": ["petrol", "Brent", "OPEC+", "enerji", "emtia"], "assets": ["BRENT", "XLE", "TUPRS"], "slug": "opec-karari-sonrasi-brent-petrol-3-yukseldi", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Brent jumps 3% after the OPEC+ decision", "spot": "Extended output cuts raised supply worries and lifted energy stocks.", "bul": ["OPEC+ extended cuts **through March**.", "Brent climbed to **$73.10** a barrel.", "Refiners fell on **cost pressure**."]}, "ES": {"title": "El Brent salta un 3 % tras la decisión de la OPEP+", "spot": "La prórroga de los recortes de producción avivó el temor a la oferta e impulsó a las energéticas.", "bul": ["La OPEP+ prorrogó los recortes **hasta marzo**.", "El Brent subió hasta **$73,10** el barril.", "Las refinerías cayeron por **la presión de costes**."]}, "DE": {"title": "Brent springt um 3 % nach OPEC+-Entscheidung", "spot": "Verlängerte Förderkürzungen schürten Angebotssorgen und trieben Energiewerte.", "bul": ["OPEC+ verlängerte die Kürzungen **bis März**.", "Brent stieg auf **$73,10** je Barrel.", "Raffinerien fielen wegen **Kostendruck**."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 90/100", "TR taslak · 26 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "ws", "cat": "Finans", "title": "Wall Street teknoloji hisseleriyle rekor kırdı", "hl": "rekor", "home": "Wall Street teknoloji hisseleriyle rekor kırdı", "flash": "", "spot": "S&P 500 ve Nasdaq günü rekorla kapattı; yükselişi çip ve yazılım hisseleri taşıdı.", "long": "S&P 500 ve Nasdaq günü rekorla kapattı; yükselişi çip ve yazılım hisseleri taşıdı. S&P 500 %0,62, Nasdaq 100 *%1,10* yükseldi. Yükselişin yarısından fazlası beş büyük teknoloji hissesinden geldi. İşlem hacmi 20 günlük ortalamanın %18 üzerinde gerçekleşti.", "bul": ["S&P 500 **%0,62**, Nasdaq 100 *%1,10* yükseldi.", "Yükselişin yarısından fazlası **beş büyük teknoloji** hissesinden geldi.", "İşlem hacmi 20 günlük ortalamanın **%18 üzerinde** gerçekleşti."], "imp": [["SPX", "Geniş tabanlı yükseliş", "up"], ["NVDA", "Yapay zekâ talebi sürüyor", "up"], ["DJI", "Sanayi hisseleri yatay", "flat"]], "past": "Rekorla kapanan günlerin %62'sinde endeks ertesi haftayı da artıda bitirdi.", "src": "haber ajansları + borsa işlem verisi", "img": "img/b2ba4d6f6974f308d7de1b72ca98107a.jpg", "pos": "center 40%", "alt": "Haber görseli: Wall Street teknoloji hisseleriyle rekor kırdı", "lic": "Unsplash lisansı", "status": "yayinda", "pin": false, "ago": 62, "upd": 50, "reads": 29110, "live": 141, "feed": 70250, "tags": ["Wall Street", "S&P 500", "Nasdaq", "teknoloji hisseleri", "rekor"], "assets": ["SPX", "NDX", "NVDA", "DJI"], "slug": "wall-street-teknoloji-hisseleriyle-rekor-kirdi", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Wall Street closes at a record on tech strength", "spot": "The S&P 500 and Nasdaq closed at records, led by chip and software stocks.", "bul": ["The S&P 500 rose **0.62%** and the Nasdaq 100 *1.10%*.", "More than half of the gain came from **five big tech** stocks.", "Volume was **18% above** the 20-day average."]}, "ES": {"title": "Wall Street cierra en récord impulsado por la tecnología", "spot": "El S&P 500 y el Nasdaq cerraron en máximos, liderados por chips y software.", "bul": ["El S&P 500 subió un **0,62 %** y el Nasdaq 100 un *1,10 %*.", "Más de la mitad de la subida vino de **cinco grandes tecnológicas**.", "El volumen fue un **18 % superior** a la media de 20 días."]}, "DE": {"title": "Wall Street schließt mit Rekord dank Tech-Stärke", "spot": "S&P 500 und Nasdaq schlossen auf Rekordniveau, angeführt von Chip- und Softwarewerten.", "bul": ["Der S&P 500 stieg um **0,62 %**, der Nasdaq 100 um *1,10 %*.", "Mehr als die Hälfte des Plus kam von **fünf großen Tech-Werten**.", "Das Volumen lag **18 % über** dem 20-Tage-Schnitt."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 87/100", "TR taslak · 36 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "apple", "cat": "Teknoloji", "title": "Apple lansmanı: İşlem hacmi ilk saatte 2,4 katına çıktı", "hl": "2,4 katına", "home": "Apple lansmanı: İşlem hacmi ilk saatte 2,4 katın", "flash": "", "spot": "Yeni ürün serisi beklentilere yakın fiyatlandı; yatırımcı ilgisi yapay zekâ özelliklerinde yoğunlaştı.", "long": "Yeni ürün serisi beklentilere yakın fiyatlandı; yatırımcı ilgisi yapay zekâ özelliklerinde yoğunlaştı. Apple yeni ürün serisini tanıttı; fiyatlar beklentilere yakın. Lansman saatinde işlem hacmi 30 günlük ortalamanın 2,4 katına çıktı. En çok konuşulan başlık yeni yapay zekâ özellikleri oldu.", "bul": ["Apple yeni ürün serisini tanıttı; fiyatlar **beklentilere yakın**.", "Lansman saatinde işlem hacmi 30 günlük ortalamanın **2,4 katına** çıktı.", "En çok konuşulan başlık **yeni yapay zekâ özellikleri** oldu."], "imp": [["AAPL", "Yüksek ilgi ve işlem hacmi", "up"], ["SOXX", "Sipariş beklentisi", "up"], ["NDX", "Tek şirket etkisi sınırlı", "flat"]], "past": "Son 8 lansmanın 5'inde hisse, lansman haftasını yatay ya da hafif düşüşle kapattı.", "src": "haber ajansları + borsa işlem verisi", "img": "img/3f0c9e8bed18dd755662c29d76abda60.jpg", "pos": "center 30%", "alt": "Haber görseli: Apple lansmanı: İşlem hacmi ilk saatte 2,4 katına çıktı", "lic": "Unsplash lisansı", "status": "yayinda", "pin": false, "ago": 70, "upd": 66, "reads": 22480, "live": 118, "feed": 58900, "tags": ["Apple", "iPhone", "lansman", "yapay zekâ", "Nasdaq"], "assets": ["AAPL", "QQQ", "NVDA", "SOXX"], "slug": "apple-lansmani-islem-hacmi-ilk-saatte-2-4-katina-cikti", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Apple launch: trading volume hit 2.4x in the first hour", "spot": "The new lineup was priced close to expectations, while investor interest centered on the AI features.", "bul": ["Apple unveiled its new lineup; prices were **close to expectations**.", "During the launch hour, volume reached **2.4x** its 30-day average.", "The most discussed topic was **the new AI features**."]}, "ES": {"title": "Lanzamiento de Apple: el volumen se multiplicó por 2,4 en la primera hora", "spot": "La nueva gama llegó con precios cercanos a lo previsto y el interés se centró en las funciones de IA.", "bul": ["Apple presentó su nueva gama; los precios quedaron **cerca de lo previsto**.", "En la hora del lanzamiento, el volumen llegó a **2,4 veces** su media de 30 días.", "El tema más comentado fueron **las nuevas funciones de IA**."]}, "DE": {"title": "Apple-Launch: Handelsvolumen in der ersten Stunde 2,4-fach", "spot": "Die neuen Geräte kamen zu erwarteten Preisen; das Interesse galt vor allem den KI-Funktionen.", "bul": ["Apple stellte die neue Produktreihe vor; die Preise lagen **nahe den Erwartungen**.", "In der Launch-Stunde erreichte das Volumen das **2,4-Fache** des 30-Tage-Schnitts.", "Meistdiskutiertes Thema waren **die neuen KI-Funktionen**."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 84/100", "TR taslak · 39 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "chip", "cat": "Teknoloji", "title": "Nvidia yapay zekâ çip talebiyle zirveyi yeniledi", "hl": "zirveyi yeniledi", "home": "Nvidia yapay zekâ çip talebiyle zirveyi yeniledi", "flash": "", "spot": "Veri merkezi siparişleri beklentileri aştı; hisse günün en çok yükselenleri arasında.", "long": "Veri merkezi siparişleri beklentileri aştı; hisse günün en çok yükselenleri arasında. Hisse gün içinde %4,12 yükselerek tüm zamanların zirvesine çıktı. Veri merkezi gelirinin bu çeyrek %35 artması bekleniyor. Çip endeksi SOXX de %2,30 yükseldi.", "bul": ["Hisse gün içinde **%4,12** yükselerek tüm zamanların zirvesine çıktı.", "Veri merkezi gelirinin bu çeyrek **%35 artması** bekleniyor.", "Çip endeksi SOXX de **%2,30** yükseldi."], "imp": [["NVDA", "Siparişler beklentinin üzerinde", "up"], ["AMD", "Sektör geneline yayıldı", "up"], ["TSLA", "Etkisi sınırlı", "flat"]], "past": "Son 5 rekor sonrası hisse 3 kez ertesi hafta kâr satışı gördü.", "src": "haber ajansları + borsa işlem verisi", "img": "img/72e6e03764959a7819b968fec9fee3be.jpg", "pos": "center 45%", "alt": "Haber görseli: Nvidia yapay zekâ çip talebiyle zirveyi yeniledi", "lic": "Unsplash lisansı", "status": "yayinda", "pin": false, "ago": 128, "upd": 101, "reads": 31560, "live": 77, "feed": 66300, "tags": ["Nvidia", "yapay zekâ", "çip", "yarı iletken", "rekor"], "assets": ["NVDA", "AMD", "SOXX", "TSLA"], "slug": "nvidia-yapay-zeka-cip-talebiyle-zirveyi-yeniledi", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Nvidia hits a new high on AI chip demand", "spot": "Data center orders beat expectations, putting the stock among the day's top gainers.", "bul": ["The stock rose **4.12%** to an all-time high.", "Data center revenue is expected to **grow 35%** this quarter.", "The SOXX chip index also gained **2.30%**."]}, "ES": {"title": "Nvidia marca máximos por la demanda de chips de IA", "spot": "Los pedidos de centros de datos superaron lo previsto y la acción estuvo entre las que más subieron.", "bul": ["La acción subió un **4,12 %** hasta un máximo histórico.", "Se espera que los ingresos de centros de datos **crezcan un 35 %** este trimestre.", "El índice de chips SOXX también ganó un **2,30 %**."]}, "DE": {"title": "Nvidia erreicht ein Rekordhoch dank KI-Chip-Nachfrage", "spot": "Rechenzentrums-Aufträge übertrafen die Erwartungen; die Aktie zählte zu den größten Tagesgewinnern.", "bul": ["Die Aktie stieg um **4,12 %** auf ein Allzeithoch.", "Der Rechenzentrumsumsatz soll in diesem Quartal **um 35 % wachsen**.", "Auch der Chip-Index SOXX legte um **2,30 %** zu."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 81/100", "TR taslak · 34 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "ipo", "cat": "Finans", "title": "SPK iki yeni halka arzı onayladı", "hl": "iki yeni", "home": "SPK iki yeni halka arzı onayladı", "flash": "", "spot": "Talep toplama gelecek hafta başlayacak; halka arz endeksi yılbaşından bu yana artıda.", "long": "Talep toplama gelecek hafta başlayacak; halka arz endeksi yılbaşından bu yana artıda. Toplam arz büyüklüğü 4,8 milyar lira. Talep toplama 3 gün sürecek. Halka arz endeksi yılbaşından beri %24 yükseldi.", "bul": ["Toplam arz büyüklüğü **4,8 milyar lira**.", "Talep toplama **3 gün** sürecek.", "Halka arz endeksi yılbaşından beri **%24** yükseldi."], "imp": [["XU100", "Sınırlı likidite etkisi", "flat"], ["XHARZ", "Yeni ilgi", "up"], ["GARAN", "Aracı kurum geliri", "up"]], "past": "Bu yılki halka arzların %70'i ilk işlem gününü artıda kapattı.", "src": "haber ajansları + borsa işlem verisi", "img": "img/a139ae390119cd978d0c6e7dd6e2a557.jpg", "pos": "center 50%", "alt": "Haber görseli: SPK iki yeni halka arzı onayladı", "lic": "Unsplash lisansı", "status": "yayinda", "pin": true, "ago": 131, "upd": 131, "reads": 18720, "live": 64, "feed": 52800, "tags": ["halka arz", "SPK", "Borsa İstanbul", "borsa"], "assets": ["XU100", "THYAO", "GARAN", "XHARZ"], "slug": "spk-iki-yeni-halka-arzi-onayladi", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Turkish regulator approves two new IPOs", "spot": "Book building starts next week; the IPO index is up year to date.", "bul": ["Total offering size is **₺4.8 billion**.", "Book building will last **3 days**.", "The IPO index is up **24%** year to date."]}, "ES": {"title": "El regulador turco aprueba dos nuevas salidas a bolsa", "spot": "El periodo de suscripción empieza la próxima semana; el índice de salidas a bolsa sube en el año.", "bul": ["El tamaño total de la oferta es de **₺4.800 millones**.", "La suscripción durará **3 días**.", "El índice de salidas a bolsa sube un **24 %** en el año."]}, "DE": {"title": "Türkische Aufsicht genehmigt zwei neue Börsengänge", "spot": "Die Zeichnungsfrist beginnt nächste Woche; der IPO-Index liegt seit Jahresbeginn im Plus.", "bul": ["Das Emissionsvolumen beträgt **₺4,8 Mrd.**.", "Die Zeichnung dauert **3 Tage**.", "Der IPO-Index liegt seit Jahresbeginn **24 %** im Plus."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 78/100", "TR taslak · 30 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "gold", "cat": "Emtia", "title": "Altın onsu 2.700 dolar eşiğini zorluyor", "hl": "2.700 dolar", "home": "Altın onsu 2.700 dolar eşiğini zorluyor", "flash": "", "spot": "Faiz indirimi ve zayıf dolar altını destekledi; merkez bankası alımları sürüyor.", "long": "Faiz indirimi ve zayıf dolar altını destekledi; merkez bankası alımları sürüyor. Ons altın 2.684 dolara yükseldi. Merkez bankaları rezervlerine 18 ton ekledi. Gümüş de %1,31 değer kazandı.", "bul": ["Ons altın **2.684 dolara** yükseldi.", "Merkez bankaları rezervlerine **18 ton** ekledi.", "Gümüş de **%1,31** değer kazandı."], "imp": [["XAU", "Zayıf dolar", "up"], ["XAG", "Altına paralel", "up"], ["DXY", "Faiz indirimi", "down"]], "past": "Fed indirimlerinden sonraki ayların %67'sinde altın değer kazandı.", "src": "haber ajansları + borsa işlem verisi", "img": "img/8283936c568ca923cbc58db01ce872e6.jpg", "pos": "center 50%", "alt": "Haber görseli: Altın onsu 2.700 dolar eşiğini zorluyor", "lic": "Unsplash lisansı", "status": "yayinda", "pin": false, "ago": 184, "upd": 160, "reads": 25390, "live": 59, "feed": 61700, "tags": ["altın", "ons altın", "altın fiyatları", "emtia", "güvenli liman"], "assets": ["XAU", "XAG", "DXY"], "slug": "altin-onsu-2-700-dolar-esigini-zorluyor", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Gold pushes toward $2,700 an ounce", "spot": "The rate cut and a weaker dollar lifted gold, while central bank buying continues.", "bul": ["Gold rose to **$2,684** an ounce.", "Central banks added **18 tonnes** to reserves.", "Silver also gained **1.31%**."]}, "ES": {"title": "El oro se acerca a $2.700 la onza", "spot": "El recorte de tipos y un dólar más débil impulsaron al oro, mientras siguen las compras de los bancos centrales.", "bul": ["El oro subió hasta **$2.684** la onza.", "Los bancos centrales sumaron **18 toneladas** a sus reservas.", "La plata también ganó un **1,31 %**."]}, "DE": {"title": "Gold nähert sich $2.700 je Unze", "spot": "Zinssenkung und schwächerer Dollar trieben Gold; die Zentralbanken kaufen weiter.", "bul": ["Gold stieg auf **$2.684** je Unze.", "Zentralbanken stockten ihre Reserven um **18 Tonnen** auf.", "Auch Silber legte um **1,31 %** zu."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 75/100", "TR taslak · 27 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "ist", "cat": "Finans", "title": "BIST 100 yabancı satışıyla günü düşüşle kapattı", "hl": "düşüşle", "home": "BIST 100 yabancı satışıyla günü düşüşle kapattı", "flash": "", "spot": "Bankacılık endeksi baskı altında kaldı; yabancı yatırımcılar hisse tarafında net satıcıydı.", "long": "Bankacılık endeksi baskı altında kaldı; yabancı yatırımcılar hisse tarafında net satıcıydı. BIST 100 %1,26 düşüşle 11.333 puandan kapandı. Yabancılar 1,2 milyar liralık net satış yaptı. Bankacılık endeksi %2,04 geriledi.", "bul": ["BIST 100 **%1,26** düşüşle 11.333 puandan kapandı.", "Yabancılar **1,2 milyar liralık** net satış yaptı.", "Bankacılık endeksi **%2,04** geriledi."], "imp": [["XU100", "Yabancı satışı", "down"], ["GARAN", "Ayrışan güçlü bilanço", "up"], ["THYAO", "Turizm beklentisi dengeliyor", "flat"]], "past": "Yabancı satışının yoğun olduğu günlerin %55'inde endeks ertesi gün toparlandı.", "src": "haber ajansları + borsa işlem verisi", "img": "img/9ac3c5e8363ccbcba2986ac1bb3b5012.jpg", "pos": "center 50%", "alt": "Haber görseli: BIST 100 yabancı satışıyla günü düşüşle kapattı", "lic": "Unsplash lisansı", "status": "yayinda", "pin": false, "ago": 192, "upd": 175, "reads": 20610, "live": 52, "feed": 55400, "tags": ["Borsa İstanbul", "BIST 100", "yabancı yatırımcı", "bankacılık", "borsa"], "assets": ["XU100", "GARAN", "THYAO"], "slug": "bist-100-yabanci-satisiyla-gunu-dususle-kapatti", "owner": "Yazar ajanı", "tr": {"EN": {"title": "BIST 100 closes lower on foreign selling", "spot": "Banks were under pressure as foreign investors were net sellers of equities.", "bul": ["The BIST 100 fell **1.26%** to close at 11,333.", "Foreign investors sold a net **₺1.2 billion**.", "The banking index dropped **2.04%**."]}, "ES": {"title": "El BIST 100 cierra a la baja por ventas extranjeras", "spot": "La banca sufrió presión mientras los inversores extranjeros fueron vendedores netos de acciones.", "bul": ["El BIST 100 cayó un **1,26 %** y cerró en 11.333.", "Los inversores extranjeros vendieron en neto **₺1.200 millones**.", "El índice bancario bajó un **2,04 %**."]}, "DE": {"title": "BIST 100 schließt schwächer wegen Auslandsverkäufen", "spot": "Banken standen unter Druck, da ausländische Anleger netto Aktien verkauften.", "bul": ["Der BIST 100 fiel um **1,26 %** und schloss bei 11.333.", "Ausländische Anleger verkauften netto **₺1,2 Mrd.**.", "Der Bankenindex gab um **2,04 %** nach."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 72/100", "TR taslak · 29 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "ev", "cat": "Teknoloji", "title": "Tesla teslimatları beklentinin altında kaldı", "hl": "beklentinin altında", "home": "Tesla teslimatları beklentinin altında kaldı", "flash": "", "spot": "Çeyreklik teslimatlar tahminlerin gerisinde kaldı; fiyat indirimleri marjları baskılıyor.", "long": "Çeyreklik teslimatlar tahminlerin gerisinde kaldı; fiyat indirimleri marjları baskılıyor. Teslimatlar beklenen 480 bin yerine 462 bin oldu. Hisse gün içinde %3,40 değer kaybetti. Şirket yeni modelin 2026'da geleceğini teyit etti.", "bul": ["Teslimatlar beklenen 480 bin yerine **462 bin** oldu.", "Hisse gün içinde **%3,40** değer kaybetti.", "Şirket yeni modelin **2026'da** geleceğini teyit etti."], "imp": [["TSLA", "Teslimat açığı", "down"], ["RIVN", "Sektöre yayılan endişe", "down"], ["NVDA", "Otonom sürüş çipleri ayrışıyor", "flat"]], "past": "Son 6 teslimat açığının 4'ünde hisse bir ay içinde kaybını geri aldı.", "src": "haber ajansları + borsa işlem verisi", "img": "img/2fb5382a7314ced086eb4679e295883e.jpg", "pos": "center 50%", "alt": "", "lic": "Unsplash lisansı", "status": "yayinda", "pin": false, "ago": 246, "upd": 246, "reads": 9870, "live": 21, "feed": 34900, "tags": ["Tesla", "elektrikli araç", "teslimat", "Rivian"], "assets": ["TSLA", "RIVN", "NVDA"], "slug": "tesla-teslimatlari-beklentinin-altinda-kaldi", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Tesla deliveries miss expectations", "spot": "Quarterly deliveries fell short of estimates as price cuts weigh on margins.", "bul": ["Deliveries came in at **462K** versus 480K expected.", "The stock lost **3.40%** on the day.", "The company confirmed a new model **in 2026**."]}, "ES": {"title": "Las entregas de Tesla no alcanzan lo previsto", "spot": "Las entregas trimestrales quedaron por debajo de lo estimado y las rebajas de precio pesan en los márgenes.", "bul": ["Las entregas fueron de **462.000** frente a las 480.000 previstas.", "La acción perdió un **3,40 %** en la sesión.", "La empresa confirmó un nuevo modelo **en 2026**."]}, "DE": {"title": "Tesla-Auslieferungen verfehlen die Erwartungen", "spot": "Die Quartalsauslieferungen blieben unter den Schätzungen; Preissenkungen belasten die Margen.", "bul": ["Ausgeliefert wurden **462.000** statt der erwarteten 480.000.", "Die Aktie verlor am Tag **3,40 %**.", "Das Unternehmen bestätigte ein neues Modell **für 2026**."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 69/100", "TR taslak · 30 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "dc", "cat": "Teknoloji", "title": "Veri merkezi yatırımları 2027'ye kadar ikiye katlanacak", "hl": "ikiye katlanacak", "home": "Veri merkezi yatırımları 2027'ye kadar ikiye kat", "flash": "", "spot": "Büyük bulut şirketleri yapay zekâ altyapısına ayırdıkları bütçeyi artırıyor.", "long": "Büyük bulut şirketleri yapay zekâ altyapısına ayırdıkları bütçeyi artırıyor. Yıllık harcamanın 400 milyar dolara ulaşması bekleniyor. Enerji talebi veri merkezlerinde %160 artabilir. Oracle hisseleri %2,10 yükseldi.", "bul": ["Yıllık harcamanın **400 milyar dolara** ulaşması bekleniyor.", "Enerji talebi veri merkezlerinde **%160** artabilir.", "Oracle hisseleri **%2,10** yükseldi."], "imp": [["MSFT", "Bulut büyümesi", "up"], ["ORCL", "Yeni sözleşmeler", "up"], ["NVDA", "Çip talebi", "up"]], "past": "Benzer yatırım duyurularının %60'ında tedarikçi hisseleri bir ay içinde yükseldi.", "src": "haber ajansları + borsa işlem verisi", "img": "img/1f422031daea9f9a254c4b60ecfd0379.jpg", "pos": "center 50%", "alt": "", "lic": "Unsplash lisansı", "status": "yayinda", "pin": false, "ago": 305, "upd": 290, "reads": 7420, "live": 14, "feed": 28600, "tags": ["veri merkezi", "yapay zekâ", "Microsoft", "Oracle", "bulut"], "assets": ["MSFT", "ORCL", "NVDA"], "slug": "veri-merkezi-yatirimlari-2027-ye-kadar-ikiye-katlanacak", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Data center spending set to double by 2027", "spot": "Big cloud providers are raising budgets for AI infrastructure.", "bul": ["Annual spending is expected to reach **$400 billion**.", "Data center power demand could rise **160%**.", "Oracle shares rose **2.10%**."]}, "ES": {"title": "El gasto en centros de datos se duplicará para 2027", "spot": "Los grandes proveedores de la nube aumentan sus presupuestos para infraestructura de IA.", "bul": ["Se espera que el gasto anual llegue a **$400.000 millones**.", "La demanda eléctrica de los centros de datos podría subir un **160 %**.", "Las acciones de Oracle subieron un **2,10 %**."]}, "DE": {"title": "Ausgaben für Rechenzentren sollen sich bis 2027 verdoppeln", "spot": "Große Cloud-Anbieter erhöhen ihre Budgets für KI-Infrastruktur.", "bul": ["Die jährlichen Ausgaben sollen **$400 Mrd.** erreichen.", "Der Strombedarf von Rechenzentren könnte um **160 %** steigen.", "Die Oracle-Aktie stieg um **2,10 %**."]}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 66/100", "TR taslak · 26 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"]}, {"id": "tcmb", "cat": "Finans", "title": "TCMB kararı öncesi Borsa İstanbul'da temkinli seyir", "hl": "temkinli seyir", "home": "TCMB kararı öncesi Borsa İstanbul'da temkinli se", "flash": "", "spot": "Yatırımcılar perşembe günkü faiz kararını beklerken BIST 100 dar bantta işlem gördü; bankacılık endeksi öne çıktı.", "long": "Yatırımcılar perşembe günkü faiz kararını beklerken BIST 100 dar bantta işlem gördü; bankacılık endeksi öne çıktı. BIST 100 günü %0,3 sınırlı değişimle tamamladı. Bankacılık endeksi %1,1 yükseldi. Piyasa, faizin sabit kalmasını fiyatlıyor.", "bul": ["BIST 100 günü **%0,3** sınırlı değişimle tamamladı.", "Bankacılık endeksi **%1,1** yükseldi.", "Piyasa, faizin **sabit kalmasını** fiyatlıyor."], "imp": [["XU100", "", "flat"], ["GARAN", "", "flat"]], "past": "", "src": "haber ajansları + piyasa verisi", "img": "img/9ac3c5e8363ccbcba2986ac1bb3b5012.jpg", "pos": "center 35%", "alt": "Haber görseli: TCMB kararı öncesi Borsa İstanbul'da temkinli seyir", "lic": "Unsplash lisansı", "status": "onay", "pin": false, "ago": 8, "upd": 2, "reads": 0, "live": 0, "feed": 0, "tags": ["TCMB", "faiz kararı", "Borsa İstanbul", "BIST 100", "bankacılık"], "assets": ["XU100", "GARAN", "AKBNK"], "slug": "tcmb-karari-oncesi-borsa-istanbul-da-temkinli-seyir", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Borsa Istanbul cautious ahead of the CBRT decision", "spot": "BIST 100 traded in a narrow band as investors awaited Thursday's rate decision; banks led.", "bul": []}, "ES": {"title": "Borsa Estambul, prudente antes de la decisión del banco central", "spot": "El BIST 100 cotizó en un rango estrecho a la espera de la decisión de tipos del jueves; la banca lideró.", "bul": []}, "DE": {"title": "Borsa Istanbul vor der Zinsentscheidung der Notenbank vorsichtig", "spot": "Der BIST 100 bewegte sich vor dem Zinsentscheid am Donnerstag in enger Spanne; Banken führten.", "bul": []}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 88/100", "TR taslak · 164 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"], "reason": ""}, {"id": "silver", "cat": "Emtia", "title": "Gümüş, altının izinde 32 doların üzerine çıktı", "hl": "32 doların üzerine", "home": "Gümüş, altının izinde 32 doların üzerine çıktı", "flash": "", "spot": "Zayıflayan dolar ve sanayi talebi beklentisi gümüşü son iki ayın zirvesine taşıdı.", "long": "Zayıflayan dolar ve sanayi talebi beklentisi gümüşü son iki ayın zirvesine taşıdı. Gümüş gün içinde %2,4 değer kazandı. Altın/gümüş oranı 84 seviyesine geriledi. Dolar endeksi %0,5 düştü.", "bul": ["Gümüş gün içinde **%2,4** değer kazandı.", "Altın/gümüş oranı **84** seviyesine geriledi.", "Dolar endeksi **%0,5** düştü."], "imp": [["XAG", "", "flat"], ["XAU", "", "flat"]], "past": "", "src": "haber ajansları + piyasa verisi", "img": "img/8283936c568ca923cbc58db01ce872e6.jpg", "pos": "center 70%", "alt": "Haber görseli: Gümüş, altının izinde 32 doların üzerine çıktı", "lic": "Unsplash lisansı", "status": "onay", "pin": false, "ago": 14, "upd": 4, "reads": 0, "live": 0, "feed": 0, "tags": ["gümüş", "gümüş fiyatları", "altın", "emtia", "dolar endeksi"], "assets": ["XAG", "XAU", "DXY"], "slug": "gumus-altinin-izinde-32-dolarin-uzerine-cikti", "owner": "Yazar ajanı", "tr": {"EN": {"title": "Silver follows gold above $32", "spot": "A weaker dollar and expected industrial demand lifted silver to a two-month high.", "bul": []}, "ES": {"title": "La plata sigue al oro y supera los 32 dólares", "spot": "El dólar más débil y la demanda industrial esperada llevaron la plata a máximos de dos meses.", "bul": []}, "DE": {"title": "Silber folgt Gold über 32 Dollar", "spot": "Ein schwächerer Dollar und erwartete Industrienachfrage hoben Silber auf ein Zwei-Monats-Hoch.", "bul": []}}, "pipe": ["ok", "ok", "ok", "ok", "ok", "ok"], "notes": ["Önem puanı 81/100", "TR taslak · 151 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN, ES, DE hazır", "Unsplash lisansı · kişi ve logo yok"], "reason": ""}, {"id": "eth", "cat": "Kripto", "title": "Ethereum ETF'lerine haftalık 1,2 milyar dolar giriş", "hl": "1,2 milyar dolar", "home": "Ethereum ETF'lerine haftalık 1,2 milyar dolar gi", "flash": "", "spot": "ABD'de işlem gören spot Ethereum fonları, kuruluşlarından bu yana en güçlü haftalık girişi kaydetti.", "long": "ABD'de işlem gören spot Ethereum fonları, kuruluşlarından bu yana en güçlü haftalık girişi kaydetti. Spot Ethereum ETF'lerine bir haftada 1,2 milyar dolar girdi. ETH fiyatı haftayı %6 primle kapattı. Girişlerin yüzde 60'ı iki fondan geldi.", "bul": ["Spot Ethereum ETF'lerine bir haftada **1,2 milyar dolar** girdi.", "ETH fiyatı haftayı **%6** primle kapattı.", "Girişlerin **yüzde 60'ı** iki fondan geldi."], "imp": [["ETH", "", "flat"], ["BTC", "", "flat"]], "past": "", "src": "haber ajansları + piyasa verisi", "img": "", "pos": "center 50%", "alt": "", "lic": "", "status": "hatta", "pin": false, "ago": 5, "upd": 1, "reads": 0, "live": 0, "feed": 0, "tags": ["Ethereum", "ETF", "kripto para", "fon girişi"], "assets": ["ETH", "BTC"], "slug": "ethereum-etf-lerine-haftalik-1-2-milyar-dolar-giris", "owner": "Yazar ajanı", "tr": {}, "pipe": ["ok", "ok", "ok", "ok", "run", "wait"], "notes": ["Önem puanı 84/100", "TR taslak · 158 kelime", "Rakamlar kaynakla eşleşti", "Tavsiye dili yok · telif uygun", "EN tamam, ES ve DE çevriliyor", "Çeviri bitince başlayacak"], "reason": ""}, {"id": "asels", "cat": "Savunma", "title": "Aselsan 420 milyon dolarlık ihracat sözleşmesi imzaladı", "hl": "420 milyon dolarlık", "home": "Aselsan 420 milyon dolarlık ihracat sözleşmesi i", "flash": "", "spot": "Şirket, KAP açıklamasına göre bir Avrupa ülkesiyle hava savunma sistemleri için sözleşme imzaladı.", "long": "Şirket, KAP açıklamasına göre bir Avrupa ülkesiyle hava savunma sistemleri için sözleşme imzaladı. Sözleşme bedeli 420 milyon dolar. Teslimatlar 2027-2029 arasında yapılacak. Hisse açıklama sonrası %3,8 yükseldi.", "bul": ["Sözleşme bedeli **420 milyon dolar**.", "Teslimatlar **2027-2029** arasında yapılacak.", "Hisse açıklama sonrası **%3,8** yükseldi."], "imp": [["ASELS", "", "flat"], ["XU100", "", "flat"]], "past": "", "src": "haber ajansları + piyasa verisi", "img": "", "pos": "center 50%", "alt": "", "lic": "", "status": "hatta", "pin": false, "ago": 3, "upd": 1, "reads": 0, "live": 0, "feed": 0, "tags": ["Aselsan", "savunma sanayi", "ihracat", "KAP"], "assets": ["ASELS", "XU100"], "slug": "aselsan-420-milyon-dolarlik-ihracat-sozlesmesi-imzaladi", "owner": "Yazar ajanı", "tr": {}, "pipe": ["ok", "ok", "ok", "run", "wait", "wait"], "notes": ["Önem puanı 90/100", "TR taslak · 140 kelime", "KAP metniyle eşleşti", "Kontrol ediliyor: kişi hakları, telif", "Hukuk onayından sonra", "Çeviri bitince başlayacak"], "reason": ""}, {"id": "euro", "cat": "Döviz", "title": "Euro/dolar paritesi ECB sonrası 1,09'un altına indi", "hl": "1,09'un altına", "home": "Euro/dolar paritesi ECB sonrası 1,09'un altına i", "flash": "", "spot": "Avrupa Merkez Bankası'nın faiz indirimi sinyali euroyu dolar karşısında zayıflattı.", "long": "Avrupa Merkez Bankası'nın faiz indirimi sinyali euroyu dolar karşısında zayıflattı. EUR/USD 1,0880 seviyesine geriledi. ECB Başkanı aralık toplantısını işaret etti. EUR/TRY %0,2 düştü.", "bul": ["EUR/USD **1,0880** seviyesine geriledi.", "ECB Başkanı **aralık** toplantısını işaret etti.", "EUR/TRY **%0,2** düştü."], "imp": [["EUR/USD", "", "flat"], ["EUR/TRY", "", "flat"]], "past": "", "src": "haber ajansları + piyasa verisi", "img": "", "pos": "center 50%", "alt": "", "lic": "", "status": "taslak", "pin": false, "ago": 2, "upd": 1, "reads": 0, "live": 0, "feed": 0, "tags": ["euro", "parite", "ECB"], "assets": ["EUR/USD", "EUR/TRY"], "slug": "euro-dolar-paritesi-ecb-sonrasi-1-09-un-altina-indi", "owner": "Yazar ajanı", "tr": {}, "pipe": ["ok", "ok", "run", "wait", "wait", "wait"], "notes": ["Önem puanı 77/100", "TR taslak · 132 kelime", "Kontrol ediliyor: rakamlar ve kaynak", "Editör onayından sonra", "Hukuk onayından sonra", "Çeviri bitince başlayacak"], "reason": ""}, {"id": "tip", "cat": "Finans", "title": "Bu 5 hisse yıl sonuna kadar kesin kazandıracak", "hl": "kesin kazandıracak", "home": "Bu 5 hisse yıl sonuna kadar kesin kazandıracak", "flash": "", "spot": "Analistlerin öne çıkardığı beş hisse yıl sonuna kadar yüksek getiri sağlayabilir.", "long": "Analistlerin öne çıkardığı beş hisse yıl sonuna kadar yüksek getiri sağlayabilir. Listede beş BIST hissesi var. Hedef fiyatlar %40 yukarı potansiyel gösteriyor. Seçim analist raporlarına dayanıyor.", "bul": ["Listede **beş** BIST hissesi var.", "Hedef fiyatlar **%40** yukarı potansiyel gösteriyor.", "Seçim **analist raporlarına** dayanıyor."], "imp": [["XU100", "", "flat"]], "past": "", "src": "haber ajansları + piyasa verisi", "img": "", "pos": "center 50%", "alt": "", "lic": "", "status": "red", "pin": false, "ago": 26, "upd": 8, "reads": 0, "live": 0, "feed": 0, "tags": ["hisse önerisi", "borsa"], "assets": ["XU100"], "slug": "bu-5-hisse-yil-sonuna-kadar-kesin-kazandiracak", "owner": "Yazar ajanı", "tr": {}, "pipe": ["ok", "ok", "ok", "fail", "wait", "wait"], "notes": ["Önem puanı 52/100", "TR taslak · 120 kelime", "Rakamlar kaynakla eşleşti", "Durduruldu: yatırım tavsiyesi dili", "Durduruldu", "Durduruldu"], "reason": "Hukuk ajanı durdurdu: 'kesin kazandıracak' ifadesi SPK mevzuatına göre yatırım tavsiyesi sayılır. Başlık ve spot tavsiye içermeyecek şekilde yeniden yazılmalı."}], "logos": {"AAPL": "img/161ff1d447dd128b7dbee48db2806b2b.svg", "NVDA": "img/f280e41dc300c89238ab9ae97a5583f8.svg", "TSLA": "img/29fad9dfa0c0b64762d27d49a5a4ece0.svg", "ORCL": "img/407b49bd1f00cc3145add23d645f904f.svg", "BTC": "img/f74b93dd661ed37f19989b4797a87446.svg", "ETH": "img/08d70a41fc2b7e19f685035ae0e900cd.svg", "SOL": "img/2df699c7f1c8c7f9a7fd487f6241e75e.svg", "XRP": "img/e08a48baf471291e44383e2c6d3caecf.svg", "BNB": "img/cdd877eb148c3e5f5427d4bbd9d8aa74.svg", "ADA": "img/ee35499acf969c78dc9e2e3b0939b1ac.svg", "DOGE": "img/015c25b5e5aabddc049e1d493e056703.svg", "THYAO": "img/40c5a6c1bd001d51e8ba74959fe6ea05.svg", "AMZN": "img/ea6c66dfd9cf5f4d69822bf1682825d8.svg", "GOOGL": "img/cbf6cd52679c939526a5a2252cc76878.svg", "META": "img/681b46873b7e1fdd3d66c33d0c3daf4e.svg", "AMD": "img/d6bade89f6a57f53c0c2e83ee19a851b.svg", "BIMAS": "img/b8fe4c0f9db71daeb143c45eefcd18fc.svg", "NFLX": "img/11b45c171b1bde3c475c2aff2769ff39.svg", "ASELS": "img/lg-asels.png", "GARAN": "img/lg-garan.png", "TUPRS": "img/lg-tuprs.png", "KCHOL": "img/lg-kchol.png", "MSFT": "img/lg-msft.png", "EREGL": "img/lg-eregl.png", "SISE": "img/lg-sise.png", "AVAX": "img/lg-avax.png", "AKBNK": "img/lg-akbnk-w.png", "ARCLK": "img/lg-arclk-w.png", "COIN": "img/lg-coin.svg", "COST": "img/lg-cost-w.png", "DIS": "img/lg-dis-w.png", "FROTO": "img/lg-froto-w.png", "INTC": "img/lg-intc-w.png", "KO": "img/lg-ko-w.png", "LLY": "img/lg-lly-w.png", "MGROS": "img/lg-mgros-w.png", "PGSUS": "img/lg-pgsus-w.png", "TOASO": "img/lg-toaso-w.png", "ULKER": "img/lg-ulker-w.png", "UNH": "img/lg-unh-w.png", "WMT": "img/lg-wmt-w.png", "ADBE": "img/lg-adbe.png", "ISCTR": "img/lg-isctr.png", "PETKM": "img/lg-petkm.png", "RIVN": "img/lg-rivn.png", "TAVHL": "img/lg-tavhl-w.png", "TTKOM": "img/lg-ttkom.png", "YKBNK": "img/lg-ykbnk.png", "XOM": "img/lg-xom.png", "ATOM": "img/lg-atom.svg", "AVGO": "img/lg-avgo.svg", "AXP": "img/lg-axp.svg", "BAC": "img/lg-bac.svg", "BCH": "img/lg-bch.svg", "CRCL": "img/lg-crcl.svg", "CRM": "img/lg-crm.svg", "CVX": "img/lg-cvx.svg", "DOT": "img/lg-dot.svg", "JPM": "img/lg-jpm.svg", "LINK": "img/lg-link.svg", "LTC": "img/lg-ltc.svg", "MA": "img/lg-ma.svg", "MCD": "img/lg-mcd.svg", "NEAR": "img/lg-near.svg", "NKE": "img/lg-nke.svg", "PLTR": "img/lg-pltr.svg", "PYPL": "img/lg-pypl.svg", "ROKU": "img/lg-roku.svg", "SAHOL": "img/lg-sahol.svg", "TON": "img/lg-ton.svg", "TRX": "img/lg-trx.svg", "UBER": "img/lg-uber.svg", "UNI": "img/lg-uni.svg", "USDT": "img/lg-usdt.svg", "V": "img/lg-v.svg", "XLM": "img/lg-xlm.svg", "QQQ": "img/lg-invesco.png", "SPY": "img/lg-spdr.png", "GLD": "img/lg-spdr.png", "XLE": "img/lg-spdr.png", "IVV": "img/lg-ishares-w.png", "SOXX": "img/lg-ishares-w.png", "SPX": "img/lg-spdji-w.png", "DJI": "img/lg-spdji-w.png", "NDX": "img/lg-nasdaq.png", "BRENT": "img/lg-cm-brent.svg", "DXY": "img/lg-fx-usd.svg", "XU100": "img/lg-bist.png", "XU050": "img/lg-bist.png", "XU030": "img/lg-bist.png", "XBANK": "img/lg-bist.png", "XAU": "img/lg-cm-xau.svg", "XAG": "img/lg-cm-xag.svg", "NG": "img/lg-cm-ng.svg", "WTI": "img/lg-cm-wti.svg", "XPT": "img/lg-cm-xpt.svg", "XPD": "img/lg-cm-xpd.svg", "HG": "img/lg-cm-hg.svg", "TEK": "img/lg-tefas-w.png", "YTF": "img/lg-tefas-w.png", "BHF": "img/lg-tefas-w.png", "ALT": "img/lg-tefas-w.png", "DEG": "img/lg-tefas-w.png", "PPF": "img/lg-tefas-w.png", "YNT": "img/lg-tefas-w.png", "USD/TRY": "img/lg-fx-usd-try.svg", "EUR/TRY": "img/lg-fx-eur-try.svg", "EUR/USD": "img/lg-fx-eur-usd.svg", "GBP/TRY": "img/lg-fx-gbp-try.svg", "CHF/TRY": "img/lg-fx-chf-try.svg", "GBP/USD": "img/lg-fx-gbp-usd.svg", "USD/JPY": "img/lg-fx-usd-jpy.svg", "USD/EUR": "img/lg-fx-usd-eur.svg", "USD/GBP": "img/lg-fx-usd-gbp.svg", "USD/CHF": "img/lg-fx-usd-chf.svg", "USD/CNY": "img/lg-fx-usd-cny.svg", "EUR/GBP": "img/lg-fx-eur-gbp.svg", "EUR/CHF": "img/lg-fx-eur-chf.svg", "EUR/CNY": "img/lg-fx-eur-cny.svg", "EUR/JPY": "img/lg-fx-eur-jpy.svg", "GBP/EUR": "img/lg-fx-gbp-eur.svg", "GBP/CHF": "img/lg-fx-gbp-chf.svg", "GBP/CNY": "img/lg-fx-gbp-cny.svg", "GBP/JPY": "img/lg-fx-gbp-jpy.svg", "CHF/USD": "img/lg-fx-chf-usd.svg", "CHF/EUR": "img/lg-fx-chf-eur.svg", "CHF/GBP": "img/lg-fx-chf-gbp.svg", "CHF/CNY": "img/lg-fx-chf-cny.svg", "CHF/JPY": "img/lg-fx-chf-jpy.svg", "CNY/USD": "img/lg-fx-cny-usd.svg", "CNY/EUR": "img/lg-fx-cny-eur.svg", "CNY/GBP": "img/lg-fx-cny-gbp.svg", "CNY/CHF": "img/lg-fx-cny-chf.svg", "CNY/JPY": "img/lg-fx-cny-jpy.svg", "CNY/TRY": "img/lg-fx-cny-try.svg", "JPY/USD": "img/lg-fx-jpy-usd.svg", "JPY/EUR": "img/lg-fx-jpy-eur.svg", "JPY/GBP": "img/lg-fx-jpy-gbp.svg", "JPY/CHF": "img/lg-fx-jpy-chf.svg", "JPY/CNY": "img/lg-fx-jpy-cny.svg", "JPY/TRY": "img/lg-fx-jpy-try.svg", "TRY/USD": "img/lg-fx-try-usd.svg", "TRY/EUR": "img/lg-fx-try-eur.svg", "TRY/GBP": "img/lg-fx-try-gbp.svg", "TRY/CHF": "img/lg-fx-try-chf.svg", "TRY/CNY": "img/lg-fx-try-cny.svg", "TRY/JPY": "img/lg-fx-try-jpy.svg", "XHARZ": "img/lg-bist.png"}, "cats": ["Finans", "Teknoloji", "Kripto", "Emtia", "Döviz", "Savunma", "Ekonomi", "Dünya"], "logo": "img/617218bebfdc0252568d560943992165.png"};
+const KEY = 'pk-panel-v1', NOW0 = Date.now();
+const AG = ['Gündem', 'Yazar', 'Editör', 'Hukuk', 'Çevirmen', 'Görsel'];
+const AGR = ['Günün önemli haberlerini seçer', 'Türkçe taslağı yazar', 'Doğruluk ve dil kontrolü', 'Telif, SPK tavsiye dili, kişi hakları', 'EN, ES, DE çevirisi', 'Ücretsiz lisanslı görsel seçer'];
+const ST = {
+  yayinda: { l: 'Yayında', c: 'var(--good)', hd: 'Bu içerik yayındadır', bg: 'rgba(91,229,154,.12)' },
+  onay: { l: 'Onay Bekliyor', c: 'var(--warn)', hd: 'Bu içerik onayını bekliyor', bg: 'rgba(245,194,107,.12)' },
+  hatta: { l: 'Hatta', c: 'var(--b2)', hd: 'Yapay zekâ hattında hazırlanıyor', bg: 'rgba(79,130,255,.12)' },
+  taslak: { l: 'Taslak', c: 'var(--t3)', hd: 'Bu içerik taslak', bg: 'rgba(255,255,255,.06)' },
+  red: { l: 'Reddedildi', c: 'var(--bad)', hd: 'Bu içerik durduruldu', bg: 'rgba(255,138,122,.12)' }
+};
+const I = (p, s = 18, w = 1.7) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${p}</svg>`;
+const IC = {
+  home: '<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+  list: '<path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/>',
+  edit: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  seo: '<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
+  flow: '<rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/><path d="M10 6.5h4a3 3 0 0 1 3 3V14"/>',
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  pin: '<path d="M12 17v5"/><path d="M9 10.8V5h6v5.8l2.5 3.2h-11Z"/>',
+  eye: '<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>',
+  ext: '<path d="M15 3h6v6M10 14 21 3M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>',
+  check: '<path d="M20 6 9 17l-5-5"/>',
+  x: '<path d="M18 6 6 18M6 6l12 12"/>',
+  clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  dots: '<circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/>',
+  pen: '<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/>',
+  img: '<rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/>',
+  up: '<path d="m18 15-6-6-6 6"/>', down: '<path d="m6 9 6 6 6-6"/>',
+  pause: '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>',
+  play: '<path d="M6 4l14 8-14 8Z"/>',
+  link: '<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
+  ul: '<path d="M9 6h11M9 12h11M9 18h11M4 6h.01M4 12h.01M4 18h.01"/>',
+  quote: '<path d="M7 7h4v4c0 3-2 5-4 6M15 7h4v4c0 3-2 5-4 6"/>',
+  warn: '<path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/>',
+  bolt: '<path d="M13 2 3 14h9l-1 8 10-12h-9Z"/>',
+  redo: '<path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/>'
+};
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+const fmt = n => Number(n).toLocaleString('tr-TR');
+const short = n => n >= 1e6 ? (n / 1e6).toFixed(1).replace('.', ',') + ' Mn' : n >= 1e4 ? (n / 1e3).toFixed(1).replace('.', ',') + ' B' : fmt(n);
+const AYLAR = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+const when = ago => { const d = new Date(NOW0 - ago * 60000), t = d.toTimeString().slice(0, 5), today = new Date(NOW0).toDateString() === d.toDateString(); return (today ? 'Bugün' : d.getDate() + ' ' + AYLAR[d.getMonth()]) + ' ' + t; };
+const agoTxt = m => m < 1 ? 'şimdi' : m < 60 ? m + ' dk önce' : Math.floor(m / 60) + ' sa önce';
+const trl = s => s.toLocaleLowerCase('tr');
+const slugify = t => trl(t).replace(/[çğıöşüâîû]/g, c => ({ ç: 'c', ğ: 'g', ı: 'i', ö: 'o', ş: 's', ü: 'u', â: 'a', î: 'i', û: 'u' })[c]).replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 70).replace(/-+$/, '');
+const plainB = s => s.replace(/\*\*/g, '');
+const logoOf = a => D.logos[a];
+
+let S = load(), paused = false;
+function load() {
+  try { const o = JSON.parse(localStorage.getItem(KEY) || 'null'); if (o && Array.isArray(o.s)) return o.s; } catch (e) {}
+  return JSON.parse(JSON.stringify(D.stories));
+}
+function save() { try { localStorage.setItem(KEY, JSON.stringify({ s: S })); return true; } catch (e) { return false; } }
+const byId = id => S.find(s => s.id === id);
+
+/* live numbers: active users (last 5 min) and page views per minute */
+const live = { users: 535, mins: [] };
+for (let i = 0; i < 30; i++) live.mins.push(Math.round(92 + 18 * Math.sin(i / 3.2) + (i * 7919 % 23) - 8));
+function tick() {
+  live.users = Math.max(380, Math.min(720, live.users + Math.round((Math.random() - .48) * 14)));
+  S.forEach(s => { if (s.status === 'yayinda' && s.live) { s.live = Math.max(3, s.live + Math.round((Math.random() - .5) * Math.max(4, s.live * .06))); s.reads += Math.round(Math.random() * s.live / 40); } });
+  document.querySelectorAll('[data-live]').forEach(el => {
+    const k = el.dataset.live, s = k === 'users' ? null : byId(k);
+    el.textContent = k === 'users' ? fmt(live.users) : k.startsWith('r:') ? fmt(byId(k.slice(2)).reads) : fmt(s ? s.live : 0);
+  });
+}
+function minute() { live.mins.push(Math.round(80 + Math.random() * 45)); live.mins.shift(); const c = document.getElementById('pv'); if (c) c.innerHTML = chartHTML(); }
+setInterval(tick, 3000); setInterval(minute, 12000);
+
+/* pipeline simulation: stories in progress move one step forward every few seconds (unless paused) */
+function advance() {
+  if (paused) return;
+  const s = S.find(x => x.status === 'hatta' || x.status === 'taslak'); if (!s) return;
+  const i = s.pipe.indexOf('run'); if (i < 0) return;
+  s.pipe[i] = 'ok'; s.notes[i] = ['Önem puanı 84/100', 'TR taslak hazır', 'Rakamlar kaynakla eşleşti', 'Tavsiye dili yok · telif uygun', 'EN, ES, DE hazır', 'Unsplash lisansı · kişi ve logo yok'][i];
+  if (i === 2 && s.status === 'taslak') s.status = 'hatta';
+  if (i + 1 < 6) { s.pipe[i + 1] = 'run'; s.notes[i + 1] = ['', '', 'Kontrol ediliyor', 'Kontrol ediliyor: telif, tavsiye dili', 'Çevriliyor', 'Görsel aranıyor'][i + 1]; }
+  if (i === 4) s.tr = s.tr && s.tr.EN ? s.tr : { EN: { title: '', spot: '', bul: [] }, ES: { title: '', spot: '', bul: [] }, DE: { title: '', spot: '', bul: [] } };
+  if (i === 5) { s.status = 'onay'; s.img = s.img || 'img/5075448c754ac2226ee3353d34b0ffce.jpg'; s.alt = s.alt || 'Haber görseli: ' + s.title; s.lic = 'Unsplash lisansı'; toast(`“${s.title}” onayına hazır`); }
+  save(); if (['hat', 'genel', 'haberler'].includes(route().p)) render();
+}
+setInterval(advance, 9000);
+
+/* routing */
+function route() { const h = location.hash.slice(1) || 'genel'; const [p, id] = h.split('/'); return { p, id }; }
+window.addEventListener('hashchange', () => { ed = null; render(); window.scrollTo(0, 0); });
+let ui = { q: '', cat: '', st: '', sort: 'ago', dir: 1, tag: '' }, ed = null, lang = 'TR';
+
+function side() {
+  const p = route().p, wait = S.filter(s => s.status === 'onay').length;
+  const n = (h, ic, t, c) => `<a class="nav${p === h || (h === 'haberler' && p === 'duzenle') ? ' on' : ''}" href="#${h}">${I(IC[ic])}<span class="tx">${t}</span>${c ? `<span class="cnt">${c}</span>` : ''}</a>`;
+  document.getElementById('side').innerHTML = `
+    <div class="brand"><img src="${D.logo}" alt="Perspekt!"><div><b>Perspekt!</b><span>Haber Paneli</span></div></div>
+    ${n('genel', 'home', 'Genel Bakış')}${n('haberler', 'list', 'Haberler')}${n('yeni', 'plus', 'Yeni Haber')}${n('hat', 'flow', 'Yapay Zekâ Hattı', wait)}${n('seo', 'seo', 'SEO')}
+    <div class="foot"><div class="me"><span class="av">BA</span><div>Bilge Aydın<small>Yönetici</small></div></div>
+    <button class="reset" data-act="reset">Örnek veriye dön</button></div>`;
+}
+function hdr(title, sub, right = '') {
+  return `<div class="top"><div><h1 class="gt">${title}</h1>${sub ? `<div class="sub">${sub}</div>` : ''}</div><div class="sp"></div>${right}
+    <div class="live"><span class="dot"></span><span class="tx">Canlı ·</span>&nbsp;<b data-live="users">${fmt(live.users)}</b>&nbsp;<span class="tx">kişi</span></div></div>`;
+}
+const stBadge = st => `<span class="st" style="color:${ST[st].c}">${I(st === 'yayinda' ? IC.check : st === 'red' ? IC.x : st === 'onay' ? IC.clock : st === 'hatta' ? IC.flow : IC.pen, 14, 2)}${ST[st].l}</span>`;
+const logos = (as, n = 4) => `<div class="lg">${as.slice(0, n).map(a => logoOf(a) ? `<span title="${esc(a)}" style="background-image:url(${logoOf(a)})"></span>` : `<span class="tx" title="${esc(a)}">${esc(a.slice(0, 3))}</span>`).join('')}</div>`;
+const langs = s => `<div class="langs"><span class="ok">TR</span>${['EN', 'ES', 'DE'].map(L => `<span class="${s.tr && s.tr[L] && s.tr[L].title ? 'ok' : ''}">${L}</span>`).join('')}</div>`;
+const pipeDots = s => `<div class="pipe" title="${AG.map((a, i) => a + ': ' + ({ ok: 'tamam', run: 'çalışıyor', wait: 'sırada', fail: 'durdurdu' })[s.pipe[i]]).join(' · ')}">${s.pipe.map(p => `<i class="${p}"></i>`).join('')}</div>`;
+const thumb = s => s.img ? `<span class="thumb" style="background-image:url(${s.img});background-position:${s.pos}"></span>` : `<span class="thumb">${I(IC.img, 16)}</span>`;
+
+/* ---------- Genel Bakış ---------- */
+function chartHTML() {
+  const mx = 150, m = live.mins;
+  return `${[150, 100, 50].map(v => `<div class="gl" style="top:${(1 - v / mx) * 100}%"><span>${v}</span></div>`).join('')}<div class="gl" style="top:100%"><span>0</span></div>
+    <div class="bars">${m.map((v, i) => `<div data-tip="<b>${fmt(v)}</b> sayfa görüntüleme · ${i === m.length - 1 ? 'şu dakika' : (m.length - 1 - i) + ' dk önce'}"><i style="height:${Math.min(100, v / mx * 100)}%"></i></div>`).join('')}</div>`;
+}
+function pGenel() {
+  const pub = S.filter(s => s.status === 'yayinda'), wait = S.filter(s => s.status === 'onay'), reads = pub.reduce((a, s) => a + s.reads, 0);
+  const hot = pub.slice().sort((a, b) => b.live - a.live).slice(0, 6);
+  const inPipe = S.filter(s => s.status === 'hatta' || s.status === 'taslak').length;
+  const hb = rows => `<div class="hb">${rows.map(r => `<div class="r"><span>${r[0]}</span><div class="bar"><i style="width:${r[1]}%"></i></div><span>%${r[1]}</span></div>`).join('')}</div>`;
+  return hdr('Genel Bakış', new Date(NOW0).toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric', weekday: 'long' }) + ' · uygulama içi okuma verisi') + `
+  <div class="grid g4">
+    <div class="card kpi"><div class="lab">Anlık Kullanıcı</div><div class="val" data-live="users">${fmt(live.users)}</div><div class="foot">son 5 dakikada uygulamada</div></div>
+    <div class="card kpi"><div class="lab">Bugün Okunma</div><div class="val">${short(reads)}</div><div class="foot"><span class="up">${I(IC.up, 14, 2.2)} %12</span> düne göre aynı saatte</div></div>
+    <div class="card kpi"><div class="lab">Bugün Yayınlanan</div><div class="val">${pub.length}<span style="font-size:20px;color:var(--t4)"> / 30</span></div><div class="bar"><i style="width:${pub.length / 30 * 100}%"></i></div><div class="foot mt8">günlük üst sınır 30 haber</div></div>
+    <a class="card kpi" href="#hat"><div class="lab">Onay Bekleyen</div><div class="val">${wait.length}</div><div class="foot">${inPipe} haber hatta hazırlanıyor · <span class="lnk">İncele</span></div></a>
+  </div>
+  <div class="grid g3 mt16">
+    <div class="card"><div class="ch"><div><h2>Dakika Bazında Sayfa Görüntüleme</h2><div class="hint">Son 30 dakika, haber sayfaları</div></div></div>
+      <div class="chart" id="pv">${chartHTML()}</div><div class="xl"><span>−30 dk</span><span>−20 dk</span><span>−10 dk</span><span>şimdi</span></div></div>
+    <div class="card"><h2>Cihaz</h2><div class="hint" style="margin-bottom:14px">Anlık kullanıcılar</div>${hb([['iPhone', 58], ['Android', 38], ['Tablet', 4]])}
+      <h2 class="mt16" style="margin-top:22px">Uygulama Dili</h2><div class="hint" style="margin-bottom:14px">Anlık kullanıcılar</div>${hb([['Türkçe', 71], ['English', 17], ['Deutsch', 7], ['Español', 5]])}</div>
+  </div>
+  <div class="grid g3 mt16">
+    <div class="card"><div class="ch"><div><h2>Şu An En Çok Okunanlar</h2><div class="hint">Haberi şu anda okuyan kişi sayısı</div></div><a class="btn sm" href="#haberler">Tüm haberler</a></div>
+      <div class="tw"><table><thead><tr><th>#</th><th>Haber</th><th class="n">Anlık</th><th class="n">Okunma</th></tr></thead><tbody>
+      ${hot.map((s, i) => `<tr data-go="${s.id}" style="cursor:pointer"><td class="rank">${i + 1}</td><td><div class="story">${thumb(s)}<div><div class="tt">${esc(s.title)}</div><div class="sl">${esc(s.cat)} · ${agoTxt(s.ago)}</div></div></div></td>
+        <td class="n"><span class="livev"><i></i><span data-live="${s.id}">${fmt(s.live)}</span></span></td><td class="n" data-live="r:${s.id}">${fmt(s.reads)}</td></tr>`).join('')}
+      </tbody></table></div></div>
+    <div class="card"><div class="ch"><div><h2>Yapay Zekâ Hattı</h2><div class="hint">Haberler yayından önce 6 ajandan geçer</div></div></div>
+      ${AG.map((a, i) => { const n = S.filter(s => s.status !== 'yayinda' && s.status !== 'red' && s.pipe[i] === 'run').length; return `<div class="kv"><span>${a}</span><span>${n ? `<span style="color:var(--b3)">${n} çalışıyor</span>` : 'boşta'}</span></div>`; }).join('')}
+      <div class="kv"><span>Onay (sen)</span><span style="color:var(--warn)">${wait.length} bekliyor</span></div>
+      <div class="kv"><span>Bugünkü maliyet</span><span>$${((pub.length + wait.length + inPipe) * .22 + .6).toFixed(2).replace('.', ',')} <small style="color:var(--t4)">tahmini</small></span></div>
+      <a class="btn mt16" style="width:100%" href="#hat">Hattı aç</a></div>
+  </div>`;
+}
+
+/* ---------- Haberler ---------- */
+function pHaberler() {
+  const counts = k => S.filter(s => !k || s.status === k).length;
+  let L = S.filter(s => (!ui.st || s.status === ui.st) && (!ui.cat || s.cat === ui.cat) && (!ui.tag || s.tags.some(t => trl(t) === trl(ui.tag))) &&
+    (!ui.q || trl(s.title + ' ' + s.tags.join(' ') + ' ' + s.assets.join(' ')).includes(trl(ui.q))));
+  const k = ui.sort, d = ui.dir;
+  L.sort((a, b) => (b.pin - a.pin) || (k === 'ago' || k === 'upd' ? (a[k] - b[k]) * d : (b[k] - a[k]) * d));
+  const th = (key, t, n) => `<th class="s${n ? ' n' : ''}" data-sort="${key}">${t}${ui.sort === key ? `<span class="ar">${ui.dir === 1 ? '↓' : '↑'}</span>` : ''}</th>`;
+  return hdr('Haberler', `${S.length} haber · sabitlenenler akışın en üstünde kalır`, `<a class="btn pri" href="#yeni">${I(IC.plus, 16, 2)}Yeni Haber</a>`) + `
+  <div class="filters">
+    <label class="search">${I(IC.seo, 16)}<input id="q" placeholder="Başlık, etiket ya da varlık ara" value="${esc(ui.q)}"></label>
+    <select class="inp" id="fcat"><option value="">Tüm kategoriler</option>${D.cats.map(c => `<option${ui.cat === c ? ' selected' : ''}>${c}</option>`).join('')}</select>
+    <div class="seg">${[['', 'Tümü'], ['yayinda', 'Yayında'], ['onay', 'Onay Bekliyor'], ['hatta', 'Hatta'], ['taslak', 'Taslak'], ['red', 'Reddedildi']].map(([v, t]) => `<button data-st="${v}" class="${ui.st === v ? 'on' : ''}">${t}<em>${counts(v)}</em></button>`).join('')}</div>
+    ${ui.tag ? `<span class="chip">Etiket: ${esc(ui.tag)}<button data-act="untag" aria-label="Etiket filtresini kaldır">${I(IC.x, 12, 2.4)}</button></span>` : ''}
+  </div>
+  <div class="card" style="padding-top:18px"><div class="tw"><table>
+    <thead><tr><th>Sıra</th><th>Haber</th><th>Durum</th><th>Varlıklar</th>${th('reads', 'Okunma', 1)}${th('live', 'Anlık', 1)}${th('feed', 'Gösterim', 1)}<th class="n">Tıklanma</th><th>Hat ve Diller</th>${th('ago', 'Oluşturma')}<th></th></tr></thead>
+    <tbody>${L.length ? L.map((s, i) => `<tr class="${s.pin ? 'pin' : ''}">
+      <td class="rank">${i + 1}</td>
+      <td><a class="story" href="#duzenle/${s.id}">${thumb(s)}<div><div class="tt">${esc(s.title)}</div><div class="sl">${esc(s.cat)} · /${esc(s.slug)}</div></div></a></td>
+      <td>${stBadge(s.status)}</td><td>${logos(s.assets, 3)}</td>
+      <td class="n" data-live="r:${s.id}">${s.status === 'yayinda' ? fmt(s.reads) : '—'}</td>
+      <td class="n">${s.status === 'yayinda' ? `<span class="livev"><i></i><span data-live="${s.id}">${fmt(s.live)}</span></span>` : '—'}</td>
+      <td class="n">${s.feed ? fmt(s.feed) : '—'}</td>
+      <td class="n">${s.feed ? '%' + (s.reads / s.feed * 100).toFixed(1).replace('.', ',') : '—'}</td>
+      <td><div style="display:flex;flex-direction:column;gap:6px">${pipeDots(s)}${langs(s)}</div></td>
+      <td class="d">${when(s.ago)}<br><span style="color:var(--t4)">günc. ${when(s.upd).replace('Bugün ', '')}</span></td>
+      <td><div class="acts"><button class="ib${s.pin ? ' on' : ''}" data-act="pin" data-id="${s.id}" title="${s.pin ? 'Sabitlemeyi kaldır' : 'Akışın en üstüne sabitle'}">${I(IC.pin, 16)}</button>
+        <a class="ib" href="Haber.dc.html#n${s.id}" target="_blank" rel="noopener" title="Uygulamada aç">${I(IC.eye, 16)}</a></div></td></tr>`).join('') : `<tr><td colspan="11" class="empty">Bu filtrelere uyan haber yok</td></tr>`}</tbody>
+  </table></div></div>`;
+}
+
+/* ---------- SEO checks ---------- */
+function seo(s) {
+  const t = s.title.length, sp = s.spot.length, k = s.tags[0] ? trl(s.tags[0]) : '';
+  const c = [
+    [t >= 40 && t <= 70, `Başlık ${t} karakter`, '40–70 karakter arası ideal'],
+    [sp >= 70 && sp <= 160, `Spot ${sp} karakter`, 'Google açıklaması olarak 70–160 karakter'],
+    [!!k && trl(s.title + ' ' + s.spot).includes(k), k ? `Ana etiket “${s.tags[0]}” başlıkta ya da spotta` : 'Ana etiket yok', 'İlk etiket başlıkta ya da spotta geçmeli'],
+    [s.slug.length > 0 && s.slug.length <= 75, `Kalıcı bağlantı ${s.slug.length} karakter`, 'Kısa ve okunur olmalı (en fazla 75)'],
+    [!!(s.img && s.alt), s.img ? (s.alt ? 'Görselin alt metni var' : 'Görselin alt metni eksik') : 'Görsel yok', 'Görsel aramaları için alt metin'],
+    [s.tags.length >= 3, `${s.tags.length} etiket`, 'En az 3 etiket']
+  ];
+  return { c, score: Math.round(c.filter(x => x[0]).length / c.length * 100) };
+}
+const ring = v => { const r = 24, C = 2 * Math.PI * r, col = v >= 80 ? 'var(--good)' : v >= 50 ? 'var(--warn)' : 'var(--bad)';
+  return `<svg class="ring" viewBox="0 0 56 56"><circle cx="28" cy="28" r="${r}" fill="none" stroke="var(--s3)" stroke-width="5"/><circle cx="28" cy="28" r="${r}" fill="none" stroke="${col}" stroke-width="5" stroke-linecap="round" stroke-dasharray="${C * v / 100} ${C}" transform="rotate(-90 28 28)"/><text x="28" y="33" text-anchor="middle" fill="var(--t1)" font-size="15" font-weight="700" font-family="Satoshi">${v}</text></svg>`; };
+
+/* ---------- Editör ---------- */
+function blank() {
+  return { id: 'n' + Date.now(), cat: 'Finans', title: '', hl: '', home: '', flash: '', spot: '', long: '', body: '', bul: ['', '', ''], imp: [['', '', 'flat']], past: '', src: '', img: '', pos: 'center 50%', alt: '', lic: '',
+    status: 'taslak', pin: false, push: false, ago: 0, upd: 0, reads: 0, live: 0, feed: 0, tags: [], assets: [], slug: '', owner: 'Bilge Aydın', tr: {}, pipe: ['ok', 'ok', 'wait', 'wait', 'wait', 'wait'],
+    notes: ['Elle eklendi', 'Elle yazıldı', 'Kaydedince kontrol edecek', 'Editör onayından sonra', 'Hukuk onayından sonra', 'Çeviri bitince başlayacak'], isNew: true };
+}
+function pEdit(id) {
+  if (!ed || (id && ed.id !== id)) { const s = id ? byId(id) : null; if (id && !s) return hdr('Haber Bulunamadı', '') + `<div class="card empty">Bu haber silinmiş olabilir · <a class="lnk" href="#haberler">Haberlere dön</a></div>`; ed = JSON.parse(JSON.stringify(s || blank())); lang = 'TR'; }
+  const s = ed, stx = ST[s.status], body = s.body || (s.long ? '<p>' + esc(s.long) + '</p>' : '');
+  const tr = lang !== 'TR' ? (s.tr && s.tr[lang]) : null;
+  const cnt = (n, mx, mn = 0) => `<em class="${n > mx || n < mn ? 'bad' : ''}">${n} / ${mx}</em>`;
+  const left = lang === 'TR' ? `
+    <div class="card">
+      <div class="f"><label>Başlık ${cnt(s.title.length, 70, 40)}</label><input class="fi big" data-f="title" value="${esc(s.title)}" placeholder="Haberin başlığı"></div>
+      <div class="f"><label>Vurgulu kısım <span style="font-weight:400">Uygulamada mavi gradyanla yazılır, başlıkta geçmeli</span></label><input class="fi" data-f="hl" value="${esc(s.hl)}" placeholder="Örn. 25 baz puan"></div>
+      <div class="f"><label>Kalıcı bağlantı</label><div class="slug"><div class="pre">perspekt.app/haber/<input data-f="slug" value="${esc(s.slug)}" ${s.slugEd ? '' : 'readonly'}></div><button class="btn" style="height:46px;border-radius:14px" data-act="slugEd">${s.slugEd ? 'Başlıktan üret' : 'Düzenle'}</button></div></div>
+      <div class="grid g2" style="gap:12px">
+        <div class="f"><label>Ana sayfa başlığı ${cnt(s.home.length, 48)}</label><input class="fi" data-f="home" value="${esc(s.home)}" placeholder="Akış kartındaki kısa başlık"></div>
+        <div class="f"><label>Son dakika başlığı</label><input class="fi" data-f="flash" value="${esc(s.flash)}" placeholder="Boşsa son dakika bandı çıkmaz"></div>
+      </div>
+      <div class="f"><label>Spot ${cnt(s.spot.length, 160, 70)}</label><textarea class="fi" data-f="spot" rows="3" placeholder="Haberin bir cümlelik özeti, Google açıklaması da olur">${esc(s.spot)}</textarea></div>
+    </div>
+    <div class="card"><div class="ch"><div><h2>3 Madde</h2><div class="hint">Haberin üç maddelik özeti · vurgulanacak kısmı ** ** arasına yaz</div></div></div>
+      ${[0, 1, 2].map(i => `<div class="brow"><b>0${i + 1}</b><input class="fi" data-b="${i}" value="${esc(s.bul[i] || '')}" placeholder="Örn. Karar **beklentilere uygun** geldi"></div>`).join('')}</div>
+    <div class="card"><div class="ch"><div><h2>İçerik</h2><div class="hint">Haberin uzun metni</div></div></div>
+      <div class="tb">${[['bold', '<b>B</b>'], ['italic', '<i style="font-family:Georgia">I</i>'], ['h2', 'H'], ['quote', I(IC.quote, 16)], ['ul', I(IC.ul, 16)], ['link', I(IC.link, 16)]].map(([c, h]) => `<button data-cmd="${c}" title="${{ bold: 'Kalın', italic: 'İtalik', h2: 'Ara başlık', quote: 'Alıntı', ul: 'Liste', link: 'Bağlantı' }[c]}">${h}</button>`).join('')}<span class="sep"></span><button data-cmd="clear" title="Biçimi temizle">${I(IC.x, 14, 2)}</button></div>
+      <div class="rte" contenteditable="true" id="rte">${body}</div></div>
+    <div class="card"><div class="ch"><div><h2>Piyasa Etkisi</h2><div class="hint">Haberin hangi varlığı nasıl etkilediği · uygulamada “Etkisi” bölümünde görünür</div></div><button class="btn sm" data-act="addImp">${I(IC.plus, 14, 2)}Satır ekle</button></div>
+      ${s.imp.map((r, i) => `<div class="irow"><input class="fi" data-imp="${i}:0" value="${esc(r[0])}" placeholder="Varlık" list="alist"><input class="fi" data-imp="${i}:1" value="${esc(r[1])}" placeholder="Kısa açıklama"><select class="fi inp" data-imp="${i}:2" style="height:40px;border-radius:14px">${[['up', 'Yukarı'], ['flat', 'Nötr'], ['down', 'Aşağı']].map(([v, t]) => `<option value="${v}"${r[2] === v ? ' selected' : ''}>${t}</option>`).join('')}</select><button class="ib" data-act="delImp" data-i="${i}" title="Satırı sil" style="height:40px">${I(IC.x, 14, 2)}</button></div>`).join('')}
+      <div class="f mt16"><label>Geçmişte ne oldu</label><textarea class="fi" data-f="past" rows="2" placeholder="Benzer olaylardan sonra piyasada ne olduğu">${esc(s.past)}</textarea></div>
+      <div class="f"><label>Kaynak</label><input class="fi" data-f="src" value="${esc(s.src)}" placeholder="Örn. Reuters, KAP, borsa işlem verisi"></div></div>`
+  : `<div class="card">
+      <div class="note" style="margin-bottom:16px">${tr && tr.title ? `${{ EN: 'İngilizce', ES: 'İspanyolca', DE: 'Almanca' }[lang]} metin Çevirmen ajanı tarafından Türkçe onaydan sonra çevrildi. Burada düzeltebilirsin.` : 'Çevirmen ajanı bu dili Hukuk onayından sonra çevirecek.'}</div>
+      ${tr && tr.title ? `<div class="f"><label>Başlık ${cnt(tr.title.length, 70, 40)}</label><input class="fi big" data-t="title" value="${esc(tr.title)}"></div>
+      <div class="f"><label>Spot ${cnt(tr.spot.length, 160, 70)}</label><textarea class="fi" data-t="spot" rows="3">${esc(tr.spot)}</textarea></div>
+      ${(tr.bul || []).map((b, i) => `<div class="brow"><b>0${i + 1}</b><input class="fi" data-tb="${i}" value="${esc(b)}"></div>`).join('')}
+      <button class="btn mt8" data-act="retr">${I(IC.redo, 16)}Yeniden çevir</button>` : `<button class="btn" data-act="retr">${I(IC.bolt, 16)}Şimdi çevir</button>`}
+    </div>`;
+  const sc = seo(s);
+  const right = `
+    <div class="stc"><div class="hd" style="background:${stx.bg}"><span>${stx.hd}</span>${s.isNew ? '' : `<a class="ib" href="Haber.dc.html#n${s.id}" target="_blank" rel="noopener" title="Uygulamada aç">${I(IC.ext, 16)}</a>`}</div>
+      <div class="bd">
+        ${s.status === 'red' && s.reason ? `<div class="note bad mt8">${esc(s.reason)}</div>` : ''}
+        <div class="kv" style="align-items:center"><span>Durum</span><span><select class="inp" data-f="status" style="height:36px">${Object.keys(ST).map(k => `<option value="${k}"${s.status === k ? ' selected' : ''}>${ST[k].l}</option>`).join('')}</select></span></div>
+        <div class="kv"><span>Oluşturulma</span><span>${s.isNew ? '—' : when(s.ago)}</span></div>
+        <div class="kv"><span>Yayınlanma</span><span>${s.status === 'yayinda' ? when(Math.max(0, s.ago - 3)) : '—'}</span></div>
+        <div class="kv"><span>Güncelleme</span><span>${s.isNew ? '—' : when(s.upd)}</span></div>
+        <div class="kv" style="align-items:center"><span>Yayın zamanı</span><span><input type="datetime-local" class="inp" data-f="sched" value="${esc(s.sched || '')}" style="height:36px;color-scheme:dark"></span></div>
+        <div style="display:flex;gap:8px;margin-top:14px">${s.status !== 'yayinda' ? `<button class="btn ok" style="flex:1" data-act="publish">${I(IC.check, 16, 2)}Yayınla</button>` : ''}<button class="btn pri" style="flex:1" data-act="save">${s.isNew ? 'Kaydet' : 'Güncelle'}</button></div>
+      </div></div>
+    <div class="card"><div class="ch"><div><h2>Yapay Zekâ Kontrolleri</h2><div class="hint">Her ajan yalnızca kendi işini yapar</div></div><button class="ib" data-act="rerun" title="Hattı yeniden çalıştır">${I(IC.redo, 16)}</button></div>
+      ${AG.map((a, i) => { const p = s.pipe[i]; return `<div class="ag"><span class="ic" style="color:${p === 'ok' ? 'var(--good)' : p === 'fail' ? 'var(--bad)' : p === 'run' ? 'var(--b3)' : 'var(--t4)'}">${I(p === 'ok' ? IC.check : p === 'fail' ? IC.x : p === 'run' ? IC.dots : IC.clock, 14, 2.2)}</span><div><b>${a}</b><small>${esc(s.notes[i] || AGR[i])}</small></div></div>`; }).join('')}</div>
+    <div class="card"><h2 style="margin-bottom:14px">İçerik Türü</h2>
+      <div class="f"><label>Kategori</label><select class="inp fi" data-f="cat" style="border-radius:14px;height:46px">${D.cats.map(c => `<option${s.cat === c ? ' selected' : ''}>${c}</option>`).join('')}</select></div>
+      <div class="f"><label>Etiketler <span style="font-weight:400">SEO'ya girer · Enter ile ekle</span></label><div class="chips" data-chips="tags">${s.tags.map((t, i) => `<span class="chip">${esc(t)}<button data-act="delTag" data-i="${i}" aria-label="${esc(t)} etiketini sil">${I(IC.x, 12, 2.4)}</button></span>`).join('')}<input id="tagin" placeholder="Etiket ekle"></div></div>
+      <div class="f"><label>İlgili varlıklar <span style="font-weight:400">Haberin altında ve varlık sayfasında görünür</span></label><div class="chips">${s.assets.map((a, i) => `<span class="chip">${logoOf(a) ? `<span class="lo" style="background-image:url(${logoOf(a)})"></span>` : ''}${esc(a)}<button data-act="delAsset" data-i="${i}" aria-label="${esc(a)} varlığını sil">${I(IC.x, 12, 2.4)}</button></span>`).join('')}<input id="assin" list="alist" placeholder="Varlık ekle"></div></div>
+      <div class="f"><label>İçeriği ata</label><select class="inp fi" data-f="owner" style="border-radius:14px;height:46px">${['Yazar ajanı', 'Bilge Aydın', 'Editör ajanı'].map(o => `<option${s.owner === o ? ' selected' : ''}>${o}</option>`).join('')}</select></div>
+      <div class="tog"><span>Akışın en üstüne sabitle</span><button class="sw${s.pin ? ' on' : ''}" data-act="tg" data-k="pin" aria-label="Sabitle"></button></div>
+      <div class="tog"><span>Yayınlanınca bildirim gönder</span><button class="sw${s.push ? ' on' : ''}" data-act="tg" data-k="push" aria-label="Bildirim gönder"></button></div></div>
+    <div class="card"><h2 style="margin-bottom:14px">Seçilmiş Görsel</h2>
+      <div class="img" id="imgp" style="${s.img ? `background-image:url(${s.img});background-position:${s.pos}` : ''}">${s.img ? '' : I(IC.img, 28) + '<br>Görsel ajanı sırada<br>ya da kendin yükle'}</div>
+      <div class="drop" id="drop" data-act="upload">${I(IC.plus, 14, 2)} Görsel yükle ya da buraya sürükle</div>
+      <div class="f mt16"><label>Odak noktası</label><select class="inp fi" data-f="pos" style="border-radius:14px;height:46px">${(ps => [['center 25%', 'Üst'], [ps, 'Orta'], ['center 75%', 'Alt']].map(([v, t]) => `<option value="${v}"${s.pos === v ? ' selected' : ''}>${t}</option>`).join(''))(['center 25%', 'center 75%'].includes(s.pos) ? 'center 50%' : s.pos)}</select></div>
+      <div class="f"><label>Alt metin <span style="font-weight:400">Görsel aramaları ve erişilebilirlik için</span></label><input class="fi" data-f="alt" value="${esc(s.alt)}" placeholder="Görselde ne var"></div>
+      <div class="f"><label>Görsel kaynağı ve lisans</label><input class="fi" data-f="lic" value="${esc(s.lic)}" placeholder="Örn. Unsplash lisansı"></div></div>
+    <div class="card" id="seobox">${seoBox(s, sc)}</div>`;
+  return hdr(s.isNew ? 'Yeni Haber' : 'Haber Düzenle', s.isNew ? 'Elle eklenen haberler de yayından önce hattan geçer' : `<a class="lnk" href="#haberler">Haberler</a> / ${esc(s.title.slice(0, 60))}`,
+    `<div class="tabs">${['TR', 'EN', 'ES', 'DE'].map(L => `<button data-lang="${L}" class="${lang === L ? 'on' : ''}">${L}<i class="${L === 'TR' || (s.tr && s.tr[L] && s.tr[L].title) ? 'ok' : ''}"></i></button>`).join('')}</div>`) +
+    `<div class="ed"><div class="col">${left}</div><div class="col">${right}</div></div>
+    <datalist id="alist">${Object.keys(D.logos).map(a => `<option value="${esc(a)}">`).join('')}</datalist>`;
+}
+function seoBox(s, sc) {
+  return `<div class="ch" style="margin-bottom:10px"><div><h2>SEO Önizleme</h2><div class="hint">Google'da böyle görünür</div></div></div>
+    <div class="serp"><div class="u">perspekt.app › haber › ${esc(s.slug || '…')}</div><div class="t">${esc(s.title || 'Başlık')} | Perspekt!</div><div class="d">${esc(s.spot || 'Spot metni burada görünür.')}</div></div>
+    <div class="score">${ring(sc.score)}<div><b>SEO puanı</b><div class="hint">${sc.c.filter(x => x[0]).length} / ${sc.c.length} kontrol geçti</div></div></div>
+    ${sc.c.map(x => `<div class="ck" title="${esc(x[2])}"><span style="color:${x[0] ? 'var(--good)' : 'var(--warn)'}">${I(x[0] ? IC.check : IC.warn, 15, 2.2)}</span><span>${esc(x[1])}<br><span style="color:var(--t4)">${esc(x[2])}</span></span></div>`).join('')}`;
+}
+
+/* ---------- SEO ---------- */
+function pSeo() {
+  const act = S.filter(s => s.status !== 'red'), pub = S.filter(s => s.status === 'yayinda');
+  const tags = {};
+  act.forEach(s => s.tags.forEach(t => { const k = trl(t); const o = tags[k] || (tags[k] = { t, n: 0, reads: 0, last: 1e9, live: 0 }); o.n++; o.reads += s.reads; o.last = Math.min(o.last, s.ago); }));
+  const T = Object.values(tags).sort((a, b) => b.reads - a.reads || b.n - a.n), mx = T[0] ? T[0].reads || 1 : 1;
+  const scores = act.map(s => seo(s).score), avg = Math.round(scores.reduce((a, b) => a + b, 0) / (scores.length || 1));
+  const noAlt = act.filter(s => s.img && !s.alt).length;
+  const issues = act.map(s => ({ s, bad: seo(s).c.filter(x => !x[0]) })).filter(x => x.bad.length).sort((a, b) => b.bad.length - a.bad.length);
+  return hdr('SEO', 'Haberlerde kullanılan anahtar kelimeler ve düzeltilmesi gerekenler') + `
+  <div class="grid g4">
+    <div class="card kpi"><div class="lab">Ortalama SEO Puanı</div><div class="val">${avg}</div><div class="bar"><i style="width:${avg}%"></i></div></div>
+    <div class="card kpi"><div class="lab">Kullanılan Etiket</div><div class="val">${T.length}</div><div class="foot">${act.length} haberde</div></div>
+    <div class="card kpi"><div class="lab">Alt Metni Eksik Görsel</div><div class="val">${noAlt}</div><div class="foot">${noAlt ? 'aşağıdan düzelt' : 'hepsi tamam'}</div></div>
+    <div class="card kpi"><div class="lab">En Çok Okutan Etiket</div><div class="val" style="font-size:28px;margin-top:16px">${esc(T[0] ? T[0].t : '—')}</div><div class="foot">${T[0] ? short(T[0].reads) + ' okunma' : ''}</div></div>
+  </div>
+  <div class="grid g3 mt16">
+    <div class="card"><div class="ch"><div><h2>Kullanılan Anahtar Kelimeler</h2><div class="hint">Etikete tıkla, o etiketin haberleri listelensin</div></div></div>
+      <div class="tw"><table><thead><tr><th>Etiket</th><th class="n">Haber</th><th class="n">Okunma</th><th style="width:30%">Okunma payı</th><th>Son kullanım</th></tr></thead><tbody>
+      ${T.map(o => `<tr><td><button class="lnk" data-tag="${esc(o.t)}">${esc(o.t)}</button></td><td class="n">${o.n}</td><td class="n">${o.reads ? fmt(o.reads) : '—'}</td><td><div class="bar" style="height:8px;border-radius:4px"><i style="width:${o.reads / mx * 100}%"></i></div></td><td class="d">${agoTxt(o.last)}</td></tr>`).join('')}
+      </tbody></table></div></div>
+    <div class="card"><div class="ch"><div><h2>Düzeltilmesi Gerekenler</h2><div class="hint">${issues.length} haberde eksik var</div></div></div>
+      ${issues.length ? issues.map(x => `<a class="pc" href="#duzenle/${x.s.id}" style="margin-bottom:10px"><div class="tt">${esc(x.s.title)}</div>${x.bad.map(b => `<div class="mt" style="color:var(--warn)">${I(IC.warn, 13, 2.2)}<span style="color:var(--t2)">${esc(b[1])} · ${esc(b[2])}</span></div>`).join('')}<span class="lnk">Düzenle</span></a>`).join('') : '<div class="empty">Her şey yolunda</div>'}</div>
+  </div>`;
+}
+
+/* ---------- Yapay Zekâ Hattı ---------- */
+function pHat() {
+  const flow = S.filter(s => s.status === 'hatta' || s.status === 'taslak'), wait = S.filter(s => s.status === 'onay'), red = S.filter(s => s.status === 'red'), pub = S.filter(s => s.status === 'yayinda');
+  const col = i => flow.filter(s => s.pipe.indexOf('run') === i);
+  const card = (s, i) => `<a class="pc run" href="#duzenle/${s.id}"><div class="tt">${esc(s.title)}</div><div class="mt">${I(IC.dots, 14, 2.4)}${esc(s.notes[i] || 'Çalışıyor')}</div><div class="mt">${esc(s.cat)} · ${agoTxt(s.ago)} girdi</div></a>`;
+  const cands = [['Japonya merkez bankası tahvil alımını azalttı', 64], ['Bir teknoloji şirketinin yönetim değişikliği', 58]];
+  return hdr('Yapay Zekâ Hattı', 'Her haber 6 ajandan geçer, son onay sende', `<button class="btn${paused ? ' pri' : ''}" data-act="pause">${I(paused ? IC.play : IC.pause, 16)}${paused ? 'Hattı başlat' : 'Hattı duraklat'}</button>`) + `
+  ${paused ? `<div class="banner">${I(IC.pause, 18)}<span>Hat duraklatıldı. Ajanlar yeni haber almıyor, sıradakiler bekliyor.</span></div>` : ''}
+  <div class="grid g4" style="margin-bottom:16px">
+    <div class="card kpi"><div class="lab">Bugün Yayınlanan</div><div class="val">${pub.length}<span style="font-size:20px;color:var(--t4)"> / 30</span></div><div class="bar"><i style="width:${pub.length / 30 * 100}%"></i></div></div>
+    <div class="card kpi"><div class="lab">Hatta</div><div class="val">${flow.length}</div><div class="foot">ajanlar çalışıyor</div></div>
+    <div class="card kpi"><div class="lab">Onayını Bekleyen</div><div class="val" style="color:var(--warn)">${wait.length}</div><div class="foot">yayınla ya da reddet</div></div>
+    <div class="card kpi"><div class="lab">Bugünkü Maliyet</div><div class="val">$${((pub.length + wait.length + flow.length) * .22 + .6).toFixed(2).replace('.', ',')}</div><div class="foot">tahmini · haber başı ~$0,22</div></div>
+  </div>
+  <div class="board">
+    ${AG.map((a, i) => `<div class="colm"><div class="h"><span>${a}</span><em>${i === 0 ? cands.length : col(i).length}</em></div><div class="role">${AGR[i]}</div>
+      ${i === 0 ? cands.map(c => `<div class="pc cand"><div class="tt">${esc(c[0])}</div><div class="mt">Önem puanı ${c[1]}/100 · eşik 70, seçilmedi</div></div>`).join('') : col(i).map(s => card(s, i)).join('') || '<div class="mt" style="color:var(--t4);font-size:12.5px">Boşta</div>'}</div>`).join('')}
+    <div class="colm" style="box-shadow:inset 0 0 0 1px rgba(245,194,107,.35)"><div class="h"><span>Onay</span><em style="background:rgba(245,194,107,.18);color:var(--warn)">${wait.length}</em></div><div class="role">Son karar senin</div>
+      ${wait.map(s => `<div class="pc">${s.img ? `<span class="thumb" style="width:100%;height:84px;background-image:url(${s.img});background-position:${s.pos}"></span>` : ''}<a class="tt" href="#duzenle/${s.id}">${esc(s.title)}</a><div class="mt">${I(IC.check, 13, 2.4)}<span>6 ajan onayladı · SEO ${seo(s).score}</span></div>
+        <div class="bt"><button class="btn sm ok" data-act="pub" data-id="${s.id}">Yayınla</button><button class="btn sm no" data-act="rej" data-id="${s.id}">Reddet</button></div></div>`).join('') || '<div class="mt" style="color:var(--t4);font-size:12.5px">Bekleyen yok</div>'}</div>
+  </div>
+  ${red.length ? `<div class="card mt16"><div class="ch"><div><h2>Durdurulanlar</h2><div class="hint">Bir ajan ya da sen durdurdun</div></div></div>
+    ${red.map(s => `<div class="kv" style="align-items:center;gap:16px"><span style="color:var(--t1);flex:1"><b>${esc(s.title)}</b><br><span style="color:var(--t3);font-size:12.5px">${esc(s.reason || 'Elle reddedildi')}</span></span><span style="display:flex;gap:6px"><a class="btn sm" href="#duzenle/${s.id}">Düzenle</a><button class="btn sm" data-act="retry" data-id="${s.id}">${I(IC.redo, 14)}Hatta geri al</button></span></div>`).join('')}</div>` : ''}`;
+}
+
+/* ---------- render + events ---------- */
+function render() {
+  side();
+  const r = route(), m = document.getElementById('main');
+  m.innerHTML = r.p === 'haberler' ? pHaberler() : r.p === 'duzenle' ? pEdit(r.id) : r.p === 'yeni' ? pEdit(null) : r.p === 'seo' ? pSeo() : r.p === 'hat' ? pHat() : pGenel();
+  document.title = 'Perspekt! Haber Paneli';
+}
+function toast(t) { const el = document.getElementById('toast'); el.innerHTML = I(IC.check, 16, 2.2) + esc(t); el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(() => el.classList.remove('on'), 2600); }
+function refreshSeo() { const b = document.getElementById('seobox'); if (b && ed) b.innerHTML = seoBox(ed, seo(ed)); }
+function setCount(el) { const l = el.closest('.f'); const em = l && l.querySelector('label em'); if (!em) return; const [, mx] = em.textContent.split(' / '); const mn = { title: 40, spot: 70 }[el.dataset.f || el.dataset.t] || 0; em.textContent = el.value.length + ' / ' + mx; em.classList.toggle('bad', el.value.length > +mx || el.value.length < mn); }
+function commit(pubNow) {
+  const rte = document.getElementById('rte'); if (rte) ed.body = rte.innerHTML;
+  if (!ed.title.trim()) { toast('Başlık boş olamaz'); return; }
+  if (pubNow) { if (ed.pipe.some(p => p !== 'ok')) { toast('Tüm ajanlar onaylamadan yayınlanamaz'); return; } ed.status = 'yayinda'; }
+  ed.upd = 0; ed.slug = ed.slug || slugify(ed.title); ed.home = ed.home || ed.title.slice(0, 48);
+  if (ed.isNew) { delete ed.isNew; ed.ago = 0; if (ed.status === 'taslak') { ed.pipe[2] = 'run'; ed.notes[2] = 'Kontrol ediliyor: rakamlar ve kaynak'; } S.unshift(ed); }
+  else { const i = S.findIndex(s => s.id === ed.id); S[i] = ed; }
+  const ok = save(); const id = ed.id; ed = null;
+  toast(ok ? (pubNow ? 'Yayınlandı' : 'Kaydedildi') : 'Kaydedildi, ama görsel tarayıcıya sığmadı; bu oturumda görünür');
+  location.hash = 'duzenle/' + id; render();
+}
+document.addEventListener('input', e => {
+  const t = e.target;
+  if (t.id === 'q') { ui.q = t.value; const pos = t.selectionStart; render(); const q = document.getElementById('q'); q.focus(); q.setSelectionRange(pos, pos); return; }
+  if (!ed) return;
+  if (t.dataset.f) { ed[t.dataset.f] = t.value; if (t.dataset.f === 'title' && !ed.slugEd) { ed.slug = slugify(t.value); const sl = document.querySelector('[data-f=slug]'); if (sl) sl.value = ed.slug; } setCount(t); refreshSeo(); if (t.dataset.f === 'pos') { const p = document.getElementById('imgp'); if (p) p.style.backgroundPosition = t.value; } }
+  if (t.dataset.b) { ed.bul[+t.dataset.b] = t.value; }
+  if (t.dataset.imp) { const [i, j] = t.dataset.imp.split(':'); ed.imp[+i][+j] = t.value; }
+  if (t.dataset.t) { ed.tr[lang][t.dataset.t] = t.value; setCount(t); }
+  if (t.dataset.tb) { ed.tr[lang].bul[+t.dataset.tb] = t.value; }
+});
+document.addEventListener('change', e => { const t = e.target;
+  if (t.id === 'fcat') { ui.cat = t.value; render(); }
+  if (ed && t.dataset.f === 'status') { ed.status = t.value; const rte = document.getElementById('rte'); if (rte) ed.body = rte.innerHTML; render(); }
+  if (ed && (t.dataset.f === 'cat' || t.dataset.f === 'owner' || t.dataset.f === 'pos' || t.dataset.f === 'sched')) ed[t.dataset.f] = t.value;
+});
+document.addEventListener('keydown', e => {
+  const t = e.target; if (e.key !== 'Enter' || !ed) return;
+  if (t.id === 'tagin' && t.value.trim()) { e.preventDefault(); ed.tags.push(t.value.trim()); keepRte(); render(); document.getElementById('tagin').focus(); }
+  if (t.id === 'assin' && t.value.trim()) { e.preventDefault(); const v = t.value.trim().toUpperCase(); if (!ed.assets.includes(v)) ed.assets.push(v); keepRte(); render(); document.getElementById('assin').focus(); }
+});
+function keepRte() { const rte = document.getElementById('rte'); if (rte && ed) ed.body = rte.innerHTML; }
+document.addEventListener('click', e => {
+  const st = e.target.closest('[data-st]'); if (st) { ui.st = st.dataset.st; render(); return; }
+  const so = e.target.closest('[data-sort]'); if (so) { const k = so.dataset.sort; ui.dir = ui.sort === k ? -ui.dir : 1; ui.sort = k; render(); return; }
+  const tg = e.target.closest('[data-tag]'); if (tg) { ui.tag = tg.dataset.tag; ui.st = ''; location.hash = 'haberler'; return; }
+  const go = e.target.closest('[data-go]'); if (go) { location.hash = 'duzenle/' + go.dataset.go; return; }
+  const lg = e.target.closest('[data-lang]'); if (lg) { keepRte(); lang = lg.dataset.lang; render(); return; }
+  const cm = e.target.closest('[data-cmd]'); if (cm) { e.preventDefault(); const c = cm.dataset.cmd; document.getElementById('rte').focus();
+    if (c === 'h2') document.execCommand('formatBlock', false, 'h2'); else if (c === 'quote') document.execCommand('formatBlock', false, 'blockquote');
+    else if (c === 'ul') document.execCommand('insertUnorderedList'); else if (c === 'link') { const u = prompt('Bağlantı adresi'); if (u) document.execCommand('createLink', false, u); }
+    else if (c === 'clear') { document.execCommand('removeFormat'); document.execCommand('formatBlock', false, 'p'); } else document.execCommand(c); return; }
+  const a = e.target.closest('[data-act]'); if (!a) return;
+  const act = a.dataset.act, s = a.dataset.id && byId(a.dataset.id);
+  if (act === 'reset') { if (confirm('Paneldeki tüm değişiklikler silinip örnek veriye dönülsün mü?')) { try { localStorage.removeItem(KEY); } catch (e) {} S = load(); ed = null; render(); toast('Örnek veriye dönüldü'); } }
+  else if (act === 'pin' && s) { s.pin = !s.pin; save(); render(); toast(s.pin ? 'Akışın en üstüne sabitlendi' : 'Sabitleme kaldırıldı'); }
+  else if (act === 'untag') { ui.tag = ''; render(); }
+  else if (act === 'pub' && s) { s.status = 'yayinda'; s.ago = 0; s.upd = 0; s.live = 6; s.feed = 120; s.reads = 4; save(); render(); toast('Yayınlandı: ' + s.title); }
+  else if (act === 'rej' && s) { const r = prompt('Reddetme nedeni (isteğe bağlı)'); if (r === null) return; s.status = 'red'; s.reason = r ? 'Elle reddedildi: ' + r : 'Elle reddedildi'; save(); render(); toast('Reddedildi'); }
+  else if (act === 'retry' && s) { s.status = 'hatta'; s.reason = ''; const i = s.pipe.indexOf('fail'); s.pipe = s.pipe.map((p, j) => j < Math.max(0, i) ? 'ok' : j === Math.max(0, i) ? 'run' : 'wait'); s.notes[Math.max(0, i)] = 'Yeniden kontrol ediliyor'; save(); render(); toast('Hatta geri alındı'); }
+  else if (act === 'pause') { paused = !paused; render(); toast(paused ? 'Hat duraklatıldı' : 'Hat yeniden başladı'); }
+  else if (!ed) return;
+  else if (act === 'save') commit(false);
+  else if (act === 'publish') commit(true);
+  else if (act === 'slugEd') { ed.slugEd = !ed.slugEd; if (!ed.slugEd) ed.slug = slugify(ed.title); keepRte(); render(); }
+  else if (act === 'addImp') { ed.imp.push(['', '', 'flat']); keepRte(); render(); }
+  else if (act === 'delImp') { ed.imp.splice(+a.dataset.i, 1); if (!ed.imp.length) ed.imp.push(['', '', 'flat']); keepRte(); render(); }
+  else if (act === 'delTag') { ed.tags.splice(+a.dataset.i, 1); keepRte(); render(); }
+  else if (act === 'delAsset') { ed.assets.splice(+a.dataset.i, 1); keepRte(); render(); }
+  else if (act === 'tg') { ed[a.dataset.k] = !ed[a.dataset.k]; a.classList.toggle('on'); }
+  else if (act === 'upload') document.getElementById('file').click();
+  else if (act === 'rerun') { ed.pipe = ed.pipe.map((p, i) => i === 2 ? 'run' : i < 2 ? 'ok' : 'wait'); ed.notes[2] = 'Kontrol ediliyor'; if (ed.status !== 'yayinda') ed.status = 'hatta'; keepRte(); render(); toast('Editör ajanından itibaren yeniden çalışacak · Güncelle ile kaydet'); }
+  else if (act === 'retr') { toast('Çeviri sıraya alındı · Çevirmen ajanı birkaç dakika içinde günceller'); }
+});
+function takeFile(f) { if (!f || !ed || !/^image\//.test(f.type)) return; const r = new FileReader(); r.onload = () => { ed.img = r.result; ed.lic = ed.lic || 'Kendi yüklemem'; keepRte(); render(); toast('Görsel eklendi · Güncelle ile kaydet'); }; r.readAsDataURL(f); }
+document.getElementById('file').addEventListener('change', e => { takeFile(e.target.files[0]); e.target.value = ''; });
+document.addEventListener('dragover', e => { const d = e.target.closest && e.target.closest('#drop,#imgp'); if (d) { e.preventDefault(); document.getElementById('drop').classList.add('ov'); } });
+document.addEventListener('dragleave', e => { const d = document.getElementById('drop'); if (d) d.classList.remove('ov'); });
+document.addEventListener('drop', e => { const d = e.target.closest && e.target.closest('#drop,#imgp'); if (d) { e.preventDefault(); document.getElementById('drop').classList.remove('ov'); takeFile(e.dataTransfer.files[0]); } });
+/* chart tooltip */
+const tip = document.getElementById('tip');
+document.addEventListener('mousemove', e => { const b = e.target.closest && e.target.closest('[data-tip]'); if (!b) { tip.style.display = 'none'; return; } tip.innerHTML = b.dataset.tip; tip.style.display = 'block'; tip.style.left = Math.min(innerWidth - tip.offsetWidth - 8, e.clientX + 12) + 'px'; tip.style.top = (e.clientY - 40) + 'px'; });
+render();
+</script>
+</body>
+</html>
