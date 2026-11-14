@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="de">
 <head>
+<meta name="robots" content="noindex, nofollow">
 <meta charset="utf-8">
 <meta name="viewport" content="width=390, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -17,9 +18,9 @@
 <x-dc><template>
 <helmet>
 <style>
-@font-face{font-family:"Satoshi";src:url("img/ee1ae49e9eda7efa5a4f82e13c69d787.otf") format("opentype");font-weight:400;font-display:swap}
-@font-face{font-family:"Satoshi";src:url("img/e5790f800f2903e49d97c85f0207319e.otf") format("opentype");font-weight:500;font-display:swap}
-@font-face{font-family:"Satoshi";src:url("img/bd7b5ee2020f024ab20bd64919d48342.otf") format("opentype");font-weight:700;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("https://cdn.fontshare.com/wf/TTX2Z3BF3P6Y5BQT3IV2VNOK6FL22KUT/7QYRJOI3JIMYHGY6CH7SOIFRQLZOLNJ6/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("https://cdn.fontshare.com/wf/P2LQKHE6KA6ZP4AAGN72KDWMHH6ZH3TA/ZC32TK2P7FPS5GFTL46EU6KQJA24ZYDB/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("https://cdn.fontshare.com/wf/LAFFD4SDUCDVQEXFPDC7C53EQ4ZELWQI/PXCT3G6LO6ICM5I3NTYENYPWJAECAWDD/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.woff2") format("woff2");font-weight:700;font-display:swap}
 body{margin:0}img[src*="lg-fx-"]{width:100%!important;height:100%!important}span:has(> img[src*="lg-fx-"]){background:transparent!important;box-shadow:none!important}img[src*="lg-cm-"]{width:100%!important;height:100%!important}span:has(> img[src*="lg-cm-"]){background:transparent!important;box-shadow:none!important}img[src*="-w.png"]{width:76%!important;height:76%!important}
 @media (prefers-reduced-motion: no-preference){
 @keyframes pk-up{from{opacity:0;transform:translate3d(0,6px,0)}to{opacity:1;transform:none}}
@@ -92,6 +93,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         <h1 style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.14; letter-spacing: -0.025em; color: var(--kFFFFFF)">{{a.t1}}<span class="gb">{{a.t2}}</span>{{a.t3}}</h1>
         <p style="margin: 0; font-size: 16px; font-weight: 400; line-height: 1.5; letter-spacing: 0.005em; color: var(--kB4BAC6)">{{a.sum}}</p>
         <span style="font-size: 12px; color: var(--k6B7080)">{{a.src}}</span>
+        <span style="font-size: 12px; line-height: 1.45; color: var(--k6B7080)">Mit KI zusammengefasst, nach redaktioneller Freigabe veröffentlicht · Prototyp: Beispielinhalt, keine echte Nachricht</span>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 4px; padding: 18px 18px 8px; border-radius: 20px; background: var(--k151518)">
@@ -109,7 +111,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 4px; padding: 18px 18px 6px; border-radius: 20px; background: var(--k151518)">
-        <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED); padding-bottom: 6px">MARKTWIRKUNG</span>
+        <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED); padding-bottom: 6px">MARKTREAKTION</span>
         <sc-for list="{{impacts}}" as="i" hint-placeholder-count="3">
           <a href="VarlikDE.dc.html#a{{i.tok}}" style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; border-top: 1px solid var(--kt18); text-decoration: none; color: var(--kF5F7FA)">
             <span style="display: flex; flex-direction: column; gap: 3px; min-width: 0">
@@ -119,12 +121,13 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
             <span style="flex-shrink: 0; padding: 4px 8px; border-radius: 6px; font-size: 11px; font-weight: 500; letter-spacing: 0.06em; color: {{i.color}}; background: {{i.bg}}">{{i.dir}}</span>
           </a>
         </sc-for>
+        <p style="margin: 0; font-size: 12px; line-height: 1.45; color: var(--k6B7080)">Kursbewegungen nach der Meldung. Keine Prognose und keine Kauf- oder Verkaufsempfehlung.</p>
       </div>
 
       <div style="display: flex; flex-direction: column; gap: 8px; padding: 18px; border-radius: 20px; background: var(--k151518)">
         <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.1em; color: var(--k9AB6ED)">ÄHNLICHE EREIGNISSE FRÜHER</span>
         <span style="font-size: 15px; line-height: 1.55; color: var(--kD5D9E2)">{{a.s1}}<span class="mk">{{a.s2}}</span>{{a.s3}}</span>
-        <span style="font-size: 12px; color: var(--k6B7080)">Keine Prognose, sondern eine Rückschau.</span>
+        <span style="font-size: 12px; color: var(--k6B7080)">Keine Prognose. Frühere Entwicklungen sind kein Indikator für künftige Ergebnisse.</span>
       </div>
 
       <button onClick="{{nx.go}}" style="width: 100%; display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 20px; text-align: start; background: var(--k151518); color: var(--kF5F7FA)">
@@ -138,7 +141,7 @@ html.lt .dk .mk{background:linear-gradient(90deg,#FFFFFF 0%,#9AB6ED 100%);-webki
         </span>
       </button>
 
-      <p style="margin: 0; font-size: 12px; line-height: 1.5; color: var(--k6B7080)">Keine Anlageberatung. Allgemeiner Marktkommentar ohne persönliche Kauf- oder Verkaufsempfehlung.</p>
+      <p style="margin: 0; font-size: 12px; line-height: 1.5; color: var(--k6B7080)">Keine Anlageberatung. Allgemeiner Marktkommentar ohne persönliche Kauf- oder Verkaufsempfehlung. <a href="Yasal.html?l=DE#tavsiye" style="color: inherit; text-decoration: underline; text-underline-offset: 2px">Rechtliche Hinweise</a></p>
     </div>
    </div>
   </div>
@@ -266,7 +269,7 @@ class Component extends DCLogic {
     var sid = this._sid || (this._sid = pkTok('n') || 'apple'), A0 = STORIES[sid] || STORIES.apple || {};
     var UP = '#5BE59A', NE = 'var(--kA9AEBB)';
     var DNc = this.pkLT && this.pkLT() ? '#E5484D' : '#FF8A7A';
-    var impacts = (A0.imp || []).map(function (r) { var k = r[3]; return { tok: String(r[4] || r[0]).replace('/', '_'), name: r[0], why: r[1], dir: r[2], color: k === 'up' ? UP : k === 'down' ? DNc : NE, bg: k === 'up' ? 'rgba(91,229,154,0.1)' : k === 'down' ? 'rgba(255,138,122,0.1)' : 'rgba(169,174,187,0.1)' }; });
+    var PKD = {up: 'GESTIEGEN', down: 'GEFALLEN', flat: 'SEITWÄRTS'}, PKP = {}; (A0.pills || []).forEach(function (p) { PKP[p[0]] = p[1]; }); var impacts = (A0.imp || []).map(function (r) { var k = r[3]; return { tok: String(r[4] || r[0]).replace('/', '_'), name: r[0], why: r[1], dir: PKP[String(r[4] || r[0])] || PKD[k] || r[2], color: k === 'up' ? UP : k === 'down' ? DNc : NE, bg: k === 'up' ? 'rgba(91,229,154,0.1)' : k === 'down' ? 'rgba(255,138,122,0.1)' : 'rgba(169,174,187,0.1)' }; });
     var pills = (A0.pills || []).map(function (p) { return { tok: p[0].replace('/', '_'), sym: p[0], ab: p[0].charAt(0), bg: '#3B3F4A', chg: p[1], color: p[2] ? UP : DNc }; });
     var bullets = (A0.bul || []).map(function (b, i) { return { n: '0' + (i + 1), pre: b[0], em: b[1], post: b[2] }; });
     var me = this, ORD = Object.keys(STORIES), ni = ORD[(ORD.indexOf(sid) + 1) % ORD.length], NXS = STORIES[ni] || {};

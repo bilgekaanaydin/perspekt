@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Perspekt! Yasal Metinler</title>
+<link rel="icon" href="img/617218bebfdc0252568d560943992165.png">
+<style>
+@font-face{font-family:"Satoshi";src:url("https://cdn.fontshare.com/wf/TTX2Z3BF3P6Y5BQT3IV2VNOK6FL22KUT/7QYRJOI3JIMYHGY6CH7SOIFRQLZOLNJ6/KFIAZD4RUMEZIYV6FQ3T3GP5PDBDB6JY.woff2") format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("https://cdn.fontshare.com/wf/P2LQKHE6KA6ZP4AAGN72KDWMHH6ZH3TA/ZC32TK2P7FPS5GFTL46EU6KQJA24ZYDB/7AHDUZ4A7LFLVFUIFSARGIWCRQJHISQP.woff2") format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Satoshi";src:url("https://cdn.fontshare.com/wf/LAFFD4SDUCDVQEXFPDC7C53EQ4ZELWQI/PXCT3G6LO6ICM5I3NTYENYPWJAECAWDD/GHM6WVH6MILNYOOCXHXB5GTSGNTMGXZR.woff2") format("woff2");font-weight:700;font-display:swap}
+:root{--bg:#000;--s1:#151518;--s2:#1C1C21;--line:rgba(255,255,255,.08);--line2:rgba(255,255,255,.16);--t1:#F5F7FA;--t2:#C4C8D2;--t3:#8B91A0;--b2:#4F82FF;--b3:#A9C1FF;--warn:#F5C26B}
+*{box-sizing:border-box}
+html,body{margin:0;background:#000;color:var(--t1);font-family:Satoshi,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+body{background:radial-gradient(90% 50% at 85% -10%,rgba(32,93,244,.32) 0%,rgba(32,93,244,.08) 45%,rgba(0,0,0,0) 72%) no-repeat,#000;min-height:100vh}
+.wrap{max-width:720px;margin:0 auto;padding:max(20px,env(safe-area-inset-top)) 16px 64px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:12px;height:44px;margin-bottom:18px}
+.back{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;background:var(--s1);box-shadow:inset 0 0 0 .75px var(--line2);color:var(--t1);text-decoration:none}
+.langs{display:flex;gap:4px;padding:4px;border-radius:18px;background:var(--s1);box-shadow:inset 0 0 0 .75px var(--line2)}
+.langs a{height:30px;padding:0 10px;border-radius:14px;display:flex;align-items:center;font-size:12.5px;font-weight:700;color:var(--t3);text-decoration:none}
+.langs a.on{background:#24242A;color:var(--t1)}
+h1{margin:6px 0 8px;font-size:34px;line-height:1.03;font-weight:700;letter-spacing:-.02em;background:linear-gradient(180deg,#FFFFFF 35%,#9AB6ED 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{margin:0 0 18px;color:var(--t2);font-size:15px;line-height:1.55}
+.draft{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:16px;margin-bottom:18px;background:rgba(245,194,107,.08);box-shadow:inset 0 0 0 .75px rgba(245,194,107,.32);font-size:13.5px;line-height:1.5;color:var(--t1)}
+.draft svg{flex-shrink:0;color:var(--warn);margin-top:2px}
+.toc{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:22px}
+.toc a{height:34px;padding:0 13px;border-radius:17px;display:flex;align-items:center;background:var(--s1);box-shadow:inset 0 0 0 .75px var(--line2);color:var(--t2);font-size:13px;font-weight:500;text-decoration:none}
+.toc a:hover{color:var(--t1)}
+section{scroll-margin-top:16px;padding:22px 20px;border-radius:22px;background:rgba(21,21,24,.88);box-shadow:inset 0 0 0 .75px var(--line);margin-bottom:12px}
+section h2{margin:0 0 12px;font-size:20px;line-height:1.1;font-weight:700;letter-spacing:-.01em}
+section h3{margin:16px 0 6px;font-size:15px;font-weight:700;color:var(--t1)}
+section p,section li{font-size:14.5px;line-height:1.65;color:var(--t2)}
+section p{margin:0 0 10px}
+section ul{margin:0 0 10px;padding-left:20px}
+section li{margin-bottom:4px}
+.ph{color:var(--b3);font-weight:500}
+.box{padding:12px 14px;border-radius:14px;background:rgba(79,130,255,.08);box-shadow:inset 0 0 0 .75px rgba(79,130,255,.28);margin:8px 0 12px}
+.box p:last-child{margin:0}
+.kv{display:grid;grid-template-columns:150px 1fr;gap:6px 14px;font-size:14px;line-height:1.5}
+.kv span:nth-child(odd){color:var(--t3)}
+.kv span:nth-child(even){color:var(--t1)}
+.foot{margin-top:18px;color:var(--t3);font-size:12.5px;line-height:1.5}
+@media (max-width:420px){.kv{grid-template-columns:1fr}.kv span:nth-child(even){margin-bottom:8px}h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap" id="app"></div>
+<script>
+/* Draft legal texts for the Perspekt! prototype (2026-11-14). Not reviewed by a lawyer yet. Placeholders in [brackets].
+   Turkish is the source text; English is a translation; Spanish and German show the English text until the Turkish
+   text is final (translating drafts that will still change would multiply the review work). */
+const L = (new URLSearchParams(location.search).get('l') || '').toUpperCase();
+const lang = ['EN', 'ES', 'DE'].includes(L) ? L : 'TR';
+document.documentElement.lang = lang.toLowerCase();
+const W = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg>';
+const UI = {
+  TR: { title: 'Yasal Metinler', lead: 'Perspekt! haber ve piyasa bilgisini nasıl sunduğunu, verilerini nasıl koruduğunu ve sorumluluklarımızı burada bulursun.', draft: 'Taslak: Bu metinler avukat incelemesinden geçmeden yayına alınmaz. Köşeli parantez içindeki alanlar şirket kurulunca doldurulacak.', back: 'Geri', upd: 'Son güncelleme: 14 Kasım 2026 · Sürüm 0.1 (taslak)' },
+  EN: { title: 'Legal', lead: 'How Perspekt! presents news and market information, how we protect your data and what we are responsible for.', draft: 'Draft: these texts will not go live before a lawyer has reviewed them. Fields in square brackets will be filled in once the company is set up.', back: 'Back', upd: 'Last updated: 14 November 2026 · Version 0.1 (draft)' },
+  ES: { title: 'Textos legales', lead: 'Cómo presenta Perspekt! las noticias y la información de mercado, cómo protegemos tus datos y de qué somos responsables.', draft: 'Borrador: la versión en español se publicará cuando el texto turco esté revisado por un abogado. Mientras tanto se muestra la versión en inglés.', back: 'Atrás', upd: 'Última actualización: 14 de noviembre de 2026 · Versión 0.1 (borrador)' },
+  DE: { title: 'Rechtliches', lead: 'Wie Perspekt! Nachrichten und Marktinformationen darstellt, wie wir deine Daten schützen und wofür wir verantwortlich sind.', draft: 'Entwurf: Die deutsche Fassung folgt, sobald der türkische Text anwaltlich geprüft ist. Bis dahin wird die englische Fassung angezeigt.', back: 'Zurück', upd: 'Zuletzt aktualisiert: 14. November 2026 · Version 0.1 (Entwurf)' }
+};
+const P = s => `<span class="ph">[${s}]</span>`;
+
+const TR = [
+ ['kunye', 'Künye ve İletişim', `
+  <div class="kv">
+   <span>Yayın adı</span><span>Perspekt!</span>
+   <span>Yayın türü</span><span>Yaygın, süreli internet haber yayını (mobil uygulama ve internet sitesi)</span>
+   <span>Yayın sahibi</span><span>${P('Şirket unvanı')}</span>
+   <span>Sorumlu müdür</span><span>${P('Ad Soyad')}</span>
+   <span>Yönetim yeri</span><span>${P('Açık adres')}</span>
+   <span>E-posta</span><span>${P('iletisim@alanadi')}</span>
+   <span>KEP adresi</span><span>${P('KEP adresi')}</span>
+   <span>Yer sağlayıcı</span><span>${P('Barındırma şirketi ve ülkesi')}</span>
+  </div>
+  <p class="foot">Her haberde ilk yayın tarihi ve sonraki güncelleme tarihleri değiştirilemez biçimde gösterilir. Yayınlanan içerikler en az iki yıl saklanır.</p>`],
+ ['tavsiye', 'Yatırım Tavsiyesi Uyarısı', `
+  <div class="box"><p>Burada yer alan yatırım bilgi, yorum ve tavsiyeleri yatırım danışmanlığı kapsamında değildir. Yatırım danışmanlığı hizmeti; aracı kurumlar, portföy yönetim şirketleri, mevduat kabul etmeyen bankalar ile müşteri arasında imzalanacak yatırım danışmanlığı sözleşmesi çerçevesinde sunulmaktadır. Burada yer alan yorum ve tavsiyeler, yorum ve tavsiyede bulunanların kişisel görüşlerine dayanmaktadır. Bu görüşler mali durumunuz ile risk ve getiri tercihlerinize uygun olmayabilir. Bu nedenle, sadece burada yer alan bilgilere dayanılarak yatırım kararı verilmesi beklentilerinize uygun sonuçlar doğurmayabilir.</p></div>
+  <h3>Perspekt! ne yapar, ne yapmaz</h3>
+  <ul>
+   <li>Perspekt! herkese aynı içeriği sunan bir haber ve piyasa bilgisi uygulamasıdır. Kişiye, gruba ya da portföye özel al, sat veya tut önerisi vermez.</li>
+   <li>Haberlerin altındaki “Piyasa tepkisi” bölümü, haberden sonra gerçekleşen fiyat hareketini gösterir. Tahmin, hedef fiyat ya da sinyal değildir.</li>
+   <li>“Geçmişte benzer olaylar” ve “Alsaydım ne olurdu?” geçmiş verinin özetidir. Geçmiş performans gelecekteki sonuçların göstergesi değildir.</li>
+   <li>“Varlıklarım” bölümü yalnızca senin girdiğin varlıkların değerini hesaplayan bir takip aracıdır. Perspekt! emir iletmez, para ya da kripto varlık tutmaz, hiçbir aracı kurum ya da kripto varlık platformuyla bağlantılı değildir.</li>
+   <li>Kripto varlıklar yüksek oynaklık taşır; değerinin tamamını kaybetme riski vardır.</li>
+   <li>Sponsorlu içerik ya da reklam yayınlanırsa “Reklam” etiketiyle haberden açıkça ayrılır. SPK izni olmayan platformların reklamı yayınlanmaz.</li>
+  </ul>
+  <h3>Çıkar çatışması</h3>
+  <p>Ekip üyeleri yayımlanmamış haberlere dayanarak işlem yapmaz. Bir haberle ilgili çıkar ilişkisi olan kişi o haberin onayında yer almaz.</p>`],
+ ['yz', 'Yapay Zekâ Kullanımı ve Doğruluk', `
+  <p>Haberler, adı belirtilen kaynaklardaki olgulardan yapay zekâ yardımıyla özetlenir ve çevrilir. Her haber yayından önce sorumlu bir editör tarafından kaynağıyla karşılaştırılıp onaylanır; editör onayından sonra yapay zekâ metni değiştirmez.</p>
+  <ul>
+   <li>Her haberde “Yapay zekâ ile özetlendi” etiketi ve kaynağın adı ile bağlantısı bulunur.</li>
+   <li>Kaynakta olmayan rakam, alıntı ya da iddia eklenmez. Doğrulanamayan bilgi yayınlanmaz.</li>
+   <li>Haber görselleri lisanslı fotoğraflardır; gerçek bir olayı gösteriyormuş gibi yapay zekâ ile üretilmiş görsel kullanılmaz.</li>
+   <li>Kullanıcıların kişisel verileri ve portföy bilgileri haber üreten yapay zekâ servislerine gönderilmez.</li>
+  </ul>`],
+ ['duzeltme', 'Düzeltme ve Cevap Hakkı', `
+  <p>Bir haberde hata görürsen ya da hakkında yayın yapılan kişi veya kurumsan ${P('duzeltme@alanadi')} adresine yazabilirsin. Düzeltme ve cevap yazıları en geç bir gün içinde, ilgili haberle aynı yerde yayımlanır. Düzeltilen haberde neyin, ne zaman değiştiği gösterilir.</p>
+  <p>Telif, kişilik hakkı ya da hukuka aykırılık bildirimleri aynı adrese yapılabilir; bildirimler incelenip sonuç bildirilir.</p>`],
+ ['kaynak', 'Kaynaklar, Telif ve Görseller', `
+  <ul>
+   <li>Perspekt! haberlerin olgusal bilgisini kendi cümleleriyle kısa özet olarak sunar ve her zaman özgün kaynağa bağlantı verir. Başka yayınların metinleri, yorum yazıları ve fotoğrafları izinsiz kopyalanmaz.</li>
+   <li>Haber ajansı ve veri sağlayıcı içerikleri yalnızca lisans sözleşmesinin izin verdiği ölçüde kullanılır.</li>
+   <li>Fotoğraflar lisanslı stok kaynaklarından alınır; kaynak ve lisans bilgisi kayıt altındadır. Tanınabilir kişi ya da marka içeren fotoğraflar haberle ilgisi olmayan bağlamda kullanılmaz.</li>
+   <li>Şirket logoları ve isimleri yalnızca ilgili varlığı tanıtmak için kullanılır ve sahiplerine aittir. Perspekt! bu şirketlerle bağlantılı değildir.</li>
+   <li>Piyasa verileri ${P('veri sağlayıcı adları')} tarafından sağlanır. Hisse, endeks ve döviz fiyatları 15 dakikaya kadar gecikmeli olabilir.</li>
+  </ul>`],
+ ['kosullar', 'Kullanım Koşulları', `
+  <h3>1. Hizmet</h3><p>Perspekt!, ${P('Şirket unvanı')} (“Perspekt!”) tarafından sunulan, finans haberlerini ve piyasa bilgisini özetleyen bir uygulamadır. Uygulamadaki içerikler genel bilgilendirme amaçlıdır; yatırım danışmanlığı değildir.</p>
+  <h3>2. Üyelik</h3><p>Üye olmak için 18 yaşını doldurmuş olmalısın. Verdiğin bilgilerin doğru olmasından ve hesabının güvenliğinden sen sorumlusun. Hesabını istediğin zaman Ayarlar &gt; Hesabı sil adımıyla kapatabilirsin.</p>
+  <h3>3. Kullanım kuralları</h3><p>Uygulamayı hukuka aykırı amaçla kullanamaz, içerikleri toplu olarak kopyalayamaz, otomatik araçlarla veri çekemez ya da hizmetin işleyişini bozamazsın.</p>
+  <h3>4. Fikri haklar</h3><p>Uygulamanın tasarımı, yazılımı ve Perspekt!’e ait içerikler Perspekt!’e aittir. Üçüncü kişilere ait marka, logo ve içerikler sahiplerine aittir.</p>
+  <h3>5. Sorumluluk</h3><p>Perspekt! içeriklerin doğru ve güncel olması için özen gösterir. Veriler gecikmeli olabilir ve hata içerebilir. Uygulamadaki bilgilere dayanarak verilen yatırım kararlarının sonuçlarından kullanıcı sorumludur. Bu hüküm, kanunen sınırlanamayan sorumlulukları ve tüketici haklarını kısıtlamaz.</p>
+  <h3>6. Ücretli özellikler</h3><p>Perspekt! şu an ücretsizdir. Plus gibi ücretli bir özellik sunulduğunda, satın almadan önce ön bilgilendirme formu ve mesafeli sözleşme ayrıca gösterilir; cayma hakkı ve aboneliği sona erdirme yolları orada açıklanır.</p>
+  <h3>7. Değişiklikler</h3><p>Koşullar değişirse önemli değişiklikleri uygulamada önceden duyururuz.</p>
+  <h3>8. Uygulanacak hukuk</h3><p>Bu koşullara Türkiye Cumhuriyeti hukuku uygulanır. Tüketiciler, yasal sınırlar içinde tüketici hakem heyetlerine ve tüketici mahkemelerine başvurabilir.</p>`],
+ ['kvkk', 'KVKK Aydınlatma Metni', `
+  <p>6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca veri sorumlusu ${P('Şirket unvanı, adresi')} olarak kişisel verilerini aşağıda anlatıldığı şekilde işliyoruz.</p>
+  <h3>İşlenen veriler</h3>
+  <ul>
+   <li>Kimlik: ad soyad, doğum tarihi</li>
+   <li>İletişim: e-posta adresi, cep telefonu numarası</li>
+   <li>Kullanım: takip listesi, ilgi alanları, okuma geçmişi, günlük seri ve rozetler, uygulama tercihleri</li>
+   <li>Varlık bilgileri: “Varlıklarım”a kendi girdiğin varlık, adet ve maliyet bilgileri</li>
+   <li>İşlem güvenliği: cihaz bilgisi, oturum kayıtları, IP adresi</li>
+   <li>Pazarlama: yalnızca onay verirsen ileti tercihlerin</li>
+  </ul>
+  <h3>Amaçlar ve hukuki sebepler</h3>
+  <ul>
+   <li>Üyeliği oluşturmak, hesabını doğrulamak ve uygulamayı sunmak: sözleşmenin kurulması ve ifası (m.5/2-c)</li>
+   <li>Yasal yükümlülükleri yerine getirmek, kayıt saklamak: hukuki yükümlülük (m.5/2-ç)</li>
+   <li>Güvenliği sağlamak, kötüye kullanımı önlemek, hizmeti geliştirmek: meşru menfaat (m.5/2-f)</li>
+   <li>Kampanya ve yenilik iletileri göndermek, isteğe bağlı analiz araçları: açık rıza (m.5/1)</li>
+  </ul>
+  <h3>Aktarım</h3>
+  <p>Veriler; barındırma, SMS ve e-posta gönderimi gibi hizmetleri aldığımız tedarikçilerle, yalnızca hizmet için gerektiği kadar ve sözleşmeyle güvence altına alınarak paylaşılır. Tedarikçilerin sunucuları yurt dışındaysa aktarım KVKK m.9’a uygun şekilde (standart sözleşme imzalanıp Kurula bildirilerek) yapılır. Kullanıcı verileri satılmaz, reklam amaçlı paylaşılmaz.</p>
+  <h3>Toplama yöntemi</h3><p>Veriler uygulama ve internet sitesi üzerinden, senin girdiğin bilgilerle ve kullanım sırasında otomatik olarak toplanır.</p>
+  <h3>Hakların</h3>
+  <p>KVKK m.11 uyarınca verilerinin işlenip işlenmediğini öğrenme, bilgi isteme, düzeltilmesini veya silinmesini isteme, aktarıldığı kişileri öğrenme, itiraz etme ve zararın giderilmesini talep etme haklarına sahipsin. Başvurularını ${P('kvkk@alanadi')} adresine iletebilirsin; en geç 30 gün içinde yanıtlanır.</p>`],
+ ['gizlilik', 'Gizlilik ve Bildirimler', `
+  <ul>
+   <li>Okuma geçmişin yalnızca sana daha ilgili haber göstermek için kullanılır.</li>
+   <li>Uygulama içi reklam takibi yapılmaz. İsteğe bağlı analiz araçları yalnızca onay verirsen çalışır.</li>
+   <li>Bildirimler kapalı başlar; haber ve fiyat alarmı bildirimlerini Ayarlar’dan açıp kapatabilirsin. Tanıtım amaçlı bildirim yalnızca ticari ileti onayın varsa gönderilir.</li>
+   <li>Hesabını sildiğinde verilerin, yasal saklama süresi gerektirenler dışında silinir.</li>
+  </ul>`],
+ ['ileti', 'Ticari Elektronik İleti Onayı', `
+  <p>Onay verirsen ${P('Şirket unvanı')} sana kampanya, yenilik ve Plus duyurularını SMS, e-posta ve uygulama bildirimi yoluyla gönderebilir. Onay isteğe bağlıdır; vermemen uygulamayı kullanmanı etkilemez. Onayın İleti Yönetim Sistemi’ne (İYS) kaydedilir. Dilediğin zaman iletideki bağlantıdan, Ayarlar’dan ya da İYS üzerinden ücretsiz olarak geri alabilirsin.</p>`]
+];
+const EN = [
+ ['kunye', 'Imprint and Contact', `
+  <div class="kv">
+   <span>Name</span><span>Perspekt!</span>
+   <span>Type</span><span>Periodical online news publication (mobile app and website)</span>
+   <span>Publisher</span><span>${P('Company name')}</span>
+   <span>Responsible editor</span><span>${P('Full name')}</span>
+   <span>Address</span><span>${P('Full address')}</span>
+   <span>Email</span><span>${P('contact@domain')}</span>
+   <span>Registered e-mail (KEP)</span><span>${P('KEP address')}</span>
+   <span>Hosting provider</span><span>${P('Hosting company and country')}</span>
+  </div>
+  <p class="foot">Every story shows its first publication date and later update dates, which cannot be altered. Published content is kept for at least two years.</p>`],
+ ['tavsiye', 'Investment Advice Notice', `
+  <div class="box"><p>The investment information, comments and recommendations here are not investment advice. Investment advice is provided under an investment advisory agreement signed between a client and an intermediary institution, portfolio management company or non-deposit bank. Comments and recommendations here reflect the personal views of those who make them and may not suit your financial situation or your risk and return preferences. Making investment decisions based only on this information may therefore not lead to the results you expect.</p></div>
+  <h3>What Perspekt! does and does not do</h3>
+  <ul>
+   <li>Perspekt! is a news and market information app that shows everyone the same content. It does not give buy, sell or hold recommendations for a person, group or portfolio.</li>
+   <li>The “Market reaction” section under a story shows the price move that followed the news. It is not a forecast, price target or signal.</li>
+   <li>“Similar past events” and “What if I had bought?” summarise past data. Past performance does not indicate future results.</li>
+   <li>“My assets” is a tracking tool that only values the assets you enter. Perspekt! does not route orders, hold money or crypto assets, and is not affiliated with any broker or crypto platform.</li>
+   <li>Crypto assets are highly volatile; you can lose the whole amount.</li>
+   <li>Any sponsored content or advertising is clearly labelled “Ad” and kept apart from news. Ads for platforms without the required licence are not shown.</li>
+  </ul>
+  <h3>Conflicts of interest</h3>
+  <p>Team members do not trade on unpublished stories. Anyone with an interest in a story takes no part in approving it.</p>`],
+ ['yz', 'Use of AI and Accuracy', `
+  <p>Stories are summarised and translated with AI from facts in named sources. Before publication, a responsible editor checks every story against its source and approves it; AI does not change the text after approval.</p>
+  <ul>
+   <li>Every story carries an “AI-summarised” label and the source name with a link.</li>
+   <li>No figures, quotes or claims are added that are not in the source. Information that cannot be verified is not published.</li>
+   <li>Story images are licensed photos; AI-generated images are never presented as showing a real event.</li>
+   <li>Users’ personal data and portfolio information are never sent to the AI services that write the news.</li>
+  </ul>`],
+ ['duzeltme', 'Corrections and Right of Reply', `
+  <p>If you spot an error, or you are a person or organisation a story is about, write to ${P('corrections@domain')}. Corrections and replies are published within one day, in the same place as the story. A corrected story shows what changed and when.</p>
+  <p>Copyright, personal-rights or unlawful-content notices can be sent to the same address; we review them and reply.</p>`],
+ ['kaynak', 'Sources, Copyright and Images', `
+  <ul>
+   <li>Perspekt! presents the facts of a story as a short summary in its own words and always links to the original source. Other publications’ texts, opinion pieces and photos are not copied without permission.</li>
+   <li>News agency and data provider content is used only as far as the licence allows.</li>
+   <li>Photos come from licensed stock sources and their licence is recorded. Photos showing identifiable people or brands are not used out of context.</li>
+   <li>Company names and logos are used only to identify the asset and belong to their owners. Perspekt! is not affiliated with these companies.</li>
+   <li>Market data is provided by ${P('data provider names')}. Stock, index and FX prices may be delayed by up to 15 minutes.</li>
+  </ul>`],
+ ['kosullar', 'Terms of Use', `
+  <h3>1. Service</h3><p>Perspekt! is an app provided by ${P('Company name')} (“Perspekt!”) that summarises financial news and market information. Content is for general information only and is not investment advice.</p>
+  <h3>2. Account</h3><p>You must be 18 or older to sign up. You are responsible for the accuracy of your details and the security of your account. You can close your account at any time in Settings &gt; Delete account.</p>
+  <h3>3. Acceptable use</h3><p>You may not use the app for unlawful purposes, copy content in bulk, scrape data with automated tools or disrupt the service.</p>
+  <h3>4. Intellectual property</h3><p>The app’s design, software and Perspekt!’s own content belong to Perspekt!. Third-party trademarks, logos and content belong to their owners.</p>
+  <h3>5. Liability</h3><p>Perspekt! takes care to keep content accurate and up to date. Data may be delayed and may contain errors. Users are responsible for the results of investment decisions based on information in the app. This does not limit liability that cannot be limited by law or your consumer rights.</p>
+  <h3>6. Paid features</h3><p>Perspekt! is currently free. If a paid feature such as Plus is offered, the pre-contract information and distance contract will be shown before purchase, including the right of withdrawal and how to cancel.</p>
+  <h3>7. Changes</h3><p>We announce important changes to these terms in the app in advance.</p>
+  <h3>8. Governing law</h3><p>These terms are governed by the laws of the Republic of Türkiye. Consumers may apply to consumer arbitration committees and consumer courts within the legal limits.</p>`],
+ ['kvkk', 'Privacy Notice', `
+  <p>Under Turkish Personal Data Protection Law No. 6698 (KVKK), ${P('Company name and address')}, as data controller, processes your personal data as described below.</p>
+  <h3>Data we process</h3>
+  <ul>
+   <li>Identity: full name, date of birth</li>
+   <li>Contact: email address, mobile number</li>
+   <li>Usage: watchlist, interests, reading history, daily streak and badges, app preferences</li>
+   <li>Asset details: the assets, quantities and costs you enter in “My assets”</li>
+   <li>Security: device details, session logs, IP address</li>
+   <li>Marketing: your message preferences, only if you consent</li>
+  </ul>
+  <h3>Purposes and legal bases</h3>
+  <ul>
+   <li>Creating and verifying your account and providing the app: performance of a contract (Art. 5/2-c)</li>
+   <li>Meeting legal obligations and keeping records: legal obligation (Art. 5/2-ç)</li>
+   <li>Security, preventing misuse and improving the service: legitimate interest (Art. 5/2-f)</li>
+   <li>Offers and news messages, optional analytics: explicit consent (Art. 5/1)</li>
+  </ul>
+  <h3>Transfers</h3>
+  <p>Data is shared with service providers such as hosting, SMS and email delivery only as far as needed and under contract. If a provider’s servers are outside Türkiye, transfers follow Art. 9 KVKK (standard contracts signed and notified to the Authority). User data is never sold or shared for advertising.</p>
+  <h3>How we collect data</h3><p>Through the app and website, from what you enter and automatically while you use them.</p>
+  <h3>Your rights</h3>
+  <p>Under Art. 11 KVKK you can ask whether your data is processed, request information, correction or deletion, learn who it was shared with, object, and claim compensation. Send requests to ${P('privacy@domain')}; we reply within 30 days.</p>`],
+ ['gizlilik', 'Privacy and Notifications', `
+  <ul>
+   <li>Your reading history is only used to show you more relevant news.</li>
+   <li>There is no in-app ad tracking. Optional analytics run only with your consent.</li>
+   <li>Notifications start switched off; you can turn news and price-alert notifications on or off in Settings. Promotional notifications are sent only if you agreed to commercial messages.</li>
+   <li>When you delete your account, your data is deleted except where the law requires us to keep it.</li>
+  </ul>`],
+ ['ileti', 'Consent to Commercial Messages', `
+  <p>If you agree, ${P('Company name')} may send you offers, news and Plus announcements by SMS, email and app notification. Consent is optional and does not affect your use of the app. In Türkiye your consent is recorded in the Message Management System (İYS). You can withdraw it free of charge at any time via the link in a message, in Settings or through İYS.</p>`]
+];
+const S = lang === 'TR' ? TR : EN, u = UI[lang];
+const q = l => l === 'TR' ? 'Yasal.html' : 'Yasal.html?l=' + l;
+document.title = 'Perspekt! ' + u.title;
+document.getElementById('app').innerHTML = `
+  <div class="bar"><a class="back" href="javascript:history.length>1?history.back():location.href='Ayarlar${lang === 'TR' ? '' : lang}.dc.html'" aria-label="${u.back}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>
+  <nav class="langs">${['TR', 'EN', 'ES', 'DE'].map(l => `<a class="${l === lang ? 'on' : ''}" href="${q(l)}${location.hash}">${l}</a>`).join('')}</nav></div>
+  <h1>${u.title}</h1><p class="lead">${u.lead}</p>
+  <div class="draft">${W}<span>${u.draft}</span></div>
+  <nav class="toc">${S.map(s => `<a href="#${s[0]}">${s[1]}</a>`).join('')}</nav>
+  ${S.map(s => `<section id="${s[0]}"><h2>${s[1]}</h2>${s[2]}</section>`).join('')}
+  <p class="foot">${u.upd}</p>`;
+if (location.hash) { const el = document.querySelector(location.hash); if (el) setTimeout(() => el.scrollIntoView(), 50); }
+</script>
+</body>
+</html>
